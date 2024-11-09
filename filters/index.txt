@@ -1,0 +1,689 @@
+mcoun.com##+js(aopr, window.stop)
+mcoun.com##+js(aopr, window.document.keydown)
+
+mcoun.com##+js(nosiif, /^/)
+
+haitu.tv##+js(set, config.tiaoshi, true)
+haitu.xyz##+js(set, config.tiaoshi, true)
+yebaotv.com##+js(set, navigator.userAgent.toLowerCase, noopFunc)
+netflav.com##+js(trusted-click-element, div.ads_video_close_button, , 500)
+||pub-7a9aae2813a742e1b02d588e632e401b.r2.dev
+||yorgio-chat-backend-v2.herokuapp.com
+||tracker.didiglobal.com
+
+||youtube.com/embed/$3p,frame,redirect=click2load.html
+||scribd.com/embeds/$3p,frame,redirect=click2load.html
+||player.vimeo.com/video/$3p,frame,redirect=click2load.html
+||www.google.com/adsense/domains/caf.js*$redirect=noop.js
+
+||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
+||youtube.com/sw.js
+||18comic.vip/static/*/AD
+||api.abema.io/v*/ip/check
+
+||playground.oxc.rs
+
+d0000d.com##+js(set, check, noopFunc)
+d0000d.com##+js(sukka-defuse-devtools-detector)
+example.com##+js(sukka-defuse-devtools-detector)
+
+||david-dm.org
+||ufengjnskl.com
+||ignslkgs.com
+||privateadx.com
+||union.dplayerstatic.com
+||union.maccms.la
+##iframe[src*="union."]:style(display: none)
+||free.ranklet4.com
+
+||versionbadg.es$domain=npmjs.com
+||beamanalytics.b-cdn.net
+||beamanalytics.io
+||zayac2volk11.com
+||talazywho.pro
+||googlevideo.com/initplayback*&oad
+
+@@||intercom.io$domain=namesilo.com
+
+||bootcss.com^$all,badfilter
+||bootcdn.net^$all,badfilter
+||bootcss.com^$all,badfilter
+||staticfile.net^$all,badfilter
+||staticfile.org^$all,badfilter
+bad.news##.plyr__video-wrapper:style(width: 100%)
+bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height: 100% !important)
+||connect.facebook.net/en_US/fbevents.js$redirect=noopjs
+||analytics.nexon.com
+||front-perf.imoim.net
+||tags.news.com.au/prod/adblock/adblock.js
+
+# MIUI HTTP DNS
+/*/sign_d?*$all
+# Aliyun HTTP DNS
+/*/resolve?*$all
+
+/*/__phg/ingest*$all
+
+@@||zopim.com$domain=ui.com|account.ui.com
+
+github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
+# Bring GitHub back, Fuck refine-github
+github.com###repository-container-header:not(:has(.js-repo-nav)) :is(#repo-stars-counter-star, #repo-stars-counter-unstar, #repo-network-counter, #repo-notifications-counter, .js-codespaces-details-container summary .Button-label):style(display: inline-block !important)
+
+china-emu.cn##+js(aopw, window.onload)
+china-emu.cn##html:style(user-select: initial !important)
+
+://www.*.css|$xhr,3p,to=com,badfilter # Breaks Google Dev Docs
+
+||tinypass.com
+||simple.cloudsmith.com
+###pagefull-switch:style(display: block !important;)
+
+##a[href*="://l.labsda.com"]
+##a[href*="://www.aliyun.com/minisite"]
+##a[href*="://curl.qcloud.com"]
+
+||coinbase.com/sw.js
+
+yy.com,le.com##+js(nowebrtc)
+
+||www.parallels.com/download/desktop/pdfm19-en_US/antipiracy_pd_dialog$popup
+||parallels.com/*/antipiracy$all
+
+||zz.bdstatic.com$redirect=noop.js
+||www.zhihu.com/commercial_api/banners_v3/question_up$redirect=noop.txt
+zhihu.com##+js(trusted-click-element, '.Modal.signFlowModal button.Button.Modal-closeButton')
+
+@@||gimg*.baidu.com$3p,image
+||baidu.com$3p
+||my.chinaz.com
+
+reimu.net##pre:style(display: block !important;)
+||bbchin.com/halo-api
+/halo-tracker.js
+/apis/api.halo.run/*/trackers/counter
+||cm.bilibili.com/cm/api$redirect=noop.txt
+||s1.hdslb.com/bfs/seed/log/report/log-reporter.js$redirect=noop.txt
+bilibili.com##a[href*="cm.bilibili.com"]:style(display: block !important)
+bilibili.com##+js(set, window.biliMetaReporter.pv, noopFunc)
+
+@@||graph.qq.com$domain=qq.com
+
+@@||github.com/*/web-vitals
+@@||github.com/**scrolltotop
+@@||github.com/**evercookie
+@@||github.com/**/sensorsdata-ads
+@@||github.com/**/google-analytics
+@@||github.com/**/web-vitals-
+
+@@||localhost$domain=skk.moe
+
+||mktg.tags.f5.com
+||trk.caseads.com
+||pixel.ipinfo.io
+||pubtagmanager.com
+||pixel.onead.com.tw
+||player.svc.litv.tv/pixel/liad-pixel.js
+||adhacker.online
+
+/npm/cookieconsent*
+
+||cloudfront.net/ad-img/image/*
+||carpe.pages.dev
+||data.product.glitch.com
+||analyze.corbado.com
+||leetcode.cn/api/is_china_ip$domain=leetcode.com
+
+||bytegoofy.com$domain=sohu.com
+
+||sponsors.vuejs.org
+||vueschool.io$domain=vuejs.org
+
+||file2.speedtest.cn$image
+
+@@||assets.mailerlite.com$domain=notionway.com
+
+t66y.com##+js(trusted-set, spJson, { "value": "[]" })
+t66y.com##+js(nostif, /tpcHt0ml/)
+t66y.com##+js(nostif)
+
+# bgp.he.net routing graph width fix
+bgp.he.net###graph4 img:style(max-width: 100% !important;)
+bgp.he.net###graph6 img:style(max-width: 100% !important;)
+
+||monitor.azure.com$important
+||learn.microsoft.com/static/third-party/adobe-target/at-js/2.9.0/at.js
+||https://mktg.tags.f5.com/main/prod/utag.js
+
+@@||captcha.qq.com^
+||gdt.qq.com^
+||imtt.qq.com^
+||huatuo.qq.com^
+btrace.qq.com$redirect=noop.js
+cloud.tencent.com/act/common/report$redirect=nooptext
+huatuo*.weiyun.com
+mp.weixin.qq.com/mp/*report$redirect=nooptext
+||pingfore.qq.com
+||safebrowsing.urlsec.qq.com
+stat*.qq.com$redirect=noop.js
+tajs.qq.com$redirect=noop.js
+wspeed.qq.com$redirect=noop.js
+
+||nga.178.com/common_res/js_box.js
+
+||storage.moegirl.org.cn/console-plus/uploads/2024/01/16/b70a27db94200462fd06da4a5ab30b50.jpeg
+||h.lghln1.cn/js/niu/zhong-inc.js
+||umami.rss3.io
+
+||data.bilibili.com^$redirect=nooptext
+
+assets.alicdn.com/g/alilog*$redirect=noop.js
+g.alicdn.com/alilog/mlog/*$redirect=noop.js
+g.alicdn.com/axdata/yunlog*$redirect=noop.js
+g.alicdn.com/dawn/user-tracker*$redirect=noop.js
+g.alicdn.com/sj/securesdk$redirect=noop.js
+
+||cnzz.com^$redirect=nooptext
+
+www.380cc.cc##.ui-resizable.ui-draggable.ui-front.ui-corner-all.ui-widget-content.ui-widget.ui-dialog
+www.380cc.cc##.ui-front.ui-widget-overlay
+
+! 2019/1/24 https://www.laomoit.com/sougoupinyin.html
+www.laomoit.com##div.box:nth-of-type(1) > .custom-html-widget.textwidget
+
+! 2019/5/27 https://www.mf8.biz
+||pics.mf8.biz/wp-store/2018/10/2018102123260678.jpg
+
+! 2019/6/16 https://www.bt.cn
+www.bt.cn##.bttablead
+www.bt.cn##.btad
+
+! 6/20/2019 http://www.haoweichi.com
+www.haoweichi.com###Notice_show
+
+sm.ms##.advert_title
+
+! 9/21/2019 http://blog.didispace.com
+blog.didispace.com###locker
+
+! 2/8/2020 http://www.4399.com
+||www.4399.com/images/p2016/f-scr2.png$image
+www.4399.com##.cf.play-top
+
+##[href*="click.aliyun.com"]
+
+! 4/28/2020 pcbeta.com
+||pcbeta.com/data/cache/ggk.js$important
+bbs.pcbeta.com##.forum_top
+bbs.pcbeta.com##.forum_top_sub
+bbs.pcbeta.com###append_parent
+
+! 6/8/2020 https://segmentfault.com
+segmentfault.com##.float-ads
+
+! 6/27/2020 http://zy.ataoju.com
+zy.ataoju.com###undefined_ab
+
+! 7/6/2020 https://juejin.im
+juejin.im##.index-book-collect
+
+! 7/28/2020 https://developer.aliyun.com
+developer.aliyun.com###right-box
+
+! 2020-08-21 https://hao.su
+||ae01.alicdn.com/kf/HTB1V_sadL1G3KVjSZFkxh5K4XXa4.jpeg
+||tvax4.sinaimg.cn/large/6f8a2832gy1gf4x2rvsebj21bi0hcgq2.jpg
+
+! 2020-10-01 https://tools.ipip.net
+||cdn.ipip.net/loveapp/ipip/tools/theme/partner/*$image
+
+||amap.com$domain=~www.amap.com|~amap.com|~gaode.com
+||map.baidu.com$3p,domain=~map.baidu.com
+||map.qq.com$3p
+@@||api.map.baidu.com$domain=api.leo.moe|lecake.com|58.com
+
+@@||awstrack.me^$badfilter
+
+! https://blog.csdn.net
+blog.csdn.net##.blog_container_aside > .aside-box
+blog.csdn.net##.recommend-box
+blog.csdn.net###csdn-toolbar
+blog.csdn.net##.article-info-box
+blog.csdn.net##.more-toolbox
+blog.csdn.net##.recommend-tit-mod
+blog.csdn.net##.template-box
+blog.csdn.net##.comment-box
+blog.csdn.net###recommend-right
+
+! 2020-11-20 http://wisatajogja.buzz
+wisatajogja.buzz##.adb
+
+! 2020-12-07 https://www.bilibili.com
+www.bilibili.com##.ad-report
+www.bilibili.com##.video-page-game-card-small
+www.bilibili.com##.carousel-box
+www.bilibili.com##.r-con
+www.bilibili.com##+js(nowebrtc)
+data.bilibili.com*$redirect=noop.txt
+*.hdslb.com/bfs/seed/log/*.js*$redirect=noop.txt
+
+! 2021-04-27 https://javkan.com
+||javkan.com/images/bonga/$image
+
+! 2021-06-25 https://web.archive.org
+@@||web.archive.org/web/20060209074034im_/http://beta.e-hentai.org/*$image,domain=web.archive.org
+
+! 2021-09-08 https://aa1xx.xyz
+aa1xx.xyz##.happy-player-beside
+
+! 2021-09-26 https://e-hentai.org
+@@||ehgt.org/ad/*$image
+
+##[class*="ads_head_banner"]
+@@||pornimg.xyz^$3p
+
+||changjiang-exam.yuketang.cn/online_proctor/stu/monitor/feed/add
+||changjiang-exam.yuketang.cn/online_proctor/stu/photograph/add
+||upload.qiniup.com
+||upload-z1.qiniup.com
+||upload-z2.qiniup.com
+||upload-na0.qiniup.com
+||upload-as0.qiniup.com
+
+! 2021-11-29 http://blog.sohu.com
+blog.sohu.com##.focus-pic
+
+! 2021-12-05 https://sm.ms
+sm.ms##.wwads_abp_open
+||sm.ms/assets/js/wwads_blocked.js
+
+! 2021-12-12 https://www.deepl.com
+www.deepl.com###lmt_pro_ad_container
+
+! 2021-12-20 https://ping.chinaz.com
+||csstools.chinaz.com/tools/images/*
+ping.chinaz.com##.ToolHead
+ping.chinaz.com##.clearfix.mb10.wrapper.Map-navbar
+ping.chinaz.com##.backtoTop
+ping.chinaz.com##.backfix
+
+! 2021-12-28 https://react.semantic-ui.com
+react.semantic-ui.com###docs-carbonads
+
+||api.akkariin.com
+
+! 2022-01-16 https://clacified.com
+clacified.com##.ad
+
+bad.third-party.site
+
+! 2022-03-13 https://pastebin.com
+||pastebin.com/themes/pastebin/img/no_war_ukraine.jpeg
+
+! 2022-03-24 https://www.deepl.com
+www.deepl.com###dl_quotes_container
+
+! 2022-04-03 https://ip.sb
+ip.sb##.wwads_abp
+
+! 2022-04-13 https://www.optimizesmart.com
+www.optimizesmart.com##.CampaignType--fullscreen
+
+! 2022-04-25 https://www.ip138.com
+||www.ip138.com/mp/list/new/*$important
+
+! 2022-04-26 https://date-fns.org
+date-fns.org##a[href*="https://cutt.ly"]
+||jobs.date-fns.org^
+
+! 2022-05-06 https://webpack.js.org
+webpack.js.org##.sponsors
+
+! 2022-05-07 https://goshacmd.com
+goshacmd.com##article > .sign-up-form--freebie.sign-up-form
+
+! 2022-06-26 https://npmmirror.com
+||render.alipay.com/p/s/taobaonpm_click*$image
+
+! 2022-06-30 https://developer.mozilla.org
+developer.mozilla.org##.mdn-cta-container
+
+! 2022-07-08 https://quickso.cn
+/npm/sweetalert2$script,domain=quickso.cn,important
+
+! 2022-07-09 https://quickso.cn
+quickso.cn##.slideshow-container
+
+! 2022-07-16 https://www.optimizesmart.com
+www.optimizesmart.com###wccp_pro_mask
+www.optimizesmart.com###wpcp-error-message
+
+! 2022-07-16 https://web-vitals-report.web.app
+@@||web-vitals-report.web.app^$1p
+
+! 2022-08-07 https://fontawesome.com
+fontawesome.com##.wrap-carbon-ad
+fontawesome.com##.wrap-ad
+
+! 2022-09-03 https://1fichier.com
+1fichier.com###dlw
+1fichier.com###dlb:style(display: block!important)
+1fichier.com###modal-msg
+1fichier.com###header > .ct_warn
+1fichier.com##+js(nostif, /^/)
+1fichier.com##+js(nosiif, /^/)
+
+! 2022-09-08 https://community.cloudflare.com
+community.cloudflare.com##.house-ad
+
+umami.*/*mami.js
+
+! 2022-09-18 https://blog.cloudflare.com
+blog.cloudflare.com###cloudflare-tv-embed
+
+! 2022-10-18 https://www.boce.com
+www.boce.com##.money_left
+www.boce.com##.menu
+www.boce.com##.vipIcon
+www.boce.com##.index-top-long
+
+! 2022-10-19 https://webpack.docschina.org
+webpack.docschina.org##.sponsors
+
+! 2022-11-10 https://download.pixelexperience.org
+||www.humix.com$3p
+||g.ezoic.net
+||www.ezojs.com/ezoic/sa.min.js$3p
+
+! 2022-11-11 https://amazfitwatchfaces.com
+amazfitwatchfaces.com##.advpanel
+
+texon.io#@#.subscribe-box
+
+! 2022-11-20 https://www.cnbeta.com.tw
+www.cnbeta.com.tw##+js(aopr, Math)
+
+! 2022-11-23 http://msjudi.icu
+||wanwang.aliyun.com/domain/parking$subdocument
+
+||pangzitv.com/images/pbgg/*
+
+###adb-mask
+
+! 2022-12-03 https://www.chess.com
+www.chess.com###main-banner
+
+! 2022-12-09 https://jable.tv
+jable.tv##[href*="trwl1.com"]
+
+mexa.sh/images/*.png
+
+/@waline*
+
+js-agent.newrelic.com*$script,redirect=noopjs,domain=stackblitz.com
+
+5w.fit##+js(nostif,redirect)
+5w.fit##+js(nosiif,redirect)
+
+! 2022-12-20 https://manager.infomaniak.com
+manager.infomaniak.com##.block-news
+
+! 2022-12-22 https://mui.com
+mui.com##.AdDisplay-description
+||mui.com/static/ads-in-house*
+
+||page.myfile-host.info
+
+! 2022-12-29 https://www.qklw.com
+www.qklw.com##.show-content-adv
+
+! 2023-02-11 https://bazhan.wang
+bazhan.wang##.banner-img-box
+
+||app.planhat.com/analytics/
+
+/ajax/libs/nosleep/*
+
+! 2023-03-15 https://element-plus.org
+element-plus.org##.sponsor-item
+
+! 2023-03-19 https://www.makeuseof.com
+www.makeuseof.com##.ad-current
+
+! 2023-04-13 https://www.jianshu.com
+||cdn2.jianshu.io/assets/web/download_app*$image
+
+fontshub.pro##+js(nostif, /^/)
+fontshub.pro##+js(nosiif, /^/)
+
+! 2023-05-29 https://yorg.io
+yorg.io###adVideoBg
+||yorgio-chat-backend-v2.herokuapp.com$subdocument
+yorg.io###adblockHint
+yorg.io###ingame_chat
+
+||cdn.viglink.com/*$script,redirect=noop.js
+||yorg.io/ads.js$redirect=noop.js
+##[href*="://vx.link/?rel"]
+vuejs.org##.VPApp :style(padding-top: 0 !important;)
+
+! 2023-06-26 https://icloudnative.io
+icloudnative.io##div.join-us
+
+||vueschool.io/images/banners/assets/*$image
+
+! 2023-07-02 https://kinsta.com
+kinsta.com##.sidebar-cta
+
+/goofy/ttzz/push.js,redirect=noop.js
+
+freevpn.us#@#div.textad
+
+! 2023-07-17 https://www.sohu.com
+www.sohu.com##.article-allsee
+www.sohu.com##.swiper
+||mail-us.kurzgesagt.org/*/ga.js
+
+! 2023-08-06 https://www.xenonstack.com
+www.xenonstack.com##.enterprise-popup-wrapper
+
+whoer.net##+js(nowebrtc)
+||whrq.whoer.net
+||tcp.whoer.net
+
+! 2023-08-22 https://popper.js.org
+popper.js.org##.carbonplaceholder
+
+||ackee.tangly1024.com
+||creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png
+
+||hanime.tv/country_code$redirect=noop.txt
+
+www.dnsfilter.com##+js(aopw, window.analytics)
+
+! 2023-09-10 https://divineengine.net
+divineengine.net##.sidebar-content > .widget_custom_html
+
+||events-analytics.apple.com/*.gof$redirect=1x1.gif
+
+/[\w\W]*aws.amazon.com/##+js(set, disablePanorama, 1)
+@@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
+
+# Skip Spotify Music AD
+*://audio-ak-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
+*://audio-akp-quic-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
+*://audio-fa.scdn.co/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
+*://creativeservice-production.scdn.co/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
+spotify.com##button[title="Upgrade to Premium"]
+spotify.com##button[title="Effettua l'upgrade a Premium"]
+spotify.com##div[data-testid="test-ref-div"]
+
+||mcs.zijieapi.com
+||analytics.githubassets.com
+
+netflav.com/static/js/gtag.js$redirect=noop.js
+
+! 2023-09-30 https://netflav.com
+netflav.com##[href*="trwl1.com"]
+
+! 2023-10-05 https://minecraft.fandom.com
+minecraft.fandom.com###age-gate
+
+! 2023-10-10 https://affyun.com
+affyun.com##[href="https://www.dmit.io/cart.php"]
+affyun.com/cloudflare-service/s.js
+
+! 2023-10-13 https://www.bilibili.com
+||i0.hdslb.com/bfs/live/*$image
+www.bilibili.com##.pop-live-small-mode
+
+! 2023-10-25 https://appstorrent.ru
+appstorrent.ru##.ad
+
+! 2023-10-28 https://www.snel.com
+||www.snel.com/wp-content/uploads/cloudVPS*$image
+
+! 2023-11-02 https://www.liquidweb.com
+||www.liquidweb.com/static/*/refer-a-friend-default.*$image
+
+speedtestcustom.com#@#.share-button
+speedtestcustom.com##.promo-block
+
+# *##+js(no-fetch-if)
+# *##+js(no-fetch-if, /\/post\/.*\.json/)
+
+||analytics.workos.com
+skk.moe##+js(no-fetch-if)
+
+||static.app/js/static.js
+||assets.lemonsqueezy.com/lemon.js
+
+||www.wdgwv.com/stats/count.js
+
+##[href*="www.herodevs.com"]
+
+! 2024-01-21 https://vuejs.org
+vuejs.org##.banner
+
+! 2024-01-21 https://www.veidc.com
+www.veidc.com##.orbui-site-01.orbui-site.orbui
+www.veidc.com##.custom-html-widget
+##[href*="wpa.qq.com"]
+
+! 2024-01-29 https://wiki.mbalib.com
+||imgw.mbalib.com/web/uploads/ad/8/86/234e682f5f0dc9df53351c1db869cd77.png
+wiki.mbalib.com##.vip-ad
+wiki.mbalib.com###vip_popup_img
+||imgw.mbalib.com/web/uploads/ad/5/54/c1bb4b8303498bb0453f4a4a49cb790a.png
+wiki.mbalib.com##.appxb-con
+
+! 2024-02-02 https://speedify.com
+speedify.com##.special-offer
+speedify.com##.exit-intent-popup
+
+! 2024-02-04 https://bbs.hostevaluate.com
+||www.dmit.io/templates/dmit_theme_2020/dmit/assets/images/dmit_banner_bbs-liyuan.jpg
+
+! 2024-02-09 https://www.smashingmagazine.com
+www.smashingmagazine.com##.partners__external
+
+! 2024-02-17 https://demo.bt.cn
+demo.bt.cn##.recommend_info
+
+||crisp.chat$domain=dlercloud.com
+||a.tool.lu
+||beamanalytics.b-cdn.net
+||beamanalytics.io
+||eas.etherscan.com
+
+! 2024-03-20 https://vuejs.org
+vuejs.org##.action.sponsor-item
+
+! 2024-04-03 http://dvr163.com
+||dvr163.com/bck.htm$subdocument
+
+! 2024-04-03 https://manhuabika.com
+||s3.picacomic.com/static/tobs/2862cdcd-a2f9-414b-8b81-5890da2802f5.jpg
+
+! 2024-04-09 https://linux.do
+linux.do##.custom-gated-topic-container
+
+! 2024-04-16 https://community.cloudflare.com
+community.cloudflare.com##.d-modal__backdrop
+community.cloudflare.com##.modal-container
+
+! 2024-04-18 https://draveness.me
+||img.draveness.me/2020-03-11-15839264230785-wechat-qr-code.png
+
+! Jun 30, 2024 https://www.bandbbs.cn
+www.bandbbs.cn##.ad-container
+
+! Aug 6, 2024 https://www.bilibili.com
+www.bilibili.com##.bili-danmaku-x-guide-all
+
+! Aug 13, 2024 https://www.4kvm.com
+||storage.jd.com/rec.jd.com/0f791b87d2b242d6a256cfe12dad5b4c.jpg$image
+
+! Aug 14, 2024 https://18jav.tv
+18jav.tv##[href*="https://enter.javhd.com/track/"]
+
+! Aug 24, 2024 https://www.zaobao.com.sg
+||static.zaobao.com.sg/s3fs-public/2024-06/pantry-news-talk-$image
+||static.zaobao.com.sg/s3fs-public/2024-06/lianhe-zaobao-club-$image
+
+! Aug 31, 2024 https://ny528.com
+||ny528.com/APK/PNG/$image
+||ny528.com/images/ad_$image
+
+! Sep 11, 2024 https://mui.com
+mui.com##.ad
+
+! Sep 14, 2024 https://www.youtube.com
+www.youtube.com##.ytd-rich-section-renderer
+
+||www.pianyivps.com/wp-content/uploads/*-ad-
+
+! Sep 18, 2024 https://www.mcoun.com
+www.mcoun.com##.gen-loading
+
+! Sep 21, 2024 https://zh.moegirl.org.cn
+||app.moegirl.org.cn/insight-assets/images/20230413-moepad/800x300.png
+zh.moegirl.org.cn##.banner-gallery
+||storage.moegirl.org.cn/console-plus/uploads/2024/02/01/a475bee2aa57da0e65f5341b78ccf551.png
+
+! Oct 6, 2024 https://www.7k7k.com
+||7k7kimg.cn/cms/cms10/20240927/134643_4948.jpg
+
+! Oct 20, 2024 http://10.10.1.200:11451
+10.10.1.200##.topline.alert
+
+! Oct 21, 2024 https://tieba.baidu.com
+tieba.baidu.com##.tieba-login-wrapper
+tieba.baidu.com##.tieba-login-background
+
+! Oct 22, 2024 https://www.baidu.com
+www.baidu.com##div.toplist1-tr_1MWDu
+
+! Oct 23, 2024 https://dash.cloudflare.com
+dash.cloudflare.com##.c_kl.c_kk.c_gm.c_ps.c_pr.c_nj.c_s.c_d
+
+! Oct 30, 2024 https://www.yhdm9.cc
+||www.yhdm9.cc/template/index//img/240.jpg$image
+
+! Nov 1, 2024 https://www.airdroid.com
+||dl.airdroid.com/wwwactivity/$image
+www.airdroid.com##.actvity-slide
+
+! Nov 4, 2024 https://www.kan3721.com
+||www.kan3721.com/2015/zxzx.png$image
+www.kan3721.com##.kfname
+www.kan3721.com##.kfsq
+
+! Nov 4, 2024 https://zh.moegirl.org.cn
+zh.moegirl.org.cn###nav-userlink-grandpa-entrance
+zh.moegirl.org.cn###grandpa-entrance
+
+! Nov 9, 2024 https://hentaipig.com
+||static.k2s.cc/images/i/*.gif$image
+||static.fboom.me/images/i/*.gif$image
+
