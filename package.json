@@ -6,6 +6,7 @@
   "main": "",
   "scripts": {
     "node": "SWC_NODE_IGNORE_DYNAMIC=true node -r @swc-node/register",
+    "build": "SWC_NODE_IGNORE_DYNAMIC=true node -r @swc-node/register ./scripts/index.ts",
     "lint": "eslint --format=sukka ."
   },
   "keywords": [],
