@@ -1,7 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
-import { FILTERS_DIR } from './_constants';
+import { OUTPUT_FILTERS_DIR, SRC_FILTERS_DIR } from './_constants';
 import { Transform } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 
@@ -102,11 +102,11 @@ class TextLineMinify extends Transform {
   }
 }
 
-const srcFile = path.resolve(__dirname, '../filters/index.txt');
-const destFile = path.join(FILTERS_DIR, 'index.txt');
+const srcFile = path.resolve(SRC_FILTERS_DIR, 'index.txt');
+const destFile = path.join(OUTPUT_FILTERS_DIR, 'index.txt');
 
 export async function buildFilter() {
-  await fsp.mkdir(FILTERS_DIR, { recursive: true });
+  await fsp.mkdir(OUTPUT_FILTERS_DIR, { recursive: true });
 
   await fsp.writeFile(destFile, templates(new Date().toUTCString()).join('\n'));
 
