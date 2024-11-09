@@ -16,8 +16,7 @@ import { PUBLIC_DIR } from './_constants';
       '# Sukka\'s Filters - 404 Not Found',
       '# Homepage: https://github.com/SukkaW/Filters',
       '# License: MIT',
-      '################## EOF ##################',
-      '</pre>',
+      '################## EOF ##################</pre>',
       ''
     ].join('\n')
   );
