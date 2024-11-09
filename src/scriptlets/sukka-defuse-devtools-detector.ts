@@ -1,6 +1,6 @@
 /* eslint-disable no-console -- scriptlets */
 
-import { EMPTY_ARRAY, noop, onlyCallOnce } from './_utils';
+import { noop, onlyCallOnce } from './_utils';
 
 /// sukka-defuse-devtools-detector.js
 (function sukkaDefuseDevToolsDetector() {
@@ -151,7 +151,9 @@ import { EMPTY_ARRAY, noop, onlyCallOnce } from './_utils';
       configurable: false,
       enumerable: false,
       get() {
-        return EMPTY_ARRAY;
+        // every time someone try to access window.devtoolsFormatters,
+        // we will return a fresh empty array, so any mutation will be ignored
+        return [];
       },
       set() {
         // noop
