@@ -10,3 +10,5 @@ export function onlyCallOnce(fn: () => void) {
   fnWs.add(fn);
   fn();
 }
+
+export const EMPTY_ARRAY = Object.freeze([]);

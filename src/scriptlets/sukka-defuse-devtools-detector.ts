@@ -1,6 +1,6 @@
 /* eslint-disable no-console -- scriptlets */
 
-import { noop, onlyCallOnce } from './_utils';
+import { EMPTY_ARRAY, noop, onlyCallOnce } from './_utils';
 
 /// sukka-defuse-devtools-detector.js
 (function sukkaDefuseDevToolsDetector() {
@@ -47,7 +47,7 @@ import { noop, onlyCallOnce } from './_utils';
     WINDOW_INSTANCE_LIST.forEach(window => {
       if (window) {
         try {
-          set.add(window.console as Console);
+          set.add(window.console);
         } catch { }
       }
     });
@@ -148,10 +148,15 @@ import { noop, onlyCallOnce } from './_utils';
    */
   WINDOW_INSTANCE_LIST.forEach(windowInstance => {
     Object.defineProperty(windowInstance, 'devtoolsFormatters', {
-      writable: false,
       configurable: false,
       enumerable: false,
-      value: undefined
+      get() {
+        return EMPTY_ARRAY;
+      },
+      set() {
+        // noop
+        // we ignore any attempt to set window.devtoolsFormatters
+      }
     });
   });
 }());
