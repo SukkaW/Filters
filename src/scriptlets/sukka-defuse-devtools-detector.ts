@@ -22,6 +22,9 @@ import { noop, onlyCallOnce } from './_utils';
     },
     defuseConsoleFunction(this: void) {
       console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a Function!');
+    },
+    defuseConsoleLargeArray(this: void) {
+      console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a large Array!');
     }
   };
 
@@ -88,6 +91,19 @@ import { noop, onlyCallOnce } from './_utils';
               configurable: false,
               writable: false,
               value(...args: any[]) {
+                /**
+                 * Some devtools detector will try to log/table large array to see if it is slow
+                 * https://github.com/AEPKILL/devtools-detector/blob/bb2b2ebd488b0f7169be0755ea3b19c788e91cd1/src/checkers/performance.checker.ts#L13
+                 *
+                 * We can defuse it by checking if the argument contains large array
+                 */
+                if (
+                  (k === 'table' || k === 'log')
+                  && args.some(checkLargeArrayInArg)
+                ) {
+                  onlyCallOnce(LOGGER.defuseConsoleLargeArray);
+                  return Reflect.apply(noop, window, args);
+                }
                 if (k === 'clear') {
                   onlyCallOnce(LOGGER.defuseConsoleClear);
                   return Reflect.apply(noop, window, args);
@@ -138,6 +154,16 @@ import { noop, onlyCallOnce } from './_utils';
     }
     if (typeof arg === 'object' && arg) {
       return Object.values(arg).map(checkArg).some(Boolean);
+    }
+    return false;
+  }
+
+  function checkLargeArrayInArg(arg: unknown): boolean {
+    if (Array.isArray(arg) && arg.length > 100) {
+      return true;
+    }
+    if (typeof arg === 'object' && arg) {
+      return Object.values(arg).map(checkLargeArrayInArg).some(Boolean);
     }
     return false;
   }
