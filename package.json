@@ -22,5 +22,6 @@
     "eslint-formatter-sukka": "^6.10.0",
     "rollup": "^4.25.0",
     "rollup-plugin-swc3": "^0.12.1"
-  }
+  },
+  "packageManager": "pnpm@9.12.3"
 }
