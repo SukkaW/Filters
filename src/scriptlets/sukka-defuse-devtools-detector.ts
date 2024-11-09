@@ -25,6 +25,9 @@ import { noop, onlyCallOnce } from './_utils';
     },
     defuseConsoleLargeArray(this: void) {
       console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a large Array!');
+    },
+    defuseConsoleLargeObject(this: void) {
+      console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a large Object!');
     }
   };
 
@@ -91,12 +94,6 @@ import { noop, onlyCallOnce } from './_utils';
               configurable: false,
               writable: false,
               value(...args: any[]) {
-                /**
-                 * Some devtools detector will try to log/table large array to see if it is slow
-                 * https://github.com/AEPKILL/devtools-detector/blob/bb2b2ebd488b0f7169be0755ea3b19c788e91cd1/src/checkers/performance.checker.ts#L13
-                 *
-                 * We can defuse it by checking if the argument contains large array
-                 */
                 if (k === 'clear') {
                   onlyCallOnce(LOGGER.defuseConsoleClear);
                   return Reflect.apply(noop, window, args);
@@ -142,6 +139,12 @@ import { noop, onlyCallOnce } from './_utils';
       onlyCallOnce(LOGGER.defuseConsoleFunction);
       return true;
     }
+    /**
+     * Some devtools detector will try to log/table large array to see if it is slow
+     * https://github.com/AEPKILL/devtools-detector/blob/bb2b2ebd488b0f7169be0755ea3b19c788e91cd1/src/checkers/performance.checker.ts#L13
+     *
+     * We can defuse it by checking if the argument contains large array
+     */
     if (Array.isArray(arg)) {
       if (arg.length > 100) {
         onlyCallOnce(LOGGER.defuseConsoleLargeArray);
@@ -150,6 +153,13 @@ import { noop, onlyCallOnce } from './_utils';
       return arg.map(checkArg).some(Boolean);
     }
     if (typeof arg === 'object' && arg) {
+      try {
+        // object size check
+        if (Object(arg) === arg && Object.keys(arg).length > 100) {
+          onlyCallOnce(LOGGER.defuseConsoleLargeObject);
+          return true;
+        }
+      } catch { }
       return Object.values(arg).map(checkArg).some(Boolean);
     }
     return false;
