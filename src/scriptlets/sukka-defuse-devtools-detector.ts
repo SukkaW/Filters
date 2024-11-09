@@ -97,13 +97,6 @@ import { noop, onlyCallOnce } from './_utils';
                  *
                  * We can defuse it by checking if the argument contains large array
                  */
-                if (
-                  (k === 'table' || k === 'log')
-                  && args.some(checkLargeArrayInArg)
-                ) {
-                  onlyCallOnce(LOGGER.defuseConsoleLargeArray);
-                  return Reflect.apply(noop, window, args);
-                }
                 if (k === 'clear') {
                   onlyCallOnce(LOGGER.defuseConsoleClear);
                   return Reflect.apply(noop, window, args);
@@ -150,20 +143,14 @@ import { noop, onlyCallOnce } from './_utils';
       return true;
     }
     if (Array.isArray(arg)) {
+      if (arg.length > 100) {
+        onlyCallOnce(LOGGER.defuseConsoleLargeArray);
+        return true;
+      }
       return arg.map(checkArg).some(Boolean);
     }
     if (typeof arg === 'object' && arg) {
       return Object.values(arg).map(checkArg).some(Boolean);
-    }
-    return false;
-  }
-
-  function checkLargeArrayInArg(arg: unknown): boolean {
-    if (Array.isArray(arg) && arg.length > 100) {
-      return true;
-    }
-    if (typeof arg === 'object' && arg) {
-      return Object.values(arg).map(checkLargeArrayInArg).some(Boolean);
     }
     return false;
   }
