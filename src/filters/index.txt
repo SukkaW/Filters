@@ -6,7 +6,7 @@ mcoun.com##+js(nosiif, /^/)
 haitu.tv##+js(set, config.tiaoshi, true)
 haitu.xyz##+js(set, config.tiaoshi, true)
 yebaotv.com##+js(set, navigator.userAgent.toLowerCase, noopFunc)
-netflav.com##+js(trusted-click-element, div.ads_video_close_button, , 500)
+! netflav.com##+js(trusted-click-element, div.ads_video_close_button, , 500)
 ||pub-7a9aae2813a742e1b02d588e632e401b.r2.dev
 ||yorgio-chat-backend-v2.herokuapp.com
 ||tracker.didiglobal.com
@@ -92,7 +92,7 @@ yy.com,le.com##+js(nowebrtc)
 
 ||zz.bdstatic.com$redirect=noop.js
 ||www.zhihu.com/commercial_api/banners_v3/question_up$redirect=noop.txt
-zhihu.com##+js(trusted-click-element, '.Modal.signFlowModal button.Button.Modal-closeButton')
+! zhihu.com##+js(trusted-click-element, '.Modal.signFlowModal button.Button.Modal-closeButton')
 
 @@||gimg*.baidu.com$3p,image
 ||baidu.com$3p
@@ -143,7 +143,7 @@ bilibili.com##+js(set, window.biliMetaReporter.pv, noopFunc)
 
 @@||assets.mailerlite.com$domain=notionway.com
 
-t66y.com##+js(trusted-set, spJson, { "value": "[]" })
+! t66y.com##+js(trusted-set, spJson, { "value": "[]" })
 t66y.com##+js(nostif, /tpcHt0ml/)
 t66y.com##+js(nostif)
 
