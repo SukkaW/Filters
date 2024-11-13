@@ -6,7 +6,7 @@ import { noop, onlyCallOnce } from './_utils';
 (function sukkaDefuseDevToolsDetector() {
   const LOGGER = {
     defuseEvalDebugger(this: void) {
-      console.info('[sukka-defuse-devtools-detector] defused "debugger" from eval() / new Function()');
+      console.info('[sukka-defuse-devtools-detector] defused "debugger" from eval() / new Function() / Function()');
     },
     defuseConsoleClear(this: void) {
       console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
@@ -75,6 +75,33 @@ import { noop, onlyCallOnce } from './_utils';
       return contructor.call(this, s);
     };
   })(Function.prototype.constructor);
+
+  /**
+   * Some may simply call `Function('debugger')` instead of `eval('debugger')` or `new Function('debugger')`
+   * We can defuse it by patching globalThis.Function
+   */
+  ((CachedFunction) => {
+    const PatchedFunction = function (...args: any[]) {
+      if (args.some((arg) => typeof arg === 'string' && arg.includes('debugger'))) {
+        onlyCallOnce(LOGGER.defuseEvalDebugger);
+        return noop;
+      }
+      return Reflect.apply(CachedFunction, globalThis, args);
+    };
+
+    // hookup static methods
+    Object.setPrototypeOf(PatchedFunction, CachedFunction);
+    // hookup instance properties
+    Object.setPrototypeOf(PatchedFunction.prototype, CachedFunction.prototype);
+
+    Object.defineProperty(
+      globalThis,
+      'Function',
+      {
+        value: PatchedFunction
+      }
+    );
+  })(globalThis.Function);
 
   /**
    * When logging specific objects, Chrome DevTools will attempt to call `toString()` method
