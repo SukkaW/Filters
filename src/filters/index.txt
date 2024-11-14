@@ -55,6 +55,8 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 # >> Blacklist
 # Test
 ||bad.third-party.site
+# Scriptlet debug
+skk.moe##+js(no-fetch-if)
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Dead site
@@ -122,23 +124,13 @@ www.bilibili.com##+js(nowebrtc)
 ||maplesugar.top/sw.js
 ||blog.maplesugar.top/usr/uploads/2024/09/725322379.jpg
 
-||pub-7a9aae2813a742e1b02d588e632e401b.r2.dev
-||yorgio-chat-backend-v2.herokuapp.com
-||tracker.didiglobal.com
+||yorgio-chat-backend-v2.herokuapp.com$subdocument
 
 ||18comic.vip/static/*/AD
 ||api.abema.io/v*/ip/check
 
-||ufengjnskl.com
-||ignslkgs.com
-||privateadx.com
-||union.dplayerstatic.com
-||union.maccms.la
 ##iframe[src*="union."]:style(display: none)
-||free.ranklet4.com
 
-||beamanalytics.b-cdn.net
-||beamanalytics.io
 ||zayac2volk11.com
 ||talazywho.pro
 ||googlevideo.com/initplayback*&oad
@@ -150,8 +142,6 @@ www.bilibili.com##+js(nowebrtc)
 ||staticfile.org^$all,badfilter
 bad.news##.plyr__video-wrapper:style(width: 100%)
 bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height: 100% !important)
-||analytics.nexon.com
-||front-perf.imoim.net
 
 /*/__phg/ingest*$all
 
@@ -179,23 +169,13 @@ reimu.net##pre:style(display: block !important;)
 /halo-tracker.js
 /apis/api.halo.run/*/trackers/counter
 
-||mktg.tags.f5.com
-||trk.caseads.com
-||pixel.ipinfo.io
-||pubtagmanager.com
-||pixel.onead.com.tw
 ||player.svc.litv.tv/pixel/liad-pixel.js
-||adhacker.online
 
 ||cloudfront.net/ad-img/image/*
-||carpe.pages.dev
-||data.product.glitch.com
-||analyze.corbado.com
 ||leetcode.cn/api/is_china_ip$domain=leetcode.com
 
 ||bytegoofy.com$domain=sohu.com
 
-||sponsors.vuejs.org
 ||vueschool.io$domain=vuejs.org
 
 ||file2.speedtest.cn$image
@@ -214,14 +194,11 @@ umami.*/$script
 ||https://mktg.tags.f5.com/main/prod/utag.js
 
 @@||captcha.qq.com^
-||gdt.qq.com^
-||imtt.qq.com^
 ||huatuo.qq.com^
-btrace.qq.com$redirect=noop.js
+btrace.qq.com$script,redirect=noop.js
 cloud.tencent.com/act/common/report$redirect=nooptext
 huatuo*.weiyun.com
 mp.weixin.qq.com/mp/*report$redirect=nooptext
-||pingfore.qq.com
 ||safebrowsing.urlsec.qq.com
 stat*.qq.com$redirect=noop.js
 tajs.qq.com$redirect=noop.js
@@ -231,7 +208,6 @@ wspeed.qq.com$redirect=noop.js
 
 ||storage.moegirl.org.cn/console-plus/uploads/2024/01/16/b70a27db94200462fd06da4a5ab30b50.jpeg
 ||h.lghln1.cn/js/niu/zhong-inc.js
-||umami.rss3.io
 
 assets.alicdn.com/g/alilog*$redirect=noop.js
 g.alicdn.com/alilog/mlog/*$redirect=noop.js
@@ -243,8 +219,6 @@ g.alicdn.com/sj/securesdk$redirect=noop.js
 ||xinfubao.site$important
 
 ||mail-us.kurzgesagt.org/*/ga.js
-
-||events-analytics.apple.com
 
 js-agent.newrelic.com*$script,redirect=noopjs,domain=stackblitz.com
 
@@ -259,8 +233,6 @@ fontshub.pro##+js(nosiif, /^/)
 /goofy/ttzz/push.js$redirect=noop.js
 
 whoer.net##+js(nowebrtc)
-||whrq.whoer.net
-||tcp.whoer.net
 
 ||hanime.tv/country_code$redirect=noop.txt
 
@@ -275,8 +247,6 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||analytics.githubassets.com
 ||a.tool.lu
 ||crisp.chat$domain=dlercloud.com
-||beamanalytics.b-cdn.net
-||beamanalytics.io
 ||eas.etherscan.com
 
 netflav.com/static/js/gtag.js$redirect=noop.js
@@ -439,7 +409,6 @@ webpack.docschina.org##.sponsors
 
 ! 2022-11-10 https://download.pixelexperience.org
 ||www.humix.com$3p
-||g.ezoic.net
 ||www.ezojs.com/ezoic/sa.min.js$3p
 
 ! 2022-11-11 https://amazfitwatchfaces.com
@@ -479,7 +448,6 @@ www.makeuseof.com##.ad-current
 
 ! 2023-05-29 https://yorg.io
 yorg.io###adVideoBg
-||yorgio-chat-backend-v2.herokuapp.com$subdocument
 yorg.io###adblockHint
 yorg.io###ingame_chat
 
@@ -527,12 +495,6 @@ appstorrent.ru##.ad
 
 speedtestcustom.com#@#.share-button
 speedtestcustom.com##.promo-block
-
-# *##+js(no-fetch-if)
-# *##+js(no-fetch-if, /\/post\/.*\.json/)
-
-||analytics.workos.com
-skk.moe##+js(no-fetch-if)
 
 ||static.app/js/static.js
 ||assets.lemonsqueezy.com/lemon.js
