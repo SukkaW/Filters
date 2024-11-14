@@ -206,7 +206,7 @@ reimu.net##pre:style(display: block !important;)
 t66y.com##+js(nostif, /tpcHt0ml/)
 t66y.com##+js(nostif)
 
-umami.*/*mami.js
+umami.*/$script
 ||app.planhat.com/analytics/
 
 ||monitor.azure.com$important
