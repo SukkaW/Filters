@@ -186,12 +186,12 @@ reimu.net##pre:style(display: block !important;)
 t66y.com##+js(nostif, /tpcHt0ml/)
 t66y.com##+js(nostif)
 
-umami.*/$script
+umami.*/$script,3p
+plausible.*/$script,3p
+
 ||app.planhat.com/analytics/
 
-||monitor.azure.com$important
 ||learn.microsoft.com/static/third-party/adobe-target/at-js/2.9.0/at.js
-||https://mktg.tags.f5.com/main/prod/utag.js
 
 @@||captcha.qq.com^
 ||huatuo.qq.com^
@@ -453,9 +453,6 @@ yorg.io###ingame_chat
 
 ##[href*="://vx.link/?rel"]
 vuejs.org##.VPApp :style(padding-top: 0 !important;)
-
-! 2023-06-26 https://icloudnative.io
-icloudnative.io##div.join-us
 
 ! 2023-07-02 https://kinsta.com
 kinsta.com##.sidebar-cta
