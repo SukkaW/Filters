@@ -11,8 +11,8 @@ export function patchDevtoolsFormatter() {
         configurable: false,
         enumerable: false,
         get() {
-        // every time someone try to access window.devtoolsFormatters,
-        // we will return a fresh empty array, so any mutation will be ignored
+          // every time someone try to access window.devtoolsFormatters,
+          // we will return a fresh empty array, so any mutation will be ignored
           return [];
         },
         set() {

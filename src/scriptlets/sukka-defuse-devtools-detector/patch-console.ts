@@ -1,4 +1,4 @@
-import { CONSOLE_INSTANCE_LIST, onlyCallOnce } from '../_utils';
+import { onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
 
 function logDefuseConsoleClear(this: void) {
   console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
@@ -28,53 +28,60 @@ function logDefuseConsoleLargeObject(this: void) {
  * We can defuse it by patching console methods
  */
 export function patchConsole() {
-  CONSOLE_INSTANCE_LIST.forEach((consoleInstance) => {
-    if (consoleInstance) {
-      // eslint-disable-next-line guard-for-in -- delibarately do not guard against hidden properties
-      for (const _k in consoleInstance) {
-        const k = _k as keyof Console;
-        // trap console.clear
-        if (k === 'clear') {
-          consoleInstance.clear = new Proxy(consoleInstance.clear, {
-            apply(target, thisArg, args) {
+  const consoleProxyCache = new WeakMap<Console[keyof Console], Console[keyof Console]>();
+
+  WINDOW_INSTANCE_LIST.forEach((windowInstance) => {
+    if (!windowInstance) return;
+
+    windowInstance.console = new Proxy(windowInstance.console, {
+      get(target, p, receiver) {
+        if (p === 'clear') {
+          return new Proxy(Reflect.get(target, p, receiver), {
+            apply(_target, _thisArg, _args) {
               onlyCallOnce(logDefuseConsoleClear);
-              return Reflect.apply(target, thisArg, args);
             }
           });
-
-          continue;
         }
-        // trap other console methods
-        try {
-          const cachedMethod = consoleInstance[k];
-          if (Object.getOwnPropertyDescriptor(consoleInstance, k)?.writable === true && typeof cachedMethod === 'function') {
-            Object.defineProperty(consoleInstance, k, {
-              enumerable: false,
-              configurable: false,
-              writable: false,
-              value: new Proxy(consoleInstance[k], {
-                apply(target, thisArg, args) {
-                  if (args.some(checkArg)) {
-                    return;
-                  }
 
-                  return Reflect.apply(target, thisArg, args);
-                }
-              })
-            });
-          } else {
-            console.info('[sukka-defuse-devtools-detector]', `${k} of console instance is not writable!`);
+        const consoleMethod = Reflect.get(
+          target,
+          // This enables the type infer for Reflect.get
+          p as keyof Console,
+          receiver
+        );
+
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- we need to check if consoleMethod is undefined
+        if (consoleMethod == null) {
+          return consoleMethod;
+        }
+
+        if (consoleProxyCache.has(consoleMethod)) {
+          return consoleProxyCache.get(consoleMethod)!;
+        }
+
+        console.info('[sukka-defuse-devtools-detector]', 'Patching console method', p);
+
+        if (typeof consoleMethod !== 'function') {
+          console.info('[sukka-defuse-devtools-detector]', `${p.toString()} of console is not a function!`);
+          consoleProxyCache.set(consoleMethod, consoleMethod);
+          return consoleMethod;
+        }
+
+        const proxy = new Proxy(consoleMethod, {
+          apply(target, thisArg, args) {
+            if (args.some(checkArg)) {
+              return;
+            }
+
+            return Reflect.apply(target, thisArg, args);
           }
-        } catch (e) {
-          console.error('[sukka-defuse-devtools-detector]', `Can't overwrite console.${k}!`, e);
-        }
+        });
+
+        consoleProxyCache.set(consoleMethod, proxy);
+
+        return proxy;
       }
-      try {
-        Object.freeze(consoleInstance);
-      } catch (e) {
-        console.error('[sukka-defuse-devtools-detector]', 'Fail to freeze console instance!', e);
-      }
-    }
+    });
   });
 }
 

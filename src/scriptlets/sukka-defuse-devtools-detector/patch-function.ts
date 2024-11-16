@@ -45,7 +45,7 @@ export function patchFunction() {
       apply(target, thisArg, args: Parameters<typeof globalThis.eval>) {
         if (typeof args[0] === 'string' && args[0].includes('debugger')) {
           onlyCallOnce(logDefuseEvalDebugger);
-          return noop;
+          return;
         }
         return Reflect.apply(target, thisArg, args);
       }

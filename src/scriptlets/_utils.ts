@@ -27,16 +27,3 @@ export const WINDOW_INSTANCE_LIST = (() => {
 
   return set;
 })();
-
-export const CONSOLE_INSTANCE_LIST = (() => {
-  const set = new Set<Console | undefined>();
-  WINDOW_INSTANCE_LIST.forEach(window => {
-    if (window) {
-      try {
-        set.add(window.console);
-      } catch { }
-    }
-  });
-
-  return set;
-})();
