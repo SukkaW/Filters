@@ -1,4 +1,4 @@
-import { CONSOLE_INSTANCE_LIST, noop, onlyCallOnce } from '../_utils';
+import { CONSOLE_INSTANCE_LIST, onlyCallOnce } from '../_utils';
 
 function logDefuseConsoleClear(this: void) {
   console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
@@ -33,6 +33,18 @@ export function patchConsole() {
       // eslint-disable-next-line guard-for-in -- delibarately do not guard against hidden properties
       for (const _k in consoleInstance) {
         const k = _k as keyof Console;
+        // trap console.clear
+        if (k === 'clear') {
+          consoleInstance.clear = new Proxy(consoleInstance.clear, {
+            apply(target, thisArg, args) {
+              onlyCallOnce(logDefuseConsoleClear);
+              return Reflect.apply(target, thisArg, args);
+            }
+          });
+
+          continue;
+        }
+        // trap other console methods
         try {
           const cachedMethod = consoleInstance[k];
           if (Object.getOwnPropertyDescriptor(consoleInstance, k)?.writable === true && typeof cachedMethod === 'function') {
@@ -40,19 +52,15 @@ export function patchConsole() {
               enumerable: false,
               configurable: false,
               writable: false,
-              value(...args: any[]) {
-                if (k === 'clear') {
-                  onlyCallOnce(logDefuseConsoleClear);
-                  return Reflect.apply(noop, window, args);
-                }
-                if (args.some(checkArg)) {
-                  return Reflect.apply(noop, window, args);
-                }
+              value: new Proxy(consoleInstance[k], {
+                apply(target, thisArg, args) {
+                  if (args.some(checkArg)) {
+                    return;
+                  }
 
-                if (typeof cachedMethod === 'function') {
-                  return Reflect.apply(cachedMethod, window, args);
+                  return Reflect.apply(target, thisArg, args);
                 }
-              }
+              })
             });
           } else {
             console.info('[sukka-defuse-devtools-detector]', `${k} of console instance is not writable!`);
@@ -70,16 +78,16 @@ export function patchConsole() {
   });
 }
 
-function checkArg(arg: unknown): boolean {
-  if (arg instanceof HTMLElement) {
+function checkArg(this: void, arg: unknown): boolean {
+  if (isHTMLElement(arg) /* && nonNativeToString(arg) */) {
     onlyCallOnce(logDefuseConsoleHtmlElement);
     return true;
   }
-  if (arg instanceof RegExp) {
+  if (isRegExp(arg)) {
     onlyCallOnce(logDefuseConsoleRegExp);
     return true;
   }
-  if (arg instanceof Date) {
+  if (isDate(arg)) {
     onlyCallOnce(logDefuseConsoleDate);
     return true;
   }
@@ -98,7 +106,7 @@ function checkArg(arg: unknown): boolean {
       onlyCallOnce(logDefuseConsoleLargeArray);
       return true;
     }
-    return arg.map(checkArg).some(Boolean);
+    return arg.some(checkArg);
   }
   if (typeof arg === 'object' && arg) {
     try {
@@ -108,7 +116,46 @@ function checkArg(arg: unknown): boolean {
         return true;
       }
     } catch { }
-    return Object.values(arg).map(checkArg).some(Boolean);
+    return Object.values(arg).some(checkArg);
   }
   return false;
+}
+
+// function nonNativeToString(this: void, target: HTMLElement): boolean {
+//   return !target.toString.toString().includes('[native code]');
+// }
+
+function isHTMLElement(el: unknown): el is HTMLElement {
+  if (typeof el !== 'object' || el === null) {
+    return false;
+  }
+  return (
+    'tagName' in el
+    && typeof (el as HTMLElement).tagName === 'string'
+  );
+}
+
+function isRegExp(re: unknown): re is RegExp {
+  if (typeof re !== 'object' || re === null) {
+    return false;
+  }
+  return (
+    'source' in re
+    && typeof (re as RegExp).source === 'string'
+    && 'flags' in re
+    && typeof (re as RegExp).flags === 'string'
+  );
+}
+
+function isDate(d: unknown): d is Date {
+  if (typeof d !== 'object' || d === null) {
+    return false;
+  }
+
+  return (
+    'toISOString' in d
+    && typeof (d as Date).toISOString === 'function'
+    && 'getTime' in d
+    && typeof (d as Date).getTime === 'function'
+  );
 }
