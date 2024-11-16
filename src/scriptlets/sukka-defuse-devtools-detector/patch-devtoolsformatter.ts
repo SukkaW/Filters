@@ -1,4 +1,4 @@
-import { WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some devtools detector will try to access `window.devtoolsFormatters`
@@ -21,7 +21,7 @@ export function patchDevtoolsFormatter() {
         }
       });
     } catch (e) {
-      console.error('[sukka-defuse-devtools-detector]', 'Fail to overwrite devtoolsFormatters on', { windowInstance }, e);
+      $console.error('[sukka-defuse-devtools-detector]', 'Fail to overwrite devtoolsFormatters on', { windowInstance }, e);
     }
   });
 }

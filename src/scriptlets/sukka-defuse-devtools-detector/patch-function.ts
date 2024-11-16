@@ -1,15 +1,15 @@
-import { onlyCallOnce, noop } from '../_utils';
+import { onlyCallOnce, noop, $console } from '../_utils';
 
 function logDefuseFunctionDebugger(this: void) {
-  console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function()');
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function()');
 }
 
 function logDefuseNewFunctionDebugger(this: void) {
-  console.info('[sukka-defuse-devtools-detector] defused "debugger" from new Function()');
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from new Function()');
 }
 
 function logDefuseEvalDebugger(this: void) {
-  console.info('[sukka-defuse-devtools-detector] defused "debugger" from eval()');
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from eval()');
 }
 
 /**
@@ -37,7 +37,7 @@ export function patchFunction() {
       }
     });
   } catch (e) {
-    console.warn('[sukka-defuse-devtools-detector]', 'Fail to proxy globalThis.Function!', e);
+    $console.warn('[sukka-defuse-devtools-detector]', 'Fail to proxy globalThis.Function!', e);
   }
   try {
     // eslint-disable-next-line no-eval -- we are patching eval to prevent harmful debugger
@@ -51,6 +51,6 @@ export function patchFunction() {
       }
     });
   } catch (e) {
-    console.warn('[sukka-defuse-devtools-detector]', 'Fail to proxy globalThis.eval!', e);
+    $console.warn('[sukka-defuse-devtools-detector]', 'Fail to proxy globalThis.eval!', e);
   }
 }

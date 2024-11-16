@@ -1,4 +1,4 @@
-import { noop, onlyCallOnce } from '../_utils';
+import { $console, noop, onlyCallOnce } from '../_utils';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
@@ -38,8 +38,8 @@ export function patchTimer() {
 }
 
 function logDefuseSetIntervalDebugger(this: void) {
-  console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()');
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()');
 };
 function logDefuseSetTimeoutDebugger(this: void) {
-  console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()');
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()');
 }

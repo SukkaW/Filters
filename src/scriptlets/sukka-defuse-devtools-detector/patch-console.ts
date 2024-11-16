@@ -1,25 +1,25 @@
-import { onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
 
 function logDefuseConsoleClear(this: void) {
-  console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
+  $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
 };
 function logDefuseConsoleHtmlElement(this: void) {
-  console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log an HTMLElement!');
+  $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log an Element!');
 };
 function logDefuseConsoleRegExp(this: void) {
-  console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a RegExp!');
+  $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a RegExp!');
 };
 function logDefuseConsoleDate(this: void) {
-  console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a Date!');
+  $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a Date!');
 };
 function logDefuseConsoleFunction(this: void) {
-  console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a Function!');
+  $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a Function!');
 };
 function logDefuseConsoleLargeArray(this: void) {
-  console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a large Array!');
+  $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a large Array!');
 };
 function logDefuseConsoleLargeObject(this: void) {
-  console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a large Object!');
+  $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to log a large Object!');
 };
 
 /**
@@ -28,65 +28,63 @@ function logDefuseConsoleLargeObject(this: void) {
  * We can defuse it by patching console methods
  */
 export function patchConsole() {
-  const consoleProxyCache = new WeakMap<Console[keyof Console], Console[keyof Console]>();
-
   WINDOW_INSTANCE_LIST.forEach((windowInstance) => {
-    if (!windowInstance) return;
+    if (!windowInstance) {
+      return;
+    }
+    // eslint-disable-next-line guard-for-in -- deliberately loop through all keys
+    for (const _key in windowInstance.console) {
+      const key = _key as keyof Console;
 
-    windowInstance.console = new Proxy(windowInstance.console, {
-      get(target, p, receiver) {
-        if (p === 'clear') {
-          return new Proxy(Reflect.get(target, p, receiver), {
-            apply(_target, _thisArg, _args) {
+      const descriptor = Object.getOwnPropertyDescriptor(windowInstance.console, key);
+      if (!descriptor) {
+        $console.warn('[sukka-defuse-devtools-detector]', 'Fail to get descriptor of console method', key);
+        continue;
+      }
+      if (!descriptor.writable) {
+        $console.warn('[sukka-defuse-devtools-detector]', 'console.' + key, 'is not writable');
+        continue;
+      }
+      if (typeof descriptor.value !== 'function') {
+        $console.warn('[sukka-defuse-devtools-detector]', 'console.' + key, 'is not a function');
+        continue;
+      }
+
+      try {
+        if (key === 'clear') {
+          Object.defineProperty(windowInstance.console, key, {
+            configurable: false,
+            enumerable: true,
+            writable: true,
+            value() {
               onlyCallOnce(logDefuseConsoleClear);
             }
           });
+          continue;
         }
 
-        const consoleMethod = Reflect.get(
-          target,
-          // This enables the type infer for Reflect.get
-          p as keyof Console,
-          receiver
-        );
-
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- we need to check if consoleMethod is undefined
-        if (consoleMethod == null) {
-          return consoleMethod;
-        }
-
-        if (consoleProxyCache.has(consoleMethod)) {
-          return consoleProxyCache.get(consoleMethod)!;
-        }
-
-        console.info('[sukka-defuse-devtools-detector]', 'Patching console method', p);
-
-        if (typeof consoleMethod !== 'function') {
-          console.info('[sukka-defuse-devtools-detector]', `${p.toString()} of console is not a function!`);
-          consoleProxyCache.set(consoleMethod, consoleMethod);
-          return consoleMethod;
-        }
-
-        const proxy = new Proxy(consoleMethod, {
-          apply(target, thisArg, args) {
-            if (args.some(checkArg)) {
-              return;
+        Object.defineProperty(windowInstance.console, key, {
+          configurable: false,
+          enumerable: true,
+          writable: true,
+          value: new Proxy(windowInstance.console[key], {
+            apply(target, thisArg, args) {
+              if (args.some(checkArg)) {
+                return;
+              }
+              return Reflect.apply(target, thisArg, args);
             }
-
-            return Reflect.apply(target, thisArg, args);
-          }
+          })
         });
-
-        consoleProxyCache.set(consoleMethod, proxy);
-
-        return proxy;
+      } catch (e) {
+        $console.error('[sukka-defuse-devtools-detector]', 'Fail to overwrite console method', key, e);
       }
-    });
+    }
   });
 }
 
 function checkArg(this: void, arg: unknown): boolean {
-  if (isHTMLElement(arg) /* && nonNativeToString(arg) */) {
+  if (isElement(arg) /* && nonNativeToString(arg) */) {
     onlyCallOnce(logDefuseConsoleHtmlElement);
     return true;
   }
@@ -132,13 +130,15 @@ function checkArg(this: void, arg: unknown): boolean {
 //   return !target.toString.toString().includes('[native code]');
 // }
 
-function isHTMLElement(el: unknown): el is HTMLElement {
+function isElement(el: unknown): el is Element {
   if (typeof el !== 'object' || el === null) {
     return false;
   }
   return (
     'tagName' in el
-    && typeof (el as HTMLElement).tagName === 'string'
+    && typeof (el as Element).tagName === 'string'
+    && 'nodeName' in el
+    && typeof (el as Element).nodeName === 'string'
   );
 }
 
