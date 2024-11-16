@@ -4,6 +4,10 @@ function logDefuseFunctionDebugger(this: void) {
   $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function()');
 }
 
+function logDefuseFunctionProrotypeConstructorDebugger(this: void) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function.prototype.constructor');
+}
+
 function logDefuseNewFunctionDebugger(this: void) {
   $console.info('[sukka-defuse-devtools-detector] defused "debugger" from new Function()');
 }
@@ -52,5 +56,24 @@ export function patchFunction() {
     });
   } catch (e) {
     $console.warn('[sukka-defuse-devtools-detector]', 'Fail to proxy globalThis.eval!', e);
+  }
+  try {
+    // eslint-disable-next-line no-extend-native -- we are patching Function.prototype.constructor to prevent harmful debugger
+    Object.defineProperty(Function.prototype, 'constructor', {
+      configurable: false,
+      enumerable: true,
+      writable: false,
+      value: new Proxy(Function.prototype.constructor, {
+        apply(target, thisArg, args) {
+          if (args.some((arg) => typeof arg === 'string' && arg.includes('debugger'))) {
+            onlyCallOnce(logDefuseFunctionProrotypeConstructorDebugger);
+            return noop;
+          }
+          return Reflect.apply(target, thisArg, args);
+        }
+      })
+    });
+  } catch (e) {
+    $console.warn('[sukka-defuse-devtools-detector]', 'Fail to proxy Function.prototype.constructor!', e);
   }
 }
