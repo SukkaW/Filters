@@ -25,7 +25,7 @@ function createRollupOpt(preamble: string): RollupOptions {
 
 export async function buildScriptlets() {
   const bundle1 = await rollup({
-    input: './src/scriptlets/sukka-defuse-devtools-detector.ts',
+    input: './src/scriptlets/sukka-defuse-devtools-detector/index.ts',
     ...createRollupOpt('/// sukka-defuse-devtools-detector.js\n')
   });
   await bundle1.write({
