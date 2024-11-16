@@ -17,6 +17,7 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 
 # >> Click2Load Embed iframe
 ||youtube.com/embed/$3p,frame,redirect=click2load.html
+||youtube-nocookie.com/embed/$3p,frame,redirect=click2load.html
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
 ||www.google.com/adsense/domains/caf.js*$redirect=noop.js
@@ -87,6 +88,7 @@ spotify.com##button[title="Effettua l'upgrade a Premium"]
 spotify.com##div[data-testid="test-ref-div"]
 
 # >> Website Fix
+# Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
 # Bring GitHub back, Fuck refine-github
 github.com###repository-container-header:not(:has(.js-repo-nav)) :is(#repo-stars-counter-star, #repo-stars-counter-unstar, #repo-network-counter, #repo-notifications-counter, .js-codespaces-details-container summary .Button-label):style(display: inline-block !important)
@@ -114,7 +116,10 @@ www.bilibili.com##+js(nowebrtc)
 5w.fit##+js(nostif,redirect)
 5w.fit##+js(nosiif,redirect)
 # Disable AdGuardHome update warning
-##.topline.alert
+##.topline.alert-info.alert
+# Reddit Anti-AdBlock defuse
+reddit.com##shreddit-comment-tree:style(visibility: visible!important)
+reddit.com##shreddit-comment:style(visibility: visible!important)
 
 # Misc
 ###pagefull-switch:style(display: block !important;)
@@ -250,6 +255,8 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||eas.etherscan.com
 
 netflav.com/static/js/gtag.js$redirect=noop.js
+
+||sealos.run/js
 
 # >> Automatic Generated
 
@@ -609,3 +616,6 @@ zh.moegirl.org.cn###grandpa-entrance
 ! Nov 9, 2024 https://hentaipig.com
 ||static.k2s.cc/images/i/*.gif$image
 ||static.fboom.me/images/i/*.gif$image
+
+! Nov 15, 2024 https://www.linuxbabe.com
+www.linuxbabe.com##.widgets
