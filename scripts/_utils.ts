@@ -87,7 +87,10 @@ export class FilterMinifyStream extends TransformStream<string, string> {
         if (
           chunk.length === 0 // ignore empty lines
           || chunk[0] === '!' // ignore comments
-          || chunk[0] === '#' // ignore comments
+          || (
+            chunk[0] === '#' // ignore comments
+            && chunk[1] !== '#'
+          )
         ) {
           return;
         }
