@@ -191,8 +191,8 @@ reimu.net##pre:style(display: block !important;)
 t66y.com##+js(nostif, /tpcHt0ml/)
 t66y.com##+js(nostif)
 
-umami.*/$script,3p
-plausible.*/$script,3p
+umami.*/$script
+plausible.*/$script
 
 ||app.planhat.com/analytics/
 
