@@ -63,7 +63,7 @@ skk.moe##+js(no-fetch-if)
 # Dead site
 ||david-dm.org
 # Map Location
-||amap.com$domain=~www.amap.com|~amap.com|~gaode.com
+||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn
 ||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com
 ||map.qq.com$3p
 # Prevent Sleep
@@ -120,6 +120,8 @@ www.bilibili.com##+js(nowebrtc)
 # Reddit Anti-AdBlock defuse
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
+# Google Annoy Popup "login as"
+||accounts.google.com/gsi/iframe
 
 # Misc
 ###pagefull-switch:style(display: block !important;)
@@ -257,6 +259,8 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 netflav.com/static/js/gtag.js$redirect=noop.js
 
 ||sealos.run/js
+
+||itdog.cn/upload/images/*.gif
 
 # >> Automatic Generated
 
