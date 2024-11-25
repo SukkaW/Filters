@@ -24,6 +24,7 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 
 # >> Fix Support Chat
 @@||crisp.chat$domain=v2-tun.com
+||crisp.chat$domain=dlercloud.com
 # transcend was used to load ada.support
 @@||transcend-cdn.com$domain=1password.com
 @@||intercom.io$domain=namesilo.com
@@ -61,7 +62,6 @@ skk.moe##+js(no-fetch-if)
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Dead site
-||david-dm.org
 # Map Location
 ||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn
 ||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com
@@ -70,7 +70,6 @@ skk.moe##+js(no-fetch-if)
 /ajax/libs/nosleep/*
 # Misc
 ||baidu.com$3p
-||my.chinaz.com
 
 # >> HTTPDNS
 # MIUI HTTP DNS
@@ -122,6 +121,17 @@ reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/iframe
+# Hide Aff Link
+##a[href*="sjv.io"]
+##a[href*="://l.labsda.com"]
+##a[href*="://www.aliyun.com/minisite"]
+##a[href*="click.aliyun.com"]
+##a[href*="://curl.qcloud.com"]
+##a[href*="https://enter.javhd.com/track/"]
+##a[href*="wpa.qq.com"]
+##a[href*="www.herodevs.com"]
+##a[href*="://vx.link/?rel"]
+##a[href*="trwl1.com"]
 
 # Misc
 ###pagefull-switch:style(display: block !important;)
@@ -138,8 +148,7 @@ reddit.com##shreddit-comment:style(visibility: visible!important)
 
 ##iframe[src*="union."]:style(display: none)
 
-||zayac2volk11.com
-||talazywho.pro
+# YouTube AdBlock
 ||googlevideo.com/initplayback*&oad
 
 ||bootcss.com^$all,badfilter
@@ -155,17 +164,12 @@ bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height:
 ://www.*.css|$xhr,3p,to=com,badfilter # Breaks Google Dev Docs
 
 ||tinypass.com
-||simple.cloudsmith.com
-
-##a[href*="://l.labsda.com"]
-##a[href*="://www.aliyun.com/minisite"]
-##a[href*="://curl.qcloud.com"]
 
 ||coinbase.com/sw.js
 
 yy.com,le.com##+js(nowebrtc)
 
-||www.parallels.com/download/desktop/pdfm19-en_US/antipiracy_pd_dialog$popup
+||www.parallels.com/download/desktop/pdfm19-en_US/antipiracy_pd_dialog$all
 ||parallels.com/*/antipiracy$all
 
 ||www.zhihu.com/commercial_api/banners_v3/question_up$redirect=noop.txt
@@ -217,13 +221,12 @@ wspeed.qq.com$redirect=noop.js
 ||h.lghln1.cn/js/niu/zhong-inc.js
 
 assets.alicdn.com/g/alilog*$redirect=noop.js
-g.alicdn.com/alilog/mlog/*$redirect=noop.js
+g.alicdn.com/alilog/*$redirect=noop.js
 g.alicdn.com/axdata/yunlog*$redirect=noop.js
 g.alicdn.com/dawn/user-tracker*$redirect=noop.js
 g.alicdn.com/sj/securesdk$redirect=noop.js
 
 ||cnzz.com^$redirect=nooptext
-||xinfubao.site$important
 
 ||mail-us.kurzgesagt.org/*/ga.js
 
@@ -235,7 +238,7 @@ fontshub.pro##+js(nosiif, /^/)
 ||cdn.viglink.com/*$script,redirect=noop.js
 ||yorg.io/ads.js$redirect=noop.js
 
-||vueschool.io/images/banners/assets/*$image
+||vueschool.io/images/banners/*$image
 
 /goofy/ttzz/push.js$redirect=noop.js
 
@@ -245,16 +248,9 @@ whoer.net##+js(nowebrtc)
 
 www.dnsfilter.com##+js(aopw, window.analytics)
 
-||ackee.tangly1024.com
 ||creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png
 
 /[\w\W]*aws.amazon.com/##+js(set, disablePanorama, 1)
-
-||mcs.zijieapi.com
-||analytics.githubassets.com
-||a.tool.lu
-||crisp.chat$domain=dlercloud.com
-||eas.etherscan.com
 
 netflav.com/static/js/gtag.js$redirect=noop.js
 
@@ -281,8 +277,6 @@ sm.ms##.advert_title
 
 ! 2/8/2020 http://www.4399.com
 www.4399.com##.cf.play-top
-
-##[href*="click.aliyun.com"]
 
 ! 4/28/2020 pcbeta.com
 ||pcbeta.com/data/cache/ggk.js$important
@@ -352,8 +346,6 @@ ping.chinaz.com##.backfix
 
 ! 2021-12-28 https://react.semantic-ui.com
 react.semantic-ui.com###docs-carbonads
-
-||api.akkariin.com
 
 ! 2022-03-13 https://pastebin.com
 ||pastebin.com/themes/pastebin/img/no_war_ukraine.jpeg
@@ -436,9 +428,6 @@ www.cnbeta.com.tw##+js(aopr, Math)
 ! 2022-12-03 https://www.chess.com
 www.chess.com###main-banner
 
-! 2022-12-09 https://jable.tv
-##[href*="trwl1.com"]
-
 ! 2022-12-20 https://manager.infomaniak.com
 manager.infomaniak.com##.block-news
 
@@ -462,7 +451,6 @@ yorg.io###adVideoBg
 yorg.io###adblockHint
 yorg.io###ingame_chat
 
-##[href*="://vx.link/?rel"]
 vuejs.org##.VPApp :style(padding-top: 0 !important;)
 
 ! 2023-07-02 https://kinsta.com
@@ -480,10 +468,6 @@ popper.js.org##.carbonplaceholder
 
 ! 2023-09-10 https://divineengine.net
 divineengine.net##.sidebar-content > .widget_custom_html
-
-
-! 2023-09-30 https://netflav.com
-netflav.com##[href*="trwl1.com"]
 
 ! 2023-10-05 https://minecraft.fandom.com
 minecraft.fandom.com###age-gate
@@ -509,15 +493,12 @@ speedtestcustom.com##.promo-block
 
 ||www.wdgwv.com/stats/count.js
 
-##[href*="www.herodevs.com"]
-
 ! 2024-01-21 https://vuejs.org
 vuejs.org##.banner
 
 ! 2024-01-21 https://www.veidc.com
 www.veidc.com##.orbui-site-01.orbui-site.orbui
 www.veidc.com##.custom-html-widget
-##[href*="wpa.qq.com"]
 
 ! 2024-01-29 https://wiki.mbalib.com
 ||imgw.mbalib.com/web/uploads/ad/*
@@ -564,9 +545,6 @@ www.bandbbs.cn##.ad-container
 ! Aug 13, 2024 https://www.4kvm.com
 ||storage.jd.com/rec.jd.com/0f791b87d2b242d6a256cfe12dad5b4c.jpg$image
 
-! Aug 14, 2024 https://18jav.tv
-##a[href*="https://enter.javhd.com/track/"]
-
 ! Aug 24, 2024 https://www.zaobao.com.sg
 ||static.zaobao.com.sg/s3fs-public/2024-06/pantry-news-talk-$image
 ||static.zaobao.com.sg/s3fs-public/2024-06/lianhe-zaobao-club-$image
@@ -595,9 +573,6 @@ zh.moegirl.org.cn##.banner-gallery
 tieba.baidu.com##.tieba-login-wrapper
 tieba.baidu.com##.tieba-login-background
 
-! Oct 22, 2024 https://www.baidu.com
-www.baidu.com##div.toplist1-tr_1MWDu
-
 ! Oct 23, 2024 https://dash.cloudflare.com
 dash.cloudflare.com##.c_kl.c_kk.c_gm.c_ps.c_pr.c_nj.c_s.c_d
 
@@ -623,3 +598,6 @@ zh.moegirl.org.cn###grandpa-entrance
 
 ! Nov 15, 2024 https://www.linuxbabe.com
 www.linuxbabe.com##.widgets
+
+! Nov 25, 2024 https://etherscan.io
+||etherscan.io/images/gen/moonpay_aug24_730x90.png$image
