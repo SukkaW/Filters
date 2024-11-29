@@ -9,6 +9,7 @@ d0000d.com##+js(set, check, noopFunc)
 d0000d.com##+js(sukka-defuse-devtools-detector)
 blog.aepkill.com##+js(sukka-defuse-devtools-detector)
 blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
+12345.al##+js(sukka-defuse-devtools-detector)
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
 # >> Defuse AdBlock Detector
@@ -119,36 +120,43 @@ www.bilibili.com##+js(nowebrtc)
 # Reddit Anti-AdBlock defuse
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
+# Hook proxycheck.io API
+! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/iframe
 # Hide Aff Link
-##a[href*="sjv.io"]
-##a[href*="://l.labsda.com"]
-##a[href*="://www.aliyun.com/minisite"]
-##a[href*="click.aliyun.com"]
-##a[href*="://curl.qcloud.com"]
-##a[href*="https://enter.javhd.com/track/"]
-##a[href*="wpa.qq.com"]
-##a[href*="www.herodevs.com"]
-##a[href*="://vx.link/?rel"]
-##a[href*="trwl1.com"]
-
-# Misc
-###pagefull-switch:style(display: block !important;)
+##a[href*="//sjv.io"]
+##a[href*="//l.labsda.com"]
+##a[href*="//www.aliyun.com/minisite"]
+##a[href*="//click.aliyun.com"]
+##a[href*="//curl.qcloud.com"]
+##a[href*="//enter.javhd.com/track/"]
+##a[href*="//wpa.qq.com"]
+##a[href*="//www.herodevs.com"]
+##a[href*="//vx.link/?rel"]
+##a[href*="//trwl1.com"]
+! hide union ad
+##iframe[src*="//union."]
 
 # >> Handcraft
 ||app.link$third-party
 ||maplesugar.top/sw.js
+||126.com$domain=maplesugar.top
 ||blog.maplesugar.top/usr/uploads/2024/09/725322379.jpg
+||tinypass.com
+
+||coinbase.com/sw.js
 
 ||yorgio-chat-backend-v2.herokuapp.com$subdocument
 
 ||18comic.vip/static/*/AD
+
+! Geo unblock
 ||api.abema.io/v*/ip/check
+||ds-linear-abematv.akamaized.net/region$redirect=nooptext
+||hanime.tv/country_code$redirect=noop.txt
 
-##iframe[src*="union."]:style(display: none)
-
-# YouTube AdBlock
+! YouTube AdBlock
 ||googlevideo.com/initplayback*&oad
 
 ||bootcss.com^$all,badfilter
@@ -162,10 +170,6 @@ bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height:
 /*/__phg/ingest*$all
 
 ://www.*.css|$xhr,3p,to=com,badfilter # Breaks Google Dev Docs
-
-||tinypass.com
-
-||coinbase.com/sw.js
 
 yy.com,le.com##+js(nowebrtc)
 
@@ -217,7 +221,6 @@ wspeed.qq.com$redirect=noop.js
 
 ||nga.178.com/common_res/js_box.js
 
-||storage.moegirl.org.cn/console-plus/uploads/2024/01/16/b70a27db94200462fd06da4a5ab30b50.jpeg
 ||h.lghln1.cn/js/niu/zhong-inc.js
 
 assets.alicdn.com/g/alilog*$redirect=noop.js
@@ -244,8 +247,6 @@ fontshub.pro##+js(nosiif, /^/)
 
 whoer.net##+js(nowebrtc)
 
-||hanime.tv/country_code$redirect=noop.txt
-
 www.dnsfilter.com##+js(aopw, window.analytics)
 
 ||creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png
@@ -258,7 +259,21 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 
 ||itdog.cn/upload/images/*.gif
 
-# >> Automatic Generated
+# >> Auto Generated - per site
+
+! zh.moegirl.org.cn
+||app.moegirl.org.cn/insight-assets/images/20230413-moepad/800x300.png
+||storage.moegirl.org.cn/console-plus/uploads/2024/02/01/a475bee2aa57da0e65f5341b78ccf551.png
+||storage.moegirl.org.cn/console-plus/uploads/2024/01/16/b70a27db94200462fd06da4a5ab30b50.jpeg
+zh.moegirl.org.cn##.banner-gallery
+zh.moegirl.org.cn###grandpa-entrance
+zh.moegirl.org.cn###nav-userlink-grandpa-entrance
+
+! vuejs.org
+vuejs.org##.banner
+vuejs.org##.VPApp :style(padding-top: 0 !important;)
+
+# >> Auto Generated - time
 
 ! 2019/1/24 https://www.laomoit.com/sougoupinyin.html
 www.laomoit.com##div.box:nth-of-type(1) > .custom-html-widget.textwidget
@@ -434,7 +449,6 @@ manager.infomaniak.com##.block-news
 ! 2022-12-22 https://mui.com
 mui.com##.AdDisplay-description
 ||mui.com/static/ads-in-house*
-! Sep 11, 2024 https://mui.com
 mui.com##.ad
 
 ! 2023-03-15 https://element-plus.org
@@ -450,8 +464,6 @@ www.makeuseof.com##.ad-current
 yorg.io###adVideoBg
 yorg.io###adblockHint
 yorg.io###ingame_chat
-
-vuejs.org##.VPApp :style(padding-top: 0 !important;)
 
 ! 2023-07-02 https://kinsta.com
 kinsta.com##.sidebar-cta
@@ -493,12 +505,8 @@ speedtestcustom.com##.promo-block
 
 ||www.wdgwv.com/stats/count.js
 
-! 2024-01-21 https://vuejs.org
-vuejs.org##.banner
-
 ! 2024-01-21 https://www.veidc.com
-www.veidc.com##.orbui-site-01.orbui-site.orbui
-www.veidc.com##.custom-html-widget
+||www.veidc.com/wp-content/uploads/*.gif
 
 ! 2024-01-29 https://wiki.mbalib.com
 ||imgw.mbalib.com/web/uploads/ad/*
@@ -516,9 +524,6 @@ speedify.com##.exit-intent-popup
 
 ! 2024-02-09 https://www.smashingmagazine.com
 www.smashingmagazine.com##.partners__external
-
-! 2024-02-17 https://demo.bt.cn
-##.recommend_info
 
 ! 2024-03-20 https://vuejs.org
 vuejs.org##.sponsor-item
@@ -542,9 +547,6 @@ community.cloudflare.com##.modal-container
 ! Jun 30, 2024 https://www.bandbbs.cn
 www.bandbbs.cn##.ad-container
 
-! Aug 13, 2024 https://www.4kvm.com
-||storage.jd.com/rec.jd.com/0f791b87d2b242d6a256cfe12dad5b4c.jpg$image
-
 ! Aug 24, 2024 https://www.zaobao.com.sg
 ||static.zaobao.com.sg/s3fs-public/2024-06/pantry-news-talk-$image
 ||static.zaobao.com.sg/s3fs-public/2024-06/lianhe-zaobao-club-$image
@@ -560,11 +562,6 @@ www.youtube.com##.ytd-rich-section-renderer
 
 ! Sep 18, 2024 https://www.mcoun.com
 www.mcoun.com##.gen-loading
-
-! Sep 21, 2024 https://zh.moegirl.org.cn
-||app.moegirl.org.cn/insight-assets/images/20230413-moepad/800x300.png
-zh.moegirl.org.cn##.banner-gallery
-||storage.moegirl.org.cn/console-plus/uploads/2024/02/01/a475bee2aa57da0e65f5341b78ccf551.png
 
 ! Oct 6, 2024 https://www.7k7k.com
 ||7k7kimg.cn/cms/cms10/20240927/134643_4948.jpg
@@ -587,10 +584,6 @@ www.airdroid.com##.actvity-slide
 ||www.kan3721.com/2015/zxzx.png$image
 www.kan3721.com##.kfname
 www.kan3721.com##.kfsq
-
-! Nov 4, 2024 https://zh.moegirl.org.cn
-zh.moegirl.org.cn###nav-userlink-grandpa-entrance
-zh.moegirl.org.cn###grandpa-entrance
 
 ! Nov 9, 2024 https://hentaipig.com
 ||static.k2s.cc/images/i/*.gif$image
