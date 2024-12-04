@@ -21,6 +21,7 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 ||youtube-nocookie.com/embed/$3p,frame,redirect=click2load.html
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
+||player.twitch.tv$redirect=click2load.html
 ||www.google.com/adsense/domains/caf.js*$redirect=noop.js
 
 # >> Fix Support Chat
@@ -259,6 +260,9 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 
 ||itdog.cn/upload/images/*.gif
 
+||console.cast.ai/analytics
+||api.vector.co/pixel
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -274,9 +278,6 @@ vuejs.org##.banner
 vuejs.org##.VPApp :style(padding-top: 0 !important;)
 
 # >> Auto Generated - time
-
-! 2019/1/24 https://www.laomoit.com/sougoupinyin.html
-www.laomoit.com##div.box:nth-of-type(1) > .custom-html-widget.textwidget
 
 ! 2019/5/27 https://www.mf8.biz
 ||pics.mf8.biz/wp-store/2018/10/2018102123260678.jpg
@@ -304,6 +305,8 @@ developer.aliyun.com###right-box
 
 ! 2020-08-21 https://hao.su
 ||ae01.alicdn.com/kf/HTB1V_sadL1G3KVjSZFkxh5K4XXa4.jpeg
+||kjimg10.360buyimg.com/ott/jfs/t1/106856/2/32289/59711/63aff17aF54f3a142/88175837c42bce43.jpg
+||iui.su/ning/d/k.webp
 
 ! 2020-10-01 https://tools.ipip.net
 ||cdn.ipip.net/loveapp/ipip/tools/theme/partner/*$image
@@ -318,12 +321,6 @@ blog.csdn.net##.recommend-tit-mod
 blog.csdn.net##.template-box
 blog.csdn.net##.comment-box
 blog.csdn.net###recommend-right
-
-! 2021-04-27 https://javkan.com
-||javkan.com/images/bonga/$image
-
-! 2021-06-25 https://web.archive.org
-@@||web.archive.org/web/20060209074034im_/http://beta.e-hentai.org/*$image,domain=web.archive.org
 
 ! 2021-09-08 https://aa1xx.xyz
 aa1xx.xyz##.happy-player-beside
@@ -569,9 +566,6 @@ www.mcoun.com##.gen-loading
 ! Oct 21, 2024 https://tieba.baidu.com
 tieba.baidu.com##.tieba-login-wrapper
 tieba.baidu.com##.tieba-login-background
-
-! Oct 23, 2024 https://dash.cloudflare.com
-dash.cloudflare.com##.c_kl.c_kk.c_gm.c_ps.c_pr.c_nj.c_s.c_d
 
 ! Oct 30, 2024 https://www.yhdm9.cc
 ||www.yhdm9.cc/template/index//img/240.jpg$image
