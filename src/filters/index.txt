@@ -22,7 +22,7 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
 ||player.twitch.tv$redirect=click2load.html
-||www.google.com/adsense/domains/caf.js*$redirect=noop.js
+||www.eporner.com/embed$redirect=click2load.html
 
 # >> Fix Support Chat
 @@||crisp.chat$domain=v2-tun.com
@@ -263,6 +263,8 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 ||console.cast.ai/analytics
 ||api.vector.co/pixel
 
+||www.google.com/adsense/domains/caf.js*$redirect=noop.js
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -410,14 +412,9 @@ fontawesome.com##.wrap-ad
 ! 2022-09-08 https://community.cloudflare.com
 community.cloudflare.com##.house-ad
 
-! 2022-09-18 https://blog.cloudflare.com
-blog.cloudflare.com###cloudflare-tv-embed
-
 ! 2022-10-18 https://www.boce.com
 www.boce.com##.money_left
-www.boce.com##.menu
 www.boce.com##.vipIcon
-www.boce.com##.index-top-long
 
 ! 2022-10-19 https://webpack.docschina.org
 webpack.docschina.org##.sponsors
@@ -588,3 +585,12 @@ www.linuxbabe.com##.widgets
 
 ! Nov 25, 2024 https://etherscan.io
 ||etherscan.io/images/gen/moonpay_aug24_730x90.png$image
+
+! Dec 4, 2024 https://www.boce.com
+||www.boce.com/statics/web_v5/images/img03.png
+www.boce.com##.contact_right
+www.boce.com##.mini-cont
+www.boce.com##.header-top-activity-icon
+
+! Dec 4, 2024 http://www.vpsxxs.com
+||www.vpsxxs.com/ad/$image
