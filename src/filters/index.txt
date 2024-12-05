@@ -594,3 +594,6 @@ www.boce.com##.header-top-activity-icon
 
 ! Dec 4, 2024 http://www.vpsxxs.com
 ||www.vpsxxs.com/ad/$image
+
+! Dec 5, 2024 https://www.ezyzip.com
+||www.ezyzip.com/assets/images/*ad*$image
