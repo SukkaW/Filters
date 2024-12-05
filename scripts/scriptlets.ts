@@ -1,18 +1,25 @@
 import { rollup } from 'rollup';
 import type { RollupOptions } from 'rollup';
 import { swc } from 'rollup-plugin-swc3';
+import fsp from 'node:fs/promises';
 
 function createRollupOpt(preamble: string): RollupOptions {
   return {
     plugins: [
       swc({
         jsc: {
-          target: 'es2021',
+          target: 'es2022',
           minify: {
-            compress: true,
+            compress: {
+              ecma: 2022,
+              module: false,
+              negate_iife: false,
+              unsafe: true
+            },
             mangle: true,
-            module: true,
+            module: false,
             format: {
+              ecma: 2022,
               preamble
             }
           }
@@ -24,15 +31,20 @@ function createRollupOpt(preamble: string): RollupOptions {
 }
 
 export async function buildScriptlets() {
-  const bundle1 = await rollup({
-    input: './src/scriptlets/sukka-defuse-devtools-detector/index.ts',
-    ...createRollupOpt('/// sukka-defuse-devtools-detector.js\n')
-  });
-  await bundle1.write({
-    file: './public/scriptlets/sukka-defuse-devtools-detector.js',
-    format: 'iife',
-    interop: 'auto'
-  });
+  for await (const dirent of await fsp.opendir('./src/scriptlets')) {
+    if (dirent.isDirectory()) {
+      await (await rollup({
+        input: `./src/scriptlets/${dirent.name}/index.ts`,
+        ...createRollupOpt(`/// ${dirent.name}.js\n`)
+      })).write({
+        file: `./public/scriptlets/${dirent.name}.js`,
+        format: 'iife',
+        interop: 'auto',
+        compact: true,
+        strict: true
+      });
+    }
+  }
 }
 
 if (require.main === module) {
