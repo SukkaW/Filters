@@ -264,6 +264,7 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 ||api.vector.co/pixel
 
 ||www.google.com/adsense/domains/caf.js*$redirect=noop.js
+||urlstats.com/counter
 
 # >> Auto Generated - per site
 
@@ -417,7 +418,7 @@ www.boce.com##.money_left
 www.boce.com##.vipIcon
 
 ! 2022-10-19 https://webpack.docschina.org
-webpack.docschina.org##.sponsors
+||webpack.docschina.org/docschina-logo*
 
 ! 2022-11-10 https://download.pixelexperience.org
 ||www.humix.com$3p
