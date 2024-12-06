@@ -234,7 +234,7 @@ g.alicdn.com/sj/securesdk$redirect=noop.js
 
 ||mail-us.kurzgesagt.org/*/ga.js
 
-js-agent.newrelic.com*$script,redirect=noopjs,domain=stackblitz.com
+||js-agent.newrelic.com$script,domain=stackblitz.com
 
 fontshub.pro##+js(nostif, /^/)
 fontshub.pro##+js(nosiif, /^/)
