@@ -116,8 +116,6 @@ www.bilibili.com##+js(nowebrtc)
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
 5w.fit##+js(nosiif,redirect)
-# Disable AdGuardHome update warning
-##.topline.alert-info.alert
 # Reddit Anti-AdBlock defuse
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
