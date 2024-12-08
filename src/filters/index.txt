@@ -63,7 +63,6 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 skk.moe##+js(no-fetch-if)
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
-# Dead site
 # Map Location
 ||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn
 ||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com
@@ -106,13 +105,13 @@ bgp.he.net###graph6 img:style(max-width: 100% !important;)
 ||data.bilibili.com^$redirect=nooptext
 bilibili.com##a[href*="cm.bilibili.com"]:style(display: block !important)
 bilibili.com##+js(set, window.biliMetaReporter.pv, noopFunc)
+bilibili.com##+js(nowebrtc)
 www.bilibili.com##.bili-danmaku-x-guide-all
 www.bilibili.com##.pop-live-small-mode
 www.bilibili.com##.ad-report
 www.bilibili.com##.video-page-game-card-small
 www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
-www.bilibili.com##+js(nowebrtc)
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
 5w.fit##+js(nosiif,redirect)
@@ -123,6 +122,19 @@ reddit.com##shreddit-comment:style(visibility: visible!important)
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/iframe
+# Fuck CSDN
+blog.csdn.net##.blog_container_aside
+blog.csdn.net##.recommend-box
+blog.csdn.net###csdn-toolbar
+blog.csdn.net##.article-info-box
+blog.csdn.net##.more-toolbox
+blog.csdn.net##.recommend-tit-mod
+blog.csdn.net##.template-box
+blog.csdn.net##.comment-box
+blog.csdn.net###recommend-right
+*$script,domain=csdn.net|sina.cn
+.js$domain=csdn.net|sina.cn
+*$frame,domain=csdn.net|sina.cn
 # Hide Aff Link
 ##a[href*="//sjv.io"]
 ##a[href*="//l.labsda.com"]
@@ -138,6 +150,16 @@ reddit.com##shreddit-comment:style(visibility: visible!important)
 ##iframe[src*="//union."]
 
 # >> Handcraft
+
+! Geo unblock
+||api.abema.io/v*/ip/check
+||ds-linear-abematv.akamaized.net/region$redirect=nooptext
+||hanime.tv/country_code$redirect=noop.txt
+
+! YouTube AdBlock
+||googlevideo.com/initplayback*&oad
+
+! Misc
 ||app.link$third-party
 ||maplesugar.top/sw.js
 ||126.com$domain=maplesugar.top
@@ -149,14 +171,6 @@ reddit.com##shreddit-comment:style(visibility: visible!important)
 ||yorgio-chat-backend-v2.herokuapp.com$subdocument
 
 ||18comic.vip/static/*/AD
-
-! Geo unblock
-||api.abema.io/v*/ip/check
-||ds-linear-abematv.akamaized.net/region$redirect=nooptext
-||hanime.tv/country_code$redirect=noop.txt
-
-! YouTube AdBlock
-||googlevideo.com/initplayback*&oad
 
 ||bootcss.com^$all,badfilter
 ||bootcdn.net^$all,badfilter
@@ -172,7 +186,7 @@ bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height:
 
 yy.com,le.com##+js(nowebrtc)
 
-||www.parallels.com/download/desktop/pdfm19-en_US/antipiracy_pd_dialog$all
+||parallels.com/download/desktop/pdfm19-en_US/antipiracy_pd_dialog$all
 ||parallels.com/*/antipiracy$all
 
 ||www.zhihu.com/commercial_api/banners_v3/question_up$redirect=noop.txt
@@ -213,7 +227,7 @@ btrace.qq.com$script,redirect=noop.js
 cloud.tencent.com/act/common/report$redirect=nooptext
 huatuo*.weiyun.com
 mp.weixin.qq.com/mp/*report$redirect=nooptext
-||safebrowsing.urlsec.qq.com
+||safebrowsing.urlsec.qq.com 
 stat*.qq.com$redirect=noop.js
 tajs.qq.com$redirect=noop.js
 wspeed.qq.com$redirect=noop.js
@@ -266,6 +280,9 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 
 @@||humix.com/video.js$domain=humix.com
 
+||18comic.vip/static/resources/*.gif
+18comic.vip##+js(aopr, ads)
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -296,6 +313,7 @@ sm.ms##.advert_title
 
 ! 2/8/2020 http://www.4399.com
 www.4399.com##.cf.play-top
+##[href^="//huodong2.4399.com"]
 
 ! 4/28/2020 pcbeta.com
 ||pcbeta.com/data/cache/ggk.js$important
@@ -308,22 +326,11 @@ developer.aliyun.com###right-box
 
 ! 2020-08-21 https://hao.su
 ||ae01.alicdn.com/kf/HTB1V_sadL1G3KVjSZFkxh5K4XXa4.jpeg
-||kjimg10.360buyimg.com/ott/jfs/t1/106856/2/32289/59711/63aff17aF54f3a142/88175837c42bce43.jpg
+||360buyimg.com/ott/jfs/t1/106856/2/32289/59711/63aff17aF54f3a142/88175837c42bce43.jpg
 ||iui.su/ning/d/k.webp
 
 ! 2020-10-01 https://tools.ipip.net
 ||cdn.ipip.net/loveapp/ipip/tools/theme/partner/*$image
-
-! https://blog.csdn.net
-blog.csdn.net##.blog_container_aside > .aside-box
-blog.csdn.net##.recommend-box
-blog.csdn.net###csdn-toolbar
-blog.csdn.net##.article-info-box
-blog.csdn.net##.more-toolbox
-blog.csdn.net##.recommend-tit-mod
-blog.csdn.net##.template-box
-blog.csdn.net##.comment-box
-blog.csdn.net###recommend-right
 
 ! 2021-09-08 https://aa1xx.xyz
 aa1xx.xyz##.happy-player-beside
@@ -332,15 +339,14 @@ aa1xx.xyz##.happy-player-beside
 @@||ehgt.org/ad/*$image
 
 ##[class*="ads_head_banner"]
-@@||pornimg.xyz^$3p
 
 ||changjiang-exam.yuketang.cn/online_proctor/stu/monitor/feed/add
 ||changjiang-exam.yuketang.cn/online_proctor/stu/photograph/add
-||upload.qiniup.com
-||upload-z1.qiniup.com
-||upload-z2.qiniup.com
-||upload-na0.qiniup.com
-||upload-as0.qiniup.com
+! ||upload.qiniup.com
+! ||upload-z1.qiniup.com
+! ||upload-z2.qiniup.com
+! ||upload-na0.qiniup.com
+! ||upload-as0.qiniup.com
 
 ! 2021-11-29 http://blog.sohu.com
 blog.sohu.com##.focus-pic
