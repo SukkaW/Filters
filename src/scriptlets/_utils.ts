@@ -1,7 +1,3 @@
-export function noop() {
-  // noop
-}
-
 const fnWs = new WeakSet();
 export function onlyCallOnce(fn: () => void) {
   if (fnWs.has(fn)) {

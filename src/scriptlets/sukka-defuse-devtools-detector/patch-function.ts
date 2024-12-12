@@ -1,4 +1,5 @@
-import { onlyCallOnce, noop, $console } from '../_utils';
+import { onlyCallOnce, $console } from '../_utils';
+import { noop } from 'foxts/noop';
 
 function logDefuseFunctionDebugger(this: void) {
   $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function()');

@@ -1,4 +1,5 @@
-import { $console, noop, onlyCallOnce } from '../_utils';
+import { $console, onlyCallOnce } from '../_utils';
+import { noop } from 'foxts/noop';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval

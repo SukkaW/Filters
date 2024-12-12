@@ -1,11 +1,13 @@
 import { rollup } from 'rollup';
 import type { RollupOptions } from 'rollup';
 import { swc } from 'rollup-plugin-swc3';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import fsp from 'node:fs/promises';
 
 function createRollupOpt(preamble: string): RollupOptions {
   return {
     plugins: [
+      nodeResolve(),
       swc({
         jsc: {
           target: 'es2022',
