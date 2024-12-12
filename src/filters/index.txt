@@ -25,8 +25,8 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 ||www.eporner.com/embed$redirect=click2load.html
 
 # >> Fix Support Chat
-@@||crisp.chat$domain=v2-tun.com
-||crisp.chat$domain=dlercloud.com
+||client.crisp.chat^$3p
+||crisp.chat$domain=dlercloud.com|phare.io
 # transcend was used to load ada.support
 @@||transcend-cdn.com$domain=1password.com
 @@||intercom.io$domain=namesilo.com
@@ -148,6 +148,8 @@ blog.csdn.net###recommend-right
 ##a[href*="//trwl1.com"]
 ! hide union ad
 ##iframe[src*="//union."]
+# Fix AdGuard Popup Overlay Filters
+#@#.footer-cta
 
 # >> Handcraft
 
@@ -283,6 +285,10 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 ||18comic.vip/static/resources/*.gif
 18comic.vip##+js(aopr, ads)
 
+||extend.vimeocdn.com/ga4
+||evt.cameo.com/batch
+producthunt.com##[data-test^="ad-slot"]
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -313,7 +319,6 @@ sm.ms##.advert_title
 
 ! 2/8/2020 http://www.4399.com
 www.4399.com##.cf.play-top
-##[href^="//huodong2.4399.com"]
 
 ! 4/28/2020 pcbeta.com
 ||pcbeta.com/data/cache/ggk.js$important
@@ -601,3 +606,9 @@ www.boce.com##.header-top-activity-icon
 
 ! Dec 5, 2024 https://www.ezyzip.com
 ||www.ezyzip.com/assets/images/*ad*$image
+
+! Dec 8, 2024 https://www.4399.com
+4399.com##[href*="//huodong2.4399.com"]
+
+! Dec 8, 2024 https://18comic.vip
+18comic.vip##[href*="//jm365.work"]
