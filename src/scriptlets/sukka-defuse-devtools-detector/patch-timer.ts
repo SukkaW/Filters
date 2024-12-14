@@ -8,32 +8,26 @@ import { noop } from 'foxts/noop';
 export function patchTimer() {
   globalThis.setInterval = new Proxy(globalThis.setInterval, {
     apply(target, thisArg, args: Parameters<typeof setInterval>) {
-      const cb = args[0];
-      const ms = args[1];
-
-      const cbStr = cb.toString();
+      const cbStr = String(args[0]);
 
       if (cbStr.includes('debugger')) {
         onlyCallOnce(logDefuseSetIntervalDebugger);
-        return target.call(thisArg, noop, ms);
+        args[0] = noop;
       }
 
-      return Reflect.apply(target, thisArg, args);
+      return target.apply(thisArg, args);
     }
   });
   globalThis.setTimeout = new Proxy(globalThis.setTimeout, {
     apply(target, thisArg, args: Parameters<typeof setTimeout>) {
-      const cb = args[0];
-      const ms = args[1];
-
-      const cbStr = cb.toString();
+      const cbStr = String(args[0]);
 
       if (cbStr.includes('debugger')) {
         onlyCallOnce(logDefuseSetTimeoutDebugger);
-        return target.call(thisArg, noop, ms);
+        args[0] = noop;
       }
 
-      return Reflect.apply(target, thisArg, args);
+      return target.apply(thisArg, args);
     }
   });
 }
