@@ -10,6 +10,7 @@ d0000d.com##+js(sukka-defuse-devtools-detector)
 blog.aepkill.com##+js(sukka-defuse-devtools-detector)
 blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 12345.al##+js(sukka-defuse-devtools-detector)
+anime.girigirilove.com##+js(nosiif, debugger)
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
 # >> Defuse AdBlock Detector
@@ -288,6 +289,10 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 ||extend.vimeocdn.com/ga4
 ||evt.cameo.com/batch
 producthunt.com##[data-test^="ad-slot"]
+
+||www.google-analytics.com/*/collect$redirect=1x1.gif
+||www.google-analytics.com/collect$redirect=1x1.gif
+||connect.xfani.com/images/ad
 
 # >> Auto Generated - per site
 
@@ -612,3 +617,9 @@ www.boce.com##.header-top-activity-icon
 
 ! Dec 8, 2024 https://18comic.vip
 18comic.vip##[href*="//jm365.work"]
+
+! Dec 13, 2024 https://www.processon.com
+www.processon.com##.dlg-manage-mask
+www.processon.com##.dlg-nps-manage
+www.processon.com##.po-dialog.free_user_pay_poupe
+www.processon.com##.po-dlg-mask
