@@ -89,16 +89,21 @@ spotify.com##button[title="Effettua l'upgrade a Premium"]
 spotify.com##div[data-testid="test-ref-div"]
 
 # >> Website Fix
+
 # Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
+
 # Bring GitHub back, Fuck refine-github
 github.com###repository-container-header:not(:has(.js-repo-nav)) :is(#repo-stars-counter-star, #repo-stars-counter-unstar, #repo-network-counter, #repo-notifications-counter, .js-codespaces-details-container summary .Button-label):style(display: inline-block !important)
+
 # Allow copy and select on China EMU
 china-emu.cn##+js(aopw, window.onload)
 china-emu.cn##html:style(user-select: initial !important)
+
 # bgp.he.net routing graph width fix
 bgp.he.net###graph4 img:style(max-width: 100% !important;)
 bgp.he.net###graph6 img:style(max-width: 100% !important;)
+
 # Fuck Bilibili
 ||cm.bilibili.com/cm/api$redirect=noop.txt
 ||i0.hdslb.com/bfs/live/*$image
@@ -113,16 +118,21 @@ www.bilibili.com##.ad-report
 www.bilibili.com##.video-page-game-card-small
 www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
+
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
 5w.fit##+js(nosiif,redirect)
+
 # Reddit Anti-AdBlock defuse
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
+
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
+
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/iframe
+
 # Fuck CSDN
 blog.csdn.net##.blog_container_aside
 blog.csdn.net##.recommend-box
@@ -136,6 +146,7 @@ blog.csdn.net###recommend-right
 *$script,domain=csdn.net|sina.cn
 .js$domain=csdn.net|sina.cn
 *$frame,domain=csdn.net|sina.cn
+
 # Hide Aff Link
 ##a[href*="//sjv.io"]
 ##a[href*="//l.labsda.com"]
@@ -147,10 +158,16 @@ blog.csdn.net###recommend-right
 ##a[href*="//www.herodevs.com"]
 ##a[href*="//vx.link/?rel"]
 ##a[href*="//trwl1.com"]
+hanime1.me##a[href*="//l.labsda.com"] + *
 ! hide union ad
 ##iframe[src*="//union."]
+
 # Fix AdGuard Popup Overlay Filters
 #@#.footer-cta
+
+# Disable AV1 Video
+youtube.com##+js(sukka-disable-av1)
+bilibili.com##+js(sukka-disable-av1)
 
 # >> Handcraft
 
@@ -158,6 +175,7 @@ blog.csdn.net###recommend-right
 ||api.abema.io/v*/ip/check
 ||ds-linear-abematv.akamaized.net/region$redirect=nooptext
 ||hanime.tv/country_code$redirect=noop.txt
+||store.ui.com/api/geo-ip$domain=ui.com
 
 ! YouTube AdBlock
 ||googlevideo.com/initplayback*&oad
