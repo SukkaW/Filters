@@ -106,7 +106,6 @@ bgp.he.net###graph6 img:style(max-width: 100% !important;)
 
 # Fuck Bilibili
 ||cm.bilibili.com/cm/api$redirect=noop.txt
-||i0.hdslb.com/bfs/live/*$image
 ||hdslb.com/bfs/seed/log/*.js*$redirect=noop.js
 ||data.bilibili.com^$redirect=nooptext
 www.bilibili.com##.bili-danmaku-x-guide-all
