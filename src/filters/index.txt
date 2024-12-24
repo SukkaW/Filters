@@ -109,12 +109,8 @@ bgp.he.net###graph6 img:style(max-width: 100% !important;)
 ||i0.hdslb.com/bfs/live/*$image
 ||hdslb.com/bfs/seed/log/*.js*$redirect=noop.js
 ||data.bilibili.com^$redirect=nooptext
-bilibili.com##a[href*="cm.bilibili.com"]:style(display: block !important)
-bilibili.com##+js(set, window.biliMetaReporter.pv, noopFunc)
-bilibili.com##+js(nowebrtc)
 www.bilibili.com##.bili-danmaku-x-guide-all
 www.bilibili.com##.pop-live-small-mode
-www.bilibili.com##.ad-report
 www.bilibili.com##.video-page-game-card-small
 www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
