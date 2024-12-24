@@ -123,6 +123,9 @@ www.bilibili.com##.r-con
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
 
+# Disable watermark of imgsrc.io
+||imgsrc.io/assets/watermark.svg$redirect=1x1.gif
+
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 
@@ -637,3 +640,10 @@ www.processon.com##.dlg-manage-mask
 www.processon.com##.dlg-nps-manage
 www.processon.com##.po-dialog.free_user_pay_poupe
 www.processon.com##.po-dlg-mask
+
+! Dec 19, 2024 https://www.reddit.com
+||redditstatic.com/shreddit/assets/download-app-persistent-qr-code.png
+
+! Dec 23, 2024 https://alist.nn.ci
+||alist.nn.ci/img/ss/vidhub-bg.png
+##.wwads-container
