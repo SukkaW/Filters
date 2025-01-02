@@ -23,14 +23,14 @@ anime.girigirilove.com##+js(nosiif, debugger)
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
 ||player.twitch.tv$redirect=click2load.html
-||www.eporner.com/embed$redirect=click2load.html
+||eporner.com/embed$redirect=click2load.html
 
 # >> Fix Support Chat
 ||client.crisp.chat^$3p
 ||crisp.chat$domain=dlercloud.com|phare.io
 # transcend was used to load ada.support
 @@||transcend-cdn.com$domain=1password.com
-@@||intercom.io$domain=namesilo.com
+@@||intercom.io$domain=namesilo.com|cdn77.com
 @@||zopim.com$domain=ui.com|account.ui.com
 
 # >> Performance
