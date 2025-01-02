@@ -53,6 +53,9 @@ anime.girigirilove.com##+js(nosiif, debugger)
 @@||github.com/**/web-vitals-
 # skk.moe
 @@||localhost$domain=skk.moe
+# unblock remove param for bilibili video cdn
+@@||bilivideo.com^$removeparam
+@@||bilivideo.cn^$removeparam
 # Misc
 @@||awstrack.me^$badfilter
 @@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
@@ -66,7 +69,7 @@ skk.moe##+js(no-fetch-if)
 ||playground.oxc.rs$important
 # Map Location
 ||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn
-||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com
+||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com
 ||map.qq.com$3p
 # Prevent Sleep
 /ajax/libs/nosleep/*
@@ -108,6 +111,7 @@ bgp.he.net###graph6 img:style(max-width: 100% !important;)
 ||cm.bilibili.com/cm/api$redirect=noop.txt
 ||hdslb.com/bfs/seed/log/*.js*$redirect=noop.js
 ||data.bilibili.com^$redirect=nooptext
+||i0.hdslb.com/bfs/static/jinkela/long/images/desktop-download-tip.png$image
 www.bilibili.com##.bili-danmaku-x-guide-all
 www.bilibili.com##.pop-live-small-mode
 www.bilibili.com##.video-page-game-card-small
@@ -156,6 +160,7 @@ blog.csdn.net###recommend-right
 ##a[href*="//www.herodevs.com"]
 ##a[href*="//vx.link/?rel"]
 ##a[href*="//trwl1.com"]
+##a[href^="https://ra7.xyz"]
 hanime1.me##a[href*="//l.labsda.com"] + *
 ! hide union ad
 ##iframe[src*="//union."]
@@ -646,3 +651,12 @@ www.processon.com##.po-dlg-mask
 ! Dec 23, 2024 https://alist.nn.ci
 ||alist.nn.ci/img/ss/vidhub-bg.png
 ##.wwads-container
+
+! Jan 2, 2025 https://xueqiu.com
+xueqiu.com##.widget__download-app__container
+
+! Jan 2, 2025 https://hsav.xyz
+||hsav.xyz/static/images/$image
+||hsav.xyz/static/dplayer/*.mp4$redirect=noop-1s.mp4
+hsav.xyz###h2_player_prevideo
+hsav.xyz###video:style(display: block!important)
