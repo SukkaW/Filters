@@ -55,7 +55,9 @@ anime.girigirilove.com##+js(nosiif, debugger)
 # skk.moe
 @@||localhost$domain=skk.moe
 # unblock remove param for bilibili video cdn
+! aglint-disable-next-line invalid-modifiers -- whitelist
 @@||bilivideo.com^$removeparam
+! aglint-disable-next-line invalid-modifiers -- whitelist
 @@||bilivideo.cn^$removeparam
 # Misc
 @@||awstrack.me^$badfilter
@@ -111,7 +113,7 @@ bgp.he.net###graph6 img:style(max-width: 100% !important;)
 # Fuck Bilibili
 ||cm.bilibili.com/cm/api$redirect=noop.txt
 ||hdslb.com/bfs/seed/log/*.js*$redirect=noop.js
-||data.bilibili.com^$redirect=nooptext
+||data.bilibili.com^$redirect=noop.txt
 ||i0.hdslb.com/bfs/static/jinkela/long/images/desktop-download-tip.png$image
 www.bilibili.com##.bili-danmaku-x-guide-all
 www.bilibili.com##.pop-live-small-mode
@@ -183,7 +185,7 @@ bilibili.com##+js(sukka-disable-av1)
 
 ! Geo unblock
 ||api.abema.io/v*/ip/check
-||ds-linear-abematv.akamaized.net/region$redirect=nooptext
+||ds-linear-abematv.akamaized.net/region$redirect=noop.txt
 ||hanime.tv/country_code$redirect=noop.txt
 ||store.ui.com/api/geo-ip$domain=ui.com
 
@@ -216,7 +218,8 @@ bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height:
 
 /*/__phg/ingest*$all
 
-://www.*.css|$xhr,3p,to=com,badfilter # Breaks Google Dev Docs
+# Breaks Google Dev Docs
+://www.*.css|$xhr,3p,to=com,badfilter
 
 yy.com,le.com##+js(nowebrtc)
 
@@ -258,9 +261,9 @@ plausible.*/$script
 @@||captcha.qq.com^
 ||huatuo.qq.com^
 btrace.qq.com$script,redirect=noop.js
-cloud.tencent.com/act/common/report$redirect=nooptext
+cloud.tencent.com/act/common/report$redirect=noop.txt
 huatuo*.weiyun.com
-mp.weixin.qq.com/mp/*report$redirect=nooptext
+mp.weixin.qq.com/mp/*report$redirect=noop.txt
 ||safebrowsing.urlsec.qq.com 
 stat*.qq.com$redirect=noop.js
 tajs.qq.com$redirect=noop.js
@@ -276,7 +279,7 @@ g.alicdn.com/axdata/yunlog*$redirect=noop.js
 g.alicdn.com/dawn/user-tracker*$redirect=noop.js
 g.alicdn.com/sj/securesdk$redirect=noop.js
 
-||cnzz.com^$redirect=nooptext
+||cnzz.com^$redirect=noop.txt
 
 ||mail-us.kurzgesagt.org/*/ga.js
 
@@ -298,7 +301,8 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 
 ||creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png
 
-/[\w\W]*aws.amazon.com/##+js(set, disablePanorama, 1)
+aws.amazon.com##+js(set, disablePanorama, 1)
+*.aws.amazon.com##+js(set, disablePanorama, 1)
 
 netflav.com/static/js/gtag.js$redirect=noop.js
 
