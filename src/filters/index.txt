@@ -10,6 +10,7 @@ d0000d.com##+js(sukka-defuse-devtools-detector)
 blog.aepkill.com##+js(sukka-defuse-devtools-detector)
 blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 12345.al##+js(sukka-defuse-devtools-detector)
+ping0.cc##+js(sukka-defuse-devtools-detector)
 anime.girigirilove.com##+js(nosiif, debugger)
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
@@ -68,8 +69,8 @@ skk.moe##+js(no-fetch-if)
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Map Location
-||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn
-||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com
+||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com
+||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com
 ||map.qq.com$3p
 # Prevent Sleep
 /ajax/libs/nosleep/*
@@ -91,7 +92,7 @@ spotify.com##button[title="Upgrade to Premium"]
 spotify.com##button[title="Effettua l'upgrade a Premium"]
 spotify.com##div[data-testid="test-ref-div"]
 
-# >> Website Fix
+# >> Website Fix, Fuck Website, Fix Website
 
 # Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
@@ -128,6 +129,12 @@ reddit.com##shreddit-comment:style(visibility: visible!important)
 
 # Disable watermark of imgsrc.io
 ||imgsrc.io/assets/watermark.svg$redirect=1x1.gif
+
+# Disable Temp Email wait
+emailtick.com##+js(nano-sib, countdown)
+
+# Fix crDroid AdBlock detection
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=noop.js,domain=crdroid.net
 
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
@@ -189,6 +196,9 @@ bilibili.com##+js(sukka-disable-av1)
 ||126.com$domain=maplesugar.top
 ||blog.maplesugar.top/usr/uploads/2024/09/725322379.jpg
 ||tinypass.com
+
+# force block
+||at.adtech.redventures.io^$important
 
 ||coinbase.com/sw.js
 
