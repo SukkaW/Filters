@@ -66,8 +66,6 @@ anime.girigirilove.com##+js(nosiif, debugger)
 # >> Blacklist
 # Test
 ||bad.third-party.site
-# Scriptlet debug
-skk.moe##+js(no-fetch-if)
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Map Location
@@ -302,7 +300,6 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png
 
 aws.amazon.com##+js(set, disablePanorama, 1)
-*.aws.amazon.com##+js(set, disablePanorama, 1)
 
 netflav.com/static/js/gtag.js$redirect=noop.js
 
