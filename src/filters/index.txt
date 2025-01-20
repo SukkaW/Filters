@@ -62,6 +62,7 @@ anime.girigirilove.com##+js(nosiif, debugger)
 # Misc
 @@||awstrack.me^$badfilter
 @@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
+lingchenzi.com#@#.category-share
 
 # >> Blacklist
 # Test
@@ -176,14 +177,15 @@ hanime1.me##a[href*="//l.labsda.com"] + *
 #@#.footer-cta
 
 # Disable AV1 Video
-youtube.com##+js(sukka-disable-av1)
+! youtube.com##+js(sukka-disable-av1) ! Affecting 8K videos
 bilibili.com##+js(sukka-disable-av1)
 
 # >> Handcraft
 
 ! Geo unblock
 ||api.abema.io/v*/ip/check
-||ds-linear-abematv.akamaized.net/region$redirect=noop.txt
+! ||ds-linear-abematv.akamaized.net/region$redirect=noop.txt
+! trusted: abema.tv##+js(trusted-prevent-xhr, ds-linear-abematv.akamaized.net/region, '')
 ||hanime.tv/country_code$redirect=noop.txt
 ||store.ui.com/api/geo-ip$domain=ui.com
 
@@ -254,7 +256,7 @@ plausible.*/$script
 
 ||app.planhat.com/analytics/
 
-||learn.microsoft.com/static/third-party/adobe-target/at-js/2.9.0/at.js
+||learn.microsoft.com/static/third-party/adobe-target/at-js/*/at.js
 
 @@||captcha.qq.com^
 ||huatuo.qq.com^
@@ -671,3 +673,11 @@ xueqiu.com##.widget__download-app__container
 ||hsav.xyz/static/dplayer/*.mp4$redirect=noop-1s.mp4
 hsav.xyz###h2_player_prevideo
 hsav.xyz###video:style(display: block!important)
+
+! Jan 13, 2025 https://copvpn.com
+||copvpn.com/wp-content/uploads/2025/01/VPN-2025-New-Year-Offer.png$image
+copvpn.com##.hidden
+
+! Jan 13, 2025 https://www.ionos.com
+www.ionos.com##.exit-intent-ionos
+www.ionos.com##.fade.modal-backdrop
