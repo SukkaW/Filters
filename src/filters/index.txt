@@ -12,6 +12,7 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 12345.al##+js(sukka-defuse-devtools-detector)
 ping0.cc##+js(sukka-defuse-devtools-detector)
 anime.girigirilove.com##+js(nosiif, debugger)
+javdoe.to##+js(sukka-defuse-devtools-detector)
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
 # >> Defuse AdBlock Detector
@@ -172,6 +173,7 @@ blog.csdn.net###recommend-right
 hanime1.me##a[href*="//l.labsda.com"] + *
 ! hide union ad
 ##iframe[src*="//union."]
+##[src*="trialhd.com"]
 
 # Fix AdGuard Popup Overlay Filters
 #@#.footer-cta
@@ -327,6 +329,9 @@ producthunt.com##[data-test^="ad-slot"]
 ||www.google-analytics.com/*/collect$redirect=1x1.gif
 ||www.google-analytics.com/collect$redirect=1x1.gif
 ||connect.xfani.com/images/ad
+
+||supjav.com/fyh-api.php
+||scp-wiki.wdfiles.com/local--files/main/250_logo.png$domain=scp-wiki-cloud.wikidot.com
 
 # >> Auto Generated - per site
 
