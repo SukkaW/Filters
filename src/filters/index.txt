@@ -131,6 +131,10 @@ www.bilibili.com##.r-con
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
 
+# Reddit Fix Auto Translation
+! aglint-disable-next-line invalid-modifiers -- added in latest uBO
+||reddit.com$uritransform=/tl=(.*)//
+
 # Disable watermark of imgsrc.io
 ||imgsrc.io/assets/watermark.svg$redirect=1x1.gif
 
@@ -159,6 +163,9 @@ blog.csdn.net###recommend-right
 *$script,domain=csdn.net|sina.cn
 .js$domain=csdn.net|sina.cn
 *$frame,domain=csdn.net|sina.cn
+
+# AV4 Hide YouTube
+av.tube4us.top##a[href*="youtube.com/watch"]
 
 # Hide Aff Link
 ##a[href*="//sjv.io"]
@@ -688,3 +695,6 @@ copvpn.com##.hidden
 ! Jan 13, 2025 https://www.ionos.com
 www.ionos.com##.exit-intent-ionos
 www.ionos.com##.fade.modal-backdrop
+
+! Jan 23, 2025 https://www.zhihu.com
+www.zhihu.com##.Reward
