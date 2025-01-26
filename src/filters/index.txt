@@ -13,6 +13,8 @@ blog.maplesugar.top##+js(sukka-defuse-devtools-detector)
 ping0.cc##+js(sukka-defuse-devtools-detector)
 anime.girigirilove.com##+js(nosiif, debugger)
 javdoe.to##+js(sukka-defuse-devtools-detector)
+hentaimama.io##+js(sukka-defuse-devtools-detector)
+naughtymachinima.com##+js(sukka-defuse-devtools-detector)
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
 # >> Defuse AdBlock Detector
