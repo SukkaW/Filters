@@ -342,6 +342,10 @@ producthunt.com##[data-test^="ad-slot"]
 ||supjav.com/fyh-api.php
 ||scp-wiki.wdfiles.com/local--files/main/250_logo.png$domain=scp-wiki-cloud.wikidot.com
 
+||quchao.net$script
+||px.ads.linkedin.com/collect/?*&fmt=gif$redirect=1x1.gif
+||filebase.com/api/event
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -698,3 +702,9 @@ www.ionos.com##.fade.modal-backdrop
 
 ! Jan 23, 2025 https://www.zhihu.com
 www.zhihu.com##.Reward
+
+! Jan 30, 2025 https://lowendaff.com
+lowendaff.com##.joe_advert-large
+
+! Feb 2, 2025 https://community.cloudflare.com
+community.cloudflare.com##.sub-nav__wrapper
