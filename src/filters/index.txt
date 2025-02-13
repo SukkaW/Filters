@@ -191,6 +191,14 @@ hanime1.me##a[href*="//l.labsda.com"] + *
 ! youtube.com##+js(sukka-disable-av1) ! Affecting 8K videos
 bilibili.com##+js(sukka-disable-av1)
 
+# Fuck Fandom
+||community.fandom.com
+||nocookie.net/fandom-ae-assets/tracking-opt-in/$important
+||nocookie.net/fandom-ae-assets/prebid*$important
+||nocookie.net/fandom-ae-assets/identity-service/*/static-consents$important
+||nocookie.net/*/Sponsored$important
+||nocookie.net/silversurfer$important
+
 # >> Handcraft
 
 ! Geo unblock
@@ -345,6 +353,8 @@ producthunt.com##[data-test^="ad-slot"]
 ||quchao.net$script
 ||px.ads.linkedin.com/collect/?*&fmt=gif$redirect=1x1.gif
 ||filebase.com/api/event
+
+/ping.gif$redirect=1x1.gif
 
 # >> Auto Generated - per site
 
