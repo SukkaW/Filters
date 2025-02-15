@@ -196,6 +196,7 @@ bilibili.com##+js(sukka-disable-av1)
 ||nocookie.net/fandom-ae-assets/tracking-opt-in/$important
 ||nocookie.net/fandom-ae-assets/prebid*$important
 ||nocookie.net/fandom-ae-assets/identity-service/*/static-consents$important
+||nocookie.net/fandom-ae-assets/*/ucp-no-ads/$important
 ||nocookie.net/*/Sponsored$important
 ||nocookie.net/silversurfer$important
 
