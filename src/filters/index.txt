@@ -199,6 +199,10 @@ bilibili.com##+js(sukka-disable-av1)
 ||nocookie.net/*/Sponsored$important
 ||nocookie.net/silversurfer$important
 
+# Defuse tracker gif
+/ping.gif$redirect=1x1.gif
+/counters.gif$redirect=1x1.gif
+
 # >> Handcraft
 
 ! Geo unblock
@@ -353,8 +357,6 @@ producthunt.com##[data-test^="ad-slot"]
 ||quchao.net$script
 ||px.ads.linkedin.com/collect/?*&fmt=gif$redirect=1x1.gif
 ||filebase.com/api/event
-
-/ping.gif$redirect=1x1.gif
 
 # >> Auto Generated - per site
 
@@ -718,3 +720,6 @@ lowendaff.com##.joe_advert-large
 
 ! Feb 2, 2025 https://community.cloudflare.com
 community.cloudflare.com##.sub-nav__wrapper
+
+! Feb 14, 2025 https://av6k.com
+||xn--feus21h.xyz/static/team/uploadpic/$image
