@@ -15,6 +15,8 @@ anime.girigirilove.com##+js(nosiif, debugger)
 javdoe.to##+js(sukka-defuse-devtools-detector)
 hentaimama.io##+js(sukka-defuse-devtools-detector)
 naughtymachinima.com##+js(sukka-defuse-devtools-detector)
+www.nmpa.gov.cn##+js(sukka-defuse-devtools-detector)
+
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
 # >> Defuse AdBlock Detector
@@ -117,6 +119,8 @@ bgp.he.net###graph6 img:style(max-width: 100% !important;)
 ||hdslb.com/bfs/seed/log/*.js*$redirect=noop.js
 ||data.bilibili.com^$redirect=noop.txt
 ||i0.hdslb.com/bfs/static/jinkela/long/images/desktop-download-tip.png$image
+||api.bilibili.com/x/web-interface/bgroup/$redirect=noop.txt
+||api.bilibili.com/x/vip/ads/$redirect=noop.txt
 www.bilibili.com##.bili-danmaku-x-guide-all
 www.bilibili.com##.pop-live-small-mode
 www.bilibili.com##.video-page-game-card-small
