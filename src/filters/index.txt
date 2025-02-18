@@ -23,9 +23,17 @@ www.nmpa.gov.cn##+js(sukka-defuse-devtools-detector)
 ||tags.news.com.au/prod/adblock/adblock.js
 ###adb-mask
 
-# >> Click2Load Embed iframe
+# >> Click2Load YouTube Embed
 ||youtube.com/embed/$3p,frame,redirect=click2load.html
 ||youtube-nocookie.com/embed/$3p,frame,redirect=click2load.html
+# block all object as well
+||youtube.com/embed/$3p,object,redirect=click2load.html
+||youtube-nocookie.com/embed/$3p,object,redirect=click2load.html
+# click2load will trigger from uBO, so add uBO to the allowed domain list
+@@||youtube.com/embed/$object,domain=cgbcahbpdhpcegmbfconppldiemgcoii
+@@||youtube-nocookie.com/embed/$object,domain=cgbcahbpdhpcegmbfconppldiemgcoii
+
+# >> Click2Load Embed iframe
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
 ||player.twitch.tv$redirect=click2load.html
