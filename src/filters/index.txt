@@ -287,8 +287,8 @@ reimu.net##pre:style(display: block !important;)
 t66y.com##+js(nostif, /tpcHt0ml/)
 t66y.com##+js(nostif)
 
-umami.*/$script
-plausible.*/$script
+||umami.*/*.js
+||plausible.*/*.js
 
 ||app.planhat.com/analytics/
 
@@ -370,6 +370,8 @@ producthunt.com##[data-test^="ad-slot"]
 ||quchao.net$script
 ||px.ads.linkedin.com/collect/?*&fmt=gif$redirect=1x1.gif
 ||filebase.com/api/event
+
+||data.pendo.io/*.gif$redirect=1x1.gif
 
 # >> Auto Generated - per site
 
