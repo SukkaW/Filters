@@ -373,6 +373,9 @@ producthunt.com##[data-test^="ad-slot"]
 
 ||data.pendo.io/*.gif$redirect=1x1.gif
 
+# dell community is being abused as an image hosting for ad, blocking all 3p dell community images
+||dell.com/community/assets/community$3p
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -738,3 +741,6 @@ community.cloudflare.com##.sub-nav__wrapper
 
 ! Feb 14, 2025 https://av6k.com
 ||xn--feus21h.xyz/static/team/uploadpic/$image
+
+! Feb 23, 2025 https://www.3dmgame.com
+www.3dmgame.com##.head_ent
