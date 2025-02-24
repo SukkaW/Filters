@@ -106,7 +106,7 @@ spotify.com##button[title="Upgrade to Premium"]
 spotify.com##button[title="Effettua l'upgrade a Premium"]
 spotify.com##div[data-testid="test-ref-div"]
 
-# >> Website Fix, Fuck Website, Fix Website
+# >> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
 # Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
@@ -155,6 +155,8 @@ emailtick.com##+js(nano-sib, countdown)
 
 # Fix crDroid AdBlock detection
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=noop.js,domain=crdroid.net
+||crdroid.net/*/adblock-checker$script
+crdroid.net###dl-links:style(display: block !important)
 
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
@@ -315,6 +317,7 @@ g.alicdn.com/axdata/yunlog*$redirect=noop.js
 g.alicdn.com/dawn/user-tracker*$redirect=noop.js
 g.alicdn.com/sj/securesdk$redirect=noop.js
 
+||cnzz.com/z_stat.php$redirect=noop.js
 ||cnzz.com^$redirect=noop.txt
 
 ||mail-us.kurzgesagt.org/*/ga.js
@@ -372,6 +375,9 @@ producthunt.com##[data-test^="ad-slot"]
 ||filebase.com/api/event
 
 ||data.pendo.io/*.gif$redirect=1x1.gif
+/pixel/*.gif$redirect=1x1.gif
+
+||litten.me/badjs/
 
 # dell community is being abused as an image hosting for ad, blocking all 3p dell community images
 ||dell.com/community/assets/community$3p
