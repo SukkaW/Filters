@@ -33,11 +33,13 @@ www.nmpa.gov.cn##+js(sukka-defuse-devtools-detector)
 @@||youtube.com/embed/$object,domain=cgbcahbpdhpcegmbfconppldiemgcoii
 @@||youtube-nocookie.com/embed/$object,domain=cgbcahbpdhpcegmbfconppldiemgcoii
 
-# >> Click2Load Embed iframe
+# >> Click2Load other Embed iframe
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
 ||player.twitch.tv$redirect=click2load.html
 ||eporner.com/embed$redirect=click2load.html
+||peertube.opencloud.lu/videos/embed/$redirect=click2load.html
+||player.bilibili.com/player.html$frame,redirect=click2load.html
 
 # >> Fix Support Chat
 ||client.crisp.chat^$3p
@@ -83,7 +85,7 @@ lingchenzi.com#@#.category-share
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Map Location
-||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com
+||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~gian.com.cn
 ||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com
 ||map.qq.com$3p
 # Prevent Sleep
@@ -378,6 +380,8 @@ producthunt.com##[data-test^="ad-slot"]
 /pixel/*.gif$redirect=1x1.gif
 
 ||litten.me/badjs/
+
+||developer.arm.com/arm-tag-manager
 
 # dell community is being abused as an image hosting for ad, blocking all 3p dell community images
 ||dell.com/community/assets/community$3p
@@ -750,3 +754,23 @@ community.cloudflare.com##.sub-nav__wrapper
 
 ! Feb 23, 2025 https://www.3dmgame.com
 www.3dmgame.com##.head_ent
+
+! Feb 25, 2025 https://abdenasser.github.io
+abdenasser.github.io##.app-promo-modal
+
+! Feb 27, 2025 https://www.roibest.com
+www.roibest.com##.layer-container
+www.roibest.com##.layer-overlay
+
+! Feb 28, 2025 https://lsigraph.com
+lsigraph.com###exit-pop-sg
+lsigraph.com###exit-pop-sg-mask
+
+! Mar 2, 2025 https://www.seamonkey-project.org
+||www.seamonkey-project.org/images/nordvpn-banner.png$image
+
+! Mar 2, 2025 https://www.landiannews.com
+www.landiannews.com##.content-post > p:last-child
+
+! Mar 3, 2025 https://www.baidu.com
+www.baidu.com##.new-pmd.cr-content
