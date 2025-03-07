@@ -774,3 +774,10 @@ www.landiannews.com##.content-post > p:last-child
 
 ! Mar 3, 2025 https://www.baidu.com
 www.baidu.com##.new-pmd.cr-content
+
+! Mar 3, 2025 https://www.linux.org
+||www.linux.org/images/admin-apparel-linuxorg-$image
+
+! Mar 3, 2025 https://forums.liyuans.com
+||wmcdn-i2.b-cdn.net/2022/09/12/a8nkaikr.png$image
+forums.liyuans.com##.promote
