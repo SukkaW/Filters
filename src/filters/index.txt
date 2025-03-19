@@ -16,6 +16,8 @@ javdoe.to##+js(sukka-defuse-devtools-detector)
 hentaimama.io##+js(sukka-defuse-devtools-detector)
 naughtymachinima.com##+js(sukka-defuse-devtools-detector)
 www.nmpa.gov.cn##+js(sukka-defuse-devtools-detector)
+vidsrc.cc##+js(sukka-defuse-devtools-detector)
+movies7.watch##+js(sukka-defuse-devtools-detector)
 
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
@@ -85,7 +87,7 @@ lingchenzi.com#@#.category-share
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Map Location
-||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~gian.com.cn
+||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~giant.com.cn
 ||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com
 ||map.qq.com$3p
 # Prevent Sleep
@@ -144,6 +146,9 @@ www.bilibili.com##.r-con
 # Reddit Anti-AdBlock defuse
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
 reddit.com##shreddit-comment:style(visibility: visible!important)
+
+# Disable Reddit Crosspost
+reddit.com##[post-type="crosspost"]
 
 # Reddit Fix Auto Translation
 ! aglint-disable-next-line invalid-modifiers -- added in latest uBO
@@ -385,6 +390,13 @@ producthunt.com##[data-test^="ad-slot"]
 
 # dell community is being abused as an image hosting for ad, blocking all 3p dell community images
 ||dell.com/community/assets/community$3p
+
+producthunt.com##[data-sentry-component='Ad']
+
+@@||lbs.giant.com.cn/_AMapService/v3/log/init
+
+# Defuse Tracking
+||shokz.com/cdn/wpm/$script
 
 # >> Auto Generated - per site
 
@@ -781,3 +793,11 @@ www.baidu.com##.new-pmd.cr-content
 ! Mar 3, 2025 https://forums.liyuans.com
 ||wmcdn-i2.b-cdn.net/2022/09/12/a8nkaikr.png$image
 forums.liyuans.com##.promote
+! Mar 10, 2025 https://stackoverflow.com
+stackoverflow.com###hot-network-questions
+
+! Mar 15, 2025 http://6376ck.cc
+||www.3pj.xyz$image
+
+! Mar 18, 2025 https://quchao.net
+||jsdelivr.net/gh/Mark-1215/CDN/uploads/ad/$image
