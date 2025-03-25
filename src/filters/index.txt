@@ -200,7 +200,7 @@ av.tube4us.top##a[href*="youtube.com/watch"]
 ##a[href*="//vx.link/?rel"]
 ##a[href*="//trwl1.com"]
 ##a[href^="https://ra7.xyz"]
-hanime1.me##a[href*="//l.labsda.com"] + *
+hanime1.me##a[href*="//l.labsda.com"]
 ! hide union ad
 ##iframe[src*="//union."]
 ##[src*="trialhd.com"]
@@ -407,6 +407,8 @@ producthunt.com##[data-sentry-component='Ad']
 zh.moegirl.org.cn##.banner-gallery
 zh.moegirl.org.cn###grandpa-entrance
 zh.moegirl.org.cn###nav-userlink-grandpa-entrance
+zh.moegirl.org.cn###moe-article-comments-sidenav-compact
+zh.moegirl.org.cn###moe-article-comments-bottom > .wiki-page-comments
 
 ! vuejs.org
 vuejs.org##.banner
@@ -475,9 +477,10 @@ www.deepl.com###lmt_pro_ad_container
 ! 2021-12-20 https://ping.chinaz.com
 ||csstools.chinaz.com/tools/images/*
 ping.chinaz.com##.ToolHead
-ping.chinaz.com##.clearfix.mb10.wrapper.Map-navbar
+ping.chinaz.com##.clearfix.wrapper.Map-navbar
 ping.chinaz.com##.backtoTop
 ping.chinaz.com##.backfix
+tool.chinaz.com##.Sponsor
 
 ! 2021-12-28 https://react.semantic-ui.com
 react.semantic-ui.com###docs-carbonads
@@ -801,3 +804,9 @@ stackoverflow.com###hot-network-questions
 
 ! Mar 18, 2025 https://quchao.net
 ||jsdelivr.net/gh/Mark-1215/CDN/uploads/ad/$image
+
+! Mar 23, 2025 https://1av.to
+1av.to##.adz
+
+! Mar 24, 2025 https://m.news.cctv.com
+m.news.cctv.com##.weima
