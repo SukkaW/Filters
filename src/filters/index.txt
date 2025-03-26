@@ -25,7 +25,9 @@ movies7.watch##+js(sukka-defuse-devtools-detector)
 ||tags.news.com.au/prod/adblock/adblock.js
 ###adb-mask
 
-# >> Click2Load YouTube Embed
+# >> Click2Load Embed
+
+! YouTube
 ||youtube.com/embed/$3p,frame,redirect=click2load.html
 ||youtube-nocookie.com/embed/$3p,frame,redirect=click2load.html
 # block all object as well
@@ -35,13 +37,21 @@ movies7.watch##+js(sukka-defuse-devtools-detector)
 @@||youtube.com/embed/$object,domain=cgbcahbpdhpcegmbfconppldiemgcoii
 @@||youtube-nocookie.com/embed/$object,domain=cgbcahbpdhpcegmbfconppldiemgcoii
 
-# >> Click2Load other Embed iframe
+! Instagram
+||nocookie.net/fandom-ae-assets/platforms/*/ucp-desktop/$important
+||instagram.com/p/*/embed/$frame,redirect=click2load.html
+# EasyList whitelist those wrongly, we need to "badfilter" them
+@@||instagram.com/p/$frame,3p,badfilter
+@@||instagram.com^$generichide,badfilter
+
+! Misc
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
 ||player.twitch.tv$redirect=click2load.html
 ||eporner.com/embed$redirect=click2load.html
 ||peertube.opencloud.lu/videos/embed/$redirect=click2load.html
 ||player.bilibili.com/player.html$frame,redirect=click2load.html
+||embed.reddit.com$frame,redirect=click2load.html
 
 # >> Fix Support Chat
 ||client.crisp.chat^$3p
