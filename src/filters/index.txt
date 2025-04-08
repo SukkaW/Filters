@@ -98,7 +98,7 @@ lingchenzi.com#@#.category-share
 ||playground.oxc.rs$important
 # Map Location
 ||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~giant.com.cn
-||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com
+||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com|~onelap.cn
 ||map.qq.com$3p
 # Prevent Sleep
 /ajax/libs/nosleep/*
@@ -160,10 +160,6 @@ reddit.com##shreddit-comment:style(visibility: visible!important)
 # Disable Reddit Crosspost
 reddit.com##[post-type="crosspost"]
 
-# Reddit Fix Auto Translation
-! aglint-disable-next-line invalid-modifiers -- added in latest uBO
-||reddit.com$uritransform=/tl=(.*)//
-
 # Disable watermark of imgsrc.io
 ||imgsrc.io/assets/watermark.svg$redirect=1x1.gif
 
@@ -174,6 +170,7 @@ emailtick.com##+js(nano-sib, countdown)
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=noop.js,domain=crdroid.net
 ||crdroid.net/*/adblock-checker$script
 crdroid.net###dl-links:style(display: block !important)
+crdroid.net###dl-ads
 
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
@@ -407,6 +404,14 @@ producthunt.com##[data-sentry-component='Ad']
 
 # Defuse Tracking
 ||shokz.com/cdn/wpm/$script
+||t.paypal.com/ts$redirect=1x1.gif
+||ad-delivery.net/px.gif$redirect=1x1.gif
+||pix.nbcuni.com^$redirect=1x1.gif
+||static.scarf.sh$image,redirect=1x1.gif
+/pik.js
+||usefathom.com^$script
+||usefathom.com^$3p
+/.netlify/scripts/rum
 
 # >> Auto Generated - per site
 
@@ -820,3 +825,9 @@ stackoverflow.com###hot-network-questions
 
 ! Mar 24, 2025 https://m.news.cctv.com
 m.news.cctv.com##.weima
+
+! Apr 2, 2025 https://www.reddit.com
+||redditstatic.com/shreddit/assets/a1-2025/a1-icon.svg$image
+
+! Apr 7, 2025 https://ping.chinaz.com
+ping.chinaz.com##.Sponsor
