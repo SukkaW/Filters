@@ -148,6 +148,8 @@ www.bilibili.com##.pop-live-small-mode
 www.bilibili.com##.video-page-game-card-small
 www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
+/bili-user-fingerprint$script
+/track-collect.js
 
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
@@ -401,6 +403,10 @@ producthunt.com##[data-test^="ad-slot"]
 producthunt.com##[data-sentry-component='Ad']
 
 @@||lbs.giant.com.cn/_AMapService/v3/log/init
+
+||timesofindia.indiatimes.com/toi_webvital_events_min_js
+/etads_v2
+/twitter-ads.dynamic.js
 
 # Defuse Tracking
 ||shokz.com/cdn/wpm/$script
