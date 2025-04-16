@@ -122,6 +122,9 @@ spotify.com##div[data-testid="test-ref-div"]
 
 # >> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
+# AdGuard Update Notification
+##.topline.alert-info.alert
+
 # Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
 
@@ -418,6 +421,12 @@ producthunt.com##[data-sentry-component='Ad']
 ||usefathom.com^$script
 ||usefathom.com^$3p
 /.netlify/scripts/rum
+
+justauth.cn##+js(set, window._AdBlockInit, true)
+||tankeai.com$3p
+||hsforms.com/*/counters.gif$redirect=1x1.gif
+||breaktime.tw/affiliation
+||dhgate.com/track/tracklog
 
 # >> Auto Generated - per site
 
@@ -837,3 +846,12 @@ m.news.cctv.com##.weima
 
 ! Apr 7, 2025 https://ping.chinaz.com
 ping.chinaz.com##.Sponsor
+
+
+! Apr 14, 2025 https://www.hanime1.icu
+hanime1.icu###btmad1
+hanime1.icu###footer1
+hanime1.icu###myHeader
+hanime1.icu##[href*=".apk"]
+
+||zhimg.com$domain=hanime1.icu
