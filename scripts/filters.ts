@@ -8,7 +8,7 @@ import { pipeline } from 'node:stream/promises';
 
 function templates(date: string) {
   return [
-    '! Title: \u2795 Sukka Filters',
+    '! Title: [sukka] Sukka Filters',
     `! Last modified: ${date}`,
     '! Expires: 1 hours',
     '! Description: The filters from Sukka',
