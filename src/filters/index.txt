@@ -122,9 +122,6 @@ spotify.com##div[data-testid="test-ref-div"]
 
 # >> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
-# AdGuard Update Notification
-##.topline.alert-info.alert
-
 # Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
 
