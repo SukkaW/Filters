@@ -13,18 +13,18 @@
   "author": "Sukka <https://skk.moe>",
   "license": "MIT",
   "devDependencies": {
-    "@eslint-sukka/node": "^6.18.0",
+    "@eslint-sukka/node": "^6.18.2",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@swc-node/register": "^1.10.10",
-    "@swc/core": "^1.11.13",
-    "@types/node": "^22.13.14",
-    "eslint": "^9.23.0",
-    "eslint-config-sukka": "^6.18.0",
-    "eslint-formatter-sukka": "^6.18.0",
-    "rollup": "^4.38.0",
+    "@swc/core": "^1.11.21",
+    "@types/node": "^22.14.1",
+    "eslint": "^9.24.0",
+    "eslint-config-sukka": "^6.18.2",
+    "eslint-formatter-sukka": "^6.18.2",
+    "rollup": "^4.40.0",
     "rollup-plugin-swc3": "^0.12.1"
   },
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.8.1",
   "dependencies": {
     "foxts": "^3.0.1"
   }
