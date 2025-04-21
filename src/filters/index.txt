@@ -52,6 +52,7 @@ movies7.watch##+js(sukka-defuse-devtools-detector)
 ||peertube.opencloud.lu/videos/embed/$redirect=click2load.html
 ||player.bilibili.com/player.html$frame,redirect=click2load.html
 ||embed.reddit.com$frame,redirect=click2load.html
+||tiktok.com/embed/$frame,redirect=click2load.html
 
 # >> Fix Support Chat
 ||client.crisp.chat^$3p
@@ -179,6 +180,9 @@ crdroid.net###dl-ads
 
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/iframe
+
+# Cloudflare Dashboard: this prevents accidentally converting to primary NS setup
+cloudflare.com##a[href$="/dns/settings"]
 
 # Fuck CSDN
 blog.csdn.net##.blog_container_aside
@@ -407,6 +411,12 @@ producthunt.com##[data-sentry-component='Ad']
 ||timesofindia.indiatimes.com/toi_webvital_events_min_js
 /etads_v2
 /twitter-ads.dynamic.js
+
+# 163 news cleanup
+||dl.reg.163.com/UA
+||dy.163.com/v2/article/list.do
+/common_article_tiead
+/tie_box_ad_
 
 # Defuse Tracking
 ||shokz.com/cdn/wpm/$script
@@ -851,4 +861,24 @@ hanime1.icu###footer1
 hanime1.icu###myHeader
 hanime1.icu##[href*=".apk"]
 
-||zhimg.com$domain=hanime1.icu
+||zhimg.com$domain=~zhihu.com
+
+! Apr 17, 2025 https://hostingcanada.org
+hostingcanada.org##.hc-popup-modal
+hostingcanada.org###hc-popup
+
+! Apr 17, 2025 https://www.163.com
+www.163.com##.post_next
+www.163.com##.post_recommends_list
+www.163.com##.post_side
+
+! Apr 18, 2025 https://www.sohu.com
+www.sohu.com##.hot-atlas
+www.sohu.com###right-side-bar
+
+! Apr 20, 2025 https://missav.ws
+||missav.ws/img/mio.jpg$image
+
+! Apr 21, 2025 https://recoverit.wondershare.com
+||images.wondershare.com/recoverit/images2023/0628/bg.png$image
+||images.wondershare.com/recoverit/images2025/article/article-aside.png$image
