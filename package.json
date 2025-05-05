@@ -16,16 +16,16 @@
     "@eslint-sukka/node": "^6.18.2",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@swc-node/register": "^1.10.10",
-    "@swc/core": "^1.11.21",
-    "@types/node": "^22.14.1",
-    "eslint": "^9.24.0",
+    "@swc/core": "^1.11.24",
+    "@types/node": "^22.15.3",
+    "eslint": "^9.26.0",
     "eslint-config-sukka": "^6.18.2",
     "eslint-formatter-sukka": "^6.18.2",
-    "rollup": "^4.40.0",
+    "rollup": "^4.40.1",
     "rollup-plugin-swc3": "^0.12.1"
   },
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.10.0",
   "dependencies": {
-    "foxts": "^3.0.1"
+    "foxts": "^3.1.1"
   }
 }
