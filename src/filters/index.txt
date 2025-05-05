@@ -884,3 +884,7 @@ www.sohu.com###right-side-bar
 ! Apr 21, 2025 https://recoverit.wondershare.com
 ||images.wondershare.com/recoverit/images2023/0628/bg.png$image
 ||images.wondershare.com/recoverit/images2025/article/article-aside.png$image
+
+! Apr 30, 2025 https://vrporn.com
+vrporn.com##[href^="https://vrporn.com/premium"]
+vrporn.com##[href*="vrporncoin.com"]
