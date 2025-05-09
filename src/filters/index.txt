@@ -154,6 +154,12 @@ www.bilibili.com##.r-con
 /bili-user-fingerprint$script
 /track-collect.js
 
+# Fuck taobao/tmall, restore navigation after aplus logger has been blocked
+taobao.com##+js(set, aplus, {})
+taobao.com##+js(set, aplus.getPageSPM, noopFunc)
+tmall.com##+js(set, aplus, {})
+tmall.com##+js(set, aplus.getPageSPM, noopFunc)
+
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
 5w.fit##+js(nosiif,redirect)
@@ -433,7 +439,10 @@ producthunt.com##[data-sentry-component='Ad']
 
 justauth.cn##+js(set, window._AdBlockInit, true)
 ||tankeai.com$3p
+
 ||hsforms.com/*/counters.gif$redirect=1x1.gif
+||hs-sites.com$3p
+
 ||breaktime.tw/affiliation
 ||dhgate.com/track/tracklog
 
