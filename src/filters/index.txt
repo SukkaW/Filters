@@ -84,6 +84,8 @@ movies7.watch##+js(sukka-defuse-devtools-detector)
 @@||github.com/**/web-vitals-
 # skk.moe
 @@||localhost$domain=skk.moe
+# UniFi Support
+@@||widget-mediator.zopim.com
 # unblock remove param for bilibili video cdn
 ! aglint-disable-next-line invalid-modifiers -- whitelist
 @@||bilivideo.com^$removeparam
@@ -188,6 +190,7 @@ crdroid.net###dl-ads
 
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/iframe
+||accounts.google.com/gsi/$3p
 
 # Cloudflare Dashboard: this prevents accidentally converting to primary NS setup
 cloudflare.com##a[href$="/dns/settings"]
@@ -445,6 +448,10 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 ||breaktime.tw/affiliation
 ||dhgate.com/track/tracklog
+||cdn.h5wan.4399sj.com/h5web-frame/*/disableTools.js
+||samsung.com/*/analytics.min.js
+
+/ads.css
 
 # >> Auto Generated - per site
 
@@ -897,3 +904,10 @@ www.sohu.com###right-side-bar
 ! Apr 30, 2025 https://vrporn.com
 vrporn.com##[href^="https://vrporn.com/premium"]
 vrporn.com##[href*="vrporncoin.com"]
+
+! May 15, 2025 https://tastespirit.com
+||terroirsense-wp.oss-cn-shanghai.aliyuncs.com/*/ad*$image
+tastespirit.com###floating-qr-ad
+
+! May 19, 2025 https://www.macupdate.com
+www.macupdate.com##.rv-di-modal__overlay
