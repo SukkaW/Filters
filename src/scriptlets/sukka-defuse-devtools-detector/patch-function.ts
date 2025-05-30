@@ -34,10 +34,13 @@ export function patchFunction() {
         return Reflect.apply(target, thisArg, args);
       },
       construct(target, args: ConstructorParameters<FunctionConstructor>, newTarget) {
-        if (args.some((arg) => typeof arg === 'string' && arg.includes('debugger'))) {
-          onlyCallOnce(logDefuseNewFunctionDebugger);
-          return noop;
-        }
+        args = args.map((arg) => {
+          if (typeof arg === 'string' && arg.includes('debugger')) {
+            onlyCallOnce(logDefuseNewFunctionDebugger);
+            return arg.replaceAll('debugger', ''); // remove debugger from function string
+          }
+          return arg;
+        });
         return Reflect.construct(target, args, newTarget);
       }
     });
@@ -50,7 +53,8 @@ export function patchFunction() {
       apply(target, thisArg, args: Parameters<typeof globalThis.eval>) {
         if (typeof args[0] === 'string' && args[0].includes('debugger')) {
           onlyCallOnce(logDefuseEvalDebugger);
-          return;
+          args[0] = args[0].replaceAll('debugger', ''); // remove debugger from eval string
+          // return;
         }
         return Reflect.apply(target, thisArg, args);
       }
@@ -63,13 +67,16 @@ export function patchFunction() {
     Object.defineProperty(Function.prototype, 'constructor', {
       configurable: false,
       enumerable: true,
-      writable: true, // some polyfill, like core-js, needs to overrite this property
+      writable: true, // some polyfill, like core-js, needs to overrite this for GeneratorFunction and AsyncFunction
       value: new Proxy(Function.prototype.constructor, {
         apply(target, thisArg, args) {
-          if (args.some((arg) => typeof arg === 'string' && arg.includes('debugger'))) {
-            onlyCallOnce(logDefuseFunctionProrotypeConstructorDebugger);
-            return noop;
-          }
+          args = args.map((arg) => {
+            if (typeof arg === 'string' && arg.includes('debugger')) {
+              onlyCallOnce(logDefuseFunctionProrotypeConstructorDebugger);
+              return arg.replaceAll('debugger', ''); // remove debugger from function string
+            }
+            return arg;
+          });
           return Reflect.apply(target, thisArg, args);
         }
       })

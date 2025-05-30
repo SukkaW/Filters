@@ -1,5 +1,4 @@
 import { $console, onlyCallOnce } from '../_utils';
-import { noop } from 'foxts/noop';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
@@ -8,11 +7,15 @@ import { noop } from 'foxts/noop';
 export function patchTimer() {
   globalThis.setInterval = new Proxy(globalThis.setInterval, {
     apply(target, thisArg, args: Parameters<typeof setInterval>) {
-      const cbStr = String(args[0]);
+      // Do not use String(args[0]) here. String() respects the toString() which might be overridden
+      // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
+      const cbStr = Function.prototype.toString.call(args[0]);
 
       if (cbStr.includes('debugger')) {
         onlyCallOnce(logDefuseSetIntervalDebugger);
-        args[0] = noop;
+
+        // eslint-disable-next-line no-eval -- patching callback
+        args[0] = eval('(' + cbStr.replaceAll('debugger', '') + ')');
       }
 
       return target.apply(thisArg, args);
@@ -20,11 +23,15 @@ export function patchTimer() {
   });
   globalThis.setTimeout = new Proxy(globalThis.setTimeout, {
     apply(target, thisArg, args: Parameters<typeof setTimeout>) {
-      const cbStr = String(args[0]);
+      // Do not use String(args[0]) here. String() respects the toString() which might be overridden
+      // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
+      const cbStr = Function.prototype.toString.call(args[0]);
 
       if (cbStr.includes('debugger')) {
         onlyCallOnce(logDefuseSetTimeoutDebugger);
-        args[0] = noop;
+
+        // eslint-disable-next-line no-eval -- patching callback
+        args[0] = eval('(' + cbStr.replaceAll('debugger', '') + ')');
       }
 
       return target.apply(thisArg, args);
