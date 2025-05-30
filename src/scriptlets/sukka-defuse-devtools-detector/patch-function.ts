@@ -63,7 +63,7 @@ export function patchFunction() {
     Object.defineProperty(Function.prototype, 'constructor', {
       configurable: false,
       enumerable: true,
-      writable: false,
+      writable: true, // some polyfill, like core-js, needs to overrite this property
       value: new Proxy(Function.prototype.constructor, {
         apply(target, thisArg, args) {
           if (args.some((arg) => typeof arg === 'string' && arg.includes('debugger'))) {
