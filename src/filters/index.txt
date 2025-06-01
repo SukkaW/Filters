@@ -18,7 +18,7 @@ naughtymachinima.com##+js(sukka-defuse-devtools-detector)
 www.nmpa.gov.cn##+js(sukka-defuse-devtools-detector)
 vidsrc.cc##+js(sukka-defuse-devtools-detector)
 movies7.watch##+js(sukka-defuse-devtools-detector)
-4khd.com##+js(sukka-defuse-devtools-detector)
+urbtix.hk##+js(sukka-defuse-devtools-detector)
 
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
@@ -211,6 +211,17 @@ blog.csdn.net###recommend-right
 
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
+
+# Fuck 4KHD
+! defuse devtools detector
+4khd.com##+js(sukka-defuse-devtools-detector)
+! defuse service worker
+||4khd.com/interstitial.js
+4khd.com##+js(set, navigator.serviceWorker.register, throwFn)
+! defuse tracking
+||4khd.com/Statistics.php
+! dev tools detector scripts
+||4khd.com/js/disabley.min.js
 
 # Hide Aff Link
 ##a[href*="//sjv.io"]
