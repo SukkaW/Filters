@@ -28,31 +28,28 @@ function logDefuseConsoleLargeObject(this: void) {
  * We can defuse it by patching console methods
  */
 export function patchConsole() {
-  WINDOW_INSTANCE_LIST.forEach((windowInstance) => {
-    if (!windowInstance) {
-      return;
-    }
+  WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
     // eslint-disable-next-line guard-for-in -- deliberately loop through all keys
-    for (const _key in windowInstance.console) {
+    for (const _key in global.console) {
       const key = _key as keyof Console;
 
-      const descriptor = Object.getOwnPropertyDescriptor(windowInstance.console, key);
+      const descriptor = Object.getOwnPropertyDescriptor(global.console, key);
       if (!descriptor) {
-        $console.warn('[sukka-defuse-devtools-detector]', 'Fail to get descriptor of console method', key);
+        $console.warn('[sukka-defuse-devtools-detector]', `Fail to get descriptor of ${globalName}.console.${key}`);
         continue;
       }
       if (!descriptor.writable) {
-        $console.warn('[sukka-defuse-devtools-detector]', 'console.' + key, 'is not writable');
+        $console.warn('[sukka-defuse-devtools-detector]', `${globalName}.console.${key}`, 'is not writable');
         continue;
       }
       if (typeof descriptor.value !== 'function') {
-        $console.warn('[sukka-defuse-devtools-detector]', 'console.' + key, 'is not a function');
+        $console.warn('[sukka-defuse-devtools-detector]', `${globalName}.console.${key}`, 'is not a function');
         continue;
       }
 
       try {
         if (key === 'clear') {
-          Object.defineProperty(windowInstance.console, key, {
+          Object.defineProperty(global.console, key, {
             configurable: false,
             enumerable: true,
             writable: true,
@@ -63,11 +60,11 @@ export function patchConsole() {
           continue;
         }
 
-        Object.defineProperty(windowInstance.console, key, {
+        Object.defineProperty(global.console, key, {
           configurable: false,
           enumerable: true,
           writable: true,
-          value: new Proxy(windowInstance.console[key], {
+          value: new Proxy(global.console[key], {
             apply(target, thisArg, args) {
               if (args.some(checkArg)) {
                 return;
@@ -77,7 +74,7 @@ export function patchConsole() {
           })
         });
       } catch (e) {
-        $console.error('[sukka-defuse-devtools-detector]', 'Fail to overwrite console method', key, e);
+        $console.error('[sukka-defuse-devtools-detector]', `Fail to overwrite ${globalName}.console.${key}`, e);
       }
     }
   });

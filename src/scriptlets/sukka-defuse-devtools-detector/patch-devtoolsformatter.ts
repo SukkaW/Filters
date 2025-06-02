@@ -5,9 +5,9 @@ import { $console, WINDOW_INSTANCE_LIST } from '../_utils';
  * We can defuse it by stop the setters of `window.devtoolsFormatters`
  */
 export function patchDevtoolsFormatter() {
-  WINDOW_INSTANCE_LIST.forEach(windowInstance => {
+  WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
-      Object.defineProperty(windowInstance, 'devtoolsFormatters', {
+      Object.defineProperty(global, 'devtoolsFormatters', {
         configurable: false,
         enumerable: false,
         get() {
@@ -21,7 +21,7 @@ export function patchDevtoolsFormatter() {
         }
       });
     } catch (e) {
-      $console.error('[sukka-defuse-devtools-detector]', 'Fail to overwrite devtoolsFormatters on', { windowInstance }, e);
+      $console.error('[sukka-defuse-devtools-detector]', `Fail to overwrite ${globalName}.devtoolsFormatters`, e);
     }
   });
 }

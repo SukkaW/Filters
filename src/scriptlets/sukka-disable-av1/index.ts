@@ -1,10 +1,10 @@
-import { onlyCallOnce } from '../_utils';
+import { $console, onlyCallOnce } from '../_utils';
 
 (function sukkaDisableAv1() {
   // Override video element canPlayType() function
 
   const logDefuseAv1 = () => {
-    console.info('[sukka-disable-av1] AV1 is disabled!');
+    $console.info('[sukka-disable-av1] AV1 is disabled!');
   };
 
   ((origCanPlayType) => {

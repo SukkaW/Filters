@@ -1,40 +1,36 @@
-import { $console, onlyCallOnce } from '../_utils';
+import { $console, $eval, defuseDebuggerInArg, FunctionPrototypeToString, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
  * We can defuse it by patching window.setTimeout and window.setInterval
  */
 export function patchTimer() {
-  globalThis.setInterval = new Proxy(globalThis.setInterval, {
-    apply(target, thisArg, args: Parameters<typeof setInterval>) {
-      // Do not use String(args[0]) here. String() respects the toString() which might be overridden
-      // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
-      const cbStr = Function.prototype.toString.call(args[0]);
+  WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
+    try {
+      global.setInterval = new Proxy(global.setInterval, {
+        apply(target, thisArg, args: Parameters<typeof setInterval>) {
+          // Do not use String(args[0]) here. String() respects the toString() which might be overridden
+          // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
+          args[0] = $eval('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetIntervalDebugger) + ')');
 
-      if (cbStr.includes('debugger')) {
-        onlyCallOnce(logDefuseSetIntervalDebugger);
-
-        // eslint-disable-next-line no-eval -- patching callback
-        args[0] = eval('(' + cbStr.replaceAll('debugger', '') + ')');
-      }
-
-      return target.apply(thisArg, args);
+          return Reflect.apply(target, thisArg, args);
+        }
+      });
+    } catch (e) {
+      $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.setInterval!`, e);
     }
-  });
-  globalThis.setTimeout = new Proxy(globalThis.setTimeout, {
-    apply(target, thisArg, args: Parameters<typeof setTimeout>) {
-      // Do not use String(args[0]) here. String() respects the toString() which might be overridden
-      // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
-      const cbStr = Function.prototype.toString.call(args[0]);
+    try {
+      global.setTimeout = new Proxy(global.setTimeout, {
+        apply(target, thisArg, args: Parameters<typeof setTimeout>) {
+          // Do not use String(args[0]) here. String() respects the toString() which might be overridden
+          // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
+          args[0] = $eval('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetTimeoutDebugger) + ')');
 
-      if (cbStr.includes('debugger')) {
-        onlyCallOnce(logDefuseSetTimeoutDebugger);
-
-        // eslint-disable-next-line no-eval -- patching callback
-        args[0] = eval('(' + cbStr.replaceAll('debugger', '') + ')');
-      }
-
-      return target.apply(thisArg, args);
+          return Reflect.apply(target, thisArg, args);
+        }
+      });
+    } catch (e) {
+      $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.setTimeout!`, e);
     }
   });
 }
@@ -43,5 +39,5 @@ function logDefuseSetIntervalDebugger(this: void) {
   $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()');
 };
 function logDefuseSetTimeoutDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()');
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setTimeout()');
 }
