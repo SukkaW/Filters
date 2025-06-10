@@ -440,7 +440,7 @@ producthunt.com##[data-sentry-component='Ad']
 /common_article_tiead
 /tie_box_ad_
 
-# Defuse Tracking
+# Misc
 ||shokz.com/cdn/wpm/$script
 ||t.paypal.com/ts$redirect=1x1.gif
 ||ad-delivery.net/px.gif$redirect=1x1.gif
@@ -463,6 +463,12 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||samsung.com/*/analytics.min.js
 
 /ads.css
+
+||unifi.ui.com/sw.js
+||tauri.app/service-worker.js
+
+||dashboard.render.com/segcdn/
+||dashboard.render.com/seg/cdn/
 
 # >> Auto Generated - per site
 
