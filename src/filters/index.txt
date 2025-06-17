@@ -161,6 +161,8 @@ taobao.com##+js(set, aplus, {})
 taobao.com##+js(set, aplus.getPageSPM, noopFunc)
 tmall.com##+js(set, aplus, {})
 tmall.com##+js(set, aplus.getPageSPM, noopFunc)
+aliyun.com##+js(set, aplus, {})
+aliyun.com##+js(set, aplus.getPageSPM, noopFunc)
 
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
