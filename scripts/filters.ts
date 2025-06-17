@@ -6,9 +6,11 @@ import { TextDecoderStream } from 'node:stream/web';
 import { FilterMinifyStream, TextLineStream } from './_utils';
 import { pipeline } from 'node:stream/promises';
 
-function templates(date: string) {
+const date = new Date().toUTCString();
+
+function templates(title: string) {
   return [
-    '! Title: [sukka] Sukka Filters',
+    `! Title: [sukka] ${title}`,
     `! Last modified: ${date}`,
     '! Expires: 1 hours',
     '! Description: The filters from Sukka',
@@ -18,23 +20,31 @@ function templates(date: string) {
   ];
 }
 
-const srcFile = path.resolve(SRC_FILTERS_DIR, 'index.txt');
-const destFile = path.join(OUTPUT_FILTERS_DIR, 'index.txt');
+const builds = [
+  ['Sukka Filters', 'index'],
+  ['Sukka AdGuardHome Rewrites', 'adgh-dns-rewrites']
+] as const;
 
-export function buildFilter() {
+export async function buildFilter() {
   fs.mkdirSync(OUTPUT_FILTERS_DIR, { recursive: true });
 
-  fs.writeFileSync(destFile, templates(new Date().toUTCString()).join('\n'));
+  await Promise.all(builds.map(async ([title, fileName]) => {
+    const destFile = path.join(OUTPUT_FILTERS_DIR, fileName + '.txt');
 
-  return pipeline(
-    Readable.fromWeb(
-      Readable.toWeb(fs.createReadStream(srcFile))
-        .pipeThrough(new TextDecoderStream())
-        .pipeThrough(new TextLineStream())
-        .pipeThrough(new FilterMinifyStream())
-    ),
-    fs.createWriteStream(destFile, { flags: 'a' })
-  );
+    fs.writeFileSync(destFile, templates(
+      title
+    ).join('\n'));
+
+    return pipeline(
+      Readable.fromWeb(
+        Readable.toWeb(fs.createReadStream(path.resolve(SRC_FILTERS_DIR, fileName, 'index.txt')))
+          .pipeThrough(new TextDecoderStream())
+          .pipeThrough(new TextLineStream())
+          .pipeThrough(new FilterMinifyStream())
+      ),
+      fs.createWriteStream(destFile, { flags: 'a' })
+    );
+  }));
 }
 
 if (require.main === module) {

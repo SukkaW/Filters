@@ -1,0 +1,8 @@
+{
+  "syntax": [
+    "AdGuard"
+  ],
+  "rules": {
+    "invalid-modifiers": "off"
+  }
+}
