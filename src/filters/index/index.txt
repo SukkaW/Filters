@@ -163,6 +163,8 @@ tmall.com##+js(set, aplus, {})
 tmall.com##+js(set, aplus.getPageSPM, noopFunc)
 aliyun.com##+js(set, aplus, {})
 aliyun.com##+js(set, aplus.getPageSPM, noopFunc)
+aliyun.com##+js(set, g_SPM, {})
+aliyun.com##+js(set, g_SPM.getParam, falseFunc)
 
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
@@ -280,6 +282,9 @@ bilibili.com##+js(sukka-disable-av1)
 ||126.com$domain=maplesugar.top
 ||blog.maplesugar.top/usr/uploads/2024/09/725322379.jpg
 ||tinypass.com
+||cdn.virtuoussoftware.com/virtuous.embed.min.js$3p
+||hostedseal.trustarc.com/privacy-seal/seal$3p
+||cdn.lgrckt-in.com/logger
 
 # force block
 ||at.adtech.redventures.io^$important
