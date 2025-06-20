@@ -477,6 +477,10 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||dashboard.render.com/segcdn/
 ||dashboard.render.com/seg/cdn/
 
+||scamadviser.com/uploads/advertorial-
+||scripts.scriptwrapper.com$3p
+||dubcdn.com/analytics
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
