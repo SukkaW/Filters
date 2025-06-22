@@ -1,3 +1,7 @@
+# Disable HTTPS DNS records
+||*^$dnstype=HTTPS,dnsrewrite=NXDOMAIN
+||*^$dnstype=TYPE65,dnsrewrite=NXDOMAIN
+
 |cdn.jsdelivr.net$dnsrewrite=cdn.jsdelivr.net.cdn.cloudflare.net
 ||hanime1.me$dnsrewrite=hanime1.me.cdn.cloudflare.net
 ||hanimeone.com$dnsrewrite=hanimeone.com.cdn.cloudflare.net
