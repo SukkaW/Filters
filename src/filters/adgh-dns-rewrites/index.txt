@@ -2,6 +2,11 @@
 ||*^$dnstype=HTTPS,dnsrewrite=NXDOMAIN
 ||*^$dnstype=TYPE65,dnsrewrite=NXDOMAIN
 
+# Redirect NTP servers to Chinese servers
+||pool.ntp.org$dnsrewrite=time.edu.cn
+||time.apple.com$dnsrewrite=time.windows.com
+
+# Misc
 |cdn.jsdelivr.net$dnsrewrite=cdn.jsdelivr.net.cdn.cloudflare.net
 ||hanime1.me$dnsrewrite=hanime1.me.cdn.cloudflare.net
 ||hanimeone.com$dnsrewrite=hanimeone.com.cdn.cloudflare.net
