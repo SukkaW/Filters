@@ -462,7 +462,10 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||tankeai.com$3p
 
 ||hsforms.com/*/counters.gif$redirect=1x1.gif
+||hubspot.com/*/v*/track$image,redirect=1x1.gif
+||hubspot.com/*/v*/track
 ||hs-sites.com$3p
+||hsappstatic.net/*/trackers/$image,redirect=1x1.gif
 
 ||breaktime.tw/affiliation
 ||dhgate.com/track/tracklog
@@ -939,3 +942,9 @@ tastespirit.com###floating-qr-ad
 
 ! May 19, 2025 https://www.macupdate.com
 www.macupdate.com##.rv-di-modal__overlay
+
+! Jun 21, 2025 https://stonefly.com
+stonefly.com##[href^="https://stonefly.com/promo/"]
+
+! Jun 21, 2025 https://element-plus.org
+element-plus.org##a.sponsor-large
