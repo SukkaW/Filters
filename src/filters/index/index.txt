@@ -19,6 +19,7 @@ www.nmpa.gov.cn##+js(sukka-defuse-devtools-detector)
 vidsrc.cc##+js(sukka-defuse-devtools-detector)
 movies7.watch##+js(sukka-defuse-devtools-detector)
 urbtix.hk##+js(sukka-defuse-devtools-detector)
+hso108.xyz##+js(sukka-defuse-devtools-detector)
 
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
@@ -327,6 +328,7 @@ reimu.net##pre:style(display: block !important;)
 ||leetcode.cn/api/is_china_ip$domain=leetcode.com
 
 ||bytegoofy.com$domain=sohu.com
+||bytescm.com/*/collect
 
 ||vueschool.io$domain=vuejs.org
 
@@ -483,6 +485,9 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||scamadviser.com/uploads/advertorial-
 ||scripts.scriptwrapper.com$3p
 ||dubcdn.com/analytics
+
+||storry.tv/sw_.js
+||simplelocalize.io/*/event^
 
 # >> Auto Generated - per site
 
