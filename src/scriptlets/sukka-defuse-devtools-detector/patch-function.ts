@@ -25,7 +25,7 @@ export function patchFunction() {
     try {
       global.eval = new Proxy(global.eval, {
         apply(target, thisArg, args: Parameters<typeof global.eval>) {
-        // we know there is only one argument, so we can just use args[0]
+          // we know there is only one argument, so we can just use args[0]
           args[0] = defuseDebuggerInArg(args[0], logDefuseEvalDebugger);
           return Reflect.apply(target, thisArg, args);
         }

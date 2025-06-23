@@ -62,19 +62,41 @@ export function defuseDebuggerInArg(arg: string | (() => void), loggerFn?: () =>
       // we can also recursive call defuseDebuggerInArg here to reduce code duplication
       // but this is a simple function, besides we dont want many stacks causing overflow
       // return defuseDebuggerInArg(newArg, loggerFn);
-      onlyCallOnce(arg);
-      if (typeof newArg === 'string' && rDebugger.test(newArg)) {
-        return newArg.replaceAll(rDebugger, debuggerReplacer); // remove debugger from function string
+
+      if (typeof newArg === 'string' && newArg.includes('debugger')) {
+        onlyCallOnce(arg);
+        return defuseFunctionString(newArg);
       }
       return newArg;
     };
   }
-  if (typeof arg === 'string' && rDebugger.test(arg)) {
+  if (typeof arg === 'string' && arg.includes('debugger')) {
     if (typeof loggerFn === 'function') {
       onlyCallOnce(loggerFn);
     }
-    return arg.replaceAll(rDebugger, debuggerReplacer); // remove debugger from function string
+    return defuseFunctionString(arg);
   }
+  return arg;
+}
+
+function defuseFunctionString(arg: string): string {
+  const before = arg;
+
+  arg = arg.trim();
+
+  if (arg.startsWith('debugger')) {
+    arg = arg.slice(8).trim();
+  }
+  if (arg.endsWith('debugger')) {
+    arg = arg.slice(0, -8).trim();
+  }
+
+  if (arg.includes('debugger')) {
+    arg = arg.replaceAll(rDebugger, debuggerReplacer); // remove debugger from function string
+  }
+
+  $console.info('[sukka-defuse-devtools-detector]', 'defuse "debugger"', { before, after: arg });
+
   return arg;
 }
 
