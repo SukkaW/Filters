@@ -102,5 +102,15 @@ function defuseFunctionString(arg: string): string {
 
 // eslint-disable-next-line @typescript-eslint/unbound-method -- cache native method to prevent overwrite
 export const FunctionPrototypeToString = Function.prototype.toString;
-// eslint-disable-next-line no-eval -- not running un-trusted codes, also cache to prevent overwrite
-export const $eval = window.eval;
+
+let $eval: typeof window.eval | null = null;
+
+export function setSafeEval(evalFn: typeof window.eval): void {
+  $eval = evalFn;
+}
+export function getSafeEval(): typeof window.eval {
+  if ($eval !== null) {
+    return $eval;
+  }
+  throw new Error('[sukka-defuse-devtools-detector] getSafeEval() called before initialization!');
+}

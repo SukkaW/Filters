@@ -1,4 +1,4 @@
-import { $console, $eval, defuseDebuggerInArg, FunctionPrototypeToString, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, defuseDebuggerInArg, FunctionPrototypeToString, getSafeEval, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
@@ -11,7 +11,7 @@ export function patchTimer() {
         apply(target, thisArg, args: Parameters<typeof setInterval>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden
           // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
-          args[0] = $eval('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetIntervalDebugger) + ')');
+          args[0] = getSafeEval()('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetIntervalDebugger) + ')');
 
           return Reflect.apply(target, thisArg, args);
         }
@@ -24,7 +24,7 @@ export function patchTimer() {
         apply(target, thisArg, args: Parameters<typeof setTimeout>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden
           // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
-          args[0] = $eval('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetTimeoutDebugger) + ')');
+          args[0] = getSafeEval()('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetTimeoutDebugger) + ')');
 
           return Reflect.apply(target, thisArg, args);
         }

@@ -1,4 +1,4 @@
-import { $console, defuseDebuggerInArg, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, defuseDebuggerInArg, setSafeEval, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some devtools detector will try to call debugger from eval(), some may simply call `Function('debugger')` instead of `eval('debugger')`,
@@ -7,6 +7,9 @@ import { $console, defuseDebuggerInArg, WINDOW_INSTANCE_LIST } from '../_utils';
  * We can defuse it by proxy globalThis.Function
  */
 export function patchFunction() {
+  // eslint-disable-next-line no-eval -- cache eval to be re-create function later
+  setSafeEval(eval);
+
   WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
       global.Function = new Proxy(global.Function, {
