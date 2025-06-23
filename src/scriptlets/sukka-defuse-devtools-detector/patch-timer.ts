@@ -1,4 +1,4 @@
-import { $console, defuseDebuggerInArg, FunctionPrototypeToString, getSafeEval, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, getSafeEval, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
@@ -11,7 +11,11 @@ export function patchTimer() {
         apply(target, thisArg, args: Parameters<typeof setInterval>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden
           // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
-          args[0] = getSafeEval()('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetIntervalDebugger) + ')');
+          const args_0_string = FunctionPrototypeToString.call(args[0]);
+          // we do not re-create callback when there is no debugger anyway
+          if (argHasDebugger(args_0_string)) {
+            args[0] = getSafeEval()('(' + defuseDebuggerInArg(args_0_string, logDefuseSetIntervalDebugger) + ')');
+          }
 
           return Reflect.apply(target, thisArg, args);
         }
@@ -24,7 +28,11 @@ export function patchTimer() {
         apply(target, thisArg, args: Parameters<typeof setTimeout>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden
           // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
-          args[0] = getSafeEval()('(' + defuseDebuggerInArg(FunctionPrototypeToString.call(args[0]), logDefuseSetTimeoutDebugger) + ')');
+          const args_0_string = FunctionPrototypeToString.call(args[0]);
+          // we do not re-create callback when there is no debugger anyway
+          if (argHasDebugger(args_0_string)) {
+            args[0] = getSafeEval()('(' + defuseDebuggerInArg(args_0_string, logDefuseSetTimeoutDebugger) + ')');
+          }
 
           return Reflect.apply(target, thisArg, args);
         }

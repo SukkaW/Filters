@@ -14,11 +14,11 @@ export function patchFunction() {
     try {
       global.Function = new Proxy(global.Function, {
         apply(target, thisArg, args: Parameters<typeof global.Function>) {
-          args = args.map(defuseDebuggerInArg(logDefuseFunctionDebugger));
+          args = args.map(arg => defuseDebuggerInArg(arg, logDefuseFunctionDebugger));
           return Reflect.apply(target, thisArg, args);
         },
         construct(target, args: ConstructorParameters<FunctionConstructor>, newTarget) {
-          args = args.map(defuseDebuggerInArg(logDefuseNewFunctionDebugger));
+          args = args.map(arg => defuseDebuggerInArg(arg, logDefuseNewFunctionDebugger));
           return Reflect.construct(target, args, newTarget);
         }
       });
@@ -43,7 +43,7 @@ export function patchFunction() {
         writable: true, // some polyfill, like core-js, needs to overrite this for GeneratorFunction and AsyncFunction
         value: new Proxy(global.Function.prototype.constructor, {
           apply(target, thisArg, args) {
-            args = args.map(defuseDebuggerInArg(logDefuseFunctionProrotypeConstructorDebugger));
+            args = args.map(arg => defuseDebuggerInArg(arg, logDefuseFunctionProrotypeConstructorDebugger));
             return Reflect.apply(target, thisArg, args);
           }
         })
