@@ -1,4 +1,4 @@
-import { $console, defuseDebuggerInArg, setSafeEval, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, defuseDebuggerInArg, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some devtools detector will try to call debugger from eval(), some may simply call `Function('debugger')` instead of `eval('debugger')`,
@@ -7,9 +7,6 @@ import { $console, defuseDebuggerInArg, setSafeEval, WINDOW_INSTANCE_LIST } from
  * We can defuse it by proxy globalThis.Function
  */
 export function patchFunction() {
-  // eslint-disable-next-line no-eval -- cache eval to be re-create function later
-  setSafeEval(eval);
-
   WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
       global.Function = new Proxy(global.Function, {
@@ -51,6 +48,24 @@ export function patchFunction() {
     } catch (e) {
       $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.Function.prototype.constructor!`, e);
     }
+    // TODO: Function.prototype.bind returns a function with "function () { [native code] }"
+    // So we can't re-create this function using "eval".
+    // This might be exploitable as some one could do:
+    // setInterval(debuggerFn.bind(window), 300);
+    //
+    // Another case would be `new Proxy(debuggerFn, {})` which also returns a function with "function () { [native code] }"
+    //
+    // try {
+    //   global.Function.prototype.bind = new Proxy(global.Function.prototype.bind, {
+    //     apply(target, thisArg, args: Parameters<typeof global.Function.prototype.bind>) {
+    //       // we know there is only one argument, so we can just use args[0]
+    //       args[0] = defuseDebuggerInArg(args[0], logDefuseFunctionDebugger);
+    //       return Reflect.apply(target, thisArg, args);
+    //     }
+    //   });
+    // } catch (e) {
+    //   $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.Function.prototype.bind!`, e);
+    // }
   });
 }
 

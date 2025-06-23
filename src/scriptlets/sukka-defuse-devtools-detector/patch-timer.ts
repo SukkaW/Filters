@@ -1,4 +1,4 @@
-import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, getSafeEval, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, $eval, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
@@ -14,7 +14,7 @@ export function patchTimer() {
           const args_0_string = FunctionPrototypeToString.call(args[0]);
           // we do not re-create callback when there is no debugger anyway
           if (argHasDebugger(args_0_string)) {
-            args[0] = getSafeEval()('(' + defuseDebuggerInArg(args_0_string, logDefuseSetIntervalDebugger) + ')');
+            args[0] = $eval('(' + defuseDebuggerInArg(args_0_string, logDefuseSetIntervalDebugger) + ')');
           }
 
           return Reflect.apply(target, thisArg, args);
@@ -31,7 +31,7 @@ export function patchTimer() {
           const args_0_string = FunctionPrototypeToString.call(args[0]);
           // we do not re-create callback when there is no debugger anyway
           if (argHasDebugger(args_0_string)) {
-            args[0] = getSafeEval()('(' + defuseDebuggerInArg(args_0_string, logDefuseSetTimeoutDebugger) + ')');
+            args[0] = $eval('(' + defuseDebuggerInArg(args_0_string, logDefuseSetTimeoutDebugger) + ')');
           }
 
           return Reflect.apply(target, thisArg, args);
