@@ -20,6 +20,7 @@ vidsrc.cc##+js(sukka-defuse-devtools-detector)
 movies7.watch##+js(sukka-defuse-devtools-detector)
 urbtix.hk##+js(sukka-defuse-devtools-detector)
 hso108.xyz##+js(sukka-defuse-devtools-detector)
+tvbilibili.com##+js(sukka-defuse-devtools-detector)
 
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
@@ -85,6 +86,9 @@ hso108.xyz##+js(sukka-defuse-devtools-detector)
 @@||github.com/**/web-vitals-
 # skk.moe
 @@||localhost$domain=skk.moe
+# Allow ip.skk.moe to do things
+@@||fastly-analytics.com$domain=ip.skk.moe|localhost
+@@||api.ip.sb$domain=ip.skk.moe|localhost
 # UniFi Support
 @@||widget-mediator.zopim.com
 # unblock remove param for bilibili video cdn
