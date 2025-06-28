@@ -14,3 +14,4 @@
 ||maxcdn.bootstrapcdn.com$dnsrewrite=maxcdn.bootstrapcdn.com.cdn.cloudflare.net
 |cloudflare.f-droid.org$dnsrewrite=cloudflare.f-droid.org.cdn.cloudflare.net
 ||pages.dev$dnsrewrite=pages.dev.cdn.cloudflare.net
+||imgur.com$dnsrewrite=ipv4.imgur.map.fastly.net
