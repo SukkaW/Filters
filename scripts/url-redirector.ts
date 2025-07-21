@@ -13,17 +13,15 @@ export async function buildUrlRedirector() {
       const result = JSON.stringify({
         version: '1.0',
         createdAt: new Date().toISOString(),
-        rules: rule.rules.map(r => [
-          {
-            description: r[2] || '',
-            origin: r[0],
-            exclude: null,
-            methods: [],
-            types: [],
-            target: r[1],
-            enable: true
-          }
-        ])
+        rules: rule.rules.map(r => ({
+          description: r[2] || r[0] + ' -> ' + r[1],
+          origin: r[0],
+          exclude: null,
+          methods: [],
+          types: [],
+          target: r[1],
+          enable: true
+        }))
       });
 
       return fsp.writeFile(
