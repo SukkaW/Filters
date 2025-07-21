@@ -21,6 +21,10 @@ export default [
         'cdn.jsdelivr.net/gh/SCP-CN-Tech/Interwiki@gh-pages'
       ],
       [
+        'bhl.scpwikicn.com',
+        'cdn.jsdelivr.net/gh/SCP-CN-Tech/Black-Highlighter@gh-pages'
+      ],
+      [
         'use.fontawesome.com/releases/v5.3.1/css/all.css',
         'cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3.1/css/all.min.css'
       ],
@@ -32,6 +36,10 @@ export default [
       [
         'maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
         'cdn.jsdelivr.net/npm/font-awesome@4.3.0/css/font-awesome.min.css'
+      ],
+      [
+        'scp-zhtr.github.io',
+        'cdn.jsdelivr.net/gh/SCP-ZHTR/SCP-ZHTR.github.io@main'
       ]
     ]
   }
