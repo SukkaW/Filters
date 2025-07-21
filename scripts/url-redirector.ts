@@ -12,17 +12,16 @@ export async function buildUrlRedirector() {
       const basename = rule.basename;
       const result = JSON.stringify({
         version: '1.0',
+        createdAt: new Date().toISOString(),
         rules: rule.rules.map(r => [
           {
             description: r[2] || '',
             origin: r[0],
-            exclude: '',
+            exclude: null,
             methods: [],
             types: [],
             target: r[1],
-            example: '',
-            enable: true,
-            process: ''
+            enable: true
           }
         ])
       });
