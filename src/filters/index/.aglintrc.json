@@ -1,5 +1,8 @@
 {
   "syntax": [
     "UblockOrigin"
-  ]
+  ],
+  "rules": {
+    "invalid-modifiers": "warn"
+  }
 }

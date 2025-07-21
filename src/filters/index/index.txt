@@ -120,6 +120,8 @@ lingchenzi.com#@#.category-share
 /*/sign_d?*$all
 # Aliyun HTTP DNS
 /*/resolve?*$all
+https://223.5.5.5
+https://223.6.6.6
 
 # >> Spotify AD
 *://audio-ak-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
@@ -492,6 +494,9 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 ||storry.tv/sw_.js
 ||simplelocalize.io/*/event^
+
+||qq.com^$app=com.onelap.bls.dear
+||static.rfsvr.net/headimg/
 
 # >> Auto Generated - per site
 
