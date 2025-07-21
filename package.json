@@ -6,8 +6,8 @@
   "main": "",
   "scripts": {
     "node": "SWC_NODE_IGNORE_DYNAMIC=true node -r @swc-node/register",
-    "build": "aglint && SWC_NODE_IGNORE_DYNAMIC=true node -r @swc-node/register ./scripts/index.ts",
-    "lint": "eslint --format=sukka ."
+    "build": "SWC_NODE_IGNORE_DYNAMIC=true node -r @swc-node/register ./scripts/index.ts",
+    "lint": "eslint --format=sukka . && aglint"
   },
   "keywords": [],
   "author": "Sukka <https://skk.moe>",

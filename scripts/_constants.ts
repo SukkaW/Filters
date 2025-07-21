@@ -7,3 +7,4 @@ export const SRC_SCRIPTLETS_DIR = path.join(SRC_DIR, 'scriptlets');
 export const PUBLIC_DIR = path.resolve(__dirname, '../public');
 export const OUTPUT_FILTERS_DIR = path.join(PUBLIC_DIR, 'filters');
 export const OUTPUT_SCRIPTLETS_DIR = path.join(PUBLIC_DIR, 'scriptlets');
+export const OUTPUT_URL_REDIRECTOR_DIR = path.join(PUBLIC_DIR, 'url-redirector');
