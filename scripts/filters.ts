@@ -36,12 +36,10 @@ export async function buildFilter() {
     ).join('\n'));
 
     return pipeline(
-      Readable.fromWeb(
-        Readable.toWeb(fs.createReadStream(path.resolve(SRC_FILTERS_DIR, fileName, 'index.txt')))
-          .pipeThrough(new TextDecoderStream())
-          .pipeThrough(new TextLineStream())
-          .pipeThrough(new FilterMinifyStream())
-      ),
+      Readable.toWeb(fs.createReadStream(path.resolve(SRC_FILTERS_DIR, fileName, 'index.txt')))
+        .pipeThrough(new TextDecoderStream())
+        .pipeThrough(new TextLineStream())
+        .pipeThrough(new FilterMinifyStream()),
       fs.createWriteStream(destFile, { flags: 'a' })
     );
   }));
