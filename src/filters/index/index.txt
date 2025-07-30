@@ -58,6 +58,9 @@ tvbilibili.com##+js(sukka-defuse-devtools-detector)
 ||embed.reddit.com$frame,redirect=click2load.html
 ||tiktok.com/embed/$frame,redirect=click2load.html
 
+# >> Fuck Embed
+||platform.twitter.com$3p,domain=~example.com
+
 # >> Fix Support Chat
 ||client.crisp.chat^$3p
 ||crisp.chat$domain=dlercloud.com|phare.io
@@ -164,6 +167,8 @@ www.bilibili.com##.r-con
 /track-collect.js
 # P2P CDN fuck (works with IP based requests)
 &os=mcdn
+# Bilibili App sometimes reqeuest ISP modem for PCDN support
+/igd.xml$important
 
 # Fuck taobao/tmall, restore navigation after aplus logger has been blocked
 taobao.com##+js(set, aplus, {})
@@ -309,10 +314,16 @@ bilibili.com##+js(sukka-disable-av1)
 ||bootcss.com^$all,badfilter
 ||staticfile.net^$all,badfilter
 ||staticfile.org^$all,badfilter
+
+/edgecastcdn.net$badfilter
+
 bad.news##.plyr__video-wrapper:style(width: 100%)
 bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height: 100% !important)
 
 /*/__phg/ingest*$all
+
+! only blocked because of IPv6
+||6check.on-velocity-flowtest.com/
 
 # Breaks Google Dev Docs
 ://www.*.css|$xhr,3p,to=com,badfilter
@@ -498,6 +509,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||simplelocalize.io/*/event^
 
 ||static.rfsvr.net/headimg/
+
+/template/pc/default/images/pc_ad*
 
 # >> Auto Generated - per site
 
@@ -963,3 +976,10 @@ stonefly.com##[href^="https://stonefly.com/promo/"]
 
 ! Jun 21, 2025 https://element-plus.org
 element-plus.org##a.sponsor-large
+
+! Jul 17, 2025 https://wordlesolver.github.io
+wordlesolver.github.io###info
+
+! Jul 27, 2025 https://www.perennialcycle.com
+www.perennialcycle.com###content.fadeInUp
+www.perennialcycle.com##.pop
