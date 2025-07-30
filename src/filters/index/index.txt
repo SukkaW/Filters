@@ -107,7 +107,7 @@ lingchenzi.com#@#.category-share
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Map Location
-||amap.com$domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~giant.com.cn
+||amap.com$3p,domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~giant.com.cn
 ||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com|~onelap.cn
 ||map.qq.com$3p
 # Prevent Sleep
@@ -162,6 +162,8 @@ www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
 /bili-user-fingerprint$script
 /track-collect.js
+# P2P CDN fuck (works with IP based requests)
+&os=mcdn
 
 # Fuck taobao/tmall, restore navigation after aplus logger has been blocked
 taobao.com##+js(set, aplus, {})
@@ -495,7 +497,6 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||storry.tv/sw_.js
 ||simplelocalize.io/*/event^
 
-||qq.com^$app=com.onelap.bls.dear
 ||static.rfsvr.net/headimg/
 
 # >> Auto Generated - per site
