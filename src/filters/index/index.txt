@@ -229,6 +229,9 @@ blog.csdn.net###recommend-right
 
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
+av.tube4us.top##a[href*="youtube.com/watch"]
+av4us.uk##a[href*="youtube.com/watch"]
+*.av4us.top##a[href*="youtube.com/watch"]
 
 # Fuck 4KHD
 ! defuse devtools detector
