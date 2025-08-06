@@ -207,6 +207,10 @@ emailtick.com##+js(nano-sib, countdown)
 crdroid.net###dl-links:style(display: block !important)
 crdroid.net###dl-ads
 
+# Defuse Hanime1 In-page inline-script AD redirect
+hanime1.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
+hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
+
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 
