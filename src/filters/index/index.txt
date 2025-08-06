@@ -123,8 +123,10 @@ lingchenzi.com#@#.category-share
 /*/sign_d?*$all
 # Aliyun HTTP DNS
 /*/resolve?*$all
-https://223.5.5.5
-https://223.6.6.6
+://223.5.5.5$important
+://223.6.6.6$important
+# Baidu Cloud HTTP DNS
+://180.76.76.*$important
 
 # >> Spotify AD
 *://audio-ak-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
@@ -154,7 +156,7 @@ bgp.he.net###graph6 img:style(max-width: 100% !important;)
 # Fuck Bilibili
 ||cm.bilibili.com/cm/api$redirect=noop.txt
 ||hdslb.com/bfs/seed/log/*.js*$redirect=noop.js
-||data.bilibili.com^$redirect=noop.txt
+||data.bilibili.com$redirect=noop.txt,important
 ||i0.hdslb.com/bfs/static/jinkela/long/images/desktop-download-tip.png$image
 ||api.bilibili.com/x/web-interface/bgroup/$redirect=noop.txt
 ||api.bilibili.com/x/vip/ads/$redirect=noop.txt
@@ -169,6 +171,8 @@ www.bilibili.com##.r-con
 &os=mcdn
 # Bilibili App sometimes reqeuest ISP modem for PCDN support
 /igd.xml$important
+# Fuck Biligame
+||biligame.com
 
 # Fuck taobao/tmall, restore navigation after aplus logger has been blocked
 taobao.com##+js(set, aplus, {})
