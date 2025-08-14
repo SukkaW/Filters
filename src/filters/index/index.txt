@@ -59,7 +59,7 @@ tvbilibili.com##+js(sukka-defuse-devtools-detector)
 ||tiktok.com/embed/$frame,redirect=click2load.html
 
 # >> Fuck Embed
-||platform.twitter.com$3p,domain=~example.com
+||platform.twitter.com$3p,domain=~theverge.com
 
 # >> Fix Support Chat
 ||client.crisp.chat^$3p
@@ -99,6 +99,8 @@ tvbilibili.com##+js(sukka-defuse-devtools-detector)
 @@||bilivideo.com^$removeparam
 ! aglint-disable-next-line invalid-modifiers -- whitelist
 @@||bilivideo.cn^$removeparam
+# Cloudflare cdn-cgi/trace was used to track IP, but we can whitelist this for ip.skk.moe
+@@||cloudflare.com/cdn-cgi/trace$domain=skk.moe|localhost
 # Misc
 @@||awstrack.me^$badfilter
 @@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
@@ -207,16 +209,21 @@ emailtick.com##+js(nano-sib, countdown)
 crdroid.net###dl-links:style(display: block !important)
 crdroid.net###dl-ads
 
-# Defuse Hanime1 In-page inline-script AD redirect
-hanime1.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
-hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
-
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/iframe
 ||accounts.google.com/gsi/$3p
+
+# Fuck yorg.io
+yorg.io###adVideoBg
+yorg.io###adblockHint
+yorg.io###ingame_chat
+
+yorg.io##+js(set-local-storage-item, sandboxDiscordIntentShown, 1)
+yorg.io##+js(set-local-storage-item, stat_max_base_level, 1919)
+yorg.io##+js(set-local-storage-item, stat_max_day_reached, 114514)
 
 # Cloudflare Dashboard: this prevents accidentally converting to primary NS setup
 cloudflare.com##a[href$="/dns/settings"]
@@ -288,6 +295,7 @@ bilibili.com##+js(sukka-disable-av1)
 # Defuse tracker gif
 /ping.gif$redirect=1x1.gif
 /counters.gif$redirect=1x1.gif
+||pixel.wp.com/g.gif$redirect=1x1.gif
 
 # >> Handcraft
 
@@ -372,6 +380,9 @@ t66y.com##+js(nostif)
 
 ||umami.*/*.js
 ||plausible.*/*.js
+/litlyx.js
+||api.ccsccorp.com/api/dlog/
+||vercel.com/_stream/external/
 
 ||app.planhat.com/analytics/
 
@@ -698,11 +709,6 @@ www.makeuseof.com##.ad-current
 
 ! 2023-04-13 https://www.jianshu.com
 ||jianshu.io/assets/web/download_app*$image
-
-! 2023-05-29 https://yorg.io
-yorg.io###adVideoBg
-yorg.io###adblockHint
-yorg.io###ingame_chat
 
 ! 2023-07-02 https://kinsta.com
 kinsta.com##.sidebar-cta
