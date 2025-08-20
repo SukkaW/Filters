@@ -14,21 +14,25 @@
   "license": "MIT",
   "devDependencies": {
     "@adguard/aglint": "^3.0.0",
-    "@eslint-sukka/node": "^6.22.1",
+    "@eslint-sukka/node": "^6.23.1",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "@swc-node/register": "^1.10.10",
+    "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.13.3",
-    "@types/node": "^24.1.0",
-    "eslint": "^9.32.0",
-    "eslint-config-sukka": "^6.22.1",
-    "eslint-formatter-sukka": "^6.22.1",
-    "rollup": "^4.46.2",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.33.0",
+    "eslint-config-sukka": "^6.23.1",
+    "eslint-formatter-sukka": "^6.23.1",
+    "rollup": "^4.46.4",
     "rollup-plugin-swc3": "^0.12.1"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.15.0",
   "pnpm": {
     "overrides": {
       "eslint>chalk": "npm:picocolors@^1.1.1"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "oxc-resolver"
+    ]
   }
 }
