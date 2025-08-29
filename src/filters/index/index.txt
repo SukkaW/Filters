@@ -253,7 +253,7 @@ av4us.uk##a[href*="youtube.com/watch"]
 4khd.com##+js(sukka-defuse-devtools-detector)
 ! defuse service worker
 ||4khd.com/interstitial.js
-4khd.com##+js(set, navigator.serviceWorker.register, throwFn)
+4khd.com##+js(sukka-defuse-service-worker)
 ! defuse tracking
 ||4khd.com/Statistics.php
 ! dev tools detector scripts
