@@ -262,6 +262,13 @@ av4us.uk##a[href*="youtube.com/watch"]
 ! dev tools detector scripts
 ||4khd.com/js/disabley.min.js
 
+# Fuck Windy - remove premium ribbon & watermark
+windy.com##.premium-calendar #map-container::after:style(background-image: none!important)
+windy.com##.get-premium--ribbon
+windy.com##.get-premium
+windy.com##.premium-button
+||windy.com/*premium-watermark.svg$redirect=1x1.gif
+
 # Hide Aff Link
 ##a[href*="//sjv.io"]
 ##a[href*="//l.labsda.com"]
