@@ -141,6 +141,16 @@ spotify.com##div[data-testid="test-ref-div"]
 
 # >> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
+# Fuck some domestic website by blocking their scripts
+*$script,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn
+*$frame,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn
+.js$domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn
+
+||guancha.cn$inline-script
+||www.toutiao.com$inline-script
+||www.sohu.com$inline-script
+||www.sohu.com$csp=script-src https://*.itc.cn 'self' 'unsafe-eval' 'unsafe-inline'
+
 # Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
 
@@ -241,15 +251,15 @@ blog.csdn.net##.recommend-tit-mod
 blog.csdn.net##.template-box
 blog.csdn.net##.comment-box
 blog.csdn.net###recommend-right
-*$script,domain=csdn.net|sina.cn
-.js$domain=csdn.net|sina.cn
-*$frame,domain=csdn.net|sina.cn
 
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
 av.tube4us.top##a[href*="youtube.com/watch"]
 av4us.uk##a[href*="youtube.com/watch"]
 av4us.top##a[href*="youtube.com/watch"]
+
+# Silca Tire Pressure Calculator blocks all third party SDK
+||silca.cc/*/pro-tire-pressure-calculator^$csp=script-src 'unsafe-eval' 'unsafe-inline'
 
 # Fuck 4KHD
 ! defuse devtools detector
@@ -473,6 +483,8 @@ producthunt.com##[data-test^="ad-slot"]
 ||scp-wiki.wdfiles.com/local--files/main/250_logo.png$domain=scp-wiki-cloud.wikidot.com
 
 ||quchao.net$script
+||quchao.net$inline-script
+
 ||px.ads.linkedin.com/collect/?*&fmt=gif$redirect=1x1.gif
 ||filebase.com/api/event
 
