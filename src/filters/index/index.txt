@@ -252,6 +252,10 @@ blog.csdn.net##.template-box
 blog.csdn.net##.comment-box
 blog.csdn.net###recommend-right
 
+# Hanime1 defuse hero AD redirect
+hanime1.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
+hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
+
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
 av.tube4us.top##a[href*="youtube.com/watch"]
@@ -303,6 +307,26 @@ hanime1.me##a[href*="//l.labsda.com"]
 ! youtube.com##+js(sukka-disable-av1) ! Affecting 8K videos
 bilibili.com##+js(sukka-disable-av1)
 
+# Fuck Reddit, remove Auto Translation
+||reddit.com$uritransform=/tl=.*//
+
+# bypass abema region check
+abema.tv##+js(trusted-prevent-xhr, ds-linear-abematv.akamaized.net/region, '')
+
+# bypass javbus age verification (need manually navigate to javbus.com)
+javbus.com##+js(trusted-set-cookie, dv, 1, 31536000)
+
+# remove t66y ad
+t66y.com##+js(trusted-set, spJson, { "value": "[]" })
+
+# auto skip ad
+netflav.com##+js(trusted-click-element, div.ads_video_close_button, , 500)
+# auto close zhihu login
+zhihu.com##+js(trusted-click-element, '.Modal.signFlowModal button.Button.Modal-closeButton')
+
+# Defuse User-Agent detection
+dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/114514", runAt, 1)
+
 # Fuck Fandom
 ||community.fandom.com
 ||nocookie.net/fandom-ae-assets/tracking-opt-in/$important
@@ -338,6 +362,8 @@ bilibili.com##+js(sukka-disable-av1)
 ||cdn.virtuoussoftware.com/virtuous.embed.min.js$3p
 ||hostedseal.trustarc.com/privacy-seal/seal$3p
 ||cdn.lgrckt-in.com/logger
+
+||visitor.leadsourcing.co$3p
 
 # force block
 ||at.adtech.redventures.io^$important
