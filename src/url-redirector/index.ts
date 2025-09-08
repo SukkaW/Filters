@@ -42,5 +42,19 @@ export default [
         'cdn.jsdelivr.net/gh/SCP-ZHTR/SCP-ZHTR.github.io@main'
       ]
     ]
+  },
+  // HOSTED_PUBLIC_CDN_REDIRECT
+  {
+    basename: 'redirect-public-cdn',
+    rules: [
+      [
+        'ajax.googleapis.com/ajax/libs/bootstrap/([^/]+)/',
+        'cdn.jsdelivr.net/npm/bootstrap@$1/dist/'
+      ],
+      [
+        'ajax.googleapis.com/ajax/libs/jquery/([^/]+)/',
+        'cdn.jsdelivr.net/npm/jquery@$1/dist/'
+      ]
+    ]
   }
 ] satisfies RedirectRule[];
