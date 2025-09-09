@@ -589,6 +589,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||seline.com$3p
 /seline.js
 
+||marketing.figma.com$3p,domain=~figma.com
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn

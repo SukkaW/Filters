@@ -48,6 +48,10 @@ export default [
     basename: 'redirect-public-cdn',
     rules: [
       [
+        'polyfill-fastly.net',
+        'cdnjs.cloudflare.com/polyfill'
+      ],
+      [
         'ajax.googleapis.com/ajax/libs/bootstrap/([^/]+)/',
         'cdn.jsdelivr.net/npm/bootstrap@$1/dist/'
       ],
