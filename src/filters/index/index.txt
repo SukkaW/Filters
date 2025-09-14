@@ -588,6 +588,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||seline.so$3p
 ||seline.com$3p
 /seline.js
+||cdn.jsdelivr.net/npm/bitmovin-analytics
 
 ||marketing.figma.com$3p,domain=~figma.com
 
@@ -1081,3 +1082,9 @@ prnt.sc##.no-click:style(pointer-events: unset!important)
 
 ! Aug 27, 2025 https://www.yszzq.com
 ||www.yszzq.com/Style/date/$image
+
+! Sep 11, 2025 https://ja.gelbooru.com
+ja.gelbooru.com##[href*="dvdstr.com/"]
+
+! Sep 11, 2025 https://aminoapps.com
+aminoapps.com##.get-app
