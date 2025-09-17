@@ -587,10 +587,14 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||st.dynamicyield.com$3p
 ||seline.so$3p
 ||seline.com$3p
+||www.decathlon.com/cdn/wpm/$script
+||marketing.figma.com$3p,domain=~figma.com
+||socket.dev/monitoring-tunnel
+
 /seline.js
 ||cdn.jsdelivr.net/npm/bitmovin-analytics
 
-||marketing.figma.com$3p,domain=~figma.com
+/yummi.js
 
 # >> Auto Generated - per site
 
