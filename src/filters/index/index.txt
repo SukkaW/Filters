@@ -186,6 +186,14 @@ www.bilibili.com##.r-con
 # Fuck Biligame
 ||biligame.com
 
+# Fuck AdFoc URL Shortner
+! disable all scripts
+||adfoc.us$csp=script-src 'none'
+! show skip button -- in case filter is not trust, we can still click it manually
+adfoc.us###showSkip:style(display: block!important)
+! auto click skip button
+adfoc.us##+js(trusted-click-element, #showSkip > a.skip)
+
 # Fuck taobao/tmall, restore navigation after aplus logger has been blocked
 taobao.com##+js(set, aplus, {})
 taobao.com##+js(set, aplus.getPageSPM, noopFunc)
