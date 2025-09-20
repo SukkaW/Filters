@@ -570,6 +570,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||dhgate.com/track/tracklog
 ||cdn.h5wan.4399sj.com/h5web-frame/*/disableTools.js
 ||samsung.com/*/analytics.min.js
+||appier.io$3p
 
 /ads.css
 
