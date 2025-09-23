@@ -84,9 +84,9 @@ tvbilibili.com##+js(sukka-defuse-devtools-detector)
 @@||github.com/*/web-vitals
 @@||github.com/**scrolltotop
 @@||github.com/**evercookie
-@@||github.com/**/sensorsdata-ads
-@@||github.com/**/google-analytics
-@@||github.com/**/web-vitals-
+@@||github.com/*/sensorsdata-ads
+@@||github.com/*/google-analytics
+@@||github.com/*/web-vitals-
 # skk.moe
 @@||localhost$domain=skk.moe
 # Allow ip.skk.moe to do things
@@ -156,6 +156,13 @@ github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0
 
 # Bring GitHub back, Fuck refine-github
 github.com###repository-container-header:not(:has(.js-repo-nav)) :is(#repo-stars-counter-star, #repo-stars-counter-unstar, #repo-network-counter, #repo-notifications-counter, .js-codespaces-details-container summary .Button-label):style(display: inline-block !important)
+
+# Fuck GitHub New Feed
+github.com##article[data-hydro-view*="REPOSITORY_RECOMMENDATION"]
+github.com##article[data-hydro-view*="TRENDING_REPOSITORY"]
+github.com##article[data-hydro-view*="MERGED_PULL_REQUEST"]
+github.com##article[data-hydro-view*="ADDED_TO_LIST"]
+github.com##article[data-hydro-view*="RELEASE"]
 
 # Allow copy and select on China EMU
 china-emu.cn##+js(aopw, window.onload)
@@ -1101,3 +1108,7 @@ ja.gelbooru.com##[href*="dvdstr.com/"]
 
 ! Sep 11, 2025 https://aminoapps.com
 aminoapps.com##.get-app
+
+! Sep 24, 2025 https://fnc.ebc.net.tw
+fnc.ebc.net.tw##.big_adbox
+fnc.ebc.net.tw##.right_adbox
