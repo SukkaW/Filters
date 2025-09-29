@@ -51,7 +51,7 @@ export default [
       ['cdn.staticfile.org', 'cdnjs.cloudflare.com/ajax/libs'],
       ['cdn.bootcss.com', 'cdnjs.cloudflare.com/ajax/libs'],
       ['cdn.bootcdn.net', 'cdnjs.cloudflare.com/ajax/libs'],
-      ['polyfill.io', 'cdnjs.cloudflare.com/polyfill'],
+      ['^polyfill.io', 'cdnjs.cloudflare.com/polyfill'],
       ['polyfill.top', 'cdnjs.cloudflare.com/polyfill'],
       ['fastly-polyfill.io', 'cdnjs.cloudflare.com/polyfill'],
       ['polyfill-fastly.net', 'cdnjs.cloudflare.com/polyfill'],
