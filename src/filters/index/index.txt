@@ -163,6 +163,7 @@ github.com##article[data-hydro-view*="TRENDING_REPOSITORY"]
 github.com##article[data-hydro-view*="MERGED_PULL_REQUEST"]
 github.com##article[data-hydro-view*="ADDED_TO_LIST"]
 github.com##article[data-hydro-view*="RELEASE"]
+github.com##article[data-hydro-view*="NEW_DISCUSSION"]
 
 # Allow copy and select on China EMU
 china-emu.cn##+js(aopw, window.onload)
@@ -465,7 +466,7 @@ wspeed.qq.com$redirect=noop.js
 ||h.lghln1.cn/js/niu/zhong-inc.js
 
 assets.alicdn.com/g/alilog*$redirect=noop.js
-g.alicdn.com/alilog/*$redirect=noop.js
+g.alicdn.com/alilog/$script,redirect=noop.js
 g.alicdn.com/axdata/yunlog*$redirect=noop.js
 g.alicdn.com/dawn/user-tracker*$redirect=noop.js
 g.alicdn.com/sj/securesdk$redirect=noop.js
@@ -612,6 +613,17 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 /yummi.js
 
+##.ad-container
+##.advertising-top-desktop
+
+||contrib.com$3p
+
+/.well-known/otel/metrics
+
+||wp-mak.ing$3p
+
+||xvideo-jp.com/adjs/
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -722,7 +734,11 @@ webpack.js.org##.sponsors
 goshacmd.com##.sign-up-form
 
 ! 2022-06-26 https://npmmirror.com
-||render.alipay.com/p/s/taobaonpm_click*$image
+||render.alipay.com/p/s/taobaonpm_click
+
+! Sep 28, 2025 https://npmmirror.com
+npmmirror.com##[href^="https://render.alipay.com/p/s/taobaonpm_click/"]
+||operate.datav.run/advertising/$image
 
 ! 2022-07-08 https://quickso.cn
 /npm/sweetalert2$script,domain=quickso.cn,important
@@ -1112,3 +1128,11 @@ aminoapps.com##.get-app
 ! Sep 24, 2025 https://fnc.ebc.net.tw
 fnc.ebc.net.tw##.big_adbox
 fnc.ebc.net.tw##.right_adbox
+
+! Sep 28, 2025 https://dash.cloudflare.com
+dash.cloudflare.com###zone-marketing-banner-header-notification-container
+
+! Sep 29, 2025 https://www.juksy.com
+www.juksy.com##[href^="https://news.google.com/publications/"]
+www.juksy.com##.js-idlePopup
+www.juksy.com##.idlePopup
