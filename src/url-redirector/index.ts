@@ -64,6 +64,19 @@ export default [
       [
         'ajax.googleapis.com/ajax/libs/jquery/([^/]+)/',
         'cdn.jsdelivr.net/npm/jquery@$1/dist/'
+      ],
+
+      [
+        'bootstrapcdn.com/bootstrap/([^/]+)/',
+        'cdn.jsdelivr.net/npm/bootstrap@$1/dist/'
+      ],
+      [
+        'bootstrapcdn.com/font-awesome/4.*/',
+        'cdn.jsdelivr.net/npm/font-awesome@4.7.0/'
+      ],
+      [
+        'bootstrapcdn.com/font-awesome/5.*/',
+        'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/'
       ]
     ]
   }
