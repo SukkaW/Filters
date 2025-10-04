@@ -624,6 +624,9 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 ||xvideo-jp.com/adjs/
 
+/smartpop$frame
+||.sf-syn.com/badge_js$3p
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
@@ -1136,3 +1139,12 @@ dash.cloudflare.com###zone-marketing-banner-header-notification-container
 www.juksy.com##[href^="https://news.google.com/publications/"]
 www.juksy.com##.js-idlePopup
 www.juksy.com##.idlePopup
+
+! Oct 1, 2025 https://netflav.com
+netflav.com##.ads_video_overlay_iframe
+
+! Oct 1, 2025 https://www.windy.com
+www.windy.com###startup-promo
+
+! Oct 3, 2025 https://learn.microsoft.com
+learn.microsoft.com##.is-success.alert:has([href^="https://security.microsoft.com/trialHorizontalHub"])
