@@ -607,6 +607,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||www.decathlon.com/cdn/wpm/$script
 ||marketing.figma.com$3p,domain=~figma.com
 ||socket.dev/monitoring-tunnel
+||roboflow.com/scripts/utm.js
 
 /seline.js
 ||cdn.jsdelivr.net/npm/bitmovin-analytics
@@ -626,6 +627,9 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 /smartpop$frame
 ||.sf-syn.com/badge_js$3p
+
+! Fuck Peter Lowe
+@@||e.customeriomail.com
 
 # >> Auto Generated - per site
 
@@ -1148,3 +1152,6 @@ www.windy.com###startup-promo
 
 ! Oct 3, 2025 https://learn.microsoft.com
 learn.microsoft.com##.is-success.alert:has([href^="https://security.microsoft.com/trialHorizontalHub"])
+
+! Oct 7, 2025 https://www.reddit.com
+www.reddit.com###games_section
