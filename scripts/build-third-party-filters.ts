@@ -63,7 +63,7 @@ const DATA_SOURCE = [
     title: 'Filters missing in uBO (but exist in AdGuard)',
     sources: [
       // --- Missing in uBO (Added in AdGuard):
-      'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt',
+      'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt', // AdGuard maintain its own data along side EasyPrivacy
       'https://github.com/cjx82630/cjxlist/blob/master/cjx-annoyance.txt' // Available in AdGuard as an option
     ]
   },
