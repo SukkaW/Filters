@@ -1,4 +1,4 @@
-name: Build
+name: Build Third Party Filters
 on:
   push:
     branches:
@@ -18,7 +18,7 @@ on:
     - cron: '0 22 * * *' # Runs at 22:00 UTC
 jobs:
   publish:
-    name: Publish
+    name: Build Third Party Filters
     runs-on: ubuntu-latest
     permissions:
       contents: read

@@ -1,4 +1,4 @@
-name: Build
+name: Build Filters/Scriptlets
 on:
   push:
     branches:
@@ -11,10 +11,11 @@ on:
       - '**/*.gitignore'
       - .editorconfig
       - docs/**
+      - scripts/build-third-party-filters.ts
   pull_request: null
 jobs:
-  publish:
-    name: Publish
+  build:
+    name: Build Filters/Scriptlets
     runs-on: ubuntu-latest
     permissions:
       contents: read
