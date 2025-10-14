@@ -49,6 +49,8 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
     : Lowercase<S>;
 
 (async () => {
+  fs.mkdirSync(OUTPUT_FILTERS_DIR, { recursive: true });
+
   const destFile = path.join(OUTPUT_FILTERS_DIR, 'sukka-collections-combined.txt');
 
   const topUserAgents = (await (await $$fetch('https://cdn.jsdelivr.net/npm/top-user-agents@2.1.75/src/desktop.json')).json()) as string[];
