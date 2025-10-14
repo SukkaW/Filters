@@ -30,6 +30,10 @@ uouin.com##+js(sukka-defuse-devtools-detector)
 ###adb-mask
 ||crackle.com/vendor/adex.js
 
+# >> Service Worker
+stackblitz.com#@#+js(sukka-defuse-service-worker)
+webcontainer.io#@#+js(sukka-defuse-service-worker)
+
 # >> Click2Load Embed
 
 ! YouTube
@@ -106,6 +110,7 @@ uouin.com##+js(sukka-defuse-devtools-detector)
 @@||awstrack.me^$badfilter
 @@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
 lingchenzi.com#@#.category-share
+@@||sentry.io^$domain=ui.com
 
 # >> Blacklist
 # Test
@@ -1157,3 +1162,6 @@ learn.microsoft.com##.is-success.alert:has([href^="https://security.microsoft.co
 
 ! Oct 7, 2025 https://www.reddit.com
 www.reddit.com###games_section
+
+! Oct 12, 2025 https://vite.dev
+vite.dev##.vp-sponsor-grid
