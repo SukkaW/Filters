@@ -191,6 +191,7 @@ www.bilibili.com##.pop-live-small-mode
 www.bilibili.com##.video-page-game-card-small
 www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
+! bilibili.com##+js(nowebrtc)
 /bili-user-fingerprint$script
 /track-collect.js
 # P2P CDN fuck (works with IP based requests)
@@ -389,7 +390,7 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 ||visitor.leadsourcing.co$3p
 
 # force block
-||at.adtech.redventures.io^$important
+||adtech.redventures.io^$important
 
 ||coinbase.com/sw.js
 
