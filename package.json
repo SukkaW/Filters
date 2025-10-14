@@ -14,26 +14,26 @@
   "author": "Sukka <https://skk.moe>",
   "license": "MIT",
   "dependencies": {
-    "foxts": "^4.4.0",
+    "foxts": "^4.5.0",
     "picocolors": "^1.1.1",
     "tldts": "^7.0.17",
     "undici": "^7.16.0"
   },
   "devDependencies": {
     "@adguard/aglint": "^3.0.0",
-    "@eslint-sukka/node": "^7.3.3",
+    "@eslint-sukka/node": "^7.3.5",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.13.5",
     "@types/node": "^24.7.2",
     "eslint": "^9.37.0",
-    "eslint-config-sukka": "^7.3.3",
-    "eslint-formatter-sukka": "^7.3.3",
+    "eslint-config-sukka": "^7.3.5",
+    "eslint-formatter-sukka": "^7.3.5",
     "rollup": "^4.52.4",
     "rollup-plugin-swc3": "^0.12.1",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.18.2",
+  "packageManager": "pnpm@10.18.3",
   "pnpm": {
     "overrides": {
       "eslint>chalk": "npm:picocolors@^1.1.1"
