@@ -54,7 +54,8 @@ const DATA_SOURCE = [
 
       'https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt',
       'https://ublockorigin.github.io/uAssets/filters/filters-mobile.txt',
-      'https://www.i-dont-care-about-cookies.eu/abp/'
+      'https://www.i-dont-care-about-cookies.eu/abp/',
+      'https://github.com/cjx82630/cjxlist/blob/master/cjx-ublock.txt'
     ]
   },
   {
@@ -62,7 +63,8 @@ const DATA_SOURCE = [
     title: 'Filters missing in uBO (but exist in AdGuard)',
     sources: [
       // --- Missing in uBO (Added in AdGuard):
-      'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt'
+      'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt',
+      'https://github.com/cjx82630/cjxlist/blob/master/cjx-annoyance.txt' // Available in AdGuard as an option
     ]
   },
   {
