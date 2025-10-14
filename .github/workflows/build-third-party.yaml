@@ -11,7 +11,11 @@ on:
       - '**/*.gitignore'
       - .editorconfig
       - docs/**
+      - src/** # we only cares about "scripts/" changes
   pull_request: null
+  schedule:
+    - cron: '0 10 * * *'  # Runs at 10:00 UTC
+    - cron: '0 22 * * *' # Runs at 22:00 UTC
 jobs:
   publish:
     name: Publish
@@ -28,7 +32,7 @@ jobs:
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
       - run: pnpm install
-      - run: pnpm run build
+      - run: pnpm run build-3p-filters
       - uses: peaceiris/actions-gh-pages@v4
         with:
           external_repository: SukkaLab/filters.cdn.skk.moe
