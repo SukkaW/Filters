@@ -19,7 +19,7 @@ const DATA_SOURCE = [
   'https://cdn.jsdelivr.net/gh/easylist/easylist@master/custom-lists/youtube-combo-list.txt',
   'https://cdn.jsdelivr.net/gh/easylist/easylist@master/custom-lists/youtube-whatdoyoulikedoforfun.txt',
   'https://easylist-downloads.adblockplus.org/antiadblockfilters.txt',
-  'https://easylist.to/easylist/fanboy-social.txt',
+  // 'https://easylist.to/easylist/fanboy-social.txt', included both in uBO default set and AdGuard Social set
   'https://filters.adtidy.org/extension/ublock/filters/20_optimized.txt',
   'https://filters.adtidy.org/extension/ublock/filters/3.txt',
   'https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt',
