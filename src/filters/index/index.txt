@@ -21,6 +21,7 @@ movies7.watch##+js(sukka-defuse-devtools-detector)
 urbtix.hk##+js(sukka-defuse-devtools-detector)
 hso108.xyz##+js(sukka-defuse-devtools-detector)
 tvbilibili.com##+js(sukka-defuse-devtools-detector)
+uouin.com##+js(sukka-defuse-devtools-detector)
 
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
@@ -242,8 +243,9 @@ crdroid.net###dl-ads
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 
 # Google Annoy Popup "login as"
-||accounts.google.com/gsi/iframe
+||accounts.google.com/gsi/$frame,redirect=click2load.html
 ||accounts.google.com/gsi/$3p
+@@||accounts.google.com/gsi/$3p,script
 
 # Fuck yorg.io
 yorg.io###adVideoBg
