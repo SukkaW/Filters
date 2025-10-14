@@ -21,9 +21,9 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
           check-latest: true
@@ -31,9 +31,11 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: pnpm install
       - run: pnpm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          path: public
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          external_repository: SukkaLab/filters.cdn.skk.moe
+          publish_branch: master
+          cname: filters.cdn.skk.moe
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: public
+          keep_files: true
