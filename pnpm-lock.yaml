@@ -17,6 +17,9 @@ importers:
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
+      tldts:
+        specifier: ^7.0.17
+        version: 7.0.17
       undici:
         specifier: ^7.16.0
         version: 7.16.0
@@ -1531,8 +1534,15 @@ packages:
   tldts-core@5.7.112:
     resolution: {integrity: sha512-mutrEUgG2sp0e/MIAnv9TbSLR0IPbvmAImpzqul5O/HJ2XM1/I1sajchQ/fbj0fPdA31IiuWde8EUhfwyldY1Q==}
 
+  tldts-core@7.0.17:
+    resolution: {integrity: sha512-DieYoGrP78PWKsrXr8MZwtQ7GLCUeLxihtjC1jZsW1DnvSMdKPitJSe8OSYDM2u5H6g3kWJZpePqkp43TfLh0g==}
+
   tldts@5.7.112:
     resolution: {integrity: sha512-6VSJ/C0uBtc2PQlLsp4IT8MIk2UUh6qVeXB1HZtK+0HiXlAPzNcfF3p2WM9RqCO/2X1PIa4danlBLPoC2/Tc7A==}
+    hasBin: true
+
+  tldts@7.0.17:
+    resolution: {integrity: sha512-Y1KQBgDd/NUc+LfOtKS6mNsC9CCaH+m2P1RoIZy7RAPo3C3/t8X45+zgut31cRZtZ3xKPjfn3TkGTrctC2TQIQ==}
     hasBin: true
 
   to-regex-range@5.0.1:
@@ -3086,9 +3096,15 @@ snapshots:
 
   tldts-core@5.7.112: {}
 
+  tldts-core@7.0.17: {}
+
   tldts@5.7.112:
     dependencies:
       tldts-core: 5.7.112
+
+  tldts@7.0.17:
+    dependencies:
+      tldts-core: 7.0.17
 
   to-regex-range@5.0.1:
     dependencies:

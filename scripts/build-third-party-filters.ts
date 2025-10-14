@@ -23,7 +23,7 @@ const DATA_SOURCE = [
   'https://filters.adtidy.org/extension/ublock/filters/20_optimized.txt',
   'https://filters.adtidy.org/extension/ublock/filters/3.txt',
   'https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt',
-  'https://malware-filter.gitlab.io/pup-filter/pup-filter-agh.txt',
+  // 'https://malware-filter.gitlab.io/pup-filter/pup-filter-agh.txt',
   'https://paulgb.github.io/BarbBlock/blacklists/ublock-origin.txt',
   'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AntiFakeTransparentImagesList.txt',
   'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/ClearURLs%20for%20uBo/clear_urls_uboified.txt',

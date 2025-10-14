@@ -16,6 +16,7 @@
   "dependencies": {
     "foxts": "^4.4.0",
     "picocolors": "^1.1.1",
+    "tldts": "^7.0.17",
     "undici": "^7.16.0"
   },
   "devDependencies": {
