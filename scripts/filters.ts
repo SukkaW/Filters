@@ -3,8 +3,10 @@ import fs from 'node:fs';
 import { OUTPUT_FILTERS_DIR, SRC_FILTERS_DIR } from './_constants';
 import { Readable } from 'node:stream';
 import { TextDecoderStream } from 'node:stream/web';
-import { FilterMinifyStream, TextLineStream } from './_utils';
+import { TextLineStream } from 'foxts/text-line-stream';
+import { FilterMinifyStream } from './_utils';
 import { pipeline } from 'node:stream/promises';
+import { fastStringArrayJoin } from 'foxts/fast-string-array-join';
 
 const date = new Date().toUTCString();
 
@@ -31,13 +33,14 @@ export async function buildFilter() {
   await Promise.all(builds.map(async ([title, fileName]) => {
     const destFile = path.join(OUTPUT_FILTERS_DIR, fileName + '.txt');
 
-    fs.writeFileSync(destFile, templates(
+    fs.writeFileSync(destFile, fastStringArrayJoin(templates(
       title
-    ).join('\n'));
+    ), '\n'));
 
     return pipeline(
       Readable.toWeb(fs.createReadStream(path.resolve(SRC_FILTERS_DIR, fileName, 'index.txt')))
         .pipeThrough(new TextDecoderStream())
+        // @ts-expect-error -- @types/node stream/web is broken
         .pipeThrough(new TextLineStream())
         .pipeThrough(new FilterMinifyStream()),
       fs.createWriteStream(destFile, { flags: 'a' })
