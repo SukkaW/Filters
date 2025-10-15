@@ -125,6 +125,8 @@ lingchenzi.com#@#.category-share
 /ajax/libs/nosleep/*
 # Misc
 ||baidu.com$3p
+||unpkg.com/orejime
+||jsdelivr.net/npm/orejime
 
 # >> HTTPDNS
 # MIUI HTTP DNS
