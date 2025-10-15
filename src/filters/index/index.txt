@@ -251,7 +251,6 @@ crdroid.net###dl-ads
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html
 ||accounts.google.com/gsi/$3p
-@@||accounts.google.com/gsi/$3p,script
 
 # Fuck yorg.io
 yorg.io###adVideoBg
