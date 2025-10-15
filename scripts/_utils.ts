@@ -16,13 +16,24 @@ export class FilterMinifyStream extends TransformStream<string, string> {
       transform: (line, controller) => {
         if (
           line.length === 0 // ignore empty lines
-          || line[0] === '!' // ignore comments
           || (
             line[0] === '#' // ignore comments
             && (line[1] !== '#' && line[1] !== '@') // but keep ## and #@#
           )
           || (line[0] === '[' && line[line.length - 1] === ']')
         ) {
+          return;
+        }
+
+        if (
+          line[0] === '!' // ignore comments
+          // && line[1] !== '#' // do not ignore lines for !#if and !#endif
+        ) {
+          return;
+        }
+
+        // Special handling of Dandelion Sprout's Anti-Malware List.txt
+        if (line.includes('$ipaddress') || line.includes(',ipaddress=')) {
           return;
         }
 

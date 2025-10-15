@@ -27,6 +27,7 @@ const DATA_SOURCE = [
       'https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt',
       'https://paulgb.github.io/BarbBlock/blacklists/ublock-origin.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AnnoyancesList',
+      'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/DailyMotionSimplicity.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Dandelion%20Sprout\'s%20Anti-Malware%20List.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/AntiAdoptablesList.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/AntiCelebBirthList.txt',
@@ -48,14 +49,14 @@ const DATA_SOURCE = [
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/stayingonbrowser/Staying%20On%20The%20Phone%20Browser',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AdRemovalListForUnusualAds.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/Anti-Elsagate%20List.txt',
-      'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/KnowYourMemePureBrowsingExperience.txt',
+      'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/KnowYourMemePureBrowsingExperience.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/Anti-\'Custom%20cursors\'%20List.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/TwitchPureViewingExperience.txt',
 
-      'https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt',
+      'https://cdn.jsdelivr.net/gh/hoshsadiq/adblock-nocoin-list@master/nocoin.txt',
       'https://ublockorigin.github.io/uAssets/filters/filters-mobile.txt',
       'https://www.i-dont-care-about-cookies.eu/abp/',
-      'https://github.com/cjx82630/cjxlist/blob/master/cjx-ublock.txt'
+      'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-ublock.txt'
     ]
   },
   {
@@ -64,7 +65,7 @@ const DATA_SOURCE = [
     sources: [
       // --- Missing in uBO (Added in AdGuard):
       'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt', // AdGuard maintain its own data along side EasyPrivacy
-      'https://github.com/cjx82630/cjxlist/blob/master/cjx-annoyance.txt' // Available in AdGuard as an option
+      'https://raw.githubusercontent.com/cjx82630/cjxlist/refs/heads/master/cjx-annoyance.txt' // Available in AdGuard as an option
     ]
   },
   {
@@ -124,7 +125,12 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
       console.log(picocolors.green('[fetch]'), url);
 
       // eslint-disable-next-line no-await-in-loop -- fetch one by one
-      const resp = await $$fetch(url, { headers: { 'User-Agent': pickOne(topUserAgents) } });
+      const resp = await $$fetch(url, {
+        headers: {
+          'User-Agent': pickOne(topUserAgents),
+          Referer: url
+        }
+      });
 
       const lineStreams = nullthrow(resp.body, `${picocolors.red('[fetch] missing body')} - ${url}`)
         .pipeThrough(new TextDecoderStream());
