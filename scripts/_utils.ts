@@ -1,5 +1,3 @@
-import { TransformStream } from 'node:stream/web';
-
 import { HostnameSmolTrie } from './_trie';
 import { getHostname } from 'tldts';
 
@@ -75,6 +73,25 @@ export class FilterMinifyStream extends TransformStream<string, string> {
           controller.enqueue('\n');
         });
       }
+    });
+  }
+}
+
+export class DebugStream extends TransformStream<string, string> {
+  constructor(textToFind?: string | null, meta?: string) {
+    const transform = textToFind
+      ? (chunk: string, controller: TransformStreamDefaultController<string>) => {
+        if (chunk.includes(textToFind)) {
+          console.log(`found (${meta || 'unknown source'}):`, chunk);
+        }
+        controller.enqueue(chunk);
+      }
+      : (chunk: string, controller: TransformStreamDefaultController<string>) => {
+        controller.enqueue(chunk);
+      };
+
+    super({
+      transform
     });
   }
 }

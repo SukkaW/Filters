@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { OUTPUT_FILTERS_DIR } from './_constants';
 import { fastStringArrayJoin } from 'foxts/fast-string-array-join';
-import { FilterMinifyStream } from './_utils';
+import { DebugStream, FilterMinifyStream } from './_utils';
 import { TextLineStream } from 'foxts/text-line-stream';
 import { pickOne } from 'foxts/pick-random';
 import { pipeline } from 'node:stream/promises';
@@ -139,8 +139,13 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
       const [metadataStream, fullStream] = lineStreams.tee();
 
       filterStreams.push(
-      // @ts-expect-error -- @types/node stream/web is broken
-        fullStream.pipeThrough(new TextLineStream({ skipEmptyLines: true }))
+        fullStream
+          // @ts-expect-error -- @types/node stream/web is broken
+          .pipeThrough(new TextLineStream({ skipEmptyLines: true }))
+          .pipeThrough(
+            // @ts-expect-error -- @types/node stream/web is broken
+            new DebugStream()
+          )
       );
 
       // Read first 30 lines for metadata from the metadata branch
@@ -199,7 +204,6 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
       // @ts-expect-error -- @types/node stream/web is broken
         filterStreams
       ).pipeThrough(
-      // @ts-expect-error -- @types/node stream/web is broken
         new FilterMinifyStream()
       ),
       outputWriteStream

@@ -42,6 +42,7 @@ export async function buildFilter() {
         .pipeThrough(new TextDecoderStream())
         // @ts-expect-error -- @types/node stream/web is broken
         .pipeThrough(new TextLineStream())
+        // @ts-expect-error -- @types/node stream/web is broken
         .pipeThrough(new FilterMinifyStream()),
       fs.createWriteStream(destFile, { flags: 'a' })
     );
