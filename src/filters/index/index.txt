@@ -173,6 +173,10 @@ github.com##article[data-hydro-view*="ADDED_TO_LIST"]
 github.com##article[data-hydro-view*="RELEASE"]
 github.com##article[data-hydro-view*="NEW_DISCUSSION"]
 
+# fuck npm style
+npmjs.com##a[aria-labelledby*="repository-link"]:style(margin: 0 !important)
+npmjs.com##a[aria-labelledby*="homePage-link"]:style(margin: 0 !important)
+
 # Allow copy and select on China EMU
 china-emu.cn##+js(aopw, window.onload)
 china-emu.cn##html:style(user-select: initial !important)
@@ -253,6 +257,7 @@ crdroid.net###dl-ads
 # Google Annoy Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html
 ||accounts.google.com/gsi/$3p
+||apis.google.com$3p,domain=udn.com
 
 # Fuck yorg.io
 yorg.io###adVideoBg
@@ -636,6 +641,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 /smartpop$frame
 ||.sf-syn.com/badge_js$3p
+||yastatic.net/share$3p
+||sniperl.ink$3p
 
 ! Fuck Peter Lowe
 @@||e.customeriomail.com
@@ -1167,3 +1174,23 @@ www.reddit.com###games_section
 
 ! Oct 12, 2025 https://vite.dev
 vite.dev##.vp-sponsor-grid
+
+! Oct 15, 2025 https://www.g2.com
+www.g2.com##[href^="https://www.g2.com/external_clickthroughs"]
+
+! Oct 15, 2025 https://www.capterra.com
+www.capterra.com##iframe[id*="faas-modal"]
+||forms-as-a-service.capterra.com$script
+||lead-acquisition-service.softwareadvice.com$script
+
+! Oct 17, 2025 https://zhuanlan.zhihu.com
+zhuanlan.zhihu.com###Popover10-toggle
+
+! Oct 20, 2025 https://www.campbellramble.ai
+www.campbellramble.ai##[aria-label*="Subscribe modal"]
+
+! Oct 22, 2025 https://ping0.cc
+||ping0.cc/*/ad/$image
+
+! Oct 23, 2025 https://www.zoho.com
+||www.zoho.com/sites/zweb/images/workplace/home/sales-export-img.png
