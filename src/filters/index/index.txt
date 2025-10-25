@@ -119,12 +119,11 @@ lingchenzi.com#@#.category-share
 ||playground.oxc.rs$important
 # Map Location
 ||amap.com$3p,domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~giant.com.cn
-||map.baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com|~onelap.cn
+||baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com|~onelap.cn|~assets.nxtrace.org
 ||map.qq.com$3p
 # Prevent Sleep
 /ajax/libs/nosleep/*
 # Misc
-||baidu.com$3p
 ||unpkg.com/orejime
 ||jsdelivr.net/npm/orejime
 
