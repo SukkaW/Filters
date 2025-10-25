@@ -9,6 +9,8 @@
 
 # Misc
 |cdn.jsdelivr.net$dnsrewrite=cdn.jsdelivr.net.cdn.cloudflare.net
+||pages.dev$dnsrewrite=pages.dev.cdn.cloudflare.net
+||workers.dev$dnsrewrite=workers.dev.cdn.cloudflare.net
 ||hanime1.me$dnsrewrite=hanime1.me.cdn.cloudflare.net
 ||hanimeone.com$dnsrewrite=hanimeone.com.cdn.cloudflare.net
 ||maxcdn.bootstrapcdn.com$dnsrewrite=maxcdn.bootstrapcdn.com.cdn.cloudflare.net
