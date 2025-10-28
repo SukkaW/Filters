@@ -1,4 +1,4 @@
-import { $console, onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, ObjectDefineProperty, onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
 
 function logDefuseConsoleClear(this: void) {
   $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
@@ -49,7 +49,7 @@ export function patchConsole() {
 
       try {
         if (key === 'clear') {
-          Object.defineProperty(global.console, key, {
+          ObjectDefineProperty(global.console, key, {
             configurable: false,
             enumerable: true,
             writable: true,
@@ -60,7 +60,7 @@ export function patchConsole() {
           continue;
         }
 
-        Object.defineProperty(global.console, key, {
+        ObjectDefineProperty(global.console, key, {
           configurable: false,
           enumerable: true,
           writable: true,

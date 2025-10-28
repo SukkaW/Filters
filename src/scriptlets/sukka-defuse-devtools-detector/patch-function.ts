@@ -1,4 +1,4 @@
-import { $console, $eval, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, $eval, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, ObjectDefineProperty, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some devtools detector will try to call debugger from eval(), some may simply call `Function('debugger')` instead of `eval('debugger')`,
@@ -34,7 +34,7 @@ export function patchFunction() {
       $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.eval!`, e);
     }
     try {
-      Object.defineProperty(global.Function.prototype, 'constructor', {
+      ObjectDefineProperty(global.Function.prototype, 'constructor', {
         configurable: false,
         enumerable: true,
         writable: true, // some polyfill, like core-js, needs to overrite this for GeneratorFunction and AsyncFunction
@@ -52,10 +52,10 @@ export function patchFunction() {
     // Function.prototype.bind returns a function with "function () { [native code] }"
     // So we can't re-create this function using "eval". So instead we patch function from the origin
     try {
-      Object.defineProperty(global.Function.prototype, 'bind', {
+      ObjectDefineProperty(global.Function.prototype, 'bind', {
         configurable: false,
         enumerable: true,
-        writable: true, // some polyfill, like core-js, needs to overrite this for GeneratorFunction and AsyncFunction
+        writable: false,
         // eslint-disable-next-line @typescript-eslint/unbound-method -- patch
         value: new Proxy(global.Function.prototype.bind, {
           apply(target, thisArg, args: Parameters<typeof global.Function.prototype.bind>) {

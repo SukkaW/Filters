@@ -1,4 +1,4 @@
-import { $console, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, ObjectDefineProperty, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some devtools detector will try to access `window.devtoolsFormatters`
@@ -7,7 +7,7 @@ import { $console, WINDOW_INSTANCE_LIST } from '../_utils';
 export function patchDevtoolsFormatter() {
   WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
-      Object.defineProperty(global, 'devtoolsFormatters', {
+      ObjectDefineProperty(global, 'devtoolsFormatters', {
         configurable: false,
         enumerable: false,
         get() {
