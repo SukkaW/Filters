@@ -22,6 +22,8 @@ urbtix.hk##+js(sukka-defuse-devtools-detector)
 hso108.xyz##+js(sukka-defuse-devtools-detector)
 tvbilibili.com##+js(sukka-defuse-devtools-detector)
 uouin.com##+js(sukka-defuse-devtools-detector)
+ggfw.hrss.gd.gov.cn##+js(sukka-defuse-devtools-detector)
+iplark.com##+js(sukka-defuse-devtools-detector)
 
 ||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
 
@@ -111,6 +113,10 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 @@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
 lingchenzi.com#@#.category-share
 @@||sentry.io^$domain=ui.com
+
+# bad rules, priratebay.org actually require JS again
+*$script,from=thepiratebay.org,badfilter
+
 
 # >> Blacklist
 # Test
@@ -205,6 +211,19 @@ www.bilibili.com##.r-con
 /igd.xml$important
 # Fuck Biligame
 ||biligame.com
+
+# https://iknowwhatyoudownload.com Prevent Screenshot IP Leaks
+iknowwhatyoudownload.com##[href="/en/peer"]
+
+# Defuse Stripe fingerprinting/tracking
+stripe.com##+js(no-fetch-if, r.stripe.com/b method:POST)
+||r.stripe.com/b^$redirect=noop.txt
+
+# Hide archive.org Donation iframe
+||archive.org/includes/donate
+
+# Whitelist PerfOps for ip.skk.moe only
+@@||perfops.io/500b-bench.jpg$domain=localhost|ip.skk.moe
 
 # Fuck AdFoc URL Shortner
 ! disable all scripts
@@ -595,7 +614,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 /ads.css
 
-||unifi.ui.com/sw.js
+# ||unifi.ui.com/sw.js # break UniFi InnerSpace
 ||tauri.app/service-worker.js
 
 ||dashboard.render.com/segcdn/
@@ -909,10 +928,6 @@ community.cloudflare.com##.modal-container
 ! Jun 30, 2024 https://www.bandbbs.cn
 www.bandbbs.cn##.ad-container
 
-! Aug 24, 2024 https://www.zaobao.com.sg
-||static.zaobao.com.sg/s3fs-public/2024-06/pantry-news-talk-$image
-||static.zaobao.com.sg/s3fs-public/2024-06/lianhe-zaobao-club-$image
-
 ! Aug 31, 2024 https://ny528.com
 ||ny528.com/APK/PNG/$image
 ||ny528.com/images/ad_$image
@@ -1193,3 +1208,15 @@ www.campbellramble.ai##[aria-label*="Subscribe modal"]
 
 ! Oct 23, 2025 https://www.zoho.com
 ||www.zoho.com/sites/zweb/images/workplace/home/sales-export-img.png
+
+! Oct 29, 2025 https://www.zaobao.com.sg
+||static.zaobao.com.sg/s3fs-public/2024-06/pantry-news-talk-$image
+||static.zaobao.com.sg/s3fs-public/2024-06/lianhe-zaobao-club-$image
+||static.zaobao.com.sg/s3fs-public/article-banner/website/$image
+
+! Oct 31, 2025 https://zhale.me
+||zhale.me/article/sponsor/$image
+zhale.me##.sponsor-card
+
+! Nov 5, 2025 https://tailwindcss.com
+||tailwindcss.com/*book-promo$image
