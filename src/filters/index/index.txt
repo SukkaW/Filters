@@ -135,9 +135,10 @@ lingchenzi.com#@#.category-share
 
 # >> HTTPDNS
 # MIUI HTTP DNS
-/*/sign_d?*$all
+/*/sign_d?*$all,important
 # Aliyun HTTP DNS
-/*/resolve?*$all
+/*/resolve?*$all,important
+/*/dns_resolve_backup?*$all,important
 ://223.5.5.5$important
 ://223.6.6.6$important
 # Baidu Cloud HTTP DNS
@@ -202,12 +203,21 @@ www.bilibili.com##.pop-live-small-mode
 www.bilibili.com##.video-page-game-card-small
 www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
+||boss.hdslb.com
 ! bilibili.com##+js(nowebrtc)
 /bili-user-fingerprint$script
 /track-collect.js
 # P2P CDN fuck (works with IP based requests)
 &os=mcdn
-# Bilibili App sometimes reqeuest ISP modem for PCDN support
+
+http://*$app=com.bilibili.app.in
+*://*:80$app=com.bilibili.app.in
+*:3478$app=com.bilibili.app.in
+http://*$app=tv.danmaku.bili
+*://*:80$app=tv.danmaku.bili
+*:3478$app=tv.danmaku.bili
+
+# Bilibili App sometimes requests ISP modem for PCDN support
 /igd.xml$important
 # Fuck Biligame
 ||biligame.com
@@ -245,6 +255,9 @@ aliyun.com##+js(set, aplus.getPageSPM, noopFunc)
 aliyun.com##+js(set, aplus.getElementSPM, noopFunc)
 aliyun.com##+js(set, g_SPM, {})
 aliyun.com##+js(set, g_SPM.getParam, falseFunc)
+
+# fuck taobao item in idlefish app
+||item.taobao.com^$app=com.taobao.idlefish
 
 # Defuse URL shortener
 5w.fit##+js(nostif,redirect)
