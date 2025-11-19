@@ -229,6 +229,9 @@ iknowwhatyoudownload.com##[href="/en/peer"]
 stripe.com##+js(no-fetch-if, r.stripe.com/b method:POST)
 ||r.stripe.com/b^$redirect=noop.txt
 
+# Defuse Region Blocking
+||ip.sb$domain=alicesw.com
+
 # Hide archive.org Donation iframe
 ||archive.org/includes/donate
 
@@ -551,6 +554,7 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 ||api.vector.co/pixel
 
 ||www.google.com/adsense/domains/caf.js*$redirect=noop.js
+||www.googletagmanager.com$frame,redirect=noop.html
 ||urlstats.com/counter
 
 @@||humix.com/video.js$domain=humix.com
@@ -674,6 +678,26 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||.sf-syn.com/badge_js$3p
 ||yastatic.net/share$3p
 ||sniperl.ink$3p
+
+||uhn.cx/api/v1/log
+
+/visittrack.js
+
+/prebid_$script
+
+||lf3-data.volccdn.com$redirect=noop.js
+/log-sdk/
+
+||res.wx.qq.com$3p
+
+||download.cnet.com/web-stats/
+
+||ad-delivery.net$image,redirect=1x1.gif
+||sp.pluto.tv$redirect=noop.txt
+||pluto.tv/v1/pixel$redirect=1x1.gif
+
+||esm.sh/@solana/$domain=v2ex.com,redirect=noop.js
+||wwads.cn$script,redirect=noop.js
 
 ! Fuck Peter Lowe
 @@||e.customeriomail.com
@@ -1233,3 +1257,6 @@ zhale.me##.sponsor-card
 
 ! Nov 5, 2025 https://tailwindcss.com
 ||tailwindcss.com/*book-promo$image
+
+! Nov 13, 2025 https://tube.hentaistream.com
+||tube.hentaistream.com/wp-includes/images/hvilla/*.gif$image
