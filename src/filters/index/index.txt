@@ -688,7 +688,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||lf3-data.volccdn.com$redirect=noop.js
 /log-sdk/
 
-||res.wx.qq.com$3p
+||res.wx.qq.com^$3p,domain=~ip.skk.moe|~localhost
 
 ||download.cnet.com/web-stats/
 
