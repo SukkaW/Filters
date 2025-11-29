@@ -32,6 +32,11 @@ iplark.com##+js(sukka-defuse-devtools-detector)
 ###adb-mask
 ||crackle.com/vendor/adex.js
 
+||everymac.com/javascripts/an.js
+||everyi.com/javascripts/an.js
+||everymac.com/templates/prompt.html
+||everyi.com/templates/prompt.html
+
 # >> Service Worker
 stackblitz.com#@#+js(sukka-defuse-service-worker)
 webcontainer.io#@#+js(sukka-defuse-service-worker)
@@ -137,7 +142,7 @@ lingchenzi.com#@#.category-share
 # MIUI HTTP DNS
 /*/sign_d?*$all,important
 # Aliyun HTTP DNS
-/*/resolve?*$all,important
+/*/resolve?*$all,important,domain=~dnscontrol.org
 /*/dns_resolve_backup?*$all,important
 ://223.5.5.5$important
 ://223.6.6.6$important
@@ -698,6 +703,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 ||esm.sh/@solana/$domain=v2ex.com,redirect=noop.js
 ||wwads.cn$script,redirect=noop.js
+
+||acquia.com/ct
 
 ! Fuck Peter Lowe
 @@||e.customeriomail.com
@@ -1260,3 +1267,15 @@ zhale.me##.sponsor-card
 
 ! Nov 13, 2025 https://tube.hentaistream.com
 ||tube.hentaistream.com/wp-includes/images/hvilla/*.gif$image
+
+! Nov 20, 2025 https://www.ip33.cn
+www.ip33.cn##.vps-widget-container
+
+! Nov 27, 2025 https://everymac.com
+everymac.com###contentsponleft
+
+! Nov 28, 2025 https://seeklogo.com
+seeklogo.com##.googlePartnersWp
+
+! Nov 29, 2025 https://www.gl-inet.com
+www.gl-inet.com##.fixed-video
