@@ -37,13 +37,10 @@ const DATA_SOURCE = [
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/AntiNonNewsList.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/AntiPinterestInSearchResultsList.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt',
-      'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Dandelion%20Sprout\'s%20Anti-Malware%20List.txt',
-      'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/ClearURLs%20for%20uBo/clear_urls_uboified.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/Pro-LED%20List.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/I%20Don\'t%20Want%20to%20Download%20Your%20Browser.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/ImgurPureImageryExperience.txt',
-      'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/RedditTrashRemovalService.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/RedditTrashRemovalService.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/WikiaPureBrowsingExperience.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/stayingonbrowser/Staying%20On%20The%20Phone%20Browser',
@@ -55,7 +52,6 @@ const DATA_SOURCE = [
 
       'https://cdn.jsdelivr.net/gh/hoshsadiq/adblock-nocoin-list@master/nocoin.txt',
       'https://ublockorigin.github.io/uAssets/filters/filters-mobile.txt',
-      'https://www.i-dont-care-about-cookies.eu/abp/',
       'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-ublock.txt'
     ]
   },
@@ -65,7 +61,7 @@ const DATA_SOURCE = [
     sources: [
       // --- Missing in uBO (Added in AdGuard):
       'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt', // AdGuard maintain its own data along side EasyPrivacy
-      'https://raw.githubusercontent.com/cjx82630/cjxlist/refs/heads/master/cjx-annoyance.txt' // Available in AdGuard as an option
+      'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt' // Available in AdGuard as an option
     ]
   },
   {
@@ -138,16 +134,6 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
       // Tee the stream to read metadata from one branch and pipe the full stream to FilterMinifyStream from the other
       const [metadataStream, fullStream] = lineStreams.tee();
 
-      filterStreams.push(
-        fullStream
-          // @ts-expect-error -- @types/node stream/web is broken
-          .pipeThrough(new TextLineStream({ skipEmptyLines: true }))
-          .pipeThrough(
-            // @ts-expect-error -- @types/node stream/web is broken
-            new DebugStream()
-          )
-      );
-
       // Read first 30 lines for metadata from the metadata branch
       let rawContent = '';
       const reader = metadataStream.getReader();
@@ -166,6 +152,16 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
       const metadata = extractMetadataFromList(rawContent, [
         'Title', 'Homepage', 'Version', 'Last modified', 'Licence'
       ]);
+
+      filterStreams.push(fullStream
+        // @ts-expect-error -- @types/node stream/web is broken
+        .pipeThrough(new TextLineStream({ skipEmptyLines: true }))
+        .pipeThrough(
+          // @ts-expect-error -- @types/node stream/web is broken
+          new DebugStream('async/folsrch', url)
+        )
+        // @ts-expect-error -- @types/node stream/web is broken
+        .pipeThrough(new FilterMinifyStream(metadata.title + ' ' + url)));
 
       const appendOutputMeta: string[] = [];
       if (metadata.title) {
@@ -198,14 +194,10 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
 
     const outputWriteStream = fs.createWriteStream(destFile, { flags: 'a' });
 
-    // eslint-disable-next-line no-await-in-loop -- run download in sequential
+    // eslint-disable-next-line no-await-in-loop -- pipe in sequential
     await pipeline(
-      joinReadableStreams(
       // @ts-expect-error -- @types/node stream/web is broken
-        filterStreams
-      ).pipeThrough(
-        new FilterMinifyStream()
-      ),
+      joinReadableStreams(filterStreams),
       outputWriteStream
     );
 

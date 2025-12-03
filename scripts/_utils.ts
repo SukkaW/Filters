@@ -4,9 +4,15 @@ export class FilterMinifyStream extends TransformStream<string, string> {
   // private readonly trie = new HostnameSmolTrie();
   // private readonly thirdPartyTrie = new HostnameSmolTrie();
 
-  constructor() {
+  private metaWritten = false;
+
+  constructor(filterName = 'unknown filter') {
     super({
       transform: (line, controller) => {
+        if (!this.metaWritten) {
+          controller.enqueue(`! ${filterName}\n`);
+          this.metaWritten = true;
+        }
         if (
           line.length === 0 // ignore empty lines
           || (
