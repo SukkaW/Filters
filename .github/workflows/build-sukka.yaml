@@ -16,11 +16,11 @@ on:
 jobs:
   build:
     name: Build Filters/Scriptlets
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-slim
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
         with:
