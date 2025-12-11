@@ -24,7 +24,7 @@ const DATA_SOURCE = [
       'https://cdn.jsdelivr.net/gh/easylist/easylist@master/custom-lists/youtube-combo-list.txt',
       'https://cdn.jsdelivr.net/gh/easylist/easylist@master/custom-lists/youtube-whatdoyoulikedoforfun.txt',
       'https://easylist-downloads.adblockplus.org/antiadblockfilters.txt',
-      'https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt',
+      // 'https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt',
       'https://paulgb.github.io/BarbBlock/blacklists/ublock-origin.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AnnoyancesList',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/DailyMotionSimplicity.txt',
