@@ -60,6 +60,9 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 @@||instagram.com/p/$frame,3p,badfilter
 @@||instagram.com^$generichide,badfilter
 
+! Status Page
+||statuspage.io/embed/frame$redirect=click2load.html
+
 ! Misc
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
@@ -117,6 +120,10 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 google.*#@#div[data-lhcontainer="1"][id][data-hveid] > div[data-mcpr][data-mg-cp][data-mcp]
 ://www.google.*/async/folsrch?*&async=_basejs:*,_basecomb:*&q=$xhr,badfilter
 google.*#@#div[data-q][data-al]
+# Unblock geolocation-db.com from Dan Pollocks Hosts file
+@@||geolocation-db.com^
+! Fuck Peter Lowe
+@@||e.customeriomail.com
 # Misc
 @@||awstrack.me^$badfilter
 @@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
@@ -334,9 +341,7 @@ hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
 
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
-av.tube4us.top##a[href*="youtube.com/watch"]
-av4us.uk##a[href*="youtube.com/watch"]
-av4us.top##a[href*="youtube.com/watch"]
+av4.homes##a[href*="youtube.com/watch"]
 
 # Silca Tire Pressure Calculator blocks all third party SDK
 ||silca.cc/*/pro-tire-pressure-calculator^$csp=script-src 'unsafe-eval' 'unsafe-inline'
@@ -713,9 +718,9 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||wwads.cn$script,redirect=noop.js
 
 ||acquia.com/ct
+||v.bytes.media/vs.js$redirect=noop.js
 
-! Fuck Peter Lowe
-@@||e.customeriomail.com
+/ad-shield*$3p
 
 # >> Auto Generated - per site
 
@@ -1287,3 +1292,6 @@ seeklogo.com##.googlePartnersWp
 
 ! Nov 29, 2025 https://www.gl-inet.com
 www.gl-inet.com##.fixed-video
+
+! Dec 13, 2025 https://time.is
+||time.is/img/app_store_badge/$image
