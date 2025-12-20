@@ -14,26 +14,26 @@
   "author": "Sukka <https://skk.moe>",
   "license": "MIT",
   "dependencies": {
-    "foxts": "^5.0.0",
+    "foxts": "^5.0.4",
     "picocolors": "^1.1.1",
-    "tldts": "^7.0.18",
+    "tldts": "^7.0.19",
     "undici": "^7.16.0"
   },
   "devDependencies": {
-    "@adguard/aglint": "^3.0.0",
-    "@eslint-sukka/node": "^8.0.4",
+    "@adguard/aglint": "^3.0.2",
+    "@eslint-sukka/node": "^8.0.6",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@swc-node/register": "^1.11.1",
-    "@swc/core": "^1.15.2",
-    "@types/node": "^24.10.1",
-    "eslint": "^9.39.1",
-    "eslint-config-sukka": "^8.0.4",
-    "eslint-formatter-sukka": "^8.0.4",
-    "rollup": "^4.53.2",
+    "@swc/core": "^1.15.7",
+    "@types/node": "^24.10.4",
+    "eslint": "^9.39.2",
+    "eslint-config-sukka": "^8.0.6",
+    "eslint-formatter-sukka": "^8.0.6",
+    "rollup": "^4.54.0",
     "rollup-plugin-swc3": "^0.12.1",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.22.0",
+  "packageManager": "pnpm@10.26.1",
   "pnpm": {
     "overrides": {
       "eslint>chalk": "npm:picocolors@^1.1.1"
