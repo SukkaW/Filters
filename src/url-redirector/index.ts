@@ -47,16 +47,6 @@ export default [
   {
     basename: 'redirect-public-cdn',
     rules: [
-      ['cdn.staticfile.net', 'cdnjs.cloudflare.com/ajax/libs'],
-      ['cdn.staticfile.org', 'cdnjs.cloudflare.com/ajax/libs'],
-      ['cdn.bootcss.com', 'cdnjs.cloudflare.com/ajax/libs'],
-      ['cdn.bootcdn.net', 'cdnjs.cloudflare.com/ajax/libs'],
-      ['^polyfill.io', 'cdnjs.cloudflare.com/polyfill'],
-      ['polyfill.top', 'cdnjs.cloudflare.com/polyfill'],
-      ['fastly-polyfill.io', 'cdnjs.cloudflare.com/polyfill'],
-      ['polyfill-fastly.net', 'cdnjs.cloudflare.com/polyfill'],
-      ['fastly-polyfill.net', 'cdnjs.cloudflare.com/polyfill'],
-
       [
         'ajax.googleapis.com/ajax/libs/bootstrap/([^/]+)/',
         'cdn.jsdelivr.net/npm/bootstrap@$1/dist/'
