@@ -732,6 +732,10 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 /ad-shield*$3p
 
+# >> URL Redirect
+||ajax.googleapis.com$all,uritransform=/ajax.googleapis.com\/ajax\/libs\/jquery\/([^\/]+)\//cdn.jsdelivr.net\/npm\/jquery@$1\/dist\//
+||ajax.googleapis.com$all,uritransform=/ajax.googleapis.com\/ajax\/libs\/bootstrap\/([^\/]+)\//cdn.jsdelivr.net\/npm\/bootstrap@$1\/dist\//
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn

@@ -48,15 +48,6 @@ export default [
     basename: 'redirect-public-cdn',
     rules: [
       [
-        'ajax.googleapis.com/ajax/libs/bootstrap/([^/]+)/',
-        'cdn.jsdelivr.net/npm/bootstrap@$1/dist/'
-      ],
-      [
-        'ajax.googleapis.com/ajax/libs/jquery/([^/]+)/',
-        'cdn.jsdelivr.net/npm/jquery@$1/dist/'
-      ],
-
-      [
         'bootstrapcdn.com/bootstrap/([^/]+)/',
         'cdn.jsdelivr.net/npm/bootstrap@$1/dist/'
       ],
