@@ -1,2 +1,2 @@
-             trustedListPrefixes ublock- user- adguard- https://filter.adtidy.org https://filters.cdn.skk.moe
+             trustedListPrefixes ublock- user- adguard- https://filter.adtidy.org https://filters.cdn.skk.moe https://ruleset.skk.moe
            userResourcesLocation https://filters.cdn.skk.moe/scriptlets/sukka-defuse-devtools-detector.js?5 https://filters.cdn.skk.moe/scriptlets/sukka-disable-av1.js https://filters.cdn.skk.moe/scriptlets/sukka-defuse-service-worker.js
