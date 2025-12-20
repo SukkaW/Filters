@@ -83,6 +83,8 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 @@||transcend-cdn.com$domain=1password.com
 @@||intercom.io$domain=namesilo.com|cdn77.com
 @@||zopim.com$domain=ui.com|account.ui.com
+# zopim was used by Slack Support Chat
+@@||zopim.com^$3p,domain=slack.com
 
 # >> Performance
 ||versionbadg.es$domain=npmjs.com
@@ -342,6 +344,10 @@ hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
 av4.homes##a[href*="youtube.com/watch"]
+shirouto4.top##a[href*="youtube.com/watch"]
+# AV4 Redirect Image Hosting
+favicon.ico$image,uritransform=/https:\/\/(.+)\/favicon.ico/https:\/\/favicone.com\/$1/,domain=av4.homes|shirouto4.top|av.tube4us.top,denyallow=cdn.staticdelivr.com|wp.com|favicone.com
+*$image,uritransform=/(.+)/https:\/\/cdn.staticdelivr.com\/img\/images?url=$1/,domain=av4.homes|shirouto4.top|av.tube4us.top,denyallow=cdn.staticdelivr.com|wp.com|favicone.com
 
 # Silca Tire Pressure Calculator blocks all third party SDK
 ||silca.cc/*/pro-tire-pressure-calculator^$csp=script-src 'unsafe-eval' 'unsafe-inline'
@@ -446,6 +452,10 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 ||cdn.lgrckt-in.com/logger
 
 ||visitor.leadsourcing.co$3p
+||mymediaing.my/sdk$3p
+||endorsely.com$3p
+
+||static.doubleclick.net/instream/ad_status.js$redirect=noop.js
 
 # force block
 ||adtech.redventures.io^$important
@@ -1295,3 +1305,6 @@ www.gl-inet.com##.fixed-video
 
 ! Dec 13, 2025 https://time.is
 ||time.is/img/app_store_badge/$image
+
+! Dec 19, 2025 https://digvps.com
+||digvps.com/*/sponsors/$image
