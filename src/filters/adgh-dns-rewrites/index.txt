@@ -2,6 +2,9 @@
 ||*^$dnstype=HTTPS,dnsrewrite=NXDOMAIN
 ||*^$dnstype=TYPE65,dnsrewrite=NXDOMAIN
 
+# Redirect Apple System Updates to Aliyun CDN
+||updates.cdn-apple.com$dnsrewrite=updates.cdn-apple.com.w.kunlunca.com
+
 # Redirect NTP servers to Chinese servers
 ||pool.ntp.org$dnsrewrite=time.edu.cn
 ||time.apple.com$dnsrewrite=time.windows.com
@@ -15,5 +18,4 @@
 ||hanimeone.com$dnsrewrite=hanimeone.com.cdn.cloudflare.net
 ||maxcdn.bootstrapcdn.com$dnsrewrite=maxcdn.bootstrapcdn.com.cdn.cloudflare.net
 |cloudflare.f-droid.org$dnsrewrite=cloudflare.f-droid.org.cdn.cloudflare.net
-||pages.dev$dnsrewrite=pages.dev.cdn.cloudflare.net
 ||imgur.com$dnsrewrite=ipv4.imgur.map.fastly.net

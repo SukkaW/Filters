@@ -598,6 +598,9 @@ producthunt.com##[data-test^="ad-slot"]
 ||www.google-analytics.com/collect$redirect=1x1.gif
 ||connect.xfani.com/images/ad
 
+# Some filter incorrectly unblocks GTM for Docker Hub, which is not true
+||googletagmanager.com/gtm.js$3p,script,redirect=google-analytics_analytics.js,domain=hub.docker.com,important
+
 ||supjav.com/fyh-api.php
 ||scp-wiki.wdfiles.com/local--files/main/250_logo.png$domain=scp-wiki-cloud.wikidot.com
 
@@ -742,12 +745,13 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 ||use.fontawesome.com/releases/v5*$all,uritransform=/use.fontawesome.com\/releases\/v5([^\/]+)\//cdn.jsdelivr.net\/npm\/@fortawesome\/fontawesome-free@5.3.1\//
 
-||0.gravatar.com/avatar/$all,uritransform=/0.gravatar.com/secure.gravatar.com/
-||1.gravatar.com/avatar/$all,uritransform=/1.gravatar.com/secure.gravatar.com/
-||2.gravatar.com/avatar/$all,uritransform=/2.gravatar.com/secure.gravatar.com/
-||3.gravatar.com/avatar/$all,uritransform=/3.gravatar.com/secure.gravatar.com/
-||s.gravatar.com/avatar/$all,uritransform=/s.gravatar.com/secure.gravatar.com/
-||www.gravatar.com/avatar/$all,uritransform=/www.gravatar.com/secure.gravatar.com/
+://gravatar.com/avatar/$all,uritransform=/gravatar\.com/secure.gravatar.com/
+||0.gravatar.com/avatar/$all,uritransform=/0\.gravatar\.com/secure.gravatar.com/
+||1.gravatar.com/avatar/$all,uritransform=/1\.gravatar\.com/secure.gravatar.com/
+||2.gravatar.com/avatar/$all,uritransform=/2\.gravatar\.com/secure.gravatar.com/
+||3.gravatar.com/avatar/$all,uritransform=/3\.gravatar\.com/secure.gravatar.com/
+||s.gravatar.com/avatar/$all,uritransform=/s\.gravatar\.com/secure.gravatar.com/
+||www.gravatar.com/avatar/$all,uritransform=/www\.gravatar\.com/secure.gravatar.com/
 
 # >> Auto Generated - per site
 
