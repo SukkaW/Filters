@@ -455,6 +455,8 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 ||mymediaing.my/sdk$3p
 ||endorsely.com$3p
 
+||render.com/pan/api/event
+
 ||static.doubleclick.net/instream/ad_status.js$redirect=noop.js
 
 # force block
@@ -1325,3 +1327,9 @@ www.gl-inet.com##.fixed-video
 
 ! Dec 19, 2025 https://digvps.com
 ||digvps.com/*/sponsors/$image
+
+! Dec 27, 2025 https://nmac.to
+nmac.to##.signoff
+
+! Dec 30, 2025 https://www.printables.com
+||media.printables.com/media/banner_images/$image
