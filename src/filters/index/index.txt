@@ -247,8 +247,19 @@ iknowwhatyoudownload.com##[href="/en/peer"]
 stripe.com##+js(no-fetch-if, r.stripe.com/b method:POST)
 ||r.stripe.com/b^$redirect=noop.txt
 
+# Fuck DeepL website
+! annoyance modal
+www.deepl.com###lmt_pro_ad_container
+www.deepl.com###dl_quotes_container
+! defuse tracking
+||gtm.deepl.com/gtm.js$redirect=googletagmanager_gtm.js
+deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }')
+
 # Defuse Region Blocking
 ||ip.sb$domain=alicesw.com
+
+# Defuse Annoyance sponsorapp.io widget
+||sponsorapp.io^$3p
 
 # Hide archive.org Donation iframe
 ||archive.org/includes/donate
@@ -309,7 +320,7 @@ crdroid.net###dl-ads
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 
-# Google Annoy Popup "login as"
+# Google Annoyance Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html
 ||accounts.google.com/gsi/$3p
 ||apis.google.com$3p,domain=udn.com
@@ -824,9 +835,6 @@ blog.sohu.com##.focus-pic
 sm.ms##.wwads_abp_open
 ||sm.ms/assets/js/wwads_blocked.js
 
-! 2021-12-12 https://www.deepl.com
-www.deepl.com###lmt_pro_ad_container
-
 ! 2021-12-20 https://ping.chinaz.com
 ||csstools.chinaz.com/tools/images/*
 ping.chinaz.com##.ToolHead
@@ -840,9 +848,6 @@ react.semantic-ui.com###docs-carbonads
 
 ! 2022-03-13 https://pastebin.com
 ||pastebin.com/themes/pastebin/img/no_war_ukraine.jpeg
-
-! 2022-03-24 https://www.deepl.com
-www.deepl.com###dl_quotes_container
 
 ! 2022-04-03 https://ip.sb
 ip.sb##.wwads_abp
@@ -1333,3 +1338,7 @@ nmac.to##.signoff
 
 ! Dec 30, 2025 https://www.printables.com
 ||media.printables.com/media/banner_images/$image
+
+! Jan 3, 2026 https://www.news.com.au
+www.news.com.au##.loader-overlay
+www.news.com.au##.LoaderBox
