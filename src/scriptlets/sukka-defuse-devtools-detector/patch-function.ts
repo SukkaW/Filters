@@ -51,23 +51,32 @@ export function patchFunction() {
 
     // Function.prototype.bind returns a function with "function () { [native code] }"
     // So we can't re-create this function using "eval". So instead we patch function from the origin
+
+    // eslint-disable-next-line @typescript-eslint/unbound-method -- we only extract the method, not call it
+    const originalFunctionPrototypeBind = global.Function.prototype.bind;
+    const proxied = new Proxy(originalFunctionPrototypeBind, {
+      apply(target, thisArg, args: Parameters<typeof global.Function.prototype.bind>) {
+        const functionString = FunctionPrototypeToString.call(thisArg);
+        if (argHasDebugger(functionString)) {
+          // re-create the function using eval
+          thisArg = $eval('(' + defuseDebuggerInArg(functionString, logDefuseFunctionBindDebugger) + ')');
+        }
+
+        return Reflect.apply(target, thisArg, args);
+      }
+    });
+
     try {
       ObjectDefineProperty(global.Function.prototype, 'bind', {
         configurable: false,
         enumerable: true,
-        writable: false,
-        // eslint-disable-next-line @typescript-eslint/unbound-method -- patch
-        value: new Proxy(global.Function.prototype.bind, {
-          apply(target, thisArg, args: Parameters<typeof global.Function.prototype.bind>) {
-            const functionString = FunctionPrototypeToString.call(thisArg);
-            if (argHasDebugger(functionString)) {
-              // re-create the function using eval
-              thisArg = $eval('(' + defuseDebuggerInArg(functionString, logDefuseFunctionBindDebugger) + ')');
-            }
+        set(v) {
+          $console.warn('[sukka-defuse-devtools-detector]', `detects written of ${globalName}.Function.prototype.bind, will re-apply the proxy!`, { v });
+        },
 
-            return Reflect.apply(target, thisArg, args);
-          }
-        })
+        get() {
+          return proxied;
+        }
       });
     } catch (e) {
       $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.Function.prototype.bind!`, e);
