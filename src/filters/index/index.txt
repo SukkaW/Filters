@@ -261,6 +261,10 @@ deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }
 # Defuse Annoyance Third Party widget
 ||sponsorapp.io^$3p
 ||mosaic.unite.com/js/widget.js$3p
+||polls.services.disqus.com$subdocument
+! Annoyance - WordPress JetPack Plugin Subscribe Modal
+##.jetpack-subscribe-modal__modal-content
+##.jetpack-subscribe-modal
 
 # Hide archive.org Donation iframe
 ||archive.org/includes/donate
@@ -595,6 +599,7 @@ netflav.com/static/js/gtag.js$redirect=noop.js
 
 ||console.cast.ai/analytics
 ||api.vector.co/pixel
+||useitem.io/tracking.js
 
 ||www.google.com/adsense/domains/caf.js*$redirect=noop.js
 ||www.googletagmanager.com$frame,redirect=noop.html
@@ -709,6 +714,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||cdn.jsdelivr.net/npm/bitmovin-analytics
 
 /yummi.js
+/js/script.outbound-links.js
 
 ##.ad-container
 ##.advertising-top-desktop
@@ -1352,3 +1358,9 @@ www.news.com.au##.LoaderBox
 ||static.freedownloadmanager.org/icon_mac/
 ||static.freedownloadmanager.org/img_howto/
 ||static.freedownloadmanager.org/icon/
+
+! Jan 10, 2026 https://lowendaff.com
+||gomami.io/assets/ad/$all
+
+! Jan 14, 2026 https://ap-southeast-2.signin.aws.amazon.com
+||awsstatic.com/onedam/marketing-channels/$image
