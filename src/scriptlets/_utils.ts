@@ -1,10 +1,18 @@
 const fnWs = new WeakSet();
-export function onlyCallOnce(fn: () => void) {
+
+export function onlyCallOnce(fn: () => void): void;
+export function onlyCallOnce<Args extends any[]>(fn: (...args: Args) => void, args: Args): void;
+export function onlyCallOnce(fn: Function, args?: any[]) {
   if (fnWs.has(fn)) {
     return;
   }
   fnWs.add(fn);
-  fn();
+
+  if (args) {
+    fn(...args);
+  } else {
+    fn();
+  }
 }
 
 export const WINDOW_INSTANCE_LIST = (() => {
@@ -54,13 +62,14 @@ export function argHasDebugger(arg: unknown): arg is string {
   return typeof arg === 'string' && arg.includes('debugger');
 }
 
-export function defuseDebuggerInArg(arg: string, loggerFn: () => void): string {
+export function defuseDebuggerInArg(arg: string, loggerFn: (before: string, after: string) => void): string {
   if (argHasDebugger(arg)) {
     const before = arg;
-    onlyCallOnce(loggerFn);
     arg = defuseFunctionString(arg);
 
-    $console.info('[sukka-defuse-devtools-detector]', 'defuse "debugger" in arg', { before, after: arg });
+    onlyCallOnce(loggerFn, [before, arg]);
+
+    // $console.info('[sukka-defuse-devtools-detector]', 'defuse "debugger" in arg', { before, after: arg });
     return arg;
   }
   return arg;

@@ -43,9 +43,9 @@ export function patchTimer() {
   });
 }
 
-function logDefuseSetIntervalDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()');
+function logDefuseSetIntervalDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setInterval()', { before, after });
 };
-function logDefuseSetTimeoutDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setTimeout()');
+function logDefuseSetTimeoutDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from setTimeout()', { before, after });
 }

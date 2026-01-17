@@ -89,22 +89,22 @@ export function patchFunction() {
   });
 }
 
-function logDefuseFunctionDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function()');
+function logDefuseFunctionDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function()', { before, after });
 }
 
-function logDefuseFunctionProrotypeConstructorDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function.prototype.constructor');
+function logDefuseFunctionProrotypeConstructorDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function.prototype.constructor', { before, after });
 }
 
-function logDefuseNewFunctionDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from new Function()');
+function logDefuseNewFunctionDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from new Function()', { before, after });
 }
 
-function logDefuseEvalDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from eval()');
+function logDefuseEvalDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from eval()', { before, after });
 }
 
-function logDefuseFunctionBindDebugger(this: void) {
-  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function.prototype.bind');
+function logDefuseFunctionBindDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function.prototype.bind', { before, after });
 }
