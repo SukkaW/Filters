@@ -406,7 +406,7 @@ hanime1.me##a[href*="//l.labsda.com"]
 
 # Disable AV1 Video
 ! youtube.com##+js(sukka-disable-av1) ! Affecting 8K videos
-bilibili.com##+js(sukka-disable-av1)
+! bilibili.com##+js(sukka-disable-av1) ! Handled by Make Bilibili Great Than Ever Before
 
 # Fuck Reddit, remove Auto Translation
 ||reddit.com$uritransform=/tl=.*//
