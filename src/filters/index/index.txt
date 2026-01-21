@@ -24,8 +24,7 @@ tvbilibili.com##+js(sukka-defuse-devtools-detector)
 uouin.com##+js(sukka-defuse-devtools-detector)
 ggfw.hrss.gd.gov.cn##+js(sukka-defuse-devtools-detector)
 iplark.com##+js(sukka-defuse-devtools-detector)
-
-||bbs.naixi.net/source/plugin/*_7ree/js/js_7ree.js
+boomio.com##+js(sukka-defuse-devtools-detector)
 
 # >> Defuse AdBlock Detector
 ||tags.news.com.au/prod/adblock/adblock.js
@@ -82,9 +81,7 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 # transcend was used to load ada.support
 @@||transcend-cdn.com$domain=1password.com
 @@||intercom.io$domain=namesilo.com|cdn77.com
-@@||zopim.com$domain=ui.com|account.ui.com
-# zopim was used by Slack Support Chat
-@@||zopim.com^$3p,domain=slack.com
+@@||zopim.com$domain=ui.com|account.ui.com|slack.com
 
 # >> Performance
 ||versionbadg.es$domain=npmjs.com
@@ -484,7 +481,6 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 
 ||18comic.vip/static/*/AD
 
-||bootcss.com^$all,badfilter
 ||bootcdn.net^$all,badfilter
 ||bootcss.com^$all,badfilter
 ||staticfile.net^$all,badfilter
@@ -958,7 +954,7 @@ www.sohu.com##.swiper
 www.xenonstack.com##.enterprise-popup-wrapper
 
 ! 2023-08-22 https://popper.js.org
-popper.js.org##.carbonplaceholder
+##.carbonplaceholder
 
 ! 2023-09-10 https://divineengine.net
 divineengine.net##.sidebar-content > .widget_custom_html
