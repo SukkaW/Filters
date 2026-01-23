@@ -171,13 +171,14 @@ spotify.com##div[data-testid="test-ref-div"]
 # >> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
 # Fuck some domestic website by blocking their scripts
-*$script,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn
-*$frame,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn
-.js$domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn
+*$script,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn|blog.gitcode.com
+*$frame,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn|blog.gitcode.com
+.js$domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn|blog.gitcode.com
 
 ||guancha.cn$inline-script
 ||www.toutiao.com$inline-script
 ||www.sohu.com$inline-script
+||blog.gitcode.com$inline-script
 ||www.sohu.com$csp=script-src https://*.itc.cn 'self' 'unsafe-eval' 'unsafe-inline'
 
 # Fix GitHub Markdown style
@@ -245,7 +246,7 @@ stripe.com##+js(no-fetch-if, r.stripe.com/b method:POST)
 ||r.stripe.com/b^$redirect=noop.txt
 
 # Fuck DeepL website
-! annoyance modal
+! modal
 www.deepl.com###lmt_pro_ad_container
 www.deepl.com###dl_quotes_container
 ! defuse tracking
@@ -255,13 +256,15 @@ deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }
 # Defuse Region Blocking
 ||ip.sb$domain=alicesw.com
 
-# Defuse Annoyance Third Party widget
+# Defuse Annoyance
 ||sponsorapp.io^$3p
 ||mosaic.unite.com/js/widget.js$3p
 ||polls.services.disqus.com$subdocument
 ! Annoyance - WordPress JetPack Plugin Subscribe Modal
 ##.jetpack-subscribe-modal__modal-content
 ##.jetpack-subscribe-modal
+! Annoyance - Quiz on news site
+||kwizly.com/embed$3p
 
 # Hide archive.org Donation iframe
 ||archive.org/includes/donate
@@ -349,6 +352,10 @@ blog.csdn.net##.recommend-tit-mod
 blog.csdn.net##.template-box
 blog.csdn.net##.comment-box
 blog.csdn.net###recommend-right
+
+# Fuck GitCode Blog/CSDN login wall, and expand full article
+blog.gitcode.com##.blog-content-detail-mask
+blog.gitcode.com##.blog-content-detail:style(max-height: unset !important)
 
 # Hanime1 defuse hero AD redirect
 hanime1.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
@@ -676,6 +683,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||cdn.h5wan.4399sj.com/h5web-frame/*/disableTools.js
 ||samsung.com/*/analytics.min.js
 ||appier.io$3p
+||goaffpro.com$3p
 
 /ads.css
 
@@ -710,7 +718,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||cdn.jsdelivr.net/npm/bitmovin-analytics
 
 /yummi.js
-/js/script.outbound-links.js
+/script.outbound-links.js
+/script.outbound-links.file-downloads.js
 
 ##.ad-container
 ##.advertising-top-desktop
