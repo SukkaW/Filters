@@ -245,6 +245,12 @@ iknowwhatyoudownload.com##[href="/en/peer"]
 stripe.com##+js(no-fetch-if, r.stripe.com/b method:POST)
 ||r.stripe.com/b^$redirect=noop.txt
 
+# Fuck Xiaoai Speaker App
+||qtfm.cn$important,app=com.xiaomi.mico
+||xmcdn.com$important,app=com.xiaomi.mico
+||gitv.tv$important,app=com.xiaomi.mico
+||qq.com$important,app=com.xiaomi.mico
+
 # Fuck DeepL website
 ! modal
 www.deepl.com###lmt_pro_ad_container
