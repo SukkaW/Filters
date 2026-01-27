@@ -238,6 +238,10 @@ http://*$app=tv.danmaku.bili
 # Fuck Biligame
 ||biligame.com
 
+# Defuse Super.com Storming Tracking Retry
+||cdn.super.com/remote-event-registry.json$xhr
+super.com##+js(prevent-xhr, cdn.super.com/remote-event-registry.json, emptyArr)
+
 # https://iknowwhatyoudownload.com Prevent Screenshot IP Leaks
 iknowwhatyoudownload.com##[href="/en/peer"]
 
@@ -365,7 +369,9 @@ blog.gitcode.com##.blog-content-detail:style(max-height: unset !important)
 
 # Hanime1 defuse hero AD redirect
 hanime1.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
+hanime1.com##+js(rpnt, script, location.href = , window.redirect_prevented =)
 hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
+javchu.com##+js(rpnt, script, location.href = , window.redirect_prevented =)
 
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
@@ -1375,3 +1381,9 @@ www.news.com.au##.LoaderBox
 
 ! Jan 14, 2026 https://ap-southeast-2.signin.aws.amazon.com
 ||awsstatic.com/onedam/marketing-channels/$image
+
+! Jan 25, 2026 https://lowendaff.com
+lowendaff.com###sticky_ads_wrapper
+
+! Jan 26, 2026 https://tsx.is
+||tsx.is/logos/sevalla-full.svg$image
