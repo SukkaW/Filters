@@ -269,7 +269,8 @@ deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }
 # Defuse Annoyance
 ||sponsorapp.io^$3p
 ||mosaic.unite.com/js/widget.js$3p
-||polls.services.disqus.com$subdocument
+||polls.services.disqus.com^$subdocument
+||support.nodeget.com^$3p
 ! Annoyance - WordPress JetPack Plugin Subscribe Modal
 ##.jetpack-subscribe-modal__modal-content
 ##.jetpack-subscribe-modal
@@ -787,8 +788,6 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||3.gravatar.com/avatar/$all,uritransform=/3\.gravatar\.com/secure.gravatar.com/
 ||s.gravatar.com/avatar/$all,uritransform=/s\.gravatar\.com/secure.gravatar.com/
 ||www.gravatar.com/avatar/$all,uritransform=/www\.gravatar\.com/secure.gravatar.com/
-
-||esm.sh$all,uritransform=/esm\.sh/esm.run/
 
 # >> Auto Generated - per site
 
