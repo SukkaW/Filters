@@ -116,7 +116,9 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 # Cloudflare cdn-cgi/trace was used to track IP, but we can whitelist this for ip.skk.moe
 @@||cloudflare.com/cdn-cgi/trace$domain=skk.moe|localhost
 # Unblock Google Search AI overview from AdGuard "Other Annoyance"
-google.*#@#div[data-lhcontainer="1"][id][data-hveid] > div[data-mcpr][data-mg-cp][data-mcp]
+google.*#@#style + div[data-mcpr][style^="margin-bottom:"]:has(div[data-async-type="folsrch"])
+google.*#@#style + div[data-mcpr][style^="margin-bottom:"] div[data-async-type="folsrch"]
+google.*#@#div[data-lhcontainer="1"][eid][data-ved] > div > div > div[jsname] > div[style="display:contents"]
 ://www.google.*/async/folsrch?*&async=_basejs:*,_basecomb:*&q=$xhr,badfilter
 google.*#@#div[data-q][data-al]
 # Unblock geolocation-db.com from Dan Pollocks Hosts file
@@ -207,6 +209,9 @@ china-emu.cn##html:style(user-select: initial !important)
 bgp.he.net###graph4 img:style(max-width: 100% !important;)
 bgp.he.net###graph6 img:style(max-width: 100% !important;)
 
+# Fuck StackOverflow, allow copy question title
+stackoverflow.com##.question-hyperlink:style(pointer-events: none)
+
 # Fuck Bilibili
 ||cm.bilibili.com/cm/api$redirect=noop.txt
 ||hdslb.com/bfs/seed/log/*.js*$redirect=noop.js
@@ -271,6 +276,7 @@ deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }
 ||mosaic.unite.com/js/widget.js$3p
 ||polls.services.disqus.com^$subdocument
 ||support.nodeget.com^$3p
+gettr.com##esr-signup
 ! Annoyance - WordPress JetPack Plugin Subscribe Modal
 ##.jetpack-subscribe-modal__modal-content
 ##.jetpack-subscribe-modal
@@ -487,6 +493,7 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 ||visitor.leadsourcing.co$3p
 ||mymediaing.my/sdk$3p
 ||endorsely.com$3p
+||static.newsbreak.com/business/tracking/
 
 ||render.com/pan/api/event
 

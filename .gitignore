@@ -131,3 +131,4 @@ dist
 
 # others
 public/
+.DS_Store
