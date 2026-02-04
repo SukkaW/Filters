@@ -796,6 +796,14 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||s.gravatar.com/avatar/$all,uritransform=/s\.gravatar\.com/secure.gravatar.com/
 ||www.gravatar.com/avatar/$all,uritransform=/www\.gravatar\.com/secure.gravatar.com/
 
+||ajax.googleapis.com/ajax/libs/jquery$all,uritransform=/ajax.googleapis.com\/ajax\/libs\/jquery\/([^\/]+)\//cdn.jsdelivr.net\/npm\/jquery@$1\/dist\//
+||ajax.googleapis.com/ajax/libs/bootstrap$all,uritransform=/ajax.googleapis.com\/ajax\/libs\/bootstrap\/([^\/]+)\//cdn.jsdelivr.net\/npm\/bootstrap@$1\/dist\//
+
+||code.jquery.com/jquery-*.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.min\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.min.js/
+||code.jquery.com/jquery-*.slim.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.slim\.min\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.slim.min.js/
+||code.jquery.com/ui/*/jquery-ui.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/ui\/([^\/]+)\/jquery-ui\.min\.js/cdn.jsdelivr.net\/npm\/jquery-ui@$1\/dist\/jquery-ui.min.js/
+
+
 # >> Auto Generated - per site
 
 ! zh.moegirl.org.cn
