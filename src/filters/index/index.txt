@@ -172,6 +172,9 @@ spotify.com##div[data-testid="test-ref-div"]
 
 # >> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
+# Remove all AFF ID
+*$removeparam=aff
+
 # Fuck some domestic website by blocking their scripts
 *$script,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn|blog.gitcode.com
 *$frame,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn|blog.gitcode.com
@@ -343,7 +346,7 @@ crdroid.net###dl-ads
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
 
 # Google Annoyance Popup "login as"
-||accounts.google.com/gsi/$frame,redirect=click2load.html
+||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai
 ||accounts.google.com/gsi/$3p
 ||apis.google.com$3p,domain=udn.com
 
@@ -1401,3 +1404,8 @@ lowendaff.com###sticky_ads_wrapper
 
 ! Jan 26, 2026 https://tsx.is
 ||tsx.is/logos/sevalla-full.svg$image
+
+! Feb 5, 2026 https://leafletjs.com
+||leafletjs.com/dialog/$subdocument
+leafletjs.com###dialog
+leafletjs.com##body:style(overflow: unset !important)
