@@ -32,4 +32,4 @@ import { $console, onlyCallOnce } from '../_utils';
     };
     // eslint-disable-next-line @typescript-eslint/unbound-method -- override native method
   })(window.MediaSource.isTypeSupported);
-}());
+})();

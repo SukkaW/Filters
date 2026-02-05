@@ -39,4 +39,4 @@ import { $console } from '../_utils';
     }
     $console.error('[sukka-defuse-service-worker] failed to defuse service worker:', e);
   }
-}());
+})();

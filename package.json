@@ -16,27 +16,27 @@
   "dependencies": {
     "foxts": "^5.2.1",
     "picocolors": "^1.1.1",
-    "tldts": "^7.0.19",
-    "undici": "^7.19.1"
+    "tldts": "^7.0.22",
+    "undici": "^7.20.0"
   },
   "devDependencies": {
     "@adguard/aglint": "^3.0.2",
-    "@eslint-sukka/node": "^8.3.0",
+    "@eslint-sukka/node": "^8.6.1",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@swc-node/register": "^1.11.1",
-    "@swc/core": "^1.15.10",
-    "@types/node": "^24.10.9",
+    "@swc/core": "^1.15.11",
+    "@types/node": "^24.10.10",
     "eslint": "^9.39.2",
-    "eslint-config-sukka": "^8.3.0",
-    "eslint-formatter-sukka": "^8.3.0",
-    "rollup": "^4.56.0",
+    "eslint-config-sukka": "^8.6.1",
+    "eslint-formatter-sukka": "^8.6.1",
+    "rollup": "^4.57.1",
     "rollup-plugin-swc3": "^0.12.1",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.28.1",
+  "packageManager": "pnpm@10.28.2",
   "pnpm": {
     "overrides": {
-      "eslint>chalk": "npm:picocolors@^1.1.1"
+      "eslint>chalk": "npm:ansis@^4.2.0-node10"
     },
     "onlyBuiltDependencies": [
       "@swc/core",

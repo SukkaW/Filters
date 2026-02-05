@@ -9,4 +9,4 @@ import { patchTimer } from './patch-timer';
   patchDevtoolsFormatter();
   patchFunction();
   patchTimer();
-}());
+})();
