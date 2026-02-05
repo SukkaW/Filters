@@ -1,4 +1,4 @@
-import { $console, ObjectDefineProperty, onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, $Proxy, ObjectDefineProperty, onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
 
 function logDefuseConsoleClear(this: void) {
   $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
@@ -64,7 +64,7 @@ export function patchConsole() {
           configurable: false,
           enumerable: true,
           writable: true,
-          value: new Proxy(global.console[key], {
+          value: new $Proxy(global.console[key], {
             apply(target, thisArg, args) {
               if (args.some(checkArg)) {
                 return;

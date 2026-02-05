@@ -1,4 +1,4 @@
-import { $console, $eval, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, ObjectDefineProperty, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, $eval, $Proxy, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, ObjectDefineProperty, WINDOW_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some devtools detector will try to call debugger from eval(), some may simply call `Function('debugger')` instead of `eval('debugger')`,
@@ -9,7 +9,7 @@ import { $console, $eval, argHasDebugger, defuseDebuggerInArg, FunctionPrototype
 export function patchFunction() {
   WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
-      global.Function = new Proxy(global.Function, {
+      global.Function = new $Proxy(global.Function, {
         apply(target, thisArg, args: Parameters<typeof global.Function>) {
           args = args.map(arg => defuseDebuggerInArg(arg, logDefuseFunctionDebugger));
           return Reflect.apply(target, thisArg, args);
@@ -23,7 +23,7 @@ export function patchFunction() {
       $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.Function!`, e);
     }
     try {
-      global.eval = new Proxy(global.eval, {
+      global.eval = new $Proxy(global.eval, {
         apply(target, thisArg, args: Parameters<typeof global.eval>) {
           // we know there is only one argument, so we can just use args[0]
           args[0] = defuseDebuggerInArg(args[0], logDefuseEvalDebugger);
@@ -38,7 +38,7 @@ export function patchFunction() {
         configurable: false,
         enumerable: true,
         writable: true, // some polyfill, like core-js, needs to overrite this for GeneratorFunction and AsyncFunction
-        value: new Proxy(global.Function.prototype.constructor, {
+        value: new $Proxy(global.Function.prototype.constructor, {
           apply(target, thisArg, args) {
             args = args.map(arg => defuseDebuggerInArg(arg, logDefuseFunctionProrotypeConstructorDebugger));
             return Reflect.apply(target, thisArg, args);
@@ -54,7 +54,7 @@ export function patchFunction() {
 
     // eslint-disable-next-line @typescript-eslint/unbound-method -- we only extract the method, not call it
     const originalFunctionPrototypeBind = global.Function.prototype.bind;
-    const proxied = new Proxy(originalFunctionPrototypeBind, {
+    const proxied = new $Proxy(originalFunctionPrototypeBind, {
       apply(target, thisArg, args: Parameters<typeof global.Function.prototype.bind>) {
         const functionString = FunctionPrototypeToString.call(thisArg);
         if (argHasDebugger(functionString)) {
@@ -71,7 +71,7 @@ export function patchFunction() {
         configurable: false,
         enumerable: true,
         set(v) {
-          $console.warn('[sukka-defuse-devtools-detector]', `detects written of ${globalName}.Function.prototype.bind, will re-apply the proxy!`, { v });
+          $console.warn('[sukka-defuse-devtools-detector]', `detects written of ${globalName}.Function.prototype.bind, ignoring`, { v });
         },
 
         get() {
@@ -82,10 +82,30 @@ export function patchFunction() {
       $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.Function.prototype.bind!`, e);
     }
 
-    // TODO: `new Proxy(debuggerFn, {})` returns a function with "function () { [native code] }"
-    // So we can't re-create this function directly using "eval".
-    // This might be exploitable as some one could do:
-    // setInterval(new Proxy(debuggerFn, {}), 300);
+    // new Proxy(debuggerFn, {}) could be used to hide "debugger" because a proxied function may present as native.
+    // Intercept Proxy constructor to inspect function targets and replace them with defused versions when needed.
+    try {
+      const originalProxy = global.Proxy;
+      global.Proxy = new $Proxy(originalProxy, {
+        construct(target, args, newTarget) {
+          const [targetObj] = args;
+          if (typeof targetObj === 'function') {
+            try {
+              const targetString = FunctionPrototypeToString.call(targetObj);
+              if (argHasDebugger(targetString)) {
+                // re-create the function using eval
+                args[0] = $eval('(' + defuseDebuggerInArg(targetString, logDefuseProxyDebugger) + ')');
+              }
+            } catch (e) {
+              $console.warn('[sukka-defuse-devtools-detector]', `Fail to inspect ${globalName}.Proxy target!`, e);
+            }
+          }
+          return Reflect.construct(target, args, newTarget);
+        }
+      });
+    } catch (e) {
+      $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.Proxy!`, e);
+    }
   });
 }
 
@@ -107,4 +127,8 @@ function logDefuseEvalDebugger(this: void, before: string, after: string) {
 
 function logDefuseFunctionBindDebugger(this: void, before: string, after: string) {
   $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Function.prototype.bind', { before, after });
+}
+
+function logDefuseProxyDebugger(this: void, before: string, after: string) {
+  $console.info('[sukka-defuse-devtools-detector] defused "debugger" from Proxy target', { before, after });
 }

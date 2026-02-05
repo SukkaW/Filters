@@ -1,4 +1,4 @@
-import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, $eval, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, $eval, WINDOW_INSTANCE_LIST, $Proxy } from '../_utils';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
@@ -7,7 +7,7 @@ import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToStrin
 export function patchTimer() {
   WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
-      global.setInterval = new Proxy(global.setInterval, {
+      global.setInterval = new $Proxy(global.setInterval, {
         apply(target, thisArg, args: Parameters<typeof setInterval>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden
           // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)
@@ -24,7 +24,7 @@ export function patchTimer() {
       $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.setInterval!`, e);
     }
     try {
-      global.setTimeout = new Proxy(global.setTimeout, {
+      global.setTimeout = new $Proxy(global.setTimeout, {
         apply(target, thisArg, args: Parameters<typeof setTimeout>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden
           // Function.prototype.toString is much safer, and usually you can't override this (every polyfills out there will panic)

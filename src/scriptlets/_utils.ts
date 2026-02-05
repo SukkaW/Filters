@@ -96,5 +96,6 @@ function defuseFunctionString(arg: string): string {
 export const FunctionPrototypeToString = Function.prototype.toString;
 // eslint-disable-next-line no-eval -- re-create function using eval
 export const $eval = window.eval;
+export const $Proxy = window.Proxy;
 
 export const ObjectDefineProperty = Object.defineProperty;
