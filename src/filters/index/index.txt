@@ -233,6 +233,10 @@ www.bilibili.com##.r-con
 /track-collect.js
 # P2P CDN fuck (works with IP based requests)
 &os=mcdn
+# Fuck Bilibili Search
+bilibili.com##.bili-video-card__no-interest
+search.bilibili.com##[href*="live."]
+search.bilibili.com##[href*="/cheese/"]
 
 http://*$app=com.bilibili.app.in
 *://*:80$app=com.bilibili.app.in
@@ -1409,3 +1413,13 @@ lowendaff.com###sticky_ads_wrapper
 ||leafletjs.com/dialog/$subdocument
 leafletjs.com###dialog
 leafletjs.com##body:style(overflow: unset !important)
+
+! Feb 12, 2026 https://lowendaff.com
+lowendaff.com###dmit-ads
+
+! Feb 12, 2026 https://9to5mac.com
+9to5mac.com##[href*="/amzn.to/"]
+9to5mac.com##[href*="amazon.com"]
+
+! Feb 17, 2026 https://www.tomshardware.com
+www.tomshardware.com##.fancy-box
