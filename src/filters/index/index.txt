@@ -486,6 +486,10 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 
 ! YouTube AdBlock
 ||googlevideo.com/initplayback*&oad
+www.youtube.com##.ytd-rich-section-renderer
+
+! YouTube Members Only Video blocking
+www.youtube.com##.ytd-rich-item-renderer:has-text(Members only)
 
 ! Misc
 ||app.link$third-party
@@ -1071,9 +1075,6 @@ www.bandbbs.cn##.ad-container
 ! Aug 31, 2024 https://ny528.com
 ||ny528.com/APK/PNG/$image
 ||ny528.com/images/ad_$image
-
-! Sep 14, 2024 https://www.youtube.com
-www.youtube.com##.ytd-rich-section-renderer
 
 ||www.pianyivps.com/wp-content/uploads/*-ad-
 
