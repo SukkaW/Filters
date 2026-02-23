@@ -510,6 +510,9 @@ www.youtube.com##.ytd-rich-item-renderer:has-text(Members only)
 
 ||static.doubleclick.net/instream/ad_status.js$redirect=noop.js
 
+# defuse tracking
+www.speedtest.net##+js(set, dataLayer, [])
+
 # force block
 ||adtech.redventures.io^$important
 
