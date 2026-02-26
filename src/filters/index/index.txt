@@ -496,9 +496,6 @@ hanime1.me##a[href*="//l.labsda.com"]
 # Remove Reddit Auto Translation
 ||reddit.com$uritransform=/tl=.*//
 
-# bypass abema region check
-abema.tv##+js(trusted-prevent-xhr, ds-linear-abematv.akamaized.net/region, '')
-
 # bypass javbus age verification (need manually navigate to javbus.com)
 javbus.com##+js(trusted-set-cookie, dv, 1, 31536000)
 
@@ -526,8 +523,8 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 
 ! Geo unblock
 ||api.abema.io/v*/ip/check
+abema.tv##+js(trusted-prevent-xhr, ds-linear-abematv.akamaized.net/region, '')
 ! ||ds-linear-abematv.akamaized.net/region$redirect=noop.txt
-! trusted: abema.tv##+js(trusted-prevent-xhr, ds-linear-abematv.akamaized.net/region, '')
 ||hanime.tv/country_code$redirect=noop.txt
 ||store.ui.com/api/geo-ip$domain=ui.com
 
