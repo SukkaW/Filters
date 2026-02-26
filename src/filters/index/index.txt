@@ -1,4 +1,4 @@
-# >> Defuse DevTools Detector
+# >>>> Defuse DevTools Detector
 mcoun.com##+js(aopr, window.stop)
 mcoun.com##+js(aopr, window.document.keydown)
 mcoun.com##+js(nosiif, /^/)
@@ -26,21 +26,39 @@ ggfw.hrss.gd.gov.cn##+js(sukka-defuse-devtools-detector)
 iplark.com##+js(sukka-defuse-devtools-detector)
 boomio.com##+js(sukka-defuse-devtools-detector)
 
-# >> Defuse AdBlock Detector
+# >>>> Defuse AdBlock Detector
 ||tags.news.com.au/prod/adblock/adblock.js
 ###adb-mask
 ||crackle.com/vendor/adex.js
+
+||narkive.com/s/ad-blocker.js
 
 ||everymac.com/javascripts/an.js
 ||everyi.com/javascripts/an.js
 ||everymac.com/templates/prompt.html
 ||everyi.com/templates/prompt.html
 
-# >> Service Worker
+# >>>> Service Worker
+! No Service Worker By Default
+*##+js(sukka-defuse-service-worker)
+! UniFi InnerSpace requires this to work
+ui.com#@#+js(sukka-defuse-service-worker)
+! Whitelist skk.moe
+skk.moe#@#+js(sukka-defuse-service-worker)
+! v0 preview requires Service Worker to work
+v0.dev#@#+js(sukka-defuse-service-worker)
+v0.app#@#+js(sukka-defuse-service-worker)
+vusercontent.net#@#+js(sukka-defuse-service-worker)
+! Pluto app simply break w/o Service Worker
+pluto.tv#@#+js(sukka-defuse-service-worker)
+! PairDrop LAN signal requires Service Worker
+pairdrop.net#@#+js(sukka-defuse-service-worker)
+! StackBlitz Web Container Preview requires Service Worker
+bolt.new#@#+js(sukka-defuse-service-worker)
 stackblitz.com#@#+js(sukka-defuse-service-worker)
 webcontainer.io#@#+js(sukka-defuse-service-worker)
 
-# >> Click2Load Embed
+# >>>> Click2Load Embed
 
 ! YouTube
 ||youtube.com/embed/$3p,frame,redirect=click2load.html
@@ -62,6 +80,9 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 ! Status Page
 ||statuspage.io/embed/frame$redirect=click2load.html
 
+! Twitter Embed
+||platform.twitter.com$3p,domain=~theverge.com
+
 ! Misc
 ||scribd.com/embeds/$3p,frame,redirect=click2load.html
 ||player.vimeo.com/video/$3p,frame,redirect=click2load.html
@@ -72,10 +93,7 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 ||embed.reddit.com$frame,redirect=click2load.html
 ||tiktok.com/embed/$frame,redirect=click2load.html
 
-# >> Fuck Embed
-||platform.twitter.com$3p,domain=~theverge.com
-
-# >> Fix Support Chat
+# >>>> Fix Support Chat
 ||client.crisp.chat^$3p
 ||crisp.chat$domain=dlercloud.com|phare.io
 # transcend was used to load ada.support
@@ -83,13 +101,13 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 @@||intercom.io$domain=namesilo.com|cdn77.com
 @@||zopim.com$domain=ui.com|account.ui.com|slack.com
 
-# >> Performance
+# >>>> Performance
 ||versionbadg.es$domain=npmjs.com
 ||zz.bdstatic.com$redirect=noop.js
 ||youtube.com/sw.js
 /npm/cookieconsent*
 
-# >> Whitelist
+# >>>> Whitelist
 # baidu image hosting used
 @@||gimg*.baidu.com$3p,image
 # qq login
@@ -134,8 +152,7 @@ lingchenzi.com#@#.category-share
 # bad rules, priratebay.org actually require JS again
 *$script,from=thepiratebay.org,badfilter
 
-
-# >> Blacklist
+# >>>> Blacklist
 # Test
 ||bad.third-party.site
 # Mess around your browser history w/ every keystroke you made
@@ -150,7 +167,7 @@ lingchenzi.com#@#.category-share
 ||unpkg.com/orejime
 ||jsdelivr.net/npm/orejime
 
-# >> HTTPDNS
+# HTTPDNS
 # MIUI HTTP DNS
 /*/sign_d?*$all,important
 # Aliyun HTTP DNS
@@ -161,7 +178,7 @@ lingchenzi.com#@#.category-share
 # Baidu Cloud HTTP DNS
 ://180.76.76.*$important
 
-# >> Spotify AD
+# Spotify AD
 *://audio-ak-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
 *://audio-akp-quic-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
 *://audio-fa.scdn.co/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
@@ -169,6 +186,65 @@ lingchenzi.com#@#.category-share
 spotify.com##button[title="Upgrade to Premium"]
 spotify.com##button[title="Effettua l'upgrade a Premium"]
 spotify.com##div[data-testid="test-ref-div"]
+
+# >>>> Annoyance
+||sponsorapp.io^$3p
+||mosaic.unite.com/js/widget.js$3p
+||polls.services.disqus.com^$subdocument
+||support.nodeget.com^$3p
+gettr.com##esr-signup
+||goaffpro.app$3p
+||static.klaviyo.com$3p
+
+! Google Popup "login as"
+||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai
+||accounts.google.com/gsi/$3p
+||apis.google.com$3p,domain=udn.com
+
+! WordPress JetPack Plugin Subscribe Modal
+##.jetpack-subscribe-modal__modal-content
+##.jetpack-subscribe-modal
+! Quiz on news site
+||kwizly.com/embed$3p
+! archive.org Donation iframe
+||archive.org/includes/donate
+
+# >> Privacy
+# defuse tracking
+www.speedtest.net##+js(set, dataLayer, [])
+||bitmovin.com/analytics
+||umami.*/*.js
+||plausible.*/*.js
+/litlyx.js
+||api.ccsccorp.com/api/dlog/
+||vercel.com/_stream/external/
+||app.planhat.com/analytics/
+assets.alicdn.com/g/alilog*$redirect=noop.js
+g.alicdn.com/alilog/$script,redirect=noop.js
+g.alicdn.com/axdata/yunlog*$redirect=noop.js
+g.alicdn.com/dawn/user-tracker*$redirect=noop.js
+g.alicdn.com/sj/securesdk$redirect=noop.js
+
+||render.com/pan/api/event
+
+www.dnsfilter.com##+js(aopw, window.analytics)
+||sealos.run/js
+||console.cast.ai/analytics
+||api.vector.co/pixel
+||useitem.io/tracking.js
+||www.googletagmanager.com$frame,redirect=noop.html
+||urlstats.com/counter
+||visitor.leadsourcing.co$3p
+
+||cnzz.com/z_stat.php$redirect=noop.js
+||cnzz.com^$redirect=noop.txt
+
+||static.doubleclick.net/instream/ad_status.js$redirect=noop.js
+
+# defuse tracking gif
+/ping.gif$redirect=1x1.gif
+/counters.gif$redirect=1x1.gif
+||pixel.wp.com/g.gif$redirect=1x1.gif
 
 # >> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
@@ -278,21 +354,6 @@ deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }
 # Defuse Region Blocking
 ||ip.sb$domain=alicesw.com
 
-# Defuse Annoyance
-||sponsorapp.io^$3p
-||mosaic.unite.com/js/widget.js$3p
-||polls.services.disqus.com^$subdocument
-||support.nodeget.com^$3p
-gettr.com##esr-signup
-! Annoyance - WordPress JetPack Plugin Subscribe Modal
-##.jetpack-subscribe-modal__modal-content
-##.jetpack-subscribe-modal
-! Annoyance - Quiz on news site
-||kwizly.com/embed$3p
-
-# Hide archive.org Donation iframe
-||archive.org/includes/donate
-
 # Whitelist PerfOps for ip.skk.moe only
 @@||perfops.io/500b-bench.jpg$domain=localhost|ip.skk.moe
 
@@ -303,6 +364,10 @@ gettr.com##esr-signup
 adfoc.us###showSkip:style(display: block!important)
 ! auto click skip button
 adfoc.us##+js(trusted-click-element, #showSkip > a.skip)
+
+# Defuse URL shortener
+5w.fit##+js(nostif,redirect)
+5w.fit##+js(nosiif,redirect)
 
 # Hide Imgur community option after uploading images
 imgur.com##.PostOptions-section.PostSubmit
@@ -322,10 +387,6 @@ aliyun.com##+js(set, g_SPM.getParam, falseFunc)
 
 # fuck taobao item in idlefish app
 ||item.taobao.com^$app=com.taobao.idlefish
-
-# Defuse URL shortener
-5w.fit##+js(nostif,redirect)
-5w.fit##+js(nosiif,redirect)
 
 # Reddit Anti-AdBlock defuse
 reddit.com##shreddit-comment-tree:style(visibility: visible!important)
@@ -348,11 +409,6 @@ crdroid.net###dl-ads
 
 # Hook proxycheck.io API
 ! www.freenom.world##+js(trusted-prevent-xhr, proxycheck.io, '{ "status": "ok", "ip": "1.0.0.1", "1.0.0.1": false }')
-
-# Google Annoyance Popup "login as"
-||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai
-||accounts.google.com/gsi/$3p
-||apis.google.com$3p,domain=udn.com
 
 # Fuck yorg.io
 yorg.io###adVideoBg
@@ -437,11 +493,7 @@ hanime1.me##a[href*="//l.labsda.com"]
 # Fix AdGuard Popup Overlay Filters
 #@#.footer-cta
 
-# Disable AV1 Video
-! youtube.com##+js(sukka-disable-av1) ! Affecting 8K videos
-! bilibili.com##+js(sukka-disable-av1) ! Handled by Make Bilibili Great Than Ever Before
-
-# Fuck Reddit, remove Auto Translation
+# Remove Reddit Auto Translation
 ||reddit.com$uritransform=/tl=.*//
 
 # bypass abema region check
@@ -470,11 +522,6 @@ dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/1
 ||nocookie.net/*/Sponsored$important
 ||nocookie.net/silversurfer$important
 
-# Defuse tracker gif
-/ping.gif$redirect=1x1.gif
-/counters.gif$redirect=1x1.gif
-||pixel.wp.com/g.gif$redirect=1x1.gif
-
 # >> Handcraft
 
 ! Geo unblock
@@ -501,17 +548,9 @@ www.youtube.com##.ytd-rich-item-renderer:has-text(Members only)
 ||hostedseal.trustarc.com/privacy-seal/seal$3p
 ||cdn.lgrckt-in.com/logger
 
-||visitor.leadsourcing.co$3p
 ||mymediaing.my/sdk$3p
 ||endorsely.com$3p
 ||static.newsbreak.com/business/tracking/
-
-||render.com/pan/api/event
-
-||static.doubleclick.net/instream/ad_status.js$redirect=noop.js
-
-# defuse tracking
-www.speedtest.net##+js(set, dataLayer, [])
 
 # force block
 ||adtech.redventures.io^$important
@@ -571,14 +610,6 @@ reimu.net##pre:style(display: block !important;)
 t66y.com##+js(nostif, /tpcHt0ml/)
 t66y.com##+js(nostif)
 
-||umami.*/*.js
-||plausible.*/*.js
-/litlyx.js
-||api.ccsccorp.com/api/dlog/
-||vercel.com/_stream/external/
-
-||app.planhat.com/analytics/
-
 ||learn.microsoft.com/static/third-party/adobe-target/at-js/*/at.js
 
 @@||captcha.qq.com^
@@ -597,15 +628,6 @@ wspeed.qq.com$redirect=noop.js
 
 ||h.lghln1.cn/js/niu/zhong-inc.js
 
-assets.alicdn.com/g/alilog*$redirect=noop.js
-g.alicdn.com/alilog/$script,redirect=noop.js
-g.alicdn.com/axdata/yunlog*$redirect=noop.js
-g.alicdn.com/dawn/user-tracker*$redirect=noop.js
-g.alicdn.com/sj/securesdk$redirect=noop.js
-
-||cnzz.com/z_stat.php$redirect=noop.js
-||cnzz.com^$redirect=noop.txt
-
 ||mail-us.kurzgesagt.org/*/ga.js
 
 ||js-agent.newrelic.com$script,domain=stackblitz.com
@@ -622,25 +644,17 @@ fontshub.pro##+js(nosiif, /^/)
 
 whoer.net##+js(nowebrtc)
 
-www.dnsfilter.com##+js(aopw, window.analytics)
-
 ||creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png
 
 aws.amazon.com##+js(set, disablePanorama, 1)
 
 netflav.com/static/js/gtag.js$redirect=noop.js
 
-||sealos.run/js
-
 ||itdog.cn/upload/images/*.gif
 
-||console.cast.ai/analytics
-||api.vector.co/pixel
-||useitem.io/tracking.js
 
 ||www.google.com/adsense/domains/caf.js*$redirect=noop.js
-||www.googletagmanager.com$frame,redirect=noop.html
-||urlstats.com/counter
+
 
 @@||humix.com/video.js$domain=humix.com
 
@@ -777,7 +791,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 /prebid_$script
 
-||lf3-data.volccdn.com$redirect=noop.js
+||lf3-data.volccdn.com^$script,redirect=noop.js
 /log-sdk/
 
 ||res.wx.qq.com^$3p,domain=~ip.skk.moe|~localhost
@@ -1427,3 +1441,10 @@ lowendaff.com###dmit-ads
 
 ! Feb 17, 2026 https://www.tomshardware.com
 www.tomshardware.com##.fancy-box
+
+! Feb 24, 2026 https://maclookup.app
+||maclookup.app/img/an/nordv/$image
+maclookup.app##.floating-b
+
+! Feb 25, 2026 https://www.justaftermidnight247.com
+www.justaftermidnight247.com##.blog-newsletter
