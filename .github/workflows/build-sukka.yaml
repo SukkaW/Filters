@@ -36,5 +36,7 @@ jobs:
           publish_branch: master
           cname: filters.cdn.skk.moe
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          user_name: ${{ secrets.GIT_NAME }}
+          user_email: ${{ secrets.GIT_EMAIL }}
           publish_dir: public
           keep_files: true
