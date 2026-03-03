@@ -14,12 +14,12 @@ on:
       - src/** # we only cares about "scripts/" changes
   pull_request: null
   schedule:
-    - cron: '0 2 * * *'
-    - cron: '0 6 * * *'
-    - cron: '0 10 * * *'
-    - cron: '0 14 * * *'
-    - cron: '0 18 * * *'
-    - cron: '0 22 * * *'
+    - cron: '17 2 * * *'
+    - cron: '17 6 * * *'
+    - cron: '17 10 * * *'
+    - cron: '17 14 * * *'
+    - cron: '17 18 * * *'
+    - cron: '17 22 * * *'
 jobs:
   publish:
     name: Build Third Party Filters
