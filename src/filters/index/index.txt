@@ -25,6 +25,7 @@ uouin.com##+js(sukka-defuse-devtools-detector)
 ggfw.hrss.gd.gov.cn##+js(sukka-defuse-devtools-detector)
 iplark.com##+js(sukka-defuse-devtools-detector)
 boomio.com##+js(sukka-defuse-devtools-detector)
+djxmaza.in##+js(sukka-defuse-devtools-detector)
 
 # >>>> Defuse AdBlock Detector
 ||tags.news.com.au/prod/adblock/adblock.js
@@ -351,6 +352,21 @@ www.deepl.com###dl_quotes_container
 ||gtm.deepl.com/gtm.js$redirect=googletagmanager_gtm.js
 deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }')
 
+# Fuck Fandom
+||community.fandom.com
+||nocookie.net/fandom-ae-assets/tracking-opt-in/$important
+||nocookie.net/fandom-ae-assets/prebid*$important
+||nocookie.net/fandom-ae-assets/identity-service/*/static-consents$important
+||nocookie.net/fandom-ae-assets/*/ucp-no-ads/$important
+||nocookie.net/*/Sponsored$important
+||nocookie.net/silversurfer$important
+
+# Fuck change.org
+! suggestions on petitions (who give it a fuck)
+||change.org/api-proxy/graphql?op=SuggestedPetitionsFromPetitionSunrise
+||change.org/api-proxy/graphql?op=SunriseVictoriousPetitionsFromPetition
+||change.org/api-proxy/graphql?op=PetitionQRCodeData
+
 # Defuse Region Blocking
 ||ip.sb$domain=alicesw.com
 
@@ -509,15 +525,6 @@ zhihu.com##+js(trusted-click-element, '.Modal.signFlowModal button.Button.Modal-
 
 # Defuse User-Agent detection
 dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/114514", runAt, 1)
-
-# Fuck Fandom
-||community.fandom.com
-||nocookie.net/fandom-ae-assets/tracking-opt-in/$important
-||nocookie.net/fandom-ae-assets/prebid*$important
-||nocookie.net/fandom-ae-assets/identity-service/*/static-consents$important
-||nocookie.net/fandom-ae-assets/*/ucp-no-ads/$important
-||nocookie.net/*/Sponsored$important
-||nocookie.net/silversurfer$important
 
 # >> Handcraft
 
