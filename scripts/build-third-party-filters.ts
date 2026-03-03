@@ -53,7 +53,8 @@ const DATA_SOURCE = [
       'https://cdn.jsdelivr.net/gh/hoshsadiq/adblock-nocoin-list@master/nocoin.txt',
       'https://ublockorigin.github.io/uAssets/filters/filters-mobile.txt',
       'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-ublock.txt'
-    ]
+    ],
+    whitelist: []
   },
   {
     filename: 'sukka-ubo-missing.txt',
@@ -62,6 +63,9 @@ const DATA_SOURCE = [
       // --- Missing in uBO (Added in AdGuard):
       'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt', // AdGuard maintain its own data along side EasyPrivacy
       'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt' // Available in AdGuard as an option
+    ],
+    whitelist: [
+      'https://easylist.to/easylist/easyprivacy.txt'
     ]
   },
   {
@@ -77,7 +81,8 @@ const DATA_SOURCE = [
       'https://ublockorigin.pages.dev/filters/experimental.min.txt',
       'https://ublockorigin.pages.dev/filters/annoyances-cookies.txt',
       'https://ublockorigin.pages.dev/filters/annoyances.min.txt'
-    ]
+    ],
+    whitelist: []
   }
 ] as const;
 
@@ -114,6 +119,29 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
       ],
       '\n'
     ));
+
+    const whitelists = new Set<string>();
+
+    // eslint-disable-next-line no-await-in-loop -- false positive, it is Promise.all
+    await Promise.all(dataSource.whitelist.map(async (whitelistUrl) => {
+      console.log(picocolors.green('[fetch whitelist]'), whitelistUrl);
+
+      const resp = await $$fetch(whitelistUrl, {
+        headers: {
+          'User-Agent': pickOne(topUserAgents),
+          Referer: whitelistUrl
+        }
+      });
+
+      for await (const line of nullthrow(resp.body, `${picocolors.red('[fetch whitelist] missing body')} - ${whitelistUrl}`)
+        .pipeThrough(new TextDecoderStream())
+        // @ts-expect-error -- @types/node stream/web is broken
+        .pipeThrough(new TextLineStream({ skipEmptyLines: true }))) {
+        if (line) {
+          whitelists.add(line);
+        }
+      }
+    }));
 
     const filterStreams: Array<ReadableStream<string | undefined>> = [];
 
@@ -161,7 +189,7 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
           new DebugStream('async/folsrch', url)
         )
         // @ts-expect-error -- @types/node stream/web is broken
-        .pipeThrough(new FilterMinifyStream(metadata.title + ' ' + url)));
+        .pipeThrough(new FilterMinifyStream(metadata.title + ' ' + url, whitelists)));
 
       const appendOutputMeta: string[] = [];
       if (metadata.title) {

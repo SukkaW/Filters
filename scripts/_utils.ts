@@ -1,12 +1,11 @@
 export class FilterMinifyStream extends TransformStream<string, string> {
   // private __buf = '';
-  private readonly set = new Set<string>();
   // private readonly trie = new HostnameSmolTrie();
   // private readonly thirdPartyTrie = new HostnameSmolTrie();
 
   private metaWritten = false;
 
-  constructor(filterName = 'unknown filter') {
+  constructor(filterName = 'unknown filter', private readonly whitelistFilterLines: Set<string> = new Set()) {
     super({
       transform: (line, controller) => {
         if (!this.metaWritten) {
@@ -52,11 +51,11 @@ export class FilterMinifyStream extends TransformStream<string, string> {
         //   }
         // }
 
-        if (this.set.has(line)) {
+        if (this.whitelistFilterLines.has(line)) {
           // console.log('deduped!', line);
           return;
         }
-        this.set.add(line);
+        this.whitelistFilterLines.add(line);
 
         controller.enqueue(line);
         controller.enqueue('\n');
