@@ -236,6 +236,9 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||www.googletagmanager.com$frame,redirect=noop.html
 ||urlstats.com/counter
 ||visitor.leadsourcing.co$3p
+||npmx.dev/_v/script.js
+||vemetric.com$3p
+||affonso.io$3p
 
 ||cnzz.com/z_stat.php$redirect=noop.js
 ||cnzz.com^$redirect=noop.txt
