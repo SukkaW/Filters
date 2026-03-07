@@ -543,7 +543,8 @@ abema.tv##+js(trusted-prevent-xhr, ds-linear-abematv.akamaized.net/region, '')
 www.youtube.com##.ytd-rich-section-renderer
 
 ! YouTube Members Only Video blocking
-www.youtube.com##.ytd-rich-item-renderer:has-text(Members only)
+youtube.com##.ytd-rich-item-renderer:has-text(Members only)
+youtube.com##ytd-item-section-renderer:has-text(Members only)
 
 ! Misc
 ||app.link$third-party
