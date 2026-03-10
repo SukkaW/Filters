@@ -26,7 +26,7 @@ const DATA_SOURCE = [
       'https://easylist-downloads.adblockplus.org/antiadblockfilters.txt',
       // 'https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt',
       'https://paulgb.github.io/BarbBlock/blacklists/ublock-origin.txt',
-      'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AnnoyancesList',
+      // 'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AnnoyancesList', // Breaks YouTube
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/DailyMotionSimplicity.txt',
       'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Dandelion%20Sprout\'s%20Anti-Malware%20List.txt',
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/AntiAdoptablesList.txt',

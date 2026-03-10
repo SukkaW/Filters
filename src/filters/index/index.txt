@@ -347,6 +347,9 @@ stripe.com##+js(no-fetch-if, r.stripe.com/b method:POST)
 ||gitv.tv$important,app=com.xiaomi.mico
 ||qq.com$important,app=com.xiaomi.mico
 
+# Fuck Microsoft/MSN redirecting deadlink on Bing
+||www.bing.com/?shorturl=$doc
+
 # Fuck DeepL website
 ! modal
 www.deepl.com###lmt_pro_ad_container
