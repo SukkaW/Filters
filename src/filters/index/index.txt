@@ -153,6 +153,10 @@ lingchenzi.com#@#.category-share
 # bad rules, priratebay.org actually require JS again
 *$script,from=thepiratebay.org,badfilter
 
+# bad rules, easyprivacy accidentally blocks StackBlitz npm registry
+.com/bn.js$3p,badfilter
+.com/bn.js$3p,domain=~nr.staticblitz.com
+
 # >>>> Blacklist
 # Test
 ||bad.third-party.site
@@ -239,11 +243,17 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||npmx.dev/_v/script.js
 ||vemetric.com$3p
 ||affonso.io$3p
+||himetrica.com/api$3p
 
 ||cnzz.com/z_stat.php$redirect=noop.js
 ||cnzz.com^$redirect=noop.txt
 
 ||static.doubleclick.net/instream/ad_status.js$redirect=noop.js
+
+||cdn.virtuoussoftware.com/virtuous.embed.min.js$3p
+||hostedseal.trustarc.com/privacy-seal/seal$3p
+||cdn.lgrckt-in.com/logger
+||static.newsbreak.com/business/tracking/
 
 # defuse tracking gif
 /ping.gif$redirect=1x1.gif
@@ -555,13 +565,11 @@ youtube.com##ytd-item-section-renderer:has-text(Members only)
 ||126.com$domain=maplesugar.top
 ||blog.maplesugar.top/usr/uploads/2024/09/725322379.jpg
 ||tinypass.com
-||cdn.virtuoussoftware.com/virtuous.embed.min.js$3p
-||hostedseal.trustarc.com/privacy-seal/seal$3p
-||cdn.lgrckt-in.com/logger
 
 ||mymediaing.my/sdk$3p
 ||endorsely.com$3p
-||static.newsbreak.com/business/tracking/
+
+||zkcdn.net/Advertisers
 
 # force block
 ||adtech.redventures.io^$important
