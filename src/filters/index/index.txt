@@ -265,6 +265,9 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 # Remove all AFF ID
 *$removeparam=aff
 
+# Defuse WNACG Anti AdBlock Detection
+wnacg.com##+js(set, lockdownInterface, noopFunc, runAt, 2)
+
 # Fuck some domestic website by blocking their scripts
 *$script,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn|blog.gitcode.com
 *$frame,domain=csdn.net|sina.cn|finance.cnr.cn|guancha.cn|blog.gitcode.com
@@ -558,6 +561,7 @@ www.youtube.com##.ytd-rich-section-renderer
 ! YouTube Members Only Video blocking
 youtube.com##.ytd-rich-item-renderer:has-text(Members only)
 youtube.com##ytd-item-section-renderer:has-text(Members only)
+youtube.com##yt-lockup-view-model:has-text(Members only)
 
 ! Misc
 ||app.link$third-party
