@@ -560,7 +560,6 @@ www.youtube.com##.ytd-rich-section-renderer
 
 ! YouTube Members Only Video blocking
 youtube.com##.ytd-rich-item-renderer:has-text(Members only)
-youtube.com##ytd-item-section-renderer:has-text(Members only)
 youtube.com##yt-lockup-view-model:has-text(Members only)
 
 ! Misc
