@@ -851,6 +851,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||ajax.googleapis.com/ajax/libs/bootstrap$all,uritransform=/ajax.googleapis.com\/ajax\/libs\/bootstrap\/([^\/]+)\//cdn.jsdelivr.net\/npm\/bootstrap@$1\/dist\//
 
 ||code.jquery.com/jquery-*.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.min\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.min.js/
+||code.jquery.com/jquery-*.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([\d\.]+)\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.min.js/
+
 ||code.jquery.com/jquery-*.slim.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.slim\.min\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.slim.min.js/
 ||code.jquery.com/ui/*/jquery-ui.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/ui\/([^\/]+)\/jquery-ui\.min\.js/cdn.jsdelivr.net\/npm\/jquery-ui@$1\/dist\/jquery-ui.min.js/
 
