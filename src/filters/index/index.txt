@@ -231,6 +231,7 @@ g.alicdn.com/dawn/user-tracker*$redirect=noop.js
 g.alicdn.com/sj/securesdk$redirect=noop.js
 
 ||render.com/pan/api/event
+||r2cdn.perplexity.ai/js/count/
 
 www.dnsfilter.com##+js(aopw, window.analytics)
 ||sealos.run/js
@@ -853,6 +854,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||code.jquery.com/jquery-*.slim.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.slim\.min\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.slim.min.js/
 ||code.jquery.com/ui/*/jquery-ui.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/ui\/([^\/]+)\/jquery-ui\.min\.js/cdn.jsdelivr.net\/npm\/jquery-ui@$1\/dist\/jquery-ui.min.js/
 
+||bootstrapcdn.com/bootstrap/$all,uritransform=/[^\/]+\.bootstrapcdn\.com\/bootstrap\/([^\/]+)\//cdn.jsdelivr.net\/npm\/bootstrap@$1\/dist\//
+||bootstrapcdn.com/font-awesome/$all,uritransform=/[^\/]+\.bootstrapcdn\.com\/font-awesome\/([^\/]+)\/(.*)/cdn.jsdelivr.net\/npm\/font-awesome@$1\/$2/
 
 # >> Auto Generated - per site
 
