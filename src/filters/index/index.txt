@@ -26,6 +26,7 @@ ggfw.hrss.gd.gov.cn##+js(sukka-defuse-devtools-detector)
 iplark.com##+js(sukka-defuse-devtools-detector)
 boomio.com##+js(sukka-defuse-devtools-detector)
 djxmaza.in##+js(sukka-defuse-devtools-detector)
+post.smzdm.com##+js(sukka-defuse-devtools-detector)
 
 # >>>> Defuse AdBlock Detector
 ||tags.news.com.au/prod/adblock/adblock.js
@@ -322,6 +323,7 @@ www.bilibili.com##.video-page-game-card-small
 www.bilibili.com##.carousel-box
 www.bilibili.com##.r-con
 ||boss.hdslb.com
+||hdslb.com/bfs/live/$image
 ! bilibili.com##+js(nowebrtc)
 /bili-user-fingerprint$script
 /track-collect.js
@@ -380,6 +382,9 @@ deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }
 ||nocookie.net/fandom-ae-assets/*/ucp-no-ads/$important
 ||nocookie.net/*/Sponsored$important
 ||nocookie.net/silversurfer$important
+||fandom.com/*/AgeDeclaration/$image
+
+fandom.com###age-gate
 
 # Fuck change.org
 ! suggestions on petitions (who give it a fuck)
@@ -478,6 +483,12 @@ hanime1.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
 hanime1.com##+js(rpnt, script, location.href = , window.redirect_prevented =)
 hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
 javchu.com##+js(rpnt, script, location.href = , window.redirect_prevented =)
+# Hanime1 AD
+hanime1.me##div:has(> ins)
+
+# Fuck SMZDM for AI LLM Generated Post
+post.smzdm.com##.m-contant > .aigc-lowcode-json
+post.smzdm.com##.m-contant::before:style(content: 'This is an LLM generated post thus blocked!' !important; font-size: 32px !important; color: red !important; font-weight: bold !important;)
 
 # AV4 Hide YouTube
 av.tube4us.top##a[href*="youtube.com/watch"]
@@ -826,6 +837,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||pluto.tv/v1/pixel$redirect=1x1.gif
 
 ||esm.sh/@solana/$domain=v2ex.com,redirect=noop.js
+||v2ex.co/pro/
+
 ||wwads.cn$script,redirect=noop.js
 
 ||acquia.com/ct
@@ -1048,9 +1061,6 @@ www.xenonstack.com##.enterprise-popup-wrapper
 
 ! 2023-09-10 https://divineengine.net
 divineengine.net##.sidebar-content > .widget_custom_html
-
-! 2023-10-05 https://minecraft.fandom.com
-minecraft.fandom.com###age-gate
 
 ! 2023-10-10 https://affyun.com
 affyun.com##[href="https://www.dmit.io/cart.php"]
