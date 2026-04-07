@@ -203,7 +203,7 @@ gettr.com##esr-signup
 
 ! Google Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai
-||accounts.google.com/gsi/$3p
+||accounts.google.com/gsi/$3p,domain=~claude.ai
 ||apis.google.com$3p,domain=udn.com
 
 ! WordPress JetPack Plugin Subscribe Modal
