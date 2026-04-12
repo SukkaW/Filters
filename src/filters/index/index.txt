@@ -333,18 +333,22 @@ www.bilibili.com##.r-con
 bilibili.com##.bili-video-card__no-interest
 search.bilibili.com##[href*="live."]
 search.bilibili.com##[href*="/cheese/"]
-
+# Fuck Bilibili App trying to do PCDN
 http://*$app=com.bilibili.app.in
 *://*:80$app=com.bilibili.app.in
 *:3478$app=com.bilibili.app.in
 http://*$app=tv.danmaku.bili
 *://*:80$app=tv.danmaku.bili
 *:3478$app=tv.danmaku.bili
-
 # Bilibili App sometimes requests ISP modem for PCDN support
 /igd.xml$important
 # Fuck Biligame
 ||biligame.com
+
+# Feat: Strava Activity Page, Map sticky
+strava.com###map-canvas:style(position: sticky !important; top: 0; z-index: 1000)
+# Fix: Strava Activity Map sticky, make altitude chart sticky in proper position
+strava.com###chart-container:style(top: 350px!important)
 
 # Defuse Super.com Storming Tracking Retry
 ||cdn.super.com/remote-event-registry.json$xhr
@@ -601,6 +605,8 @@ youtube.com##yt-lockup-view-model:has-text(Members only)
 ||staticfile.org^$all,badfilter
 
 /edgecastcdn.net$badfilter
+
+/web-pixels
 
 bad.news##.plyr__video-wrapper:style(width: 100%)
 bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height: 100% !important)
