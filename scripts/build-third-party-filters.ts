@@ -51,7 +51,7 @@ const DATA_SOURCE = [
       'https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/TwitchPureViewingExperience.txt',
 
       'https://cdn.jsdelivr.net/gh/hoshsadiq/adblock-nocoin-list@master/nocoin.txt',
-      'https://ublockorigin.github.io/uAssets/filters/filters-mobile.txt',
+      'https://ublockorigin.github.io/uAssetsCDN/filters/filters-mobile.txt',
       'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-ublock.txt'
     ],
     whitelist: []
