@@ -1,4 +1,7 @@
 import { falseFn } from 'foxts/noop';
+import { createRetrieKeywordFilter } from 'foxts/retrie';
+
+const isComplexFilter = createRetrieKeywordFilter(['#', '+', '@', '=', '(', 'redirect']);
 
 export class FilterMinifyStream extends TransformStream<string, string> {
   // private __buf = '';
@@ -58,7 +61,7 @@ export class FilterMinifyStream extends TransformStream<string, string> {
         //   }
         // }
 
-        if (sharedKwFilter(line)) {
+        if (!isComplexFilter(line) && sharedKwFilter(line)) {
           return;
         }
 
