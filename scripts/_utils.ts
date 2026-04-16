@@ -1,3 +1,5 @@
+import { falseFn } from 'foxts/noop';
+
 export class FilterMinifyStream extends TransformStream<string, string> {
   // private __buf = '';
   // private readonly trie = new HostnameSmolTrie();
@@ -5,13 +7,18 @@ export class FilterMinifyStream extends TransformStream<string, string> {
 
   private metaWritten = false;
 
-  constructor(filterName = 'unknown filter', private readonly whitelistFilterLines: Set<string> = new Set()) {
+  constructor(
+    filterName = 'unknown filter',
+    sharedKwFilter: (line: string) => boolean = falseFn,
+    private readonly whitelistFilterLines: Set<string> = new Set()
+  ) {
     super({
       transform: (line, controller) => {
         if (!this.metaWritten) {
           controller.enqueue(`! ${filterName}\n`);
           this.metaWritten = true;
         }
+
         if (
           line.length === 0 // ignore empty lines
           || (
@@ -51,11 +58,19 @@ export class FilterMinifyStream extends TransformStream<string, string> {
         //   }
         // }
 
+        if (sharedKwFilter(line)) {
+          return;
+        }
+
         if (this.whitelistFilterLines.has(line)) {
           // console.log('deduped!', line);
           return;
         }
         this.whitelistFilterLines.add(line);
+
+        if (line.endsWith('$third-party')) {
+          line = line.replace('$third-party', '$3p');
+        }
 
         controller.enqueue(line);
         controller.enqueue('\n');

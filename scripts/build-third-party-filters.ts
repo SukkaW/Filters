@@ -12,6 +12,7 @@ import { TextLineStream } from 'foxts/text-line-stream';
 import { pickOne } from 'foxts/pick-random';
 import { pipeline } from 'node:stream/promises';
 import { joinReadableStreams } from 'foxts/join-readablestreams';
+import { createRetrieKeywordFilter } from 'foxts/retrie';
 
 const DATA_SOURCE = [
   {
@@ -99,6 +100,21 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
     : Lowercase<S>;
 
 (async () => {
+  const sharedWhitelistKeywords = new Set<string>();
+
+  for await (
+    const line of nullthrow((await $$fetch('https://ruleset.skk.moe/List/domainset/reject.conf')).body)
+      .pipeThrough(new TextDecoderStream())
+      // @ts-expect-error -- @types/node stream/web is broken
+      .pipeThrough(new TextLineStream({ skipEmptyLines: true }))
+  ) {
+    if (line?.[0] === '.') {
+      sharedWhitelistKeywords.add(line);
+    }
+  };
+
+  const sharedKwFilter = createRetrieKeywordFilter(Array.from(sharedWhitelistKeywords));
+
   fs.mkdirSync(OUTPUT_FILTERS_DIR, { recursive: true });
   const topUserAgents = (await (await $$fetch('https://cdn.jsdelivr.net/npm/top-user-agents@2.1.75/src/desktop.json')).json()) as string[];
 
@@ -190,7 +206,7 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
           new DebugStream('async/folsrch', url)
         )
         // @ts-expect-error -- @types/node stream/web is broken
-        .pipeThrough(new FilterMinifyStream(metadata.title + ' ' + url, whitelists)));
+        .pipeThrough(new FilterMinifyStream(metadata.title + ' ' + url, sharedKwFilter, whitelists)));
 
       const appendOutputMeta: string[] = [];
       if (metadata.title) {
