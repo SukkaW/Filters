@@ -17,14 +17,14 @@
     "foxts": "^5.4.0",
     "picocolors": "^1.1.1",
     "tldts": "^7.0.28",
-    "undici": "^8.0.2"
+    "undici": "^8.1.0"
   },
   "devDependencies": {
     "@adguard/aglint": "^3.0.2",
     "@eslint-sukka/node": "^8.9.2",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@swc-node/register": "^1.11.1",
-    "@swc/core": "^1.15.24",
+    "@swc/core": "^1.15.26",
     "@types/node": "^24.12.2",
     "eslint": "^10.2.0",
     "eslint-config-sukka": "^8.9.2",
@@ -35,9 +35,6 @@
   },
   "packageManager": "pnpm@10.33.0",
   "pnpm": {
-    "overrides": {
-      "eslint>chalk": "npm:ansis@^4.2.0-node10"
-    },
     "onlyBuiltDependencies": [
       "@swc/core",
       "oxc-resolver"
