@@ -65,7 +65,8 @@ const DATA_SOURCE = [
       'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt' // Available in AdGuard as an option
     ],
     whitelist: [
-      'https://easylist.to/easylist/easyprivacy.txt'
+      'https://easylist.to/easylist/easyprivacy.txt',
+      'https://easylist.to/easylist/easylist.txt'
     ]
   },
   {
