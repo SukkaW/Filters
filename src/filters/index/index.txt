@@ -215,7 +215,7 @@ gettr.com##esr-signup
 ! archive.org Donation iframe
 ||archive.org/includes/donate
 
-# >> Privacy
+# >>>> Privacy
 # defuse tracking
 www.speedtest.net##+js(set, dataLayer, [])
 ||bitmovin.com/analytics
@@ -262,7 +262,7 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 /counters.gif$redirect=1x1.gif
 ||pixel.wp.com/g.gif$redirect=1x1.gif
 
-# >> Website Fix, Fuck Website, Fxxk Website, Fix Website
+# >>>> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
 # Remove all AFF ID
 *$removeparam=aff
@@ -395,6 +395,12 @@ fandom.com###age-gate
 ||change.org/api-proxy/graphql?op=SuggestedPetitionsFromPetitionSunrise
 ||change.org/api-proxy/graphql?op=SunriseVictoriousPetitionsFromPetition
 ||change.org/api-proxy/graphql?op=PetitionQRCodeData
+
+# Fuck WikiWand
+wikiwand.com##.ad-mid-section
+wikiwand.com##.ad-between-sections
+! by removing data-show-ads attribute the ad loading logic is now skipped
+wikiwand.com##html:remove-attr(data-show-ads)
 
 # Defuse Region Blocking
 ||ip.sb$domain=alicesw.com
@@ -561,7 +567,7 @@ zhihu.com##+js(trusted-click-element, '.Modal.signFlowModal button.Button.Modal-
 # Defuse User-Agent detection
 dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/114514", runAt, 1)
 
-# >> Handcraft
+# >>>> Handcraft
 
 ! Geo unblock
 ||api.abema.io/v*/ip/check
@@ -854,7 +860,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 ||ad*.on.cc^$important
 
-# >> URL Redirect
+# >>>> URL Redirect
 
 ||necolas.github.io/normalize.css/*/normalize.css$uritransform=/necolas\.github\.io\/normalize\.css\/([^\/]+)\/normalize\.css/cdn.jsdelivr.net\/npm\/normalize.css@$1\/normalize.css/
 
@@ -878,7 +884,7 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||bootstrapcdn.com/bootstrap/$all,uritransform=/[^\/]+\.bootstrapcdn\.com\/bootstrap\/([^\/]+)\//cdn.jsdelivr.net\/npm\/bootstrap@$1\/dist\//
 ||bootstrapcdn.com/font-awesome/$all,uritransform=/[^\/]+\.bootstrapcdn\.com\/font-awesome\/([^\/]+)\/(.*)/cdn.jsdelivr.net\/npm\/font-awesome@$1\/$2/
 
-# >> Auto Generated - per site
+# >>>> Auto Generated - per site
 
 ! zh.moegirl.org.cn
 ||app.moegirl.org.cn/insight-assets/images/20230413-moepad/800x300.png
@@ -894,7 +900,7 @@ zh.moegirl.org.cn###moe-article-comments-bottom > .wiki-page-comments
 vuejs.org##.banner
 vuejs.org##.VPApp :style(padding-top: 0 !important;)
 
-# >> Auto Generated - time
+# >>>> Auto Generated - time
 
 ! 2019/5/27 https://www.mf8.biz
 ||pics.mf8.biz/wp-store/2018/10/2018102123260678.jpg
