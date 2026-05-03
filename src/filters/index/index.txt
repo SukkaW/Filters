@@ -1499,3 +1499,6 @@ maclookup.app##.floating-b
 
 ! Feb 25, 2026 https://www.justaftermidnight247.com
 www.justaftermidnight247.com##.blog-newsletter
+
+! Apr 16, 2026 https://www.star-history.com
+||star-history.com/assets/ft/$image
