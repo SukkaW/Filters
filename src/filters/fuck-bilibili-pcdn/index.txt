@@ -1,3 +1,3 @@
-||mcdn.bilivideo.cn:*/v*/resource/$urltransform=/(.+)/https:\/\/proxy-tf-all-ws.bilivideo.com/?url=$1/
-||bilivideo.cn/upgcxcode/*os=mcdn*$urltransform=/https?:\/\/(.+)\/upgcxcode\/(.+)/https:\/\/upos-sz-mirrorali.bilivideo.com\/upgcxcode\/$2/
+||mcdn.bilivideo.cn/v*/resource/$urltransform=/(.+)/https:\/\/proxy-tf-all-ws.bilivideo.com/?url=$1/
+||mcdn.bilivideo.cn/*upgcxcode/*os=mcdn*$urltransform=/https?:\/\/(.+)\/upgcxcode\/(.+)/https:\/\/upos-sz-mirrorali.bilivideo.com\/upgcxcode\/$2/
 ||szbdyd.com^$urltransform=/https?:\/\/(.+)\/upgcxcode\/(.+)/https:\/\/upos-sz-mirrorali.bilivideo.com\/upgcxcode\/$2/
