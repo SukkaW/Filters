@@ -24,7 +24,8 @@ function templates(title: string) {
 
 const builds = [
   ['Sukka Filters', 'index'],
-  ['Sukka AdGuardHome Rewrites', 'adgh-dns-rewrites']
+  ['Sukka AdGuardHome Rewrites', 'adgh-dns-rewrites'],
+  ['Sukka Experimental Bilibili PCDN Defuser', 'fuck-bilibili-pcdn']
 ] as const;
 
 export async function buildFilter() {
