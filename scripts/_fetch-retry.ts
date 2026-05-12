@@ -51,7 +51,11 @@ setGlobalDispatcher(agent.compose(
         && (
           statusCode === 401 // Unauthorized, should check credentials instead of retrying
           || statusCode === 403 // Forbidden, should check permissions instead of retrying
-          || statusCode === 404 // Not Found, should check URL instead of retrying
+          || (
+            statusCode === 404 // Not Found, should check URL instead of retrying
+            // jsDelivr may sometimes return 404 when failed to fetch from origin
+            && !opts.origin?.toString().includes('cdn.jsdelivr.net')
+          )
           || statusCode === 405 // Method Not Allowed, should check method instead of retrying
         )
       ) {
