@@ -257,6 +257,8 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||cdn.lgrckt-in.com/logger
 ||static.newsbreak.com/business/tracking/
 
+||geoip.businessinsider.com
+
 # defuse tracking gif
 /ping.gif$redirect=1x1.gif
 /counters.gif$redirect=1x1.gif
@@ -377,6 +379,10 @@ www.deepl.com###dl_quotes_container
 ! defuse tracking
 ||gtm.deepl.com/gtm.js$redirect=googletagmanager_gtm.js
 deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }')
+
+# Fuck Intervals.ICU
+# defuse donation popup
+intervals.icu##+js(trusted-set-local-storage-item, DonatePopup, 2099-12-31)
 
 # Fuck Fandom
 ||community.fandom.com
@@ -1502,3 +1508,7 @@ www.justaftermidnight247.com##.blog-newsletter
 
 ! Apr 16, 2026 https://www.star-history.com
 ||star-history.com/assets/ft/$image
+
+! May 10, 2026 https://iboysoft.com
+iboysoft.com##.delayed-popup-container
+iboysoft.com##.delayed-popup-overlay
