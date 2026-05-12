@@ -348,9 +348,8 @@ http://*$app=tv.danmaku.bili
 ||biligame.com
 
 # Feat: Strava Activity Page, Map sticky
-strava.com###map-canvas:style(position: sticky !important; top: 0; z-index: 1000)
-# Fix: Strava Activity Map sticky, make altitude chart sticky in proper position
-strava.com###chart-container:style(top: 350px!important)
+strava.com###map-canvas:style(position: sticky!important; top: 0!important; z-index: 100;)
+strava.com###elevation-profile:style(position: sticky!important; top: 350px!important; z-index: 100; background-color: #fff;  border-bottom: 1px solid #dfdfe8 !important)
 
 # Defuse Super.com Storming Tracking Retry
 ||cdn.super.com/remote-event-registry.json$xhr
