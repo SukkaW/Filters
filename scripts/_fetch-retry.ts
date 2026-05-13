@@ -1,8 +1,7 @@
 import picocolors from 'picocolors';
 import undici, {
   interceptors,
-  Agent,
-  setGlobalDispatcher
+  Agent
 } from 'undici';
 
 import type {
@@ -14,10 +13,9 @@ import type {
 export type UndiciResponseData<T = unknown> = Dispatcher.ResponseData<T>;
 
 import { inspect } from 'node:util';
+import { isAbortErrorLike } from 'foxts/abort-error';
 
-const agent = new Agent({ allowH2: true });
-
-setGlobalDispatcher(agent.compose(
+const agent = new Agent({ allowH2: true }).compose(
   interceptors.dns({
     // disable IPv6
     dualStack: false,
@@ -29,6 +27,10 @@ setGlobalDispatcher(agent.compose(
     minTimeout: 500, // The initial retry delay in milliseconds
     maxTimeout: 10 * 1000, // The maximum retry delay in milliseconds
     retryAfter: true,
+    // Undici still uses `statusCodes` as the first gate for HTTP response retries.
+    // Our custom `retry()` callback only runs after a response status is admitted here,
+    // so we must list our status codes here before we can read it in our retry callback.
+    statusCodes: [404, 429, 500, 502, 503, 504],
     // TODO: this part of code is only for allow more errors to be retried by default
     // This should be removed once https://github.com/nodejs/undici/issues/3728 is implemented
     retry(err, { state, opts }, cb) {
@@ -51,15 +53,19 @@ setGlobalDispatcher(agent.compose(
         && (
           statusCode === 401 // Unauthorized, should check credentials instead of retrying
           || statusCode === 403 // Forbidden, should check permissions instead of retrying
-          || (
-            statusCode === 404 // Not Found, should check URL instead of retrying
-            // jsDelivr may sometimes return 404 when failed to fetch from origin
-            && !opts.origin?.toString().includes('cdn.jsdelivr.net')
-          )
           || statusCode === 405 // Method Not Allowed, should check method instead of retrying
         )
       ) {
         return cb(err);
+      }
+
+      const origin = opts.origin?.toString();
+      if (statusCode === 404) {
+        if (origin?.includes('cdn.jsdelivr.net')) {
+          // continue retry anyway, jsDelivr has recently broken and return HTTP 404 for bad origin
+        } else {
+          return cb(err);
+        }
       }
 
       // if (errorCode === 'UND_ERR_REQ_RETRY') {
@@ -108,7 +114,7 @@ setGlobalDispatcher(agent.compose(
   interceptors.redirect({
     maxRedirections: 5
   })
-));
+);
 
 function calculateRetryAfterHeader(retryAfter: string) {
   const current = Date.now();
@@ -133,6 +139,9 @@ export class ResponseError<T extends UndiciResponseData | Response> extends Erro
 
 export async function $$fetch(url: string, init?: RequestInit) {
   try {
+    init ??= {};
+    init.dispatcher = agent;
+
     const res = await undici.fetch(url, init);
     if (res.status >= 400) {
       throw new ResponseError(res, url);
@@ -144,15 +153,10 @@ export async function $$fetch(url: string, init?: RequestInit) {
 
     return res;
   } catch (err: unknown) {
-    if (typeof err === 'object' && err !== null && 'name' in err) {
-      if ((
-        err.name === 'AbortError'
-        || ('digest' in err && err.digest === 'AbortError')
-      )) {
-        console.log(picocolors.gray('[fetch abort]'), url);
-      }
+    if (isAbortErrorLike(err)) {
+      console.log(picocolors.gray('[fetch abort]'), url);
     } else {
-      console.log(picocolors.gray('[fetch fail]'), url, { name: (err as any).name }, err);
+      console.log(picocolors.gray('[fetch fail]'), url, err);
     }
 
     throw err;
