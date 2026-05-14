@@ -84,12 +84,12 @@ export default defineRules([
   // bootstrapcdn.com
   {
     base: '||bootstrapcdn.com/bootstrap/',
-    from: '[subdomain].bootstrapcdn.com/bootstrap/[version_major]/',
+    from: '[subdomain].bootstrapcdn.com/bootstrap/[version]/',
     to: 'cdn.jsdelivr.net/npm/bootstrap@$2/dist/',
     tests: [
       [
         'https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css',
-        'https://cdn.jsdelivr.net/npm/bootstrap@3/dist/css/bootstrap.min.css'
+        'https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css'
       ]
     ]
   },
