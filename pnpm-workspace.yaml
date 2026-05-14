@@ -1,2 +1,4 @@
-onlyBuiltDependencies:
-  - '@swc/core'
+allowBuilds:
+  '@swc/core': true
+  core-js-pure: false
+  unrs-resolver: true
