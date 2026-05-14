@@ -865,32 +865,6 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 
 ||ad*.on.cc^$important
 
-# >>>> URL Redirect
-
-||necolas.github.io/normalize.css/*/normalize.css$uritransform=/necolas\.github\.io\/normalize\.css\/([^\/]+)\/normalize\.css/cdn.jsdelivr.net\/npm\/normalize.css@$1\/normalize.css/
-
-://gravatar.com/avatar/$all,uritransform=/gravatar\.com/secure.gravatar.com/
-||0.gravatar.com/avatar/$all,uritransform=/0\.gravatar\.com/secure.gravatar.com/
-||1.gravatar.com/avatar/$all,uritransform=/1\.gravatar\.com/secure.gravatar.com/
-||2.gravatar.com/avatar/$all,uritransform=/2\.gravatar\.com/secure.gravatar.com/
-||3.gravatar.com/avatar/$all,uritransform=/3\.gravatar\.com/secure.gravatar.com/
-||s.gravatar.com/avatar/$all,uritransform=/s\.gravatar\.com/secure.gravatar.com/
-||www.gravatar.com/avatar/$all,uritransform=/www\.gravatar\.com/secure.gravatar.com/
-
-||ajax.googleapis.com/ajax/libs/jquery$all,uritransform=/ajax.googleapis.com\/ajax\/libs\/jquery\/([^\/]+)\//cdn.jsdelivr.net\/npm\/jquery@$1\/dist\//
-||ajax.googleapis.com/ajax/libs/bootstrap$all,uritransform=/ajax.googleapis.com\/ajax\/libs\/bootstrap\/([^\/]+)\//cdn.jsdelivr.net\/npm\/bootstrap@$1\/dist\//
-
-||code.jquery.com/jquery-1*.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.min\.js/cdn.jsdelivr.net\/npm\/jquery@1\/dist\/jquery.min.js/
-||code.jquery.com/jquery-1*.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([\d\.]+)\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.min.js/
-||code.jquery.com/jquery-*.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.min\.js/cdn.jsdelivr.net\/npm\/jquery@1\/dist\/jquery.min.js/
-||code.jquery.com/jquery-*.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([\d\.]+)\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.min.js/
-
-||code.jquery.com/jquery-*.slim.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/jquery-([^\/]+)\.slim\.min\.js/cdn.jsdelivr.net\/npm\/jquery@$1\/dist\/jquery.slim.min.js/
-||code.jquery.com/ui/*/jquery-ui.min.js$all,domain=~ui.com,uritransform=/code.jquery.com\/ui\/([^\/]+)\/jquery-ui\.min\.js/cdn.jsdelivr.net\/npm\/jquery-ui@$1\/dist\/jquery-ui.min.js/
-
-||bootstrapcdn.com/bootstrap/$all,uritransform=/[^\/]+\.bootstrapcdn\.com\/bootstrap\/([^\/]+)\//cdn.jsdelivr.net\/npm\/bootstrap@$1\/dist\//
-||bootstrapcdn.com/font-awesome/$all,uritransform=/[^\/]+\.bootstrapcdn\.com\/font-awesome\/([^\/]+)\/(.*)/cdn.jsdelivr.net\/npm\/font-awesome@$1\/$2/
-
 # >>>> Auto Generated - per site
 
 ! zh.moegirl.org.cn

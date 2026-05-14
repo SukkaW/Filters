@@ -1,40 +1,173 @@
 import path from 'node:path';
 import redirectRules from '../src/url-redirector';
+import type { RedirectRule } from '../src/url-redirector';
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import { OUTPUT_URL_REDIRECTOR_DIR } from './_constants';
-import { buildScriptlets } from './scriptlets';
+import { escapeRegexp } from 'fast-escape-regexp';
+import { fastStringArrayJoin } from 'foxts/fast-string-array-join';
+import picocolors from 'picocolors';
+import { castArray } from 'foxts/cast-array';
+
+const REGEX_SHORTHANDS = { // NEEDS TO BE ENTIRELY GROUPED for replace with $1, $2, ...
+  '[subdomain]': /([^/]+)/.source,
+  '[version]': /((?:\d+\.)+\d)/.source,
+  '[semver]': /((?:\d+\.)+\d+(?:[+-][\w.-]+)*)/.source,
+  '[version_major]': /(\d+)(?:\.\d+)+/.source,
+  '[semver_major]': /(\d+)(?:\.\d+)+(?:[+-][\w.-]+)*/.source
+} as const;
+
+function escapeForUriTransform(value: string) {
+  let result = '';
+  let backslashCount = 0;
+
+  for (let i = 0, len = value.length; i < len; i++) {
+    const char = value[i];
+
+    if (char === '/') {
+      result += backslashCount % 2 === 1 ? '/' : String.raw`\/`;
+      backslashCount = 0;
+      continue;
+    }
+
+    result += char;
+    backslashCount = char === '\\' ? backslashCount + 1 : 0;
+  }
+
+  return result;
+}
+
+function hasRegexShorthand(value: string) {
+  return Object.keys(REGEX_SHORTHANDS).some(token => value.includes(token));
+}
+
+function getReplaceFrom(from: RedirectRule['from']) {
+  if (from instanceof RegExp) {
+    return from;
+  }
+
+  if (!hasRegexShorthand(from)) {
+    return from;
+  }
+
+  return new RegExp(getStringPatternSource(from));
+}
+
+function getStringPatternSource(from: string) {
+  if (!hasRegexShorthand(from)) {
+    return escapeRegexp(from, false);
+  }
+
+  let result = '';
+  let cursor = 0;
+
+  while (cursor < from.length) {
+    let nextToken: keyof typeof REGEX_SHORTHANDS | undefined;
+    let nextIndex = from.length;
+
+    for (const token of Object.keys(REGEX_SHORTHANDS) as Array<keyof typeof REGEX_SHORTHANDS>) {
+      const index = from.indexOf(token, cursor);
+
+      if (index !== -1 && index < nextIndex) {
+        nextIndex = index;
+        nextToken = token;
+      }
+    }
+
+    if (!nextToken) {
+      result += escapeRegexp(from.slice(cursor), false);
+      break;
+    }
+
+    result += escapeRegexp(from.slice(cursor, nextIndex), false);
+    result += REGEX_SHORTHANDS[nextToken];
+    cursor = nextIndex + nextToken.length;
+  }
+
+  return result;
+}
+
+function getPatternSource(from: RedirectRule['from']) {
+  if (from instanceof RegExp) {
+    return escapeForUriTransform(from.source);
+  }
+
+  return escapeForUriTransform(getStringPatternSource(from));
+}
+
+function getDomainModifier(excludeDomains?: string[]) {
+  if (!excludeDomains?.length) {
+    return '';
+  }
+
+  return `,domain=${fastStringArrayJoin(excludeDomains.map(domain => `~${domain}`), '|')}`;
+}
+
+function formatRuleBase(base: RedirectRule['base']) {
+  return Array.isArray(base) ? fastStringArrayJoin(base, ', ') : base;
+}
+
+function verifyRedirectRules(rules: RedirectRule[]) {
+  for (const rule of rules) {
+    const replaceFrom = getReplaceFrom(rule.from);
+
+    for (const [original, expected] of rule.tests) {
+      const actual = original.replace(replaceFrom, rule.to);
+
+      if (actual !== expected) {
+        throw new TypeError(
+          [
+            `Redirect rule test failed for base "${formatRuleBase(rule.base)}"`,
+            `original: ${original}`,
+            `expected: ${picocolors.red(expected)}`,
+            `actual  : ${picocolors.green(actual)}`
+          ].join('\n')
+        );
+      }
+    }
+  }
+}
+
+function serializeRedirectRule(base: string, rule: RedirectRule, parameterType: 'uritransform' | 'urltransform') {
+  return `${base}$all,${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.excludeDomains)}`;
+}
 
 export async function buildUrlRedirector() {
   fs.mkdirSync(OUTPUT_URL_REDIRECTOR_DIR, { recursive: true });
-  return Promise.all(
-    redirectRules.map(async (rule) => {
-      const basename = rule.basename;
-      const result = JSON.stringify({
-        version: '1.0',
-        createdAt: new Date().toISOString(),
-        rules: rule.rules.map(r => ({
-          description: r[2] || r[0] + ' -> ' + r[1],
-          origin: r[0],
-          exclude: null,
-          methods: [],
-          types: [],
-          target: r[1],
-          enable: true
-        }))
-      });
 
-      return fsp.writeFile(
-        path.join(
-          OUTPUT_URL_REDIRECTOR_DIR,
-          `${basename}.json`
-        ),
-        result
-      );
-    })
+  verifyRedirectRules(redirectRules);
+
+  const output = [
+    '! Title: [sukka] URL Redirector',
+    `! Last modified: ${new Date().toUTCString()}`,
+    '! Description: uBlock Origin / AdGuard uritransform rules',
+    '! Homepage: https://github.com/SukkaW/Filters',
+    '! License: https://github.com/SukkaW/Filters/blob/master/LICENSE',
+    ''
+  ];
+
+  // uBlock Origin uses uritransform
+  // eslint-disable-next-line sukka/unicorn/no-immediate-mutation -- for readability
+  output.push('! >>>> uBlock Origin');
+  for (const rule of redirectRules) {
+    for (const base of castArray(rule.base)) {
+      output.push(serializeRedirectRule(base, rule, 'uritransform'));
+    }
+  }
+  // AdGuard uses urltransform
+  output.push('', '! >>>> AdGuard');
+  for (const rule of redirectRules) {
+    for (const base of castArray(rule.base)) {
+      output.push(serializeRedirectRule(base, rule, 'urltransform'));
+    }
+  }
+
+  await fsp.writeFile(
+    path.join(OUTPUT_URL_REDIRECTOR_DIR, 'index.txt'),
+    fastStringArrayJoin(output, '\n')
   );
 }
 
 if (require.main === module) {
-  buildScriptlets().catch(console.error);
+  buildUrlRedirector().catch(console.error);
 }
