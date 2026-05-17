@@ -18,21 +18,21 @@
     "foxts": "^5.4.2",
     "picocolors": "^1.1.1",
     "tldts": "^7.0.30",
-    "undici": "^8.2.0"
+    "undici": "^8.3.0"
   },
   "devDependencies": {
     "@adguard/aglint": "^3.0.2",
-    "@eslint-sukka/node": "^8.10.2",
+    "@eslint-sukka/node": "^8.10.4",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.15.33",
     "@types/node": "^24.12.4",
-    "eslint": "^10.3.0",
-    "eslint-config-sukka": "^8.10.2",
-    "eslint-formatter-sukka": "^8.10.2",
-    "rollup": "^4.60.3",
+    "eslint": "^10.4.0",
+    "eslint-config-sukka": "^8.10.4",
+    "eslint-formatter-sukka": "^8.10.4",
+    "rollup": "^4.60.4",
     "rollup-plugin-swc3": "^0.12.1",
     "typescript": "^6.0.3"
   },
-  "packageManager": "pnpm@11.1.1"
+  "packageManager": "pnpm@11.1.2"
 }
