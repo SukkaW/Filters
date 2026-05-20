@@ -476,7 +476,9 @@ yorg.io##+js(set-local-storage-item, stat_max_base_level, 1919)
 yorg.io##+js(set-local-storage-item, stat_max_day_reached, 114514)
 
 # Cloudflare Dashboard: this prevents accidentally converting to primary NS setup
-cloudflare.com##a[href$="/dns/settings"]
+cloudflare.com##a[href$="/dns/convert-zone"]
+dash.cloudflare.com##div[data-settings-card="true"]:has-text(Convert to Primary DNS)
+dash.cloudflare.com##main[data-testid="dns-settings-page"]>div>div>div:has-text(Convert to Primary DNS)
 
 # Fuck CSDN
 blog.csdn.net##.blog_container_aside
@@ -1000,6 +1002,9 @@ fontawesome.com##.wrap-ad
 
 ! 2022-09-08 https://community.cloudflare.com
 community.cloudflare.com##.house-ad
+community.cloudflare.com##.d-modal__backdrop
+community.cloudflare.com##.modal-container
+community.cloudflare.com##.sub-nav__wrapper
 
 ! 2022-10-18 https://www.boce.com
 www.boce.com##.money_left
@@ -1109,10 +1114,6 @@ vuejs.org##.sponsor-item
 ! 2024-04-09 https://linux.do
 linux.do##.custom-gated-topic-container
 
-! 2024-04-16 https://community.cloudflare.com
-community.cloudflare.com##.d-modal__backdrop
-community.cloudflare.com##.modal-container
-
 ! 2024-04-18 https://draveness.me
 ||img.draveness.me/2020-03-11-15839264230785-wechat-qr-code.png
 
@@ -1210,9 +1211,6 @@ www.zhihu.com##.Reward
 
 ! Jan 30, 2025 https://lowendaff.com
 lowendaff.com##.joe_advert-large
-
-! Feb 2, 2025 https://community.cloudflare.com
-community.cloudflare.com##.sub-nav__wrapper
 
 ! Feb 14, 2025 https://av6k.com
 ||xn--feus21h.xyz/static/team/uploadpic/$image
