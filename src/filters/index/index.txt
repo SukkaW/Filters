@@ -231,6 +231,9 @@ g.alicdn.com/axdata/yunlog*$redirect=noop.js
 g.alicdn.com/dawn/user-tracker*$redirect=noop.js
 g.alicdn.com/sj/securesdk$redirect=noop.js
 
+||railway.com/googletag/
+||railway.com/graphql/internal?q=eventBatchTrack
+
 ||render.com/pan/api/event
 ||r2cdn.perplexity.ai/js/count/
 
@@ -479,6 +482,7 @@ yorg.io##+js(set-local-storage-item, stat_max_day_reached, 114514)
 cloudflare.com##a[href$="/dns/convert-zone"]
 dash.cloudflare.com##div[data-settings-card="true"]:has-text(Convert to Primary DNS)
 dash.cloudflare.com##main[data-testid="dns-settings-page"]>div>div>div:has-text(Convert to Primary DNS)
+||dash.cloudflare.com/*/dns/convert-zone$all
 
 # Fuck CSDN
 blog.csdn.net##.blog_container_aside
