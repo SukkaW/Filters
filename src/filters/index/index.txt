@@ -1487,3 +1487,6 @@ www.justaftermidnight247.com##.blog-newsletter
 ! May 10, 2026 https://iboysoft.com
 iboysoft.com##.delayed-popup-container
 iboysoft.com##.delayed-popup-overlay
+
+! May 14, 2026 https://www.browserling.com
+www.browserling.com###blackFridayOverlay
