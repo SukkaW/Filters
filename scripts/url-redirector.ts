@@ -1,6 +1,6 @@
 import path from 'node:path';
-import redirectRules from '../src/url-redirector';
-import type { RedirectRule } from '../src/url-redirector';
+import redirectRuleSets from '../src/url-redirector';
+import type { RedirectRule, RedirectRuleSet } from '../src/url-redirector';
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import { OUTPUT_URL_REDIRECTOR_DIR } from './_constants';
@@ -107,8 +107,8 @@ function formatRuleBase(base: RedirectRule['base']) {
   return Array.isArray(base) ? fastStringArrayJoin(base, ', ') : base;
 }
 
-function verifyRedirectRules(rules: RedirectRule[]) {
-  for (const rule of rules) {
+function verifyRedirectRules(ruleSet: RedirectRuleSet) {
+  for (const rule of ruleSet.rules) {
     const replaceFrom = getReplaceFrom(rule.from);
 
     for (const [original, expected] of rule.tests) {
@@ -117,6 +117,7 @@ function verifyRedirectRules(rules: RedirectRule[]) {
       if (actual !== expected) {
         throw new TypeError(
           [
+            `Redirect filter: ${ruleSet.title} (${ruleSet.fileName})`,
             `Redirect rule test failed for base "${formatRuleBase(rule.base)}"`,
             `original: ${original}`,
             `expected: ${picocolors.red(expected)}`,
@@ -132,40 +133,49 @@ function serializeRedirectRule(base: string, rule: RedirectRule, parameterType: 
   return `${base}$all,${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.excludeDomains)}`;
 }
 
-export async function buildUrlRedirector() {
-  fs.mkdirSync(OUTPUT_URL_REDIRECTOR_DIR, { recursive: true });
-
-  verifyRedirectRules(redirectRules);
-
-  const output = [
-    '! Title: [sukka] URL Redirector',
+function getOutputFileHeader(title: string) {
+  return [
+    `! Title: [sukka] ${title}`,
     `! Last modified: ${new Date().toUTCString()}`,
     '! Description: uBlock Origin / AdGuard uritransform rules',
     '! Homepage: https://github.com/SukkaW/Filters',
     '! License: https://github.com/SukkaW/Filters/blob/master/LICENSE',
     ''
   ];
+}
+
+async function buildRedirectRuleSet(ruleSet: RedirectRuleSet) {
+  verifyRedirectRules(ruleSet);
+
+  const output = getOutputFileHeader(ruleSet.title);
 
   // uBlock Origin uses uritransform
   // eslint-disable-next-line sukka/unicorn/no-immediate-mutation -- for readability
   output.push('! >>>> uBlock Origin');
-  for (const rule of redirectRules) {
+  for (const rule of ruleSet.rules) {
     for (const base of castArray(rule.base)) {
       output.push(serializeRedirectRule(base, rule, 'uritransform'));
     }
   }
+
   // AdGuard uses urltransform
   output.push('', '! >>>> AdGuard');
-  for (const rule of redirectRules) {
+  for (const rule of ruleSet.rules) {
     for (const base of castArray(rule.base)) {
       output.push(serializeRedirectRule(base, rule, 'urltransform'));
     }
   }
 
   await fsp.writeFile(
-    path.join(OUTPUT_URL_REDIRECTOR_DIR, 'index.txt'),
+    path.join(OUTPUT_URL_REDIRECTOR_DIR, `${ruleSet.fileName}.txt`),
     fastStringArrayJoin(output, '\n')
   );
+}
+
+export async function buildUrlRedirector() {
+  fs.mkdirSync(OUTPUT_URL_REDIRECTOR_DIR, { recursive: true });
+
+  await Promise.all(redirectRuleSets.map(buildRedirectRuleSet));
 }
 
 if (require.main === module) {
