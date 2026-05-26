@@ -238,6 +238,14 @@ export default [
       tests: [
         ['https://subdomain.wdfiles.com/file/abc', 'https://docs.lucaairport.qzz.io/https/subdomain.wdfiles.com/file/abc']
       ]
+    },
+    {
+      base: '||wikidot.com/local--files/',
+      from: '[subdomain].wikidot.com/local--files/',
+      to: 'docs.lucaairport.qzz.io/https/$1.wikidot.com/local--files/',
+      tests: [
+        ['https://a.wikidot.com/local--files/example.jpg', 'https://docs.lucaairport.qzz.io/https/a.wikidot.com/local--files/example.jpg']
+      ]
     }
   ])
 ] as const;
