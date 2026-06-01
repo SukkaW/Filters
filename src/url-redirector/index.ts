@@ -246,6 +246,36 @@ export default [
       tests: [
         ['https://a.wikidot.com/local--files/example.jpg', 'https://docs.lucaairport.qzz.io/https/a.wikidot.com/local--files/example.jpg']
       ]
+    },
+    {
+      base: '||cdn.scpwiki.com',
+      from: 'cdn.scpwiki.com',
+      to: 'docs.lucaairport.qzz.io/https/cdn.scpwiki.com',
+      tests: [
+        [
+          'https://cdn.scpwiki.com/theme/en/basalt/basalt-bedrock-min.css',
+          'https://docs.lucaairport.qzz.io/https/cdn.scpwiki.com/theme/en/basalt/basalt-bedrock-min.css'
+        ]
+      ]
+    },
+    {
+      base: '||scp-wiki-cdn.nyc3.cdn.digitaloceanspaces.com',
+      from: 'scp-wiki-cdn.nyc3.cdn.digitaloceanspaces.com',
+      to: 'docs.lucaairport.qzz.io/https/scp-wiki-cdn.nyc3.cdn.digitaloceanspaces.com',
+      tests: [
+        [
+          'https://scp-wiki-cdn.nyc3.cdn.digitaloceanspaces.com/theme/en/basalt/basalt-bedrock-min.css',
+          'https://docs.lucaairport.qzz.io/https/scp-wiki-cdn.nyc3.cdn.digitaloceanspaces.com/theme/en/basalt/basalt-bedrock-min.css'
+        ]
+      ]
+    },
+    {
+      base: '||www.wikidot.com/userkarma.php',
+      from: 'www.wikidot.com/userkarma.php',
+      to: 'docs.lucaairport.qzz.io/https/www.wikidot.com/userkarma.php',
+      tests: [
+        ['https://www.wikidot.com/userkarma.php?u=114514', 'https://docs.lucaairport.qzz.io/https/www.wikidot.com/userkarma.php?u=114514']
+      ]
     }
   ])
 ] as const;
