@@ -79,6 +79,10 @@ export default [
         [
           'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js',
           'https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js'
+        ],
+        [
+          'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js',
+          'https://cdn.jsdelivr.net/npm/jquery@1/dist/jquery.min.js'
         ]
       ]
     },
@@ -90,6 +94,139 @@ export default [
         [
           'https://ajax.googleapis.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js',
           'https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.min.js'
+        ]
+      ]
+    },
+    {
+      base: '||ajax.googleapis.com/ajax/libs/d3js/',
+      from: 'ajax.googleapis.com/ajax/libs/d3js/[version]/',
+      to: 'cdn.jsdelivr.net/npm/d3@$1/dist/',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/d3js/7.9.0/d3.min.js',
+          'https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js'
+        ],
+        [
+          'https://ajax.googleapis.com/ajax/libs/d3js/5.16.0/d3.min.js',
+          'https://cdn.jsdelivr.net/npm/d3@5.16.0/dist/d3.min.js'
+        ]
+      ]
+    },
+    {
+      base: '||ajax.googleapis.com/ajax/libs/hammerjs/',
+      from: 'ajax.googleapis.com/ajax/libs/hammerjs/[version]/',
+      to: 'cdn.jsdelivr.net/npm/hammerjs@$1/',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js',
+          'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js'
+        ]
+      ]
+    },
+    {
+      base: '||ajax.googleapis.com/ajax/libs/indefinite-observable/',
+      from: 'ajax.googleapis.com/ajax/libs/indefinite-observable/[version]/',
+      to: 'cdn.jsdelivr.net/npm/indefinite-observable@$1/dist/',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/indefinite-observable/2.0.1/indefinite-observable.min.js',
+          'https://cdn.jsdelivr.net/npm/indefinite-observable@2.0.1/dist/indefinite-observable.min.js'
+        ]
+      ]
+    },
+    {
+      base: '||ajax.googleapis.com/ajax/libs/jqueryui/*.js',
+      from: 'ajax.googleapis.com/ajax/libs/jqueryui/[version]/',
+      to: 'cdn.jsdelivr.net/npm/jquery-ui-dist@$1/',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js',
+          'https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.13.3/jquery-ui.min.js'
+        ]
+      ]
+    },
+    // npm missing 1.2.1 version
+    // {
+    //   base: '||ajax.googleapis.com/ajax/libs/myanmar-tools/',
+    //   from: 'ajax.googleapis.com/ajax/libs/myanmar-tools/[version]/',
+    //   to: 'cdn.jsdelivr.net/npm/myanmar-tools@$1/build_node/',
+    //   tests: [
+    //     [
+    //       'https://ajax.googleapis.com/ajax/libs/myanmar-tools/1.2.1/zawgyi_detector.min.js',
+    //       'https://cdn.jsdelivr.net/npm/myanmar-tools@1.2.1/build_node/zawgyi_detector.min.js'
+    //     ],
+    //     [
+    //       'https://ajax.googleapis.com/ajax/libs/myanmar-tools/1.2.1/zawgyi_converter.min.js',
+    //       'https://cdn.jsdelivr.net/npm/myanmar-tools@1.2.1/build_node/zawgyi_converter.min.js'
+    //     ]
+    //   ]
+    // },
+    {
+      base: '||ajax.googleapis.com/ajax/libs/shaka-player/',
+      from: 'ajax.googleapis.com/ajax/libs/shaka-player/[version]/',
+      to: 'cdn.jsdelivr.net/npm/shaka-player@$1/dist/',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/shaka-player/5.1.7/shaka-player.compiled.js',
+          'https://cdn.jsdelivr.net/npm/shaka-player@5.1.7/dist/shaka-player.compiled.js'
+        ],
+        [
+          'https://ajax.googleapis.com/ajax/libs/shaka-player/5.1.7/shaka-player.ui.js',
+          'https://cdn.jsdelivr.net/npm/shaka-player@5.1.7/dist/shaka-player.ui.js'
+        ],
+        [
+          'https://ajax.googleapis.com/ajax/libs/shaka-player/5.1.7/controls.css',
+          'https://cdn.jsdelivr.net/npm/shaka-player@5.1.7/dist/controls.css'
+        ]
+      ]
+    },
+    {
+      base: '||ajax.googleapis.com/ajax/libs/spf/',
+      from: 'ajax.googleapis.com/ajax/libs/spf/[version]/',
+      to: 'cdn.jsdelivr.net/npm/spf@$1/dist/',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/spf/2.4.0/spf.js',
+          'https://cdn.jsdelivr.net/npm/spf@2.4.0/dist/spf.js'
+        ]
+      ]
+    },
+    // swf object only has two non-standard versions, we map them individually
+    ...(['2.1', '2.2'] as const).flatMap(ver => literal({
+      base: `||ajax.googleapis.com/ajax/libs/swfobject/${ver}/`,
+      from: `ajax.googleapis.com/ajax/libs/swfobject/${ver}/`,
+      to: `cdn.jsdelivr.net/gh/swfobject/swfobject@${ver}/`,
+      tests: [
+        [
+          `https://ajax.googleapis.com/ajax/libs/swfobject/${ver}/swfobject.js`,
+          `https://cdn.jsdelivr.net/gh/swfobject/swfobject@${ver}/swfobject.js`
+        ]
+      ]
+    })),
+    {
+      // threejs uses r{N} versioning on Google, mapped to 0.N.0 on npm
+      base: '||ajax.googleapis.com/ajax/libs/threejs/',
+      from: /https?:\/\/ajax\.googleapis\.com\/ajax\/libs\/threejs\/r(\d+)\/(.+)/,
+      to: 'https://cdn.jsdelivr.net/npm/three@0.$1.0/build/$2',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js',
+          'https://cdn.jsdelivr.net/npm/three@0.84.0/build/three.min.js'
+        ],
+        [
+          'https://ajax.googleapis.com/ajax/libs/threejs/r49/three.js',
+          'https://cdn.jsdelivr.net/npm/three@0.49.0/build/three.js'
+        ]
+      ]
+    },
+    {
+      base: '||ajax.googleapis.com/ajax/libs/webfont/*/webfont.js',
+      from: 'ajax.googleapis.com/ajax/libs/webfont/[version]/webfont.js',
+      to: 'cdn.jsdelivr.net/npm/webfontloader@$1/webfontloader.js',
+      tests: [
+        [
+          'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js',
+          'https://cdn.jsdelivr.net/npm/webfontloader@1.6.26/webfontloader.js'
         ]
       ]
     },

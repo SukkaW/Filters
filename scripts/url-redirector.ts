@@ -11,7 +11,7 @@ import { castArray } from 'foxts/cast-array';
 
 const REGEX_SHORTHANDS = { // NEEDS TO BE ENTIRELY GROUPED for replace with $1, $2, ...
   '[subdomain]': /([^/]+)/.source,
-  '[version]': /((?:\d+\.)+\d)/.source,
+  '[version]': /((?:\d+\.)+\d+)/.source,
   '[semver]': /((?:\d+\.)+\d+(?:[+-][\w.-]+)*)/.source,
   '[version_major]': /(\d+)(?:\.\d+)+/.source,
   '[semver_major]': /(\d+)(?:\.\d+)+(?:[+-][\w.-]+)*/.source
@@ -150,7 +150,6 @@ async function buildRedirectRuleSet(ruleSet: RedirectRuleSet) {
   const output = getOutputFileHeader(ruleSet.title);
 
   // uBlock Origin uses uritransform
-  // eslint-disable-next-line sukka/unicorn/no-immediate-mutation -- for readability
   output.push('! >>>> uBlock Origin');
   for (const rule of ruleSet.rules) {
     for (const base of castArray(rule.base)) {
