@@ -63,7 +63,8 @@ const DATA_SOURCE = [
     sources: [
       // --- Missing in uBO (Added in AdGuard):
       'https://filters.adtidy.org/extension/ublock/filters/3_optimized.txt', // AdGuard maintain its own data along side EasyPrivacy
-      'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt' // Available in AdGuard as an option
+      'https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt', // Available in AdGuard as an option
+      'https://raw.githubusercontent.com/cjx82630/cjxlist/refs/heads/master/cjx-ublock.txt' // Supplementary filters
     ],
     whitelist: [
       'https://easylist.to/easylist/easyprivacy.txt',
