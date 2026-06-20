@@ -125,7 +125,7 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 @@||localhost$domain=skk.moe
 # Allow ip.skk.moe to do things
 @@||fastly-analytics.com$domain=ip.skk.moe|localhost
-@@||api.ip.sb$domain=ip.skk.moe|localhost
+@@||ip.sb$domain=skk.moe|localhost
 # UniFi Support
 @@||widget-mediator.zopim.com
 # unblock remove param for bilibili video cdn
@@ -251,6 +251,8 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||affonso.io$3p
 ||himetrica.com/api$3p
 
+||sp1.baidu.com/*.gif$redirect=1x1.gif
+
 ||cnzz.com/z_stat.php$redirect=noop.js
 ||cnzz.com^$redirect=noop.txt
 
@@ -262,6 +264,7 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||static.newsbreak.com/business/tracking/
 
 ||geoip.businessinsider.com
+||ciovita.com^$3p
 
 # defuse tracking gif
 /ping.gif$redirect=1x1.gif
@@ -396,7 +399,7 @@ intervals.icu##+js(trusted-set-local-storage-item, DonatePopup, 2099-12-31)
 ||nocookie.net/*/Sponsored$important
 ||nocookie.net/silversurfer$important
 ||fandom.com/*/AgeDeclaration/$image
-
+fandom.com###article-discussions
 fandom.com###age-gate
 
 # Fuck change.org
@@ -578,6 +581,9 @@ zhihu.com##+js(trusted-click-element, '.Modal.signFlowModal button.Button.Modal-
 
 # Defuse User-Agent detection
 dfzy.xyz##+js(trusted-set, window.navigator.userAgent, json:"Mozilla/5.0 quark/114514", runAt, 1)
+
+# Hide AD
+spot.cloudpilot.ai##.MuiBox-root.MuiPaper-elevation1.MuiPaper-rounded.MuiPaper-elevation.MuiPaper-root
 
 # >>>> Handcraft
 
@@ -1491,3 +1497,6 @@ iboysoft.com##.delayed-popup-overlay
 
 ! May 14, 2026 https://www.browserling.com
 www.browserling.com###blackFridayOverlay
+
+! Jun 6, 2026 https://open-design.ai
+open-design.ai##.newsletter-popup
