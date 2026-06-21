@@ -361,9 +361,9 @@ export default [
   ]),
   defineRules('Special Redirects', 'special', [
     {
-      base: '||vdownload.hembed.com',
-      from: 'vdownload.hembed.com',
-      to: 'docs.lucaairport.qzz.io/https/vdownload.hembed.com',
+      base: '||hembed.com',
+      from: '[subdomain].hembed.com',
+      to: 'docs.lucaairport.qzz.io/https/$1.hembed.com',
       tests: [
         ['https://vdownload.hembed.com/example.html', 'https://docs.lucaairport.qzz.io/https/vdownload.hembed.com/example.html']
       ]
