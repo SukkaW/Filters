@@ -172,6 +172,7 @@ lingchenzi.com#@#.category-share
 # Misc
 ||unpkg.com/orejime
 ||jsdelivr.net/npm/orejime
+/gh/ad-shield
 
 # HTTPDNS
 # MIUI HTTP DNS
@@ -827,7 +828,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||roboflow.com/scripts/utm.js
 
 /seline.js
-||cdn.jsdelivr.net/npm/bitmovin-analytics
+||jsdelivr.net/npm/bitmovin-analytics
+||unpkg.com/bitmovin-analytics
 
 /yummi.js
 /script.outbound-links.js
