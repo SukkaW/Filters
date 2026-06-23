@@ -266,20 +266,38 @@ export default [
     // use.fontawesome.com
     {
       base: [
-        '||use.fontawesome.com/releases/v5',
-        '||use.fontawesome.com/releases/v6',
-        '||use.fontawesome.com/releases/v7'
+        '||use.fontawesome.com/releases/v5*/css/',
+        '||use.fontawesome.com/releases/v6*/css/',
+        '||use.fontawesome.com/releases/v7*/css/',
+        '||use.fontawesome.com/releases/v5*/js/',
+        '||use.fontawesome.com/releases/v6*/js/',
+        '||use.fontawesome.com/releases/v7*/js/'
       ],
-      from: 'use.fontawesome.com/releases/v[version]/',
-      to: 'cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@$1/',
+      from: 'use.fontawesome.com/releases/v[version]/[non_path_segment]/[filename_basename_1_extname_2]',
+      to: 'cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@$1/$2/$3.min.$4',
       tests: [
         [
           'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
-          'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.8.1/css/all.css'
+          'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.8.1/css/all.min.css'
         ],
         [
           'https://use.fontawesome.com/releases/v5.3.1/css/all.css',
-          'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3.1/css/all.css'
+          'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3.1/css/all.min.css'
+        ]
+      ]
+    },
+    {
+      base: [
+        '||use.fontawesome.com/releases/v5*/webfonts/',
+        '||use.fontawesome.com/releases/v6*/webfonts/',
+        '||use.fontawesome.com/releases/v7*/webfonts/'
+      ],
+      from: 'use.fontawesome.com/releases/v[version]/webfonts/',
+      to: 'cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@$1/webfonts/',
+      tests: [
+        [
+          'https://use.fontawesome.com/releases/v5.3.1/webfonts/fa-solid-900.woff2',
+          'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3.1/webfonts/fa-solid-900.woff2'
         ]
       ]
     },

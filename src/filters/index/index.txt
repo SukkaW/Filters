@@ -172,7 +172,7 @@ lingchenzi.com#@#.category-share
 # Misc
 ||unpkg.com/orejime
 ||jsdelivr.net/npm/orejime
-/gh/ad-shield
+/ad-shield$important
 
 # HTTPDNS
 # MIUI HTTP DNS
@@ -201,8 +201,9 @@ spotify.com##div[data-testid="test-ref-div"]
 ||polls.services.disqus.com^$subdocument
 ||support.nodeget.com^$3p
 gettr.com##esr-signup
-||goaffpro.app$3p
-||static.klaviyo.com$3p
+||goaffpro.app^$3p
+||static.klaviyo.com^$3p
+||keepandroidopen.org^$3p
 
 ! Google Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai
@@ -876,8 +877,6 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||acquia.com/ct
 ||v.bytes.media/vs.js$redirect=noop.js
 
-/ad-shield*$3p
-
 ||ad*.on.cc^$important
 
 # >>>> Auto Generated - per site
@@ -1502,3 +1501,6 @@ www.browserling.com###blackFridayOverlay
 
 ! Jun 6, 2026 https://open-design.ai
 open-design.ai##.newsletter-popup
+
+! Jun 23, 2026 https://f-droid.org
+f-droid.org##.banner--danger.banner

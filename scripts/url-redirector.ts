@@ -14,7 +14,9 @@ const REGEX_SHORTHANDS = { // NEEDS TO BE ENTIRELY GROUPED for replace with $1, 
   '[version]': /((?:\d+\.)+\d+)/.source,
   '[semver]': /((?:\d+\.)+\d+(?:[+-][\w.-]+)*)/.source,
   '[version_major]': /(\d+)(?:\.\d+)+/.source,
-  '[semver_major]': /(\d+)(?:\.\d+)+(?:[+-][\w.-]+)*/.source
+  '[semver_major]': /(\d+)(?:\.\d+)+(?:[+-][\w.-]+)*/.source,
+  '[non_path_segment]': /([^/]+)/.source,
+  '[filename_basename_1_extname_2]': /([^./]+)\.([^/]+)?/.source
 } as const;
 
 function escapeForUriTransform(value: string) {
@@ -38,7 +40,7 @@ function escapeForUriTransform(value: string) {
 }
 
 function hasRegexShorthand(value: string) {
-  return Object.keys(REGEX_SHORTHANDS).some(token => value.includes(token));
+  return value.includes('[') && value.includes(']');
 }
 
 function getReplaceFrom(from: RedirectRule['from']) {
@@ -62,26 +64,30 @@ function getStringPatternSource(from: string) {
   let cursor = 0;
 
   while (cursor < from.length) {
-    let nextToken: keyof typeof REGEX_SHORTHANDS | undefined;
-    let nextIndex = from.length;
+    const nextIndex = from.indexOf('[', cursor);
 
-    for (const token of Object.keys(REGEX_SHORTHANDS) as Array<keyof typeof REGEX_SHORTHANDS>) {
-      const index = from.indexOf(token, cursor);
-
-      if (index !== -1 && index < nextIndex) {
-        nextIndex = index;
-        nextToken = token;
-      }
-    }
-
-    if (!nextToken) {
+    if (nextIndex === -1) {
       result += escapeRegexp(from.slice(cursor), false);
       break;
     }
 
+    const closeIndex = from.indexOf(']', nextIndex);
+    if (closeIndex === -1) {
+      result += escapeRegexp(from.slice(cursor), false);
+      break;
+    }
+
+    const token = from.slice(nextIndex, closeIndex + 1);
     result += escapeRegexp(from.slice(cursor, nextIndex), false);
-    result += REGEX_SHORTHANDS[nextToken];
-    cursor = nextIndex + nextToken.length;
+
+    if (token in REGEX_SHORTHANDS) {
+      result += REGEX_SHORTHANDS[token as keyof typeof REGEX_SHORTHANDS];
+    } else {
+      // raw regex: emit the bracket contents as a capturing group
+      result += `(${token.slice(1, -1)})`;
+    }
+
+    cursor = closeIndex + 1;
   }
 
   return result;
@@ -120,6 +126,7 @@ function verifyRedirectRules(ruleSet: RedirectRuleSet) {
             `Redirect filter: ${ruleSet.title} (${ruleSet.fileName})`,
             `Redirect rule test failed for base "${formatRuleBase(rule.base)}"`,
             `original: ${original}`,
+            `from    : ${picocolors.green(getPatternSource(rule.from))}`,
             `expected: ${picocolors.red(expected)}`,
             `actual  : ${picocolors.green(actual)}`
           ].join('\n')
