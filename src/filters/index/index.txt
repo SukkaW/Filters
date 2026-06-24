@@ -204,6 +204,8 @@ gettr.com##esr-signup
 ||goaffpro.app^$3p
 ||static.klaviyo.com^$3p
 ||keepandroidopen.org^$3p
+||fundraiseup.com^$3p
+||lantern.io^$3p
 
 ! Google Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai

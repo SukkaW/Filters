@@ -67,7 +67,8 @@ export default [
       to: 'secure.gravatar.com',
       tests: [
         [`https://${domain}/avatar/abc`, 'https://secure.gravatar.com/avatar/abc']
-      ]
+      ],
+      excludeDomains: ['planetscale.com']
     })),
 
     // ajax.googleapis.com
