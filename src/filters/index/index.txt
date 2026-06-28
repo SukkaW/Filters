@@ -545,9 +545,12 @@ favicon.ico$image,uritransform=/https:\/\/(.+)\/favicon.ico/https:\/\/favicone.c
 
 # Fuck Windy - remove premium ribbon & watermark
 windy.com##.premium-calendar #map-container::after:style(background-image: none!important)
+windy.com###leaflet-map:style(filter: none!important)
 windy.com##.get-premium--ribbon
 windy.com##.get-premium
 windy.com##.premium-button
+www.windy.com###startup-promo
+
 ||windy.com/*premium-watermark.svg$redirect=1x1.gif
 
 # Hide Aff Link
@@ -1380,9 +1383,6 @@ www.juksy.com##.idlePopup
 
 ! Oct 1, 2025 https://netflav.com
 netflav.com##.ads_video_overlay_iframe
-
-! Oct 1, 2025 https://www.windy.com
-www.windy.com###startup-promo
 
 ! Oct 3, 2025 https://learn.microsoft.com
 learn.microsoft.com##.is-success.alert:has([href^="https://security.microsoft.com/trialHorizontalHub"])
