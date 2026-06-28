@@ -145,6 +145,8 @@ google.*#@#div[data-q][data-al]
 @@||geolocation-db.com^
 ! Fuck Peter Lowe
 @@||e.customeriomail.com
+! Fuck EasyList
+@@||email.strava.com^$document
 # Misc
 @@||awstrack.me^$badfilter
 @@||turing.captcha.qcloud.com/TCaptcha.js$script,domain=sf-express.com
@@ -164,7 +166,7 @@ lingchenzi.com#@#.category-share
 # Mess around your browser history w/ every keystroke you made
 ||playground.oxc.rs$important
 # Map Location
-||amap.com$3p,domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~giant.com.cn
+||amap.com$3p,domain=~www.amap.com|~amap.com|~gaode.com|~bigdata.speedtest.cn|~cjia.com|~giant.com.cn|~cnix.cn
 ||baidu.com$3p,domain=~map.baidu.com|~lecake.com|~58.com|~iguanyu.com|~iguanyu.com|~onelap.cn|~assets.nxtrace.org
 ||map.qq.com$3p
 # Prevent Sleep
@@ -602,9 +604,11 @@ abema.tv##+js(trusted-prevent-xhr, ds-linear-abematv.akamaized.net/region, '')
 ||googlevideo.com/initplayback*&oad
 www.youtube.com##.ytd-rich-section-renderer
 
-! YouTube Members Only Video blocking
+! YouTube Members Only / Featured Video blocking
 youtube.com##.ytd-rich-item-renderer:has-text(Members only)
 youtube.com##yt-lockup-view-model:has-text(Members only)
+youtube.com##.ytd-rich-item-renderer:has-text(YouTube featured)
+youtube.com##yt-lockup-view-model:has-text(YouTube featured)
 
 ! Misc
 ||app.link$third-party
