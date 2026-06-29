@@ -433,6 +433,16 @@ export default [
       tests: [
         ['https://www.wikidot.com/userkarma.php?u=114514', 'https://docs.lucaairport.qzz.io/https/www.wikidot.com/userkarma.php?u=114514']
       ]
-    }
+    },
+    ...([
+      'tiles.windy.com',
+      'ims.windy.com',
+      'fourhoi.com'
+    ] as const).map(host => ({
+      base: '||' + host + '^',
+      from: host,
+      to: 'docs.lucaairport.qzz.io/https/' + host,
+      tests: []
+    }))
   ])
 ] as const;
