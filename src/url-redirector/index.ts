@@ -376,6 +376,17 @@ export default [
       tests: [
         ['https://bhl.scpwikicn.com/img/logo.svg', 'https://cdn.jsdelivr.net/gh/SCP-CN-Tech/Black-Highlighter@gh-pages/img/logo.svg']
       ]
+    },
+    {
+      base: '||raw.githubusercontent.com/ProjectInfinity-X/official_devices',
+      from: 'raw.githubusercontent.com/ProjectInfinity-X/official_devices/[non_path_segment]/',
+      to: 'cdn.jsdelivr.net/gh/ProjectInfinity-X/official_devices@$1/',
+      tests: [
+        [
+          'https://raw.githubusercontent.com/ProjectInfinity-X/official_devices/16/deviceimages/a25x.webp',
+          'https://cdn.jsdelivr.net/gh/ProjectInfinity-X/official_devices@16/deviceimages/a25x.webp'
+        ]
+      ]
     }
   ]),
   defineRules('Special Redirects', 'special', [
