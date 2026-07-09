@@ -35,6 +35,7 @@ jobs:
           check-latest: true
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
+      - run: pnpm config set --location=global minimumReleaseAge 0
       - run: pnpm install
       - run: pnpm run build-3p-filters
       - uses: peaceiris/actions-gh-pages@v4
