@@ -31,7 +31,7 @@ function defineRules(title: string, fileName: string, rules: RedirectRule[]): Re
 // optional group handles both. String-pattern shorthands can't express this, hence a RegExp.
 function githubRawToJsdelivr(repo: string): RedirectRule {
   return identity<RedirectRule>({
-    base: `||raw.githubusercontent.com/${repo}`,
+    base: `||raw.githubusercontent.com/${repo}/`,
     from: new RegExp(String.raw`raw\.githubusercontent\.com/${escapeRegexp(repo, false)}/(?:refs/(?:heads|tags)/)?([^/]+)/`),
     to: `cdn.jsdelivr.net/gh/${repo}@$1/`,
     tests: [], /* testCases.flatMap(([ref, path]): Array<[string, string]> => {
