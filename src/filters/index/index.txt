@@ -208,6 +208,7 @@ gettr.com##esr-signup
 ||keepandroidopen.org^$3p
 ||fundraiseup.com^$3p
 ||lantern.io^$3p
+||cp.computerworld.com
 
 ! Google Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai

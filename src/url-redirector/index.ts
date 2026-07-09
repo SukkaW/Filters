@@ -1,5 +1,6 @@
 import { identity } from 'foxts/identity';
 import { literal } from 'foxts/literal';
+import { escapeRegexp } from 'fast-escape-regexp';
 
 export interface RedirectRule {
   base: string | string[],
@@ -22,6 +23,26 @@ function defineRules(title: string, fileName: string, rules: RedirectRule[]): Re
     title,
     fileName,
     rules
+  });
+}
+
+// raw.githubusercontent.com serves both "/<ref>/" and "/refs/heads/<ref>/" (or "/refs/tags/<ref>/") URLs.
+// The base filter is a prefix match and can't disambiguate the two forms, so a single rule with an
+// optional group handles both. String-pattern shorthands can't express this, hence a RegExp.
+function githubRawToJsdelivr(repo: string): RedirectRule {
+  return identity<RedirectRule>({
+    base: `||raw.githubusercontent.com/${repo}`,
+    from: new RegExp(String.raw`raw\.githubusercontent\.com/${escapeRegexp(repo, false)}/(?:refs/(?:heads|tags)/)?([^/]+)/`),
+    to: `cdn.jsdelivr.net/gh/${repo}@$1/`,
+    tests: [], /* testCases.flatMap(([ref, path]): Array<[string, string]> => {
+      const redirected = `https://cdn.jsdelivr.net/gh/${repo}@${ref}/${path}`;
+      return [
+        [`https://raw.githubusercontent.com/${repo}/${ref}/${path}`, redirected],
+        [`https://raw.githubusercontent.com/${repo}/refs/heads/${ref}/${path}`, redirected]
+      ];
+    }) */
+    // CSP
+    excludeDomains: ['github.com', 'npmjs.com']
   });
 }
 
@@ -377,17 +398,8 @@ export default [
         ['https://bhl.scpwikicn.com/img/logo.svg', 'https://cdn.jsdelivr.net/gh/SCP-CN-Tech/Black-Highlighter@gh-pages/img/logo.svg']
       ]
     },
-    {
-      base: '||raw.githubusercontent.com/ProjectInfinity-X/official_devices',
-      from: 'raw.githubusercontent.com/ProjectInfinity-X/official_devices/[non_path_segment]/',
-      to: 'cdn.jsdelivr.net/gh/ProjectInfinity-X/official_devices@$1/',
-      tests: [
-        [
-          'https://raw.githubusercontent.com/ProjectInfinity-X/official_devices/16/deviceimages/a25x.webp',
-          'https://cdn.jsdelivr.net/gh/ProjectInfinity-X/official_devices@16/deviceimages/a25x.webp'
-        ]
-      ]
-    }
+    githubRawToJsdelivr('ProjectInfinity-X/official_devices'),
+    githubRawToJsdelivr('Evolution-X/www_gitres')
   ]),
   defineRules('Special Redirects', 'special', [
     {
