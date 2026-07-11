@@ -137,7 +137,7 @@ function verifyRedirectRules(ruleSet: RedirectRuleSet) {
 }
 
 function serializeRedirectRule(base: string, rule: RedirectRule, parameterType: 'uritransform' | 'urltransform') {
-  return `${base}$all,${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.excludeDomains)}`;
+  return `${base}$${fastStringArrayJoin(rule.modifiers ?? ['all'], ',')},${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.excludeDomains)}`;
 }
 
 function getOutputFileHeader(title: string) {

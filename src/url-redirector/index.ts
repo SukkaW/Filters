@@ -7,6 +7,8 @@ export interface RedirectRule {
   // String patterns are treated literally; shorthands like [subdomain], [version], and [semver] are expanded by the build script.
   from: string | RegExp,
   to: string,
+  // resource type options of the network filter, defaults to ['all']
+  modifiers?: string[],
   // exclude redirect on domains to prevent CSP
   excludeDomains?: string[],
   tests: Array<[original: string, redirected: string]>
@@ -399,7 +401,40 @@ export default [
       ]
     },
     githubRawToJsdelivr('ProjectInfinity-X/official_devices'),
-    githubRawToJsdelivr('Evolution-X/www_gitres')
+    githubRawToJsdelivr('Evolution-X/www_gitres'),
+    {
+      // generic GitHub RAW -> jsDelivr, static asset types only: scripts/styles/xhr may rely on
+      // GitHub RAW's short TTL for freshness, which jsDelivr's 12h+ branch cache would break.
+      // (?!refs/) skips refs namespaces that have no jsDelivr equivalent (e.g. refs/pull/)
+      base: '||raw.githubusercontent.com^',
+      from: /raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(?:refs\/(?:heads|tags)\/)?((?!refs\/)[^/]+)\//,
+      to: 'cdn.jsdelivr.net/gh/$1/$2@$3/',
+      modifiers: ['image', 'font', 'media', 'object'],
+      excludeDomains: ['github.com', 'npmjs.com'],
+      tests: [
+        [
+          'https://raw.githubusercontent.com/Evolution-X/www_gitres/refs/heads/main/devices/images/PL2.webp',
+          'https://cdn.jsdelivr.net/gh/Evolution-X/www_gitres@main/devices/images/PL2.webp'
+        ],
+        [
+          'https://raw.githubusercontent.com/ProjectInfinity-X/official_devices/16/deviceimages/a25x.webp',
+          'https://cdn.jsdelivr.net/gh/ProjectInfinity-X/official_devices@16/deviceimages/a25x.webp'
+        ],
+        [
+          'https://raw.githubusercontent.com/foo/bar/refs/tags/v1.2.3/logo.png',
+          'https://cdn.jsdelivr.net/gh/foo/bar@v1.2.3/logo.png'
+        ],
+        [
+          'https://raw.githubusercontent.com/foo/bar/a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2/img/x.svg',
+          'https://cdn.jsdelivr.net/gh/foo/bar@a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2/img/x.svg'
+        ],
+        // refs/pull/ has no jsDelivr equivalent, this test ensures it is left untouched
+        [
+          'https://raw.githubusercontent.com/foo/bar/refs/pull/123/head/img.png',
+          'https://raw.githubusercontent.com/foo/bar/refs/pull/123/head/img.png'
+        ]
+      ]
+    }
   ]),
   defineRules('Special Redirects', 'special', [
     {
