@@ -461,6 +461,7 @@ export default [
       'tiles.windy.com',
       'ims.windy.com',
       'sat.windy.com',
+      'rdr.windy.com',
       'fourhoi.com'
     ] as const).map(host => ({
       base: '||' + host + '^',
