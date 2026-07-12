@@ -492,6 +492,19 @@ export default [
         ['https://www.wikidot.com/userkarma.php?u=114514', 'https://docs.lucaairport.qzz.io/https/www.wikidot.com/userkarma.php?u=114514']
       ]
     },
+    {
+      // {s}.tile.openstreetmap.org variants are collapsed onto the apex host so the
+      // proxy's CDN cache key is identical regardless of which mirror the page picked
+      base: '||tile.openstreetmap.org^',
+      from: /(?:[^./]+\.)*tile\.openstreetmap\.org/,
+      to: 'docs.lucaairport.qzz.io/https/tile.openstreetmap.org',
+      tests: [
+        ['https://tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png'],
+        ['https://a.tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png'],
+        ['https://b.tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png'],
+        ['https://c.tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png']
+      ]
+    },
     ...([
       'tiles.windy.com',
       'ims.windy.com',
