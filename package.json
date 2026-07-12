@@ -17,7 +17,7 @@
     "fast-escape-regexp": "^1.0.1",
     "foxts": "^5.8.0",
     "picocolors": "^1.1.1",
-    "tldts": "^7.4.7",
+    "tldts": "^7.4.8",
     "undici": "^8.7.0"
   },
   "devDependencies": {
@@ -27,7 +27,7 @@
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.15.43",
     "@types/node": "^24.13.3",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "eslint-config-sukka": "^8.13.5",
     "eslint-formatter-sukka": "^8.13.5",
     "rollup": "^4.62.2",
