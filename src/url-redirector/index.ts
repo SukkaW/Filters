@@ -44,7 +44,7 @@ function githubRawToJsdelivr(repo: string): RedirectRule {
       ];
     }) */
     // CSP
-    excludeDomains: ['github.com', 'npmjs.com']
+    excludeDomains: ['github.com', 'npmjs.com', 'githubusercontent.com'/* viewscreen.githubusercontent.com */]
   });
 }
 
@@ -410,7 +410,7 @@ export default [
       from: /raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(?:refs\/(?:heads|tags)\/)?((?!refs\/)[^/]+)\//,
       to: 'cdn.jsdelivr.net/gh/$1/$2@$3/',
       modifiers: ['image', 'font', 'media', 'object'],
-      excludeDomains: ['github.com', 'npmjs.com'],
+      excludeDomains: ['github.com', 'npmjs.com', 'githubusercontent.com'/* viewscreen.githubusercontent.com */],
       tests: [
         [
           'https://raw.githubusercontent.com/Evolution-X/www_gitres/refs/heads/main/devices/images/PL2.webp',

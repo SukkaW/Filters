@@ -349,7 +349,7 @@ www.bilibili.com##.r-con
 bilibili.com##.bili-video-card__no-interest
 search.bilibili.com##[href*="live."]
 search.bilibili.com##[href*="/cheese/"]
-# Fuck Bilibili App trying to do PCDN
+# Fuck Bilibili App trying to do PCDN via UPnP
 http://*$app=com.bilibili.app.in
 *://*:80$app=com.bilibili.app.in
 *:3478$app=com.bilibili.app.in
