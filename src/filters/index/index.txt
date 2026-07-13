@@ -210,6 +210,8 @@ gettr.com##esr-signup
 ||lantern.io^$3p
 ||cp.computerworld.com
 
+/popups/popup.js$3p
+
 ! Google Popup "login as"
 ||accounts.google.com/gsi/$frame,redirect=click2load.html,domain=~claude.ai
 ||accounts.google.com/gsi/$3p,domain=~claude.ai
@@ -1511,3 +1513,7 @@ open-design.ai##.newsletter-popup
 
 ! Jun 23, 2026 https://f-droid.org
 f-droid.org##.banner--danger.banner
+
+! Jul 13, 2026 https://qrator.net
+qrator.net##.is-open.l-overlay
+qrator.net##body:style(overflow: unset !important)
