@@ -1235,6 +1235,9 @@ www.zhihu.com##.Reward
 
 ! Jan 30, 2025 https://lowendaff.com
 lowendaff.com##.joe_advert-large
+lowendaff.com###custom_sponsor_widget
+lowendaff.com##.epcl-banner
+lowendaff.com###dmit-ads
 
 ! Feb 14, 2025 https://av6k.com
 ||xn--feus21h.xyz/static/team/uploadpic/$image
@@ -1470,9 +1473,6 @@ www.news.com.au##.LoaderBox
 ! Jan 14, 2026 https://ap-southeast-2.signin.aws.amazon.com
 ||awsstatic.com/onedam/marketing-channels/$image
 
-! Jan 25, 2026 https://lowendaff.com
-lowendaff.com###sticky_ads_wrapper
-
 ! Jan 26, 2026 https://tsx.is
 ||tsx.is/logos/sevalla-full.svg$image
 
@@ -1480,9 +1480,6 @@ lowendaff.com###sticky_ads_wrapper
 ||leafletjs.com/dialog/$subdocument
 leafletjs.com###dialog
 leafletjs.com##body:style(overflow: unset !important)
-
-! Feb 12, 2026 https://lowendaff.com
-lowendaff.com###dmit-ads
 
 ! Feb 12, 2026 https://9to5mac.com
 9to5mac.com##[href*="/amzn.to/"]

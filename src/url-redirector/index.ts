@@ -505,6 +505,17 @@ export default [
         ['https://c.tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png']
       ]
     },
+    {
+      base: '||github.com/*/releases/download',
+      from: 'github.com/',
+      to: 'download.lucaairport.qzz.io/https/github.com/',
+      tests: [
+        [
+          'https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.0/PiliPlus_android_2.1.0-c1aeaca09+5109_arm64-v8a.apk',
+          'https://download.lucaairport.qzz.io/https/github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.0/PiliPlus_android_2.1.0-c1aeaca09+5109_arm64-v8a.apk'
+        ]
+      ]
+    },
     ...([
       'tiles.windy.com',
       'ims.windy.com',
