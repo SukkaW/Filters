@@ -448,6 +448,10 @@ export default [
     },
     {
       base: '||wdfiles.com',
+      modifiers: [ // excluding doc
+        '~doc',
+        '~frame'
+      ],
       from: '[subdomain].wdfiles.com',
       to: 'docs.lucaairport.qzz.io/https/$1.wdfiles.com',
       tests: [

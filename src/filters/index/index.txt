@@ -519,6 +519,9 @@ hanimeone.me##+js(rpnt, script, location.href = , window.redirect_prevented =)
 javchu.com##+js(rpnt, script, location.href = , window.redirect_prevented =)
 # Hanime1 AD
 hanime1.me##div:has(> ins)
+hanime1.me##.sidebar-ad-grid
+hanime1.me##.ad-container-observer
+hanime1.me##.sponsor-bg
 
 # Fuck SMZDM for AI LLM Generated Post
 post.smzdm.com##.m-contant > .aigc-lowcode-json
@@ -1514,3 +1517,6 @@ f-droid.org##.banner--danger.banner
 ! Jul 13, 2026 https://qrator.net
 qrator.net##.is-open.l-overlay
 qrator.net##body:style(overflow: unset !important)
+
+! Jul 18, 2026 https://cipherssecurity.com
+cipherssecurity.com##.csp-overlay
