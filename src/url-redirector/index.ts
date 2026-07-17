@@ -497,6 +497,14 @@ export default [
       ]
     },
     {
+      base: '||www.wikidot.com/avatar.php',
+      from: 'www.wikidot.com/avatar.php',
+      to: 'docs.lucaairport.qzz.io/https/www.wikidot.com/avatar.php',
+      tests: [
+        ['https://www.wikidot.com/avatar.php?userid=3396110', 'https://docs.lucaairport.qzz.io/https/www.wikidot.com/avatar.php?userid=3396110']
+      ]
+    },
+    {
       // {s}.tile.openstreetmap.org variants are collapsed onto the apex host so the
       // proxy's CDN cache key is identical regardless of which mirror the page picked
       base: '||tile.openstreetmap.org^',
