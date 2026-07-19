@@ -27,6 +27,7 @@ iplark.com##+js(sukka-defuse-devtools-detector)
 boomio.com##+js(sukka-defuse-devtools-detector)
 djxmaza.in##+js(sukka-defuse-devtools-detector)
 post.smzdm.com##+js(sukka-defuse-devtools-detector)
+dbzy1.com##+js(sukka-defuse-devtools-detector)
 
 # >>>> Defuse AdBlock Detector
 ||tags.news.com.au/prod/adblock/adblock.js
@@ -648,6 +649,7 @@ youtube.com##yt-lockup-view-model:has-text(YouTube featured)
 /edgecastcdn.net$badfilter
 
 /web-pixels
+/template/vipzy/images/ad.gif
 
 bad.news##.plyr__video-wrapper:style(width: 100%)
 bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height: 100% !important)

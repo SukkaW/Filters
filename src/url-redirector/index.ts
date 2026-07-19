@@ -505,6 +505,14 @@ export default [
       ]
     },
     {
+      base: '||wikidot.com/local--favicon/',
+      from: '[subdomain].wikidot.com/local--favicon/',
+      to: 'docs.lucaairport.qzz.io/https/$1.wikidot.com/local--favicon/',
+      tests: [
+        ['https://scp-wiki-cn.wikidot.com/local--favicon/favicon.gif', 'https://docs.lucaairport.qzz.io/https/scp-wiki-cn.wikidot.com/local--favicon/favicon.gif']
+      ]
+    },
+    {
       // {s}.tile.openstreetmap.org variants are collapsed onto the apex host so the
       // proxy's CDN cache key is identical regardless of which mirror the page picked
       base: '||tile.openstreetmap.org^',
