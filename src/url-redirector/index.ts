@@ -400,6 +400,23 @@ export default [
         ['https://bhl.scpwikicn.com/img/logo.svg', 'https://cdn.jsdelivr.net/gh/SCP-CN-Tech/Black-Highlighter@gh-pages/img/logo.svg']
       ]
     },
+    {
+      // anime-sama.store mirrors the Anime-Sama/IMG repo's `img` branch under /img/,
+      // so the leading /img/ is consumed by the @img branch ref rather than carried over
+      base: '||anime-sama.store/img/',
+      from: 'anime-sama.store/img/',
+      to: 'cdn.jsdelivr.net/gh/Anime-Sama/IMG@img/',
+      tests: [
+        [
+          'https://anime-sama.store/img/autres/logo_banniere.png',
+          'https://cdn.jsdelivr.net/gh/Anime-Sama/IMG@img/autres/logo_banniere.png'
+        ],
+        [
+          'https://anime-sama.store/img/contenu/death-note.jpg',
+          'https://cdn.jsdelivr.net/gh/Anime-Sama/IMG@img/contenu/death-note.jpg'
+        ]
+      ]
+    },
     githubRawToJsdelivr('ProjectInfinity-X/official_devices'),
     githubRawToJsdelivr('Evolution-X/www_gitres'),
     {
@@ -413,7 +430,14 @@ export default [
       from: /raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(?:refs\/(?:heads|tags)\/)?((?!refs\/)[^/]+)\//,
       to: 'cdn.jsdelivr.net/gh/$1/$2@$3/',
       modifiers: ['~script', '~xhr', '~css'],
-      excludeDomains: ['github.com', 'npmjs.com', 'githubusercontent.com'/* viewscreen.githubusercontent.com */],
+      // NOTE: `domain=` matches the *document* hostname ($docHostname), and on a top-level
+      // navigation the document IS the request -- so `~githubusercontent.com` also excludes
+      // direct navigation to raw.githubusercontent.com, suppressing the `doc` coverage the
+      // negated modifiers above are meant to enable. Narrow to the viewscreen subdomain that
+      // the exclude was actually for, so only that embedder is exempt.
+      // ($denyallow can't express this: it matches $requestHostname, i.e. the request URL --
+      // always raw.githubusercontent.com here -- not the embedding page.)
+      excludeDomains: ['github.com', 'npmjs.com', 'viewscreen.githubusercontent.com'],
       tests: [
         [
           'https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/death-note.jpg',
