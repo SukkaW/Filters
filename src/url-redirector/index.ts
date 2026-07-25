@@ -403,15 +403,22 @@ export default [
     githubRawToJsdelivr('ProjectInfinity-X/official_devices'),
     githubRawToJsdelivr('Evolution-X/www_gitres'),
     {
-      // generic GitHub RAW -> jsDelivr, static asset types only: scripts/styles/xhr may rely on
+      // generic GitHub RAW -> jsDelivr, everything except script/xhr/css: those may rely on
       // GitHub RAW's short TTL for freshness, which jsDelivr's 12h+ branch cache would break.
+      // Negated-only type options compile to a typeless filter in uBO, so this also covers
+      // direct navigation (`doc`/main_frame) -- intentional: both hosts force a non-HTML
+      // content type with nosniff, so a redirected navigation cannot execute as a page.
       // (?!refs/) skips refs namespaces that have no jsDelivr equivalent (e.g. refs/pull/)
       base: '||raw.githubusercontent.com^',
       from: /raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(?:refs\/(?:heads|tags)\/)?((?!refs\/)[^/]+)\//,
       to: 'cdn.jsdelivr.net/gh/$1/$2@$3/',
-      modifiers: ['image', 'font', 'media', 'object'],
+      modifiers: ['~script', '~xhr', '~css'],
       excludeDomains: ['github.com', 'npmjs.com', 'githubusercontent.com'/* viewscreen.githubusercontent.com */],
       tests: [
+        [
+          'https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/death-note.jpg',
+          'https://cdn.jsdelivr.net/gh/Anime-Sama/IMG@img/contenu/death-note.jpg'
+        ],
         [
           'https://raw.githubusercontent.com/Evolution-X/www_gitres/refs/heads/main/devices/images/PL2.webp',
           'https://cdn.jsdelivr.net/gh/Evolution-X/www_gitres@main/devices/images/PL2.webp'
