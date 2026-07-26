@@ -1,7 +1,13 @@
 import { falseFn } from 'foxts/noop';
 import { createRetrieKeywordFilter } from 'foxts/retrie';
+// import { HostnameSmolTrie } from 'hntrie/smol';
+// import { getHostname } from 'tldts';
 
 const isComplexFilter = createRetrieKeywordFilter(['#', '+', '@', '=', '(', 'redirect']);
+
+// const tldtsOpt = { allowIcannDomains: true, allowPrivateDomains: true, validateHostname: true };
+
+// const THIRD_PARTY_SUFFIX = '^$third-party';
 
 export class FilterMinifyStream extends TransformStream<string, string> {
   // private __buf = '';
@@ -45,9 +51,24 @@ export class FilterMinifyStream extends TransformStream<string, string> {
           return;
         }
 
+        if (!isComplexFilter(line) && sharedKwFilter(line)) {
+          return;
+        }
+
+        if (this.whitelistFilterLines.has(line)) {
+          // console.log('deduped!', line);
+          return;
+        }
+        this.whitelistFilterLines.add(line);
+
+        // Pure hostname rules (`||example.com^` / `||example.com^$third-party`) can be
+        // collected into tries instead of being emitted here, so that redundant
+        // subdomains get pruned away and re-emitted during flush. Disabled for now:
+        // measured against the current sources it barely dedupes anything, and it costs
+        // a full buffering of every hostname rule until flush.
         // if (line.startsWith('||')) {
-        //   if (line.endsWith('^$third-party')) {
-        //     const hostname = getHostname(line.slice(2, -13), tldtsOpt);
+        //   if (line.endsWith(THIRD_PARTY_SUFFIX)) {
+        //     const hostname = getHostname(line.slice(2, -THIRD_PARTY_SUFFIX.length), tldtsOpt);
         //     if (hostname) {
         //       this.thirdPartyTrie.add(hostname);
         //       return;
@@ -61,16 +82,6 @@ export class FilterMinifyStream extends TransformStream<string, string> {
         //   }
         // }
 
-        if (!isComplexFilter(line) && sharedKwFilter(line)) {
-          return;
-        }
-
-        if (this.whitelistFilterLines.has(line)) {
-          // console.log('deduped!', line);
-          return;
-        }
-        this.whitelistFilterLines.add(line);
-
         if (line.endsWith('$third-party')) {
           line = line.replace('$third-party', '$3p');
         }
@@ -79,15 +90,15 @@ export class FilterMinifyStream extends TransformStream<string, string> {
         controller.enqueue('\n');
       }
       // flush: (controller) => {
-      //   this.trie.dumpWithoutDot((domain, includeAllSubdomain) => {
+      //   this.trie.dump((domain, includeAllSubdomain) => {
       //     // if included in primary trie, there is no need to be included in other tries
-      //     this.thirdPartyTrie.whitelist(domain, includeAllSubdomain);
+      //     this.thirdPartyTrie.whitelist(includeAllSubdomain ? '.' + domain : domain);
 
       //     controller.enqueue('||' + domain + '^');
       //     controller.enqueue('\n');
       //   });
-      //   this.thirdPartyTrie.dumpWithoutDot((domain) => {
-      //     controller.enqueue('||' + domain + '^$third-party');
+      //   this.thirdPartyTrie.dump((domain) => {
+      //     controller.enqueue('||' + domain + '^$3p');
       //     controller.enqueue('\n');
       //   });
       // }
