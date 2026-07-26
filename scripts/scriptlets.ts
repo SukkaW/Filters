@@ -34,7 +34,9 @@ function createRollupOpt(preamble: string): RollupOptions {
 
 export async function buildScriptlets() {
   for await (const dirent of await fsp.opendir('./src/scriptlets')) {
-    if (dirent.isDirectory()) {
+    // `_`-prefixed directories hold code shared between scriptlets (and files at
+    // the root, like `_utils.ts`, do the same) -- they are not scriptlets.
+    if (dirent.isDirectory() && dirent.name[0] !== '_') {
       await (await rollup({
         input: `./src/scriptlets/${dirent.name}/index.ts`,
         ...createRollupOpt(`/// ${dirent.name}.js\n`)
