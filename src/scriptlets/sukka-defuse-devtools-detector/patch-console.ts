@@ -1,4 +1,5 @@
 import { $console, $Proxy, ObjectDefineProperty, onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
+import { keysLength } from 'foxts/property-count';
 
 function logDefuseConsoleClear(this: void) {
   $console.info('[sukka-defuse-devtools-detector]', 'Detect someone want to console.clear()!');
@@ -113,7 +114,7 @@ function checkArg(this: void, arg: unknown): boolean {
   if (typeof arg === 'object' && arg) {
     try {
       // object size check
-      if (Object(arg) === arg && Object.keys(arg).length > 100) {
+      if (Object(arg) === arg && keysLength(arg) > 100) {
         onlyCallOnce(logDefuseConsoleLargeObject);
         return true;
       }

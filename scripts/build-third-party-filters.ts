@@ -264,7 +264,7 @@ function extractMetadataFromList<T extends string>(content: string, fields: T[])
     const re = new RegExp(`^(?:! *|# +)${fieldKey.replaceAll('-', '(?: +|-)')}: *(.+)$`, 'im');
     const match = re.exec(head);
     let value = match?.[1].trim();
-    if (value?.startsWith('%')) {
+    if (value?.[0] === '%') {
       value = undefined;
     }
     fieldKey = fieldKey.toLowerCase().replaceAll(

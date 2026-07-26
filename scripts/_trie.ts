@@ -251,10 +251,9 @@ abstract class Triebase<Meta = unknown> {
     const suffixStack: string[][] = [initialSuffix];
 
     let node: TrieNode<Meta> = initialNode;
-    let r;
 
     do {
-      r = dfsImpl(nodeStack, suffixStack);
+      const r = dfsImpl(nodeStack, suffixStack);
       node = r[0]!;
       const suffix = r[1];
 
