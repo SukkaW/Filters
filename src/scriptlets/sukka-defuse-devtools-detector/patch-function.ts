@@ -1,4 +1,4 @@
-import { $console, $eval, $Proxy, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, ObjectDefineProperty, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, $eval, $Proxy, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, ObjectDefineProperty, GLOBAL_INSTANCE_LIST } from '../_utils';
 
 /**
  * Some devtools detector will try to call debugger from eval(), some may simply call `Function('debugger')` instead of `eval('debugger')`,
@@ -7,7 +7,7 @@ import { $console, $eval, $Proxy, argHasDebugger, defuseDebuggerInArg, FunctionP
  * We can defuse it by proxy globalThis.Function
  */
 export function patchFunction() {
-  WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
+  GLOBAL_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
       global.Function = new $Proxy(global.Function, {
         apply(target, thisArg, args: Parameters<typeof global.Function>) {

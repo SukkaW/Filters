@@ -1,11 +1,11 @@
-import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, $eval, WINDOW_INSTANCE_LIST, $Proxy } from '../_utils';
+import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToString, $eval, GLOBAL_INSTANCE_LIST, $Proxy } from '../_utils';
 
 /**
  * Some anti-devtools try to call debugger inside setTimeout and setInterval
  * We can defuse it by patching window.setTimeout and window.setInterval
  */
 export function patchTimer() {
-  WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
+  GLOBAL_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
       global.setInterval = new $Proxy(global.setInterval, {
         apply(target, thisArg, args: Parameters<typeof setInterval>) {

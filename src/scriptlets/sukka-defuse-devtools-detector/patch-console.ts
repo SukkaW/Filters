@@ -1,4 +1,4 @@
-import { $console, $Proxy, ObjectDefineProperty, onlyCallOnce, WINDOW_INSTANCE_LIST } from '../_utils';
+import { $console, $Proxy, ObjectDefineProperty, onlyCallOnce, GLOBAL_INSTANCE_LIST } from '../_utils';
 import { keysLength } from 'foxts/property-count';
 
 function logDefuseConsoleClear(this: void) {
@@ -29,7 +29,7 @@ function logDefuseConsoleLargeObject(this: void) {
  * We can defuse it by patching console methods
  */
 export function patchConsole() {
-  WINDOW_INSTANCE_LIST.forEach(([globalName, global]) => {
+  GLOBAL_INSTANCE_LIST.forEach(([globalName, global]) => {
     // eslint-disable-next-line guard-for-in -- deliberately loop through all keys
     for (const _key in global.console) {
       const key = _key as keyof Console;

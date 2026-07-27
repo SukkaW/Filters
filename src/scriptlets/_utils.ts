@@ -15,40 +15,67 @@ export function onlyCallOnce(fn: Function, args?: any[]) {
   }
 }
 
-export const WINDOW_INSTANCE_LIST = (() => {
+/**
+ * The realm we are running in. A scriptlet is injected into a document, but the
+ * same patches are also bundled into a prelude that runs inside a Worker (see
+ * `sukka-defuse-devtools-detector/worker-prelude`), where `window` does not
+ * exist. Everything below therefore goes through `globalThis` rather than
+ * `window`, so a single implementation serves both realms.
+ */
+const $globalThis = globalThis as unknown as Window & typeof globalThis;
+
+/**
+ * Every global object we should patch.
+ *
+ * In a document that is `window` plus `window.top`/`window.self` when they are
+ * distinct and reachable; in a worker there is only the one global.
+ */
+export const GLOBAL_INSTANCE_LIST = (() => {
   const set = new Set<Window & typeof globalThis>();
   const array = new Array<[string, Window & typeof globalThis]>();
 
+  const add = (name: string, value: unknown) => {
+    try {
+      // Not trusted to be non-nullish: `top`/`self` are absent in a worker, and
+      // a cross-origin `top` can throw on access.
+      const global = value as (Window & typeof globalThis) | null | undefined;
+      if (global && !set.has(global)) {
+        set.add(global);
+        array.push([name, global]);
+      }
+    } catch { }
+  };
+
+  add('globalThis', $globalThis);
+  // `top`/`self` only exist on a window; in a worker these are simply absent.
   try {
-    if (window && !set.has(window)) {
-      set.add(window);
-      array.push(['window', window]);
-    }
+    add('window.top', $globalThis.top);
   } catch { }
   try {
-    if (window.top && !set.has(window.top as Window & typeof globalThis)) {
-      set.add(window.top as Window & typeof globalThis);
-      array.push(['window.top', window.top as Window & typeof globalThis]);
-    }
-  } catch { }
-  try {
-    if (window.self && !set.has(window.self)) {
-      set.add(window.self);
-      array.push(['window.self', window.self]);
-    }
+    add('window.self', $globalThis.self);
   } catch { }
 
   return array;
 })();
 
 export const $console = {
-  info: window.console.info,
-  log: window.console.log,
-  warn: window.console.warn,
-  error: window.console.error
+  info: $globalThis.console.info,
+  log: $globalThis.console.log,
+  warn: $globalThis.console.warn,
+  error: $globalThis.console.error
 };
 
-const rDebugger = /([^\w.])debugger([^\w()[\]])/g;
+/**
+ * Kept as a source string (rather than only a literal) so the worker prelude,
+ * which is a standalone program evaluated in another realm and therefore can not
+ * import from this module, can rebuild the exact same regex instead of keeping a
+ * second copy that would silently drift.
+ *
+ * @see ./sukka-defuse-devtools-detector/worker-prelude.ts
+ */
+export const R_DEBUGGER_SOURCE = String.raw`([^\w.])debugger([^\w()[\]])`;
+
+const rDebugger = new RegExp(R_DEBUGGER_SOURCE, 'g');
 
 function debuggerReplacer(_: string, group1?: string, group2?: string): string {
   if (typeof group1 === 'string' && typeof group2 === 'string') {
@@ -94,8 +121,7 @@ function defuseFunctionString(arg: string): string {
 
 // eslint-disable-next-line @typescript-eslint/unbound-method -- cache native method to prevent overwrite
 export const FunctionPrototypeToString = Function.prototype.toString;
-// eslint-disable-next-line no-eval -- re-create function using eval
-export const $eval = window.eval;
-export const $Proxy = window.Proxy;
+export const $eval = $globalThis.eval;
+export const $Proxy = $globalThis.Proxy;
 
 export const ObjectDefineProperty = Object.defineProperty;

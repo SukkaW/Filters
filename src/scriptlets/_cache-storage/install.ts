@@ -41,7 +41,7 @@ export function installEphemeralCacheStorage({ retain }: CacheStorageOptions): v
   // eslint-disable-next-line @typescript-eslint/unbound-method -- cache native method to prevent overwrite
   const nativeDelete = window.CacheStorage.prototype.delete;
 
-  // No WINDOW_INSTANCE_LIST here: uBO injects into every frame separately, so
+  // No GLOBAL_INSTANCE_LIST here: uBO injects into every frame separately, so
   // each frame gets its own store no matter what we do. Real CacheStorage is
   // shared per-origin; that difference is unfixable from a scriptlet, and
   // reaching into window.top would only mock the parent's realm twice.
