@@ -40,6 +40,12 @@ export const GLOBAL_INSTANCE_LIST = (() => {
       // a cross-origin `top` can throw on access.
       const global = value as (Window & typeof globalThis) | null | undefined;
       if (global && !set.has(global)) {
+        // Reading a *reference* to a cross-origin `top`/`self` is allowed, but
+        // touching any property on it throws a SecurityError. If we added such a
+        // frame here, every patch below would blow up the moment it reached for
+        // `global.console` / `global.Function` / etc. Probe one property now,
+        // inside this try/catch, so an unreachable frame is skipped instead.
+        void global.console;
         set.add(global);
         array.push([name, global]);
       }
