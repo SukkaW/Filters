@@ -28,6 +28,7 @@ boomio.com##+js(sukka-defuse-devtools-detector)
 djxmaza.in##+js(sukka-defuse-devtools-detector)
 post.smzdm.com##+js(sukka-defuse-devtools-detector)
 dbzy1.com##+js(sukka-defuse-devtools-detector)
+novipnoad.*##+js(sukka-defuse-devtools-detector)
 
 # >>>> Defuse AdBlock Detector
 ||tags.news.com.au/prod/adblock/adblock.js
@@ -60,6 +61,17 @@ pairdrop.net#@#+js(sukka-defuse-service-worker)
 bolt.new#@#+js(sukka-defuse-service-worker)
 stackblitz.com#@#+js(sukka-defuse-service-worker)
 webcontainer.io#@#+js(sukka-defuse-service-worker)
+
+# >>>> Avoid CacheStorage Abuse
+! keep in memory and lost on reload/close
+! example.com##+js(sukka-ephemeral-cache-storage)
+! nullify all cache write and will always miss on read
+! example.com##+js(sukka-defuse-cache-storage)
+peer.as##+js(sukka-ephemeral-cache-storage)
+youtube.com##+js(sukka-ephemeral-cache-storage)
+unifi.ui.com##+js(sukka-ephemeral-cache-storage)
+labs.strava.com##+js(sukka-ephemeral-cache-storage)
+fandom.com##+js(sukka-defuse-cache-storage)
 
 # >>>> Click2Load Embed
 
@@ -1522,3 +1534,6 @@ qrator.net##body:style(overflow: unset !important)
 
 ! Jul 18, 2026 https://cipherssecurity.com
 cipherssecurity.com##.csp-overlay
+
+! Jul 29, 2026 https://sinonjs.org
+sinonjs.org##.VPCarbonAds

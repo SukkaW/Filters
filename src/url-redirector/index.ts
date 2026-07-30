@@ -554,6 +554,9 @@ export default [
         ['https://a.tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png'],
         ['https://b.tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png'],
         ['https://c.tile.openstreetmap.org/12/2177/1436.png', 'https://docs.lucaairport.qzz.io/https/tile.openstreetmap.org/12/2177/1436.png']
+      ],
+      excludeDomains: [
+        'openstreetmap.org' // CSP
       ]
     },
     {
