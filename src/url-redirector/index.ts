@@ -584,6 +584,20 @@ export default [
       from: host,
       to: 'docs.lucaairport.qzz.io/https/' + host,
       tests: []
+    })),
+    ...([
+      'youjizz.com',
+      'phncdn.com'
+    ] as const).map(host => ({
+      base: '||' + host + '^',
+      from: '[subdomain].' + host,
+      to: 'docs.lucaairport.qzz.io/https/$1.' + host,
+      // include all subdomain is different then exact domain, we may be redirecting entire doc or frame, which we need to avoid
+      modifiers: [ // excluding doc
+        '~doc',
+        '~frame'
+      ],
+      tests: []
     }))
   ])
 ] as const;
