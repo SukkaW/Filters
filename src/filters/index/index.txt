@@ -29,6 +29,7 @@ djxmaza.in##+js(sukka-defuse-devtools-detector)
 post.smzdm.com##+js(sukka-defuse-devtools-detector)
 dbzy1.com##+js(sukka-defuse-devtools-detector)
 novipnoad.*##+js(sukka-defuse-devtools-detector)
+macwk.com##+js(sukka-defuse-devtools-detector)
 
 # >>>> Defuse AdBlock Detector
 ||tags.news.com.au/prod/adblock/adblock.js
@@ -375,6 +376,9 @@ http://*$app=tv.danmaku.bili
 /igd.xml$important
 # Fuck Biligame
 ||biligame.com
+
+# Fix PornHub broken navigation after blocking tracking scripts
+pornhub.com##+js(set, userClogTracking, noopFunc)
 
 # Feat: Strava Activity Page, Map sticky
 strava.com###map-canvas:style(position: sticky!important; top: 0!important; z-index: 100;)
@@ -1537,3 +1541,6 @@ cipherssecurity.com##.csp-overlay
 
 ! Jul 29, 2026 https://sinonjs.org
 sinonjs.org##.VPCarbonAds
+
+! Aug 2, 2026 https://www.landian.news
+landian.news##.single-activity-ticker

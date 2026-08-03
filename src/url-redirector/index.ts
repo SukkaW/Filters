@@ -570,6 +570,12 @@ export default [
         ]
       ]
     },
+    {
+      base: '||node.windy.com/maptile/',
+      from: 'node.windy.com/maptile/',
+      to: 'docs.lucaairport.qzz.io/https/node.windy.com/maptile/',
+      tests: []
+    },
     ...([
       'tiles.windy.com',
       'ims.windy.com',
@@ -595,7 +601,8 @@ export default [
       // include all subdomain is different then exact domain, we may be redirecting entire doc or frame, which we need to avoid
       modifiers: [ // excluding doc
         '~doc',
-        '~frame'
+        '~frame',
+        '~xhr'
       ],
       tests: []
     }))
