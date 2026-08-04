@@ -584,7 +584,9 @@ export default [
 
       'fourhoi.com',
 
-      'tiles.strava.com'
+      'tiles.strava.com',
+      'dgtzuqphqg23d.cloudfront.net', // strava
+      'dgalywyr863hv.cloudfront.net' // strava
     ] as const).map(host => ({
       base: '||' + host + '^',
       from: host,
