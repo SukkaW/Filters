@@ -289,6 +289,8 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||geoip.businessinsider.com
 ||ciovita.com^$3p
 
+/@snowplow/javascript-tracker/
+
 # defuse tracking gif
 /ping.gif$redirect=1x1.gif
 /counters.gif$redirect=1x1.gif
