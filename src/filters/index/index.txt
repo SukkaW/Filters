@@ -251,14 +251,15 @@ www.speedtest.net##+js(set, dataLayer, [])
 ||api.ccsccorp.com/api/dlog/
 ||vercel.com/_stream/external/
 ||app.planhat.com/analytics/
-assets.alicdn.com/g/alilog*$redirect=noop.js
-g.alicdn.com/alilog/$script,redirect=noop.js
-g.alicdn.com/axdata/yunlog*$redirect=noop.js
-g.alicdn.com/dawn/user-tracker*$redirect=noop.js
-g.alicdn.com/sj/securesdk$redirect=noop.js
+||assets.alicdn.com/g/alilog*$redirect=noop.js
+||g.alicdn.com/alilog/$script,redirect=noop.js
+||g.alicdn.com/axdata/yunlog*$redirect=noop.js
+||g.alicdn.com/dawn/user-tracker*$redirect=noop.js
+||g.alicdn.com/sj/securesdk$redirect=noop.js
 
 ||railway.com/googletag/
 ||railway.com/graphql/internal?q=eventBatchTrack
+||developer.apple.com/assets/metrics/scripts/analytics.js
 
 ||render.com/pan/api/event
 ||r2cdn.perplexity.ai/js/count/
@@ -915,6 +916,8 @@ justauth.cn##+js(set, window._AdBlockInit, true)
 ||v.bytes.media/vs.js$redirect=noop.js
 
 ||ad*.on.cc^$important
+
+||accuweather.com/tags/common/body/ad-script
 
 # >>>> Auto Generated - per site
 

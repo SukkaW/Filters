@@ -1,6 +1,5 @@
 import { identity } from 'foxts/identity';
 import { literal } from 'foxts/literal';
-import { escapeRegexp } from 'fast-escape-regexp';
 
 export interface RedirectRule {
   base: string | string[],
@@ -28,13 +27,10 @@ function defineRules(title: string, fileName: string, rules: RedirectRule[]): Re
   });
 }
 
-// raw.githubusercontent.com serves both "/<ref>/" and "/refs/heads/<ref>/" (or "/refs/tags/<ref>/") URLs.
-// The base filter is a prefix match and can't disambiguate the two forms, so a single rule with an
-// optional group handles both. String-pattern shorthands can't express this, hence a RegExp.
 function githubRawToJsdelivr(repo: string): RedirectRule {
   return identity<RedirectRule>({
     base: `||raw.githubusercontent.com/${repo}/`,
-    from: new RegExp(String.raw`raw\.githubusercontent\.com/${escapeRegexp(repo, false)}/(?:refs/(?:heads|tags)/)?([^/]+)/`),
+    from: `raw.githubusercontent.com/${repo}/[git_ref]/`,
     to: `cdn.jsdelivr.net/gh/${repo}@$1/`,
     tests: [], /* testCases.flatMap(([ref, path]): Array<[string, string]> => {
       const redirected = `https://cdn.jsdelivr.net/gh/${repo}@${ref}/${path}`;
@@ -425,9 +421,8 @@ export default [
       // Negated-only type options compile to a typeless filter in uBO, so this also covers
       // direct navigation (`doc`/main_frame) -- intentional: both hosts force a non-HTML
       // content type with nosniff, so a redirected navigation cannot execute as a page.
-      // (?!refs/) skips refs namespaces that have no jsDelivr equivalent (e.g. refs/pull/)
       base: '||raw.githubusercontent.com^',
-      from: /raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(?:refs\/(?:heads|tags)\/)?((?!refs\/)[^/]+)\//,
+      from: 'raw.githubusercontent.com/[non_path_segment]/[non_path_segment]/[git_ref]/',
       to: 'cdn.jsdelivr.net/gh/$1/$2@$3/',
       modifiers: ['~script', '~xhr', '~css'],
       // NOTE: `domain=` matches the *document* hostname ($docHostname), and on a top-level
@@ -463,6 +458,32 @@ export default [
         [
           'https://raw.githubusercontent.com/foo/bar/refs/pull/123/head/img.png',
           'https://raw.githubusercontent.com/foo/bar/refs/pull/123/head/img.png'
+        ]
+      ]
+    },
+    {
+      base: '||github.com/*/raw/',
+      from: 'github.com/[non_path_segment]/[non_path_segment]/raw/[git_ref]/',
+      to: 'cdn.jsdelivr.net/gh/$1/$2@$3/',
+      modifiers: ['~script', '~xhr', '~css'],
+      excludeDomains: ['github.com', 'npmjs.com', 'viewscreen.githubusercontent.com'],
+      tests: [
+        [
+          'https://github.com/artembobkin/ImmersiveMap/raw/main/Documentation/Assets/immersive-map-demo.gif',
+          'https://cdn.jsdelivr.net/gh/artembobkin/ImmersiveMap@main/Documentation/Assets/immersive-map-demo.gif'
+        ],
+        [
+          'https://github.com/artembobkin/ImmersiveMap/raw/refs/heads/main/Documentation/Assets/immersive-map-demo.gif',
+          'https://cdn.jsdelivr.net/gh/artembobkin/ImmersiveMap@main/Documentation/Assets/immersive-map-demo.gif'
+        ],
+        [
+          'https://github.com/foo/bar/raw/refs/tags/v1.2.3/logo.png',
+          'https://cdn.jsdelivr.net/gh/foo/bar@v1.2.3/logo.png'
+        ],
+        // refs/pull/ has no jsDelivr equivalent, this test ensures it is left untouched
+        [
+          'https://github.com/foo/bar/raw/refs/pull/123/head/img.png',
+          'https://github.com/foo/bar/raw/refs/pull/123/head/img.png'
         ]
       ]
     }

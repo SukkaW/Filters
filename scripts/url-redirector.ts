@@ -16,7 +16,11 @@ const REGEX_SHORTHANDS = { // NEEDS TO BE ENTIRELY GROUPED for replace with $1, 
   '[version_major]': /(\d+)(?:\.\d+)+/.source,
   '[semver_major]': /(\d+)(?:\.\d+)+(?:[+-][\w.-]+)*/.source,
   '[non_path_segment]': /([^/]+)/.source,
-  '[filename_basename_1_extname_2]': /([^./]+)\.([^/]+)?/.source
+  '[filename_basename_1_extname_2]': /([^./]+)\.([^/]+)?/.source,
+  // GitHub serves a ref as both "<ref>" and "refs/heads/<ref>" (or "refs/tags/<ref>"),
+  // capturing just the bare ref either way. (?!refs/) leaves namespaces that have no
+  // jsDelivr equivalent (e.g. refs/pull/) unmatched.
+  '[git_ref]': /(?:refs\/(?:heads|tags)\/)?((?!refs\/)[^/]+)/.source
 } as const;
 
 function escapeForUriTransform(value: string) {
