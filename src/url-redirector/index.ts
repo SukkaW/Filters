@@ -492,10 +492,10 @@ export default [
     {
       base: '||hembed.com',
       from: '[subdomain].hembed.com',
-      to: 'docs.lucaairport.qzz.io/https/$1.hembed.com',
+      to: 'download.lucaairport.qzz.io/https/$1.hembed.com',
       tests: [
-        ['https://vdownload.hembed.com/example.html', 'https://docs.lucaairport.qzz.io/https/vdownload.hembed.com/example.html'],
-        ['https://vdownload-3.hembed.com/example.html', 'https://docs.lucaairport.qzz.io/https/vdownload-3.hembed.com/example.html']
+        ['https://vdownload.hembed.com/example.html', 'https://download.lucaairport.qzz.io/https/vdownload.hembed.com/example.html'],
+        ['https://vdownload-3.hembed.com/example.html', 'https://download.lucaairport.qzz.io/https/vdownload-3.hembed.com/example.html']
       ]
     },
     {

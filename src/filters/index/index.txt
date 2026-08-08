@@ -382,6 +382,9 @@ http://*$app=tv.danmaku.bili
 # Fuck Biligame
 ||biligame.com
 
+# MSN News AD
+msn.cn##.consumption-river
+
 # Fix PornHub broken navigation after blocking tracking scripts
 pornhub.com##+js(set, userClogTracking, noopFunc)
 
