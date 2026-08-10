@@ -592,8 +592,6 @@ export default [
       ]
     },
     ...([
-      'node.windy.com/citytile/',
-      'node.windy.com/maptile/',
       'www.windy.com/img/',
       'www.windy.com//img/' // typo in their code, CSS url(), typical bug
     ]).map(url => ({
@@ -608,6 +606,8 @@ export default [
       'sat.windy.com',
       'rdr.windy.com',
       'img.windy.com',
+      'node.windy.com',
+      'imgproxy.windy.com',
 
       'fourhoi.com',
 
