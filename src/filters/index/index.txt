@@ -248,6 +248,8 @@ www.speedtest.net##+js(set, dataLayer, [])
 ||umami.*/*.js
 ||plausible.*/*.js
 /litlyx.js
+/stats/stats-runtime.js
+/stats/visit-runtime.js
 ||api.ccsccorp.com/api/dlog/
 ||vercel.com/_stream/external/
 ||app.planhat.com/analytics/

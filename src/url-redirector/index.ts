@@ -591,23 +591,32 @@ export default [
         ]
       ]
     },
-    {
-      base: '||node.windy.com/maptile/',
-      from: 'node.windy.com/maptile/',
-      to: 'docs.lucaairport.qzz.io/https/node.windy.com/maptile/',
+    ...([
+      'node.windy.com/citytile/',
+      'node.windy.com/maptile/',
+      'www.windy.com/img/',
+      'www.windy.com//img/' // typo in their code, CSS url(), typical bug
+    ]).map(url => ({
+      base: '||' + url,
+      from: url,
+      to: 'docs.lucaairport.qzz.io/https/' + url,
       tests: []
-    },
+    })),
     ...([
       'tiles.windy.com',
       'ims.windy.com',
       'sat.windy.com',
       'rdr.windy.com',
+      'img.windy.com',
 
       'fourhoi.com',
 
       'tiles.strava.com',
-      'dgtzuqphqg23d.cloudfront.net', // strava
-      'dgalywyr863hv.cloudfront.net' // strava
+      'web-assets.strava.com',
+      'd3nn82uaxijpm6.cloudfront.net', // strava front-end assets
+      'dgtzuqphqg23d.cloudfront.net', // strava ugc images
+      'dgalywyr863hv.cloudfront.net', // strava avatar and challenges
+      'd3o5xota0a1fcr.cloudfront.net' // strava activity preview maps
     ] as const).map(host => ({
       base: '||' + host + '^',
       from: host,
