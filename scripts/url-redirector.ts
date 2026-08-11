@@ -12,6 +12,10 @@ import { castArray } from 'foxts/cast-array';
 const REGEX_SHORTHANDS = { // NEEDS TO BE ENTIRELY GROUPED for replace with $1, $2, ...
   '[subdomain]': /([^/]+)/.source,
   '[version]': /((?:\d+\.)+\d+)/.source,
+  // jQuery prereleases use alpha1/beta1/rc1 in v3 and beta.2/rc.1 in v4.
+  // Restricting the suffix prevents artifact names such as ".slim" from being
+  // consumed as part of the version.
+  '[jquery_version]': /((?:\d+\.)+\d+(?:-(?:alpha|beta|rc)(?:\.?\d+)*)?)/.source,
   '[semver]': /((?:\d+\.)+\d+(?:[+-][\w.-]+)*)/.source,
   '[version_major]': /(\d+)(?:\.\d+)+/.source,
   '[semver_major]': /(\d+)(?:\.\d+)+(?:[+-][\w.-]+)*/.source,
@@ -122,7 +126,15 @@ function ensureNoXhrRuleModifiers(modifiers?: string[]) {
     return ['all', '~xhr'];
   }
 
-  return modifiers.includes('~xhr') ? modifiers : [...modifiers, '~xhr'];
+  if (
+    // someone enforces xhr
+    modifiers.includes('xhr')
+    || modifiers.includes('~xhr')
+  ) {
+    return modifiers;
+  }
+
+  return [...modifiers, '~xhr'];
 }
 
 function verifyRedirectRules(ruleSet: RedirectRuleSet) {

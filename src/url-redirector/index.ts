@@ -352,13 +352,49 @@ export default [
       '.min.js',
       '.js'
     ] as const).map(suffix => literal({
-      base: `||code.jquery.com/jquery-3.*${suffix}`,
-      from: `code.jquery.com/jquery-[version]${suffix}`,
+      base: [
+        `||code.jquery.com/jquery-3.*${suffix}`,
+        `||code.jquery.com/jquery-4.*${suffix}`
+      ],
+      from: `code.jquery.com/jquery-[jquery_version]${suffix}`,
       to: `cdn.jsdelivr.net/npm/jquery@$1/dist/jquery${suffix}`,
       tests: [
         [
           `https://code.jquery.com/jquery-3.7.1${suffix}`,
           `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery${suffix}`
+        ],
+        [
+          `https://code.jquery.com/jquery-3.0.0-beta1${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery@3.0.0-beta1/dist/jquery${suffix}`
+        ],
+        [
+          `https://code.jquery.com/jquery-4.0.0${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery${suffix}`
+        ],
+        [
+          `https://code.jquery.com/jquery-4.0.0-rc.2${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery@4.0.0-rc.2/dist/jquery${suffix}`
+        ]
+      ],
+      excludeDomains: ['ui.com']
+    })),
+    ...([
+      ['.slim.module.min.js', 'jquery.slim.module.min.js'],
+      ['.slim.module.js', 'jquery.slim.module.js'],
+      ['.module.min.js', 'jquery.module.min.js'],
+      ['.module.js', 'jquery.module.js']
+    ] as const).map(([suffix, npmFileName]) => literal({
+      base: `||code.jquery.com/jquery-4.*${suffix}`,
+      from: `code.jquery.com/jquery-[jquery_version]${suffix}`,
+      to: `cdn.jsdelivr.net/npm/jquery@$1/dist-module/${npmFileName}`,
+      tests: [
+        [
+          `https://code.jquery.com/jquery-4.0.0${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/${npmFileName}`
+        ],
+        [
+          `https://code.jquery.com/jquery-4.0.0-beta.2${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery@4.0.0-beta.2/dist-module/${npmFileName}`
         ]
       ],
       excludeDomains: ['ui.com']
@@ -392,7 +428,7 @@ export default [
       ],
       excludeDomains: ['ui.com']
     },
-    // Less common versions and npm artifacts that are not byte-identical retain their original path.
+    // Older versions and npm artifacts that are not byte-identical retain their original path.
     {
       base: [
         '||code.jquery.com/jquery-1*',
@@ -401,8 +437,7 @@ export default [
         '||code.jquery.com/jquery-2.1.*-*',
         '||code.jquery.com/jquery-2.2.*-*',
         '||code.jquery.com/jquery-3.*.map',
-        '||code.jquery.com/jquery-3.*-*',
-        '||code.jquery.com/jquery-4*',
+        '||code.jquery.com/jquery-4.*.map',
         '||code.jquery.com/jquery-migrate-1*',
         '||code.jquery.com/jquery-migrate-3*',
         '||code.jquery.com/jquery-migrate-4*',
@@ -412,8 +447,8 @@ export default [
       to: 'cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/',
       tests: [
         [
-          'https://code.jquery.com/jquery-4.0.0.module.min.js',
-          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-4.0.0.module.min.js'
+          'https://code.jquery.com/jquery-4.0.0.module.min.map',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-4.0.0.module.min.map'
         ],
         [
           'https://code.jquery.com/jquery-1.3.2.pack.js',
@@ -426,10 +461,6 @@ export default [
         [
           'https://code.jquery.com/jquery-2.1.4.min.js',
           'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-2.1.4.min.js'
-        ],
-        [
-          'https://code.jquery.com/jquery-3.0.0-beta1.min.js',
-          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-3.0.0-beta1.min.js'
         ],
         [
           'https://code.jquery.com/jquery-migrate-4.0.2.module.min.js',
@@ -698,21 +729,9 @@ export default [
         ]
       ]
     },
+
+    // redirect
     ...([
-      'www.windy.com/img/',
-      'www.windy.com//img/' // typo in their code, CSS url(), typical bug
-    ]).map(url => ({
-      base: '||' + url,
-      from: url,
-      to: 'docs.lucaairport.qzz.io/https/' + url,
-      tests: []
-    })),
-    ...([
-      'tiles.windy.com',
-      'ims.windy.com',
-      'sat.windy.com',
-      'rdr.windy.com',
-      'img.windy.com',
       'node.windy.com',
       'imgproxy.windy.com',
 
@@ -727,9 +746,27 @@ export default [
       'dgalywyr863hv.cloudfront.net', // strava avatar and challenges
       'd3o5xota0a1fcr.cloudfront.net' // strava activity preview maps
     ] as const).map(host => ({
-      base: '||' + host + '^',
+      base: '||' + host + (host.includes('/') ? '' : '^'),
       from: host,
       to: 'docs.lucaairport.qzz.io/https/' + host,
+      tests: []
+    })),
+    // enforce XHR
+    ...([
+      'tiles.windy.com',
+      'ims.windy.com',
+      'sat.windy.com',
+      'rdr.windy.com',
+      'img.windy.com',
+      'node.windy.com/citytile/',
+
+      'www.windy.com/img/', // 1p request redirect should be safe
+      'www.windy.com//img/' // typo in their code, CSS url(), typical bug
+    ] as const).map(host => ({
+      base: '||' + host + (host.includes('/') ? '' : '^'),
+      from: host,
+      to: 'docs.lucaairport.qzz.io/https/' + host,
+      modifiers: ['all', 'xhr'],
       tests: []
     })),
     ...([
@@ -746,6 +783,21 @@ export default [
         '~xhr'
       ],
       tests: []
+    })),
+    // full domain redirect
+    ...([
+      'youjizz.com',
+      'phncdn.com'
+    ] as const).map(host => ({
+      base: '||' + host + '^',
+      from: '[subdomain].' + host,
+      to: 'docs.lucaairport.qzz.io/https/$1.' + host,
+      // include all subdomain is different then exact domain, we may be redirecting entire doc or frame, which we need to avoid
+      modifiers: [ // excluding doc
+        '~doc',
+        '~frame'
+      ],
+      tests: []
     }))
   ])
-] as const;
+] satisfies RedirectRuleSet[];
