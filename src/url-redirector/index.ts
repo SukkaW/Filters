@@ -428,7 +428,54 @@ export default [
       ],
       excludeDomains: ['ui.com']
     },
-    // Older versions and npm artifacts that are not byte-identical retain their original path.
+    // All jquery-migrate releases on code.jquery.com from 1.2.1 onward were also published on npm.
+    // Some copies differ only in line endings, build metadata, or a source-map trailer.
+    ...([
+      '.min.js',
+      '.js'
+    ] as const).map(suffix => literal({
+      base: [
+        `||code.jquery.com/jquery-migrate-1.2.1${suffix}`,
+        `||code.jquery.com/jquery-migrate-1.3.0${suffix}`,
+        `||code.jquery.com/jquery-migrate-1.4.0${suffix}`,
+        `||code.jquery.com/jquery-migrate-1.4.1${suffix}`,
+        `||code.jquery.com/jquery-migrate-3.*${suffix}`,
+        `||code.jquery.com/jquery-migrate-4.*${suffix}`
+      ],
+      from: `code.jquery.com/jquery-migrate-[jquery_version]${suffix}`,
+      to: `cdn.jsdelivr.net/npm/jquery-migrate@$1/dist/jquery-migrate${suffix}`,
+      tests: [
+        [
+          `https://code.jquery.com/jquery-migrate-1.2.1${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery-migrate@1.2.1/dist/jquery-migrate${suffix}`
+        ],
+        [
+          `https://code.jquery.com/jquery-migrate-3.0.0-rc1${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery-migrate@3.0.0-rc1/dist/jquery-migrate${suffix}`
+        ],
+        [
+          `https://code.jquery.com/jquery-migrate-4.0.0-beta.2${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery-migrate@4.0.0-beta.2/dist/jquery-migrate${suffix}`
+        ]
+      ],
+      excludeDomains: ['ui.com']
+    })),
+    ...([
+      '.module.min.js',
+      '.module.js'
+    ] as const).map(suffix => literal({
+      base: `||code.jquery.com/jquery-migrate-4.0.2${suffix}`,
+      from: `code.jquery.com/jquery-migrate-[jquery_version]${suffix}`,
+      to: `cdn.jsdelivr.net/npm/jquery-migrate@$1/dist-module/jquery-migrate${suffix}`,
+      tests: [
+        [
+          `https://code.jquery.com/jquery-migrate-4.0.2${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery-migrate@4.0.2/dist-module/jquery-migrate${suffix}`
+        ]
+      ],
+      excludeDomains: ['ui.com']
+    })),
+    // Older releases and source maps that differ from the npm artifacts retain their original path.
     {
       base: [
         '||code.jquery.com/jquery-1*',
@@ -438,9 +485,12 @@ export default [
         '||code.jquery.com/jquery-2.2.*-*',
         '||code.jquery.com/jquery-3.*.map',
         '||code.jquery.com/jquery-4.*.map',
-        '||code.jquery.com/jquery-migrate-1*',
-        '||code.jquery.com/jquery-migrate-3*',
-        '||code.jquery.com/jquery-migrate-4*',
+        '||code.jquery.com/jquery-migrate-1.0*',
+        '||code.jquery.com/jquery-migrate-1.1*',
+        '||code.jquery.com/jquery-migrate-1.2.0*',
+        '||code.jquery.com/jquery-migrate-3.*.map',
+        '||code.jquery.com/jquery-migrate-4.*.map',
+        '||code.jquery.com/jquery-migrate-git*',
         '||code.jquery.com/jquery-latest*'
       ],
       from: 'code.jquery.com/',
@@ -463,8 +513,16 @@ export default [
           'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-2.1.4.min.js'
         ],
         [
-          'https://code.jquery.com/jquery-migrate-4.0.2.module.min.js',
-          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-migrate-4.0.2.module.min.js'
+          'https://code.jquery.com/jquery-migrate-4.0.2.module.min.map',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-migrate-4.0.2.module.min.map'
+        ],
+        [
+          'https://code.jquery.com/jquery-migrate-1.2.0.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-migrate-1.2.0.min.js'
+        ],
+        [
+          'https://code.jquery.com/jquery-migrate-git.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-migrate-git.min.js'
         ],
         [
           'https://code.jquery.com/jquery-latest.min.js',
