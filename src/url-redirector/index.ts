@@ -793,16 +793,7 @@ export default [
       'node.windy.com',
       'imgproxy.windy.com',
 
-      'fourhoi.com',
-
-      'tiles.strava.com',
-      'web-assets.strava.com',
-      'content-a.strava.com',
-      'wre-assets.prod.mapping.strava.com',
-      'd3nn82uaxijpm6.cloudfront.net', // strava front-end assets
-      'dgtzuqphqg23d.cloudfront.net', // strava ugc images
-      'dgalywyr863hv.cloudfront.net', // strava avatar and challenges
-      'd3o5xota0a1fcr.cloudfront.net' // strava activity preview maps
+      'fourhoi.com'
     ] as const).map(host => ({
       base: '||' + host + (host.includes('/') ? '' : '^'),
       from: host,
@@ -817,9 +808,17 @@ export default [
       'rdr.windy.com',
       'img.windy.com',
       'node.windy.com/citytile/',
-
       'www.windy.com/img/', // 1p request redirect should be safe
-      'www.windy.com//img/' // typo in their code, CSS url(), typical bug
+      'www.windy.com//img/', // typo in their code, CSS url(), typical bug
+
+      'tiles.strava.com',
+      'content-a.strava.com',
+      'wre-assets.prod.mapping.strava.com',
+      'web-assets.strava.com',
+      'd3nn82uaxijpm6.cloudfront.net', // strava front-end assets
+      'dgtzuqphqg23d.cloudfront.net', // strava ugc images
+      'dgalywyr863hv.cloudfront.net', // strava avatar and challenges
+      'd3o5xota0a1fcr.cloudfront.net' // strava activity preview maps
     ] as const).map(host => ({
       base: '||' + host + (host.includes('/') ? '' : '^'),
       from: host,
