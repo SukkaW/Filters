@@ -117,6 +117,14 @@ function formatRuleBase(base: RedirectRule['base']) {
   return Array.isArray(base) ? fastStringArrayJoin(base, ', ') : base;
 }
 
+function ensureNoXhrRuleModifiers(modifiers?: string[]) {
+  if (!modifiers) {
+    return ['all', '~xhr'];
+  }
+
+  return modifiers.includes('~xhr') ? modifiers : [...modifiers, '~xhr'];
+}
+
 function verifyRedirectRules(ruleSet: RedirectRuleSet) {
   for (const rule of ruleSet.rules) {
     const replaceFrom = getReplaceFrom(rule.from);
@@ -141,7 +149,7 @@ function verifyRedirectRules(ruleSet: RedirectRuleSet) {
 }
 
 function serializeRedirectRule(base: string, rule: RedirectRule, parameterType: 'uritransform' | 'urltransform') {
-  return `${base}$${fastStringArrayJoin(rule.modifiers ?? ['all'], ',')},${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.excludeDomains)}`;
+  return `${base}$${fastStringArrayJoin(ensureNoXhrRuleModifiers(rule.modifiers), ',')},${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.excludeDomains)}`;
 }
 
 function getOutputFileHeader(title: string) {

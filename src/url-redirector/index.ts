@@ -6,7 +6,7 @@ export interface RedirectRule {
   // String patterns are treated literally; shorthands like [subdomain], [version], and [semver] are expanded by the build script.
   from: string | RegExp,
   to: string,
-  // resource type options of the network filter, defaults to ['all']
+  // Resource type options of the network filter. Defaults to ['all']; the build always appends '~xhr'.
   modifiers?: string[],
   // exclude redirect on domains to prevent CSP
   excludeDomains?: string[],
@@ -346,35 +346,142 @@ export default [
 
     // code.jquery.com
     // Many websites using code.jquery.com have CSP, so we need to match exact version
-    {
-      base: '||code.jquery.com/jquery-*.slim.min.js',
-      from: 'code.jquery.com/jquery-[version].slim.min.js',
-      to: 'cdn.jsdelivr.net/npm/jquery@$1/dist/jquery.slim.min.js',
+    ...([
+      '.slim.min.js',
+      '.slim.js',
+      '.min.js',
+      '.js'
+    ] as const).map(suffix => literal({
+      base: `||code.jquery.com/jquery-3.*${suffix}`,
+      from: `code.jquery.com/jquery-[version]${suffix}`,
+      to: `cdn.jsdelivr.net/npm/jquery@$1/dist/jquery${suffix}`,
       tests: [
-        ['https://code.jquery.com/jquery-1.10.2.slim.min.js', 'https://cdn.jsdelivr.net/npm/jquery@1.10.2/dist/jquery.slim.min.js'],
-        ['https://code.jquery.com/jquery-3.4.1.slim.min.js', 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js']
+        [
+          `https://code.jquery.com/jquery-3.7.1${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery${suffix}`
+        ]
+      ],
+      excludeDomains: ['ui.com']
+    })),
+    ...([
+      '.min.map',
+      '.min.js',
+      '.js'
+    ] as const).map(suffix => literal({
+      base: `||code.jquery.com/jquery-2.2.*${suffix}`,
+      from: `code.jquery.com/jquery-[version]${suffix}`,
+      to: `cdn.jsdelivr.net/npm/jquery@$1/dist/jquery${suffix}`,
+      tests: [
+        [
+          `https://code.jquery.com/jquery-2.2.4${suffix}`,
+          `https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery${suffix}`
+        ]
+      ],
+      excludeDomains: ['ui.com']
+    })),
+    {
+      // jquery@2.1.x minified files and source maps differ from the code.jquery.com copies.
+      base: '||code.jquery.com/jquery-2.1.*.js',
+      from: 'code.jquery.com/jquery-[version].js',
+      to: 'cdn.jsdelivr.net/npm/jquery@$1/dist/jquery.js',
+      tests: [
+        [
+          'https://code.jquery.com/jquery-2.1.4.js',
+          'https://cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.js'
+        ]
       ],
       excludeDomains: ['ui.com']
     },
+    // Less common versions and npm artifacts that are not byte-identical retain their original path.
     {
-      base: '||code.jquery.com/jquery-*.min.js',
-      from: 'code.jquery.com/jquery-[version].min.js',
-      to: 'cdn.jsdelivr.net/npm/jquery@$1/dist/jquery.min.js',
+      base: [
+        '||code.jquery.com/jquery-1*',
+        '||code.jquery.com/jquery-2.0*',
+        '||code.jquery.com/jquery-2.1.*.min.*',
+        '||code.jquery.com/jquery-2.1.*-*',
+        '||code.jquery.com/jquery-2.2.*-*',
+        '||code.jquery.com/jquery-3.*.map',
+        '||code.jquery.com/jquery-3.*-*',
+        '||code.jquery.com/jquery-4*',
+        '||code.jquery.com/jquery-migrate-1*',
+        '||code.jquery.com/jquery-migrate-3*',
+        '||code.jquery.com/jquery-migrate-4*',
+        '||code.jquery.com/jquery-latest*'
+      ],
+      from: 'code.jquery.com/',
+      to: 'cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/',
       tests: [
-        ['https://code.jquery.com/jquery-1.10.2.min.js', 'https://cdn.jsdelivr.net/npm/jquery@1.10.2/dist/jquery.min.js'],
-        // this should only match previous rule, this test is to ensure that
-        ['https://code.jquery.com/jquery-1.10.2.slim.min.js', 'https://code.jquery.com/jquery-1.10.2.slim.min.js']
-
+        [
+          'https://code.jquery.com/jquery-4.0.0.module.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-4.0.0.module.min.js'
+        ],
+        [
+          'https://code.jquery.com/jquery-1.3.2.pack.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-1.3.2.pack.js'
+        ],
+        [
+          'https://code.jquery.com/jquery-3.7.1.min.map',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-3.7.1.min.map'
+        ],
+        [
+          'https://code.jquery.com/jquery-2.1.4.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-2.1.4.min.js'
+        ],
+        [
+          'https://code.jquery.com/jquery-3.0.0-beta1.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-3.0.0-beta1.min.js'
+        ],
+        [
+          'https://code.jquery.com/jquery-migrate-4.0.2.module.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-migrate-4.0.2.module.min.js'
+        ],
+        [
+          'https://code.jquery.com/jquery-latest.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/jquery-latest.min.js'
+        ]
       ],
       excludeDomains: ['ui.com']
     },
-    // jqeury-ui is very outdated and we can ignore CSP here
+    // Other jQuery CDN projects retain their original paths in the official repository.
     {
-      base: '||code.jquery.com/ui/*/jquery-ui.min.js',
-      from: 'code.jquery.com/ui/[version_major]/jquery-ui.min.js',
-      to: 'cdn.jsdelivr.net/npm/jquery-ui@$1/dist/jquery-ui.min.js',
+      base: [
+        '||code.jquery.com/color/',
+        '||code.jquery.com/mobile/',
+        '||code.jquery.com/pep/',
+        '||code.jquery.com/qunit/',
+        '||code.jquery.com/ui/'
+      ],
+      from: 'code.jquery.com/',
+      to: 'cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/',
       tests: [
-        ['https://code.jquery.com/ui/1.11.4/jquery-ui.min.js', 'https://cdn.jsdelivr.net/npm/jquery-ui@1/dist/jquery-ui.min.js']
+        [
+          'https://code.jquery.com/color/jquery.color-2.2.0.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/color/jquery.color-2.2.0.min.js'
+        ],
+        [
+          'https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/mobile/1.4.5/jquery.mobile-1.4.5.min.js'
+        ],
+        [
+          'https://code.jquery.com/pep/0.4.3/pep.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/pep/0.4.3/pep.min.js'
+        ],
+        [
+          'https://code.jquery.com/qunit/qunit-1.0.0.css',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/qunit/qunit-1.0.0.css'
+        ],
+        [
+          'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/ui/1.11.4/jquery-ui.min.js'
+        ],
+        [
+          'https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/ui/1.13.3/themes/base/jquery-ui.css'
+        ],
+        [
+          'https://code.jquery.com/ui/1.13.3/themes/base/images/ui-icons_444444_256x240.png',
+          'https://cdn.jsdelivr.net/gh/jquery/codeorigin.jquery.com@main/cdn/ui/1.13.3/themes/base/images/ui-icons_444444_256x240.png'
+        ]
       ],
       excludeDomains: ['ui.com']
     },
@@ -613,6 +720,8 @@ export default [
 
       'tiles.strava.com',
       'web-assets.strava.com',
+      'content-a.strava.com',
+      'wre-assets.prod.mapping.strava.com',
       'd3nn82uaxijpm6.cloudfront.net', // strava front-end assets
       'dgtzuqphqg23d.cloudfront.net', // strava ugc images
       'dgalywyr863hv.cloudfront.net', // strava avatar and challenges
