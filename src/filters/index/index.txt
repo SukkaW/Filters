@@ -320,6 +320,10 @@ wnacg.com##+js(set, lockdownInterface, noopFunc, runAt, 2)
 ||blog.gitcode.com$inline-script
 ||www.sohu.com$csp=script-src https://*.itc.cn 'self' 'unsafe-eval' 'unsafe-inline'
 
+# Actually defuse sohu post recommendation
+||sohu.com/public-api/articles/pv
+||odin.sohu.com/odin/api/a/blockdata
+
 # Fix GitHub Markdown style
 github.com##.markdown-body li>p:style(margin-top: 0 !important; margin-bottom: 0 !important)
 

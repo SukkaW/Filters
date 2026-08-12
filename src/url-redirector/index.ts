@@ -791,9 +791,7 @@ export default [
     // redirect
     ...([
       'node.windy.com',
-      'imgproxy.windy.com',
-
-      'fourhoi.com'
+      'imgproxy.windy.com'
     ] as const).map(host => ({
       base: '||' + host + (host.includes('/') ? '' : '^'),
       from: host,
