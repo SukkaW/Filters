@@ -24,6 +24,9 @@ jobs:
   publish:
     name: Build Third Party Filters
     runs-on: ubuntu-slim
+    concurrency:
+      group: filters-cdn-skk-moe-publish
+      queue: max
     permissions:
       contents: read
     steps:

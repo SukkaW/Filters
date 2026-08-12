@@ -17,6 +17,9 @@ jobs:
   build:
     name: Build Filters/Scriptlets
     runs-on: ubuntu-slim
+    concurrency:
+      group: filters-cdn-skk-moe-publish
+      queue: max
     permissions:
       contents: read
     steps:
