@@ -810,7 +810,6 @@ export default [
       'www.windy.com//img/', // typo in their code, CSS url(), typical bug
 
       'tiles.strava.com',
-      'content-a.strava.com',
       'wre-assets.prod.mapping.strava.com',
       'web-assets.strava.com',
       'd3nn82uaxijpm6.cloudfront.net', // strava front-end assets
