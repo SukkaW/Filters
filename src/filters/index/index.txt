@@ -69,8 +69,14 @@ webcontainer.io#@#+js(sukka-defuse-service-worker)
 ! nullify all cache write and will always miss on read
 ! example.com##+js(sukka-defuse-cache-storage)
 *##+js(sukka-ephemeral-cache-storage)
-
 fandom.com##+js(sukka-defuse-cache-storage)
+
+# >>>> Avoid WebRTC Abuse
+*##+js(nowebrtc)
+! Make Bilibili Greater Than Ever Before already defuses WebRTC, no repeated injection
+bilibili.com#@#+js(nowebrtc)
+! Required by UniFi remote direct connections
+ui.com##+js(nowebrtc)
 
 # >>>> Click2Load Embed
 
@@ -692,8 +698,6 @@ bad.news##video.my-videos.video-js:style(max-width: 100% !important; max-height:
 # Breaks Google Dev Docs
 ://www.*.css|$xhr,3p,to=com,badfilter
 
-yy.com,le.com##+js(nowebrtc)
-
 ||parallels.com/download/desktop/pdfm19-en_US/antipiracy_pd_dialog$all
 ||parallels.com/*/antipiracy$all
 
@@ -754,8 +758,6 @@ fontshub.pro##+js(nosiif, /^/)
 ||vueschool.io/images/banners/*$image
 
 /goofy/ttzz/push.js$redirect=noop.js
-
-whoer.net##+js(nowebrtc)
 
 ||creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png
 
