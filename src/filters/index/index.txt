@@ -76,7 +76,11 @@ fandom.com##+js(sukka-defuse-cache-storage)
 ! Make Bilibili Greater Than Ever Before already defuses WebRTC, no repeated injection
 bilibili.com#@#+js(nowebrtc)
 ! Required by UniFi remote direct connections
-ui.com##+js(nowebrtc)
+ui.com#@#+js(nowebrtc)
+! Cloudflare Turnstile Needs WebRTC
+challenges.cloudflare.com#@#+js(nowebrtc)
+! Cloudflare Speedtest Packet Loss Measurements Needs WebRTC
+speed.cloudflare.com#@#+js(nowebrtc)
 
 # >>>> Click2Load Embed
 
