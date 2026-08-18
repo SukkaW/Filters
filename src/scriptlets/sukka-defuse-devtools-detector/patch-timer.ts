@@ -7,6 +7,7 @@ import { $console, argHasDebugger, defuseDebuggerInArg, FunctionPrototypeToStrin
 export function patchTimer() {
   GLOBAL_INSTANCE_LIST.forEach(([globalName, global]) => {
     try {
+      // eslint-disable-next-line @typescript-eslint/unbound-method -- the proxy forwards the original receiver via Reflect.apply
       global.setInterval = new $Proxy(global.setInterval, {
         apply(target, thisArg, args: Parameters<typeof setInterval>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden
@@ -24,6 +25,7 @@ export function patchTimer() {
       $console.warn('[sukka-defuse-devtools-detector]', `Fail to proxy ${globalName}.setInterval!`, e);
     }
     try {
+      // eslint-disable-next-line @typescript-eslint/unbound-method -- the proxy forwards the original receiver via Reflect.apply
       global.setTimeout = new $Proxy(global.setTimeout, {
         apply(target, thisArg, args: Parameters<typeof setTimeout>) {
           // Do not use String(args[0]) here. String() respects the toString() which might be overridden

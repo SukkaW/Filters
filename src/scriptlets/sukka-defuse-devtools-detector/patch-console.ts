@@ -65,7 +65,7 @@ export function patchConsole() {
           configurable: false,
           enumerable: true,
           writable: true,
-          value: new $Proxy(global.console[key], {
+          value: new $Proxy(descriptor.value, {
             apply(target, thisArg, args) {
               if (args.some(checkArg)) {
                 return;

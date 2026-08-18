@@ -138,10 +138,12 @@ function ensureNoXhrRuleModifiers(modifiers?: string[]) {
 }
 
 function verifyRedirectRules(ruleSet: RedirectRuleSet) {
-  for (const rule of ruleSet.rules) {
+  for (let i = 0, len = ruleSet.rules.length; i < len; i++) {
+    const rule = ruleSet.rules[i];
     const replaceFrom = getReplaceFrom(rule.from);
 
-    for (const [original, expected] of rule.tests) {
+    for (let j = 0, testsLen = rule.tests.length; j < testsLen; j++) {
+      const [original, expected] = rule.tests[j];
       const actual = original.replace(replaceFrom, rule.to);
 
       if (actual !== expected) {
@@ -182,16 +184,22 @@ async function buildRedirectRuleSet(ruleSet: RedirectRuleSet) {
 
   // uBlock Origin uses uritransform
   output.push('! >>>> uBlock Origin');
-  for (const rule of ruleSet.rules) {
-    for (const base of castArray(rule.base)) {
+  for (let i = 0, len = ruleSet.rules.length; i < len; i++) {
+    const rule = ruleSet.rules[i];
+    const bases = castArray(rule.base);
+    for (let j = 0, basesLen = bases.length; j < basesLen; j++) {
+      const base = bases[j];
       output.push(serializeRedirectRule(base, rule, 'uritransform'));
     }
   }
 
   // AdGuard uses urltransform
   output.push('', '! >>>> AdGuard');
-  for (const rule of ruleSet.rules) {
-    for (const base of castArray(rule.base)) {
+  for (let i = 0, len = ruleSet.rules.length; i < len; i++) {
+    const rule = ruleSet.rules[i];
+    const bases = castArray(rule.base);
+    for (let j = 0, basesLen = bases.length; j < basesLen; j++) {
+      const base = bases[j];
       output.push(serializeRedirectRule(base, rule, 'urltransform'));
     }
   }

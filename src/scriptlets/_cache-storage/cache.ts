@@ -52,7 +52,9 @@ function requestMatchesEntry(
     return true;
   }
 
-  for (const rawField of vary.split(',')) {
+  const fields = vary.split(',');
+  for (let i = 0, len = fields.length; i < len; i++) {
+    const rawField = fields[i];
     const field = rawField.trim();
     if (field === '') {
       continue;
@@ -133,7 +135,8 @@ export class SukkaCache implements Cache {
     list.forEach(assertPuttableRequest);
 
     const seen = new Set<string>();
-    for (const request of list) {
+    for (let i = 0, len = list.length; i < len; i++) {
+      const request = list[i];
       const key = withoutFragment(request.url);
       if (seen.has(key)) {
         throw new DOMException(`Duplicate request ${request.url}`, 'InvalidStateError');

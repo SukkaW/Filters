@@ -14,6 +14,9 @@ import { pipeline } from 'node:stream/promises';
 import { joinReadableStreams } from 'foxts/join-readablestreams';
 import { createRetrieKeywordFilter } from 'foxts/retrie';
 
+const rWhitespace = /\s+/g;
+const rKebabCaseSegment = /-[a-z]/g;
+
 const DATA_SOURCE = [
   {
     filename: 'sukka-collections-combined.txt',
@@ -121,7 +124,8 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
 
   const date = new Date().toUTCString();
 
-  for (const dataSource of DATA_SOURCE) {
+  for (let i = 0, len = DATA_SOURCE.length; i < len; i++) {
+    const dataSource = DATA_SOURCE[i];
     const destFile = path.join(OUTPUT_FILTERS_DIR, dataSource.filename);
 
     fs.writeFileSync(destFile, fastStringArrayJoin(
@@ -163,7 +167,8 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
 
     const filterStreams: Array<ReadableStream<string | undefined>> = [];
 
-    for (const url of dataSource.sources) {
+    for (let j = 0, sourcesLen = dataSource.sources.length; j < sourcesLen; j++) {
+      const url = dataSource.sources[j];
       console.log(picocolors.green('[fetch]'), url);
 
       // eslint-disable-next-line no-await-in-loop -- fetch one by one
@@ -259,8 +264,9 @@ type CamelCase<S extends string> = S extends `${infer F} ${infer R}`
 function extractMetadataFromList<T extends string>(content: string, fields: T[]) {
   const out = {} as Record<CamelCase<T>, string | undefined>;
   const head = content.slice(0, 1024);
-  for (const field of fields) {
-    let fieldKey = field.replaceAll(/\s+/g, '-');
+  for (let i = 0, len = fields.length; i < len; i++) {
+    const field = fields[i];
+    let fieldKey = field.replaceAll(rWhitespace, '-');
     const re = new RegExp(`^(?:! *|# +)${fieldKey.replaceAll('-', '(?: +|-)')}: *(.+)$`, 'im');
     const match = re.exec(head);
     let value = match?.[1].trim();
@@ -268,7 +274,7 @@ function extractMetadataFromList<T extends string>(content: string, fields: T[])
       value = undefined;
     }
     fieldKey = fieldKey.toLowerCase().replaceAll(
-      /-[a-z]/g, s => s.charAt(1).toUpperCase()
+      rKebabCaseSegment, s => s.charAt(1).toUpperCase()
     );
     out[fieldKey as CamelCase<T>] = value;
   }

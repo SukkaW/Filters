@@ -126,7 +126,8 @@ function stringifyBlobParts(this: void, parts: unknown): string | null {
   }
 
   let total = 0;
-  for (const part of parts) {
+  for (let i = 0, len = parts.length; i < len; i++) {
+    const part = parts[i];
     if (typeof part !== 'string') {
       return null;
     }

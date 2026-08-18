@@ -106,7 +106,7 @@ function appendToTail(entry: StoredEntry): void {
 
 export function touch(entry: StoredEntry): void {
   // Re-reading the most recent entry is the common case, and already correct.
-  if (!entry.linked || tail === entry) {
+  if (tail === entry || !entry.linked) {
     return;
   }
   unlink(entry);

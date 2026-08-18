@@ -34,7 +34,7 @@ export class FilterMinifyStream extends TransformStream<string, string> {
             line[0] === '#' // ignore comments
             && (line[1] !== '#' && line[1] !== '@') // but keep ## and #@#
           )
-          || (line[0] === '[' && line[line.length - 1] === ']')
+          || (line[0] === '[' && line.at(-1) === ']')
         ) {
           return;
         }
