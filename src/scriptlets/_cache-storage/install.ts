@@ -67,7 +67,14 @@ export function installEphemeralCacheStorage({ retain }: CacheStorageOptions): v
     return;
   }
 
-  const sweep = async () => {
+  // Keep the sweep out of the critical path. The mock is already installed
+  // synchronously, so this only ever has to reclaim *historical* data -- what a
+  // previous visit wrote before this scriptlet applied, or what another frame or
+  // tab wrote without it. That also makes it idempotent.
+  //
+  // `sweep` never rejects (it try/catches throughout), so the `catch` below only
+  // exists to keep the promise from floating.
+  const startSweep = async () => {
     try {
       const names = await nativeKeys.call(nativeCaches);
       if (names.length === 0) {
@@ -90,17 +97,6 @@ export function installEphemeralCacheStorage({ retain }: CacheStorageOptions): v
     } catch (e) {
       error('failed to enumerate persisted caches:', e);
     }
-  };
-
-  // Keep the sweep out of the critical path. The mock is already installed
-  // synchronously, so this only ever has to reclaim *historical* data -- what a
-  // previous visit wrote before this scriptlet applied, or what another frame or
-  // tab wrote without it. That also makes it idempotent.
-  //
-  // `sweep` never rejects (it try/catches throughout), so the `catch` below only
-  // exists to keep the promise from floating.
-  const startSweep = () => {
-    sweep().catch((e: unknown) => error('sweep failed:', e));
   };
 
   if (typeof window.requestIdleCallback === 'function') {

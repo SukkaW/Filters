@@ -3,7 +3,7 @@
 ||*^$dnstype=TYPE65,dnsrewrite=NXDOMAIN
 
 # Redirect Apple System Updates to Aliyun CDN
-||updates.cdn-apple.com$dnsrewrite=updates.cdn-apple.com.w.kunlunca.com
+||updates.cdn-apple.com^$dnsrewrite=updates.cdn-apple.com.w.kunlunca.com
 
 # Redirect NTP servers to Chinese servers
 
@@ -18,16 +18,16 @@
 # ntp.aliyun.com - stratum 2
 # time.tencent.com - stratum 2
 # ntp.tencent.com - stratum 2
-||pool.ntp.org$dnsrewrite=time.amazonaws.cn
-||time.apple.com$dnsrewrite=time.amazonaws.cn
-||time.asia.apple.com$dnsrewrite=time.amazonaws.cn
+||pool.ntp.org^$dnsrewrite=time.amazonaws.cn
+||time.apple.com^$dnsrewrite=time.amazonaws.cn
+||time.asia.apple.com^$dnsrewrite=time.amazonaws.cn
 
 # Misc
-|cdn.jsdelivr.net$dnsrewrite=cdn.jsdelivr.net.cdn.cloudflare.net
-||pages.dev$dnsrewrite=pages.dev.cdn.cloudflare.net
-||workers.dev$dnsrewrite=workers.dev.cdn.cloudflare.net
-||hanime1.me$dnsrewrite=hanime1.me.cdn.cloudflare.net
-||hanimeone.com$dnsrewrite=hanimeone.com.cdn.cloudflare.net
-||maxcdn.bootstrapcdn.com$dnsrewrite=maxcdn.bootstrapcdn.com.cdn.cloudflare.net
-|cloudflare.f-droid.org$dnsrewrite=cloudflare.f-droid.org.cdn.cloudflare.net
-||imgur.com$dnsrewrite=ipv4.imgur.map.fastly.net
+|cdn.jsdelivr.net^$dnsrewrite=cdn.jsdelivr.net.cdn.cloudflare.net
+||pages.dev^$dnsrewrite=pages.dev.cdn.cloudflare.net
+||workers.dev^$dnsrewrite=workers.dev.cdn.cloudflare.net
+||hanime1.me^$dnsrewrite=hanime1.me.cdn.cloudflare.net
+||hanimeone.com^$dnsrewrite=hanimeone.com.cdn.cloudflare.net
+||maxcdn.bootstrapcdn.com^$dnsrewrite=maxcdn.bootstrapcdn.com.cdn.cloudflare.net
+|cloudflare.f-droid.org^$dnsrewrite=cloudflare.f-droid.org.cdn.cloudflare.net
+||imgur.com^$dnsrewrite=ipv4.imgur.map.fastly.net
