@@ -268,6 +268,10 @@ www.speedtest.net##+js(set, dataLayer, [])
 ||g.alicdn.com/axdata/yunlog*$redirect=noop.js
 ||g.alicdn.com/dawn/user-tracker*$redirect=noop.js
 ||g.alicdn.com/sj/securesdk$redirect=noop.js
+# https://blog.laserphile.com/2026/08/aliexpress-webpage-keeping-multipoint.html
+/AWSC/uab/*/collina.js
+/AWSC/fireyejs/*/fireyejs.js
+/AWSC/nc/*/nc.js
 
 ||railway.com/googletag/
 ||railway.com/graphql/internal?q=eventBatchTrack
