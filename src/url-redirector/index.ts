@@ -812,6 +812,7 @@ export default [
       'tiles.strava.com',
       'wre-assets.prod.mapping.strava.com',
       'web-assets.strava.com',
+      'www.strava.com/assets/',
       'd3nn82uaxijpm6.cloudfront.net', // strava front-end assets
       'dgtzuqphqg23d.cloudfront.net', // strava ugc images
       'dgalywyr863hv.cloudfront.net', // strava avatar and challenges
