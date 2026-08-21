@@ -443,6 +443,8 @@ deepl.com##+js(trusted-prevent-fetch, s.deepl.com/web/statistics, '{ "code": 1 }
 # Fuck Intervals.ICU
 # defuse donation popup
 intervals.icu##+js(trusted-set-local-storage-item, DonatePopup, 2099-12-31)
+# defuse coach recommendation
+intervals.icu##+js(trusted-prevent-xhr, //api/athletes/coaches/, {"coaches":[]})
 
 # Fuck Fandom
 ||community.fandom.com

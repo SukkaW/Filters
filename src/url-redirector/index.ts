@@ -791,7 +791,8 @@ export default [
     // redirect
     ...([
       'node.windy.com',
-      'imgproxy.windy.com'
+      'imgproxy.windy.com',
+      'storage.googleapis.com/intervals-icu-images/'
     ] as const).map(host => ({
       base: '||' + host + (host.includes('/') ? '' : '^'),
       from: host,
