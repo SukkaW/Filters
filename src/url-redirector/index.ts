@@ -787,12 +787,13 @@ export default [
         ]
       ]
     },
-
     // redirect
     ...([
       'node.windy.com',
       'imgproxy.windy.com',
-      'storage.googleapis.com/intervals-icu-images/'
+      'storage.googleapis.com/intervals-icu-images/',
+
+      'd3g0gp89917ko0.cloudfront.net' // wikidot
     ] as const).map(host => ({
       base: '||' + host + (host.includes('/') ? '' : '^'),
       from: host,
@@ -827,7 +828,8 @@ export default [
     })),
     ...([
       'youjizz.com',
-      'phncdn.com'
+      'phncdn.com',
+      'interwiki.scpwikicn.com'
     ] as const).map(host => ({
       base: '||' + host + '^',
       from: '[subdomain].' + host,
