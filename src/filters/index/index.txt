@@ -272,6 +272,7 @@ www.speedtest.net##+js(set, dataLayer, [])
 /AWSC/uab/*/collina.js
 /AWSC/fireyejs/*/fireyejs.js
 /AWSC/nc/*/nc.js
+||dazn.com/gtg/metrics
 
 ||railway.com/googletag/
 ||railway.com/graphql/internal?q=eventBatchTrack
