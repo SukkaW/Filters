@@ -827,9 +827,23 @@ export default [
       tests: []
     })),
     ...([
+      'interwiki.scpwikicn.com',
+      'interwiki.scpwiki.com'
+    ] as const).map(host => ({
+      base: '||' + host + '^',
+      from: host,
+      to: 'docs.lucaairport.qzz.io/https/$1.' + host,
+      // include all subdomain is different then exact domain, we may be redirecting entire doc or frame, which we need to avoid
+      modifiers: [ // excluding doc
+        '~doc',
+        '~frame',
+        '~xhr'
+      ],
+      tests: []
+    })),
+    ...([
       'youjizz.com',
-      'phncdn.com',
-      'interwiki.scpwikicn.com'
+      'phncdn.com'
     ] as const).map(host => ({
       base: '||' + host + '^',
       from: '[subdomain].' + host,
