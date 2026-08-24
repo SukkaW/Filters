@@ -761,6 +761,17 @@ export default [
       ]
     },
     {
+      base: '||wikidot.com/common--theme/',
+      from: '[subdomain].wikidot.com/common--theme/',
+      to: 'docs.lucaairport.qzz.io/https/$1.wikidot.com/common--theme/',
+      modifiers: [
+        'image'
+      ],
+      tests: [
+        ['https://www.wikidot.com/common--theme/base/images/feed/feed-icon-14x14.png', 'https://docs.lucaairport.qzz.io/https/www.wikidot.com/common--theme/base/images/feed/feed-icon-14x14.png']
+      ]
+    },
+    {
       // {s}.tile.openstreetmap.org variants are collapsed onto the apex host so the
       // proxy's CDN cache key is identical regardless of which mirror the page picked
       base: '||tile.openstreetmap.org^',
