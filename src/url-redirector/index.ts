@@ -803,6 +803,7 @@ export default [
       'node.windy.com',
       'imgproxy.windy.com',
       'storage.googleapis.com/intervals-icu-images/',
+      'upload.wikimedia.org',
 
       'd3g0gp89917ko0.cloudfront.net' // wikidot
     ] as const).map(host => ({

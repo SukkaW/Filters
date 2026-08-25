@@ -316,6 +316,10 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 /counters.gif$redirect=1x1.gif
 ||pixel.wp.com/g.gif$redirect=1x1.gif
 
+! vercel insights
+/\/va\//
+/_vercel/insights
+
 # >>>> Website Fix, Fuck Website, Fxxk Website, Fix Website
 
 # Remove all AFF ID
