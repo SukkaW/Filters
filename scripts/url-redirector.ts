@@ -8,6 +8,7 @@ import { escapeRegexp } from 'fast-escape-regexp';
 import { fastStringArrayJoin } from 'foxts/fast-string-array-join';
 import picocolors from 'picocolors';
 import { castArray } from 'foxts/cast-array';
+import { appendArrayInPlace } from 'foxts/append-array-in-place';
 
 const REGEX_SHORTHANDS = { // NEEDS TO BE ENTIRELY GROUPED for replace with $1, $2, ...
   '[subdomain]': /([^/]+)/.source,
@@ -109,12 +110,15 @@ function getPatternSource(from: RedirectRule['from']) {
   return escapeForUriTransform(getStringPatternSource(from));
 }
 
-function getDomainModifier(excludeDomains?: string[]) {
-  if (!excludeDomains?.length) {
+function getDomainModifier(includeDomains?: string[], excludeDomains?: string[]) {
+  if (!includeDomains?.length && !excludeDomains?.length) {
     return '';
   }
 
-  return `,domain=${fastStringArrayJoin(excludeDomains.map(domain => `~${domain}`), '|')}`;
+  return `,domain=${fastStringArrayJoin(appendArrayInPlace(
+    includeDomains ?? [],
+    excludeDomains?.map(domain => `~${domain}`) ?? []
+  ), '|')}`;
 }
 
 function formatRuleBase(base: RedirectRule['base']) {
@@ -163,7 +167,7 @@ function verifyRedirectRules(ruleSet: RedirectRuleSet) {
 }
 
 function serializeRedirectRule(base: string, rule: RedirectRule, parameterType: 'uritransform' | 'urltransform') {
-  return `${base}$${fastStringArrayJoin(ensureNoXhrRuleModifiers(rule.modifiers), ',')},${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.excludeDomains)}`;
+  return `${base}$${fastStringArrayJoin(ensureNoXhrRuleModifiers(rule.modifiers), ',')},${parameterType}=/${getPatternSource(rule.from)}/${escapeForUriTransform(rule.to)}/${getDomainModifier(rule.includeDomains, rule.excludeDomains)}`;
 }
 
 function getOutputFileHeader(title: string) {

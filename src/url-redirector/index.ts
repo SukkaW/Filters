@@ -10,6 +10,8 @@ export interface RedirectRule {
   modifiers?: string[],
   // exclude redirect on domains to prevent CSP
   excludeDomains?: string[],
+  // include redirect only on those domains
+  includeDomains?: string[],
   tests: Array<[original: string, redirected: string]>
 }
 
@@ -798,6 +800,18 @@ export default [
         ]
       ]
     },
+    {
+      base: '*',
+      from: /^(https?):\/\//,
+      to: 'https://docs.lucaairport.qzz.io/$1/',
+      includeDomains: [
+        'wikidot.com'
+      ],
+      modifiers: ['image', 'denyallow=lucaairport.qzz.io'],
+      tests: [
+        ['https://nu-scptheme.github.io/Black-Highlighter/img/logo.svg', 'https://docs.lucaairport.qzz.io/https/nu-scptheme.github.io/Black-Highlighter/img/logo.svg']
+      ]
+    },
     // redirect
     ...([
       'node.windy.com',
@@ -838,13 +852,14 @@ export default [
       modifiers: ['all', 'xhr'],
       tests: []
     })),
+    // exact domain
     ...([
       'interwiki.scpwikicn.com',
       'interwiki.scpwiki.com'
     ] as const).map(host => ({
       base: '||' + host + '^',
       from: host,
-      to: 'docs.lucaairport.qzz.io/https/$1.' + host,
+      to: 'docs.lucaairport.qzz.io/https/' + host,
       // include all subdomain is different then exact domain, we may be redirecting entire doc or frame, which we need to avoid
       modifiers: [ // excluding doc
         '~doc',
@@ -853,6 +868,7 @@ export default [
       ],
       tests: []
     })),
+    // include subdomain
     ...([
       'youjizz.com',
       'phncdn.com'
@@ -865,21 +881,6 @@ export default [
         '~doc',
         '~frame',
         '~xhr'
-      ],
-      tests: []
-    })),
-    // full domain redirect
-    ...([
-      'youjizz.com',
-      'phncdn.com'
-    ] as const).map(host => ({
-      base: '||' + host + '^',
-      from: '[subdomain].' + host,
-      to: 'docs.lucaairport.qzz.io/https/$1.' + host,
-      // include all subdomain is different then exact domain, we may be redirecting entire doc or frame, which we need to avoid
-      modifiers: [ // excluding doc
-        '~doc',
-        '~frame'
       ],
       tests: []
     }))
