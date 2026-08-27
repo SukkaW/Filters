@@ -590,6 +590,9 @@ favicon.ico$image,uritransform=/https:\/\/(.+)\/favicon.ico/https:\/\/favicone.c
 # Silca Tire Pressure Calculator blocks all third party SDK
 ||silca.cc/*/pro-tire-pressure-calculator^$csp=script-src 'unsafe-eval' 'unsafe-inline'
 
+# Wolf Tooth Tire Pressure Calculator blocks all third party SDK
+||wolftoothcomponents.com/pages/tire-pressure-calculator^$csp=script-src 'self' 'unsafe-eval' 'unsafe-inline'
+
 # Fuck 4KHD
 ! defuse devtools detector
 4khd.com##+js(sukka-defuse-devtools-detector)
