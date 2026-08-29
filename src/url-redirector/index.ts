@@ -663,7 +663,7 @@ export default [
       base: '||github.com/*/raw/',
       from: 'github.com/[non_path_segment]/[non_path_segment]/raw/[git_ref]/',
       to: 'cdn.jsdelivr.net/gh/$1/$2@$3/',
-      modifiers: ['~script', '~xhr', '~css'],
+      modifiers: ['~script', '~xhr', '~css', '~doc'],
       excludeDomains: ['github.com', 'npmjs.com', 'viewscreen.githubusercontent.com'],
       tests: [
         [
@@ -816,6 +816,7 @@ export default [
     ...([
       'node.windy.com',
       'imgproxy.windy.com',
+
       'storage.googleapis.com/intervals-icu-images/',
 
       'd3g0gp89917ko0.cloudfront.net' // wikidot
