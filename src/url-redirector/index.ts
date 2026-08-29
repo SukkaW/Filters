@@ -855,7 +855,8 @@ export default [
     // exact domain
     ...([
       'interwiki.scpwikicn.com',
-      'interwiki.scpwiki.com'
+      'interwiki.scpwiki.com',
+      'lain.bgm.tv'
     ] as const).map(host => ({
       base: '||' + host + '^',
       from: host,
