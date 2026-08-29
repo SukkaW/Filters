@@ -274,6 +274,8 @@ www.speedtest.net##+js(set, dataLayer, [])
 /AWSC/nc/*/nc.js
 ||dazn.com/gtg/metrics
 
+||gstatic.olympics.com/s3/ddna/ddna-analytics.js$redirect=noop.js
+
 ||railway.com/googletag/
 ||railway.com/graphql/internal?q=eventBatchTrack
 ||developer.apple.com/assets/metrics/scripts/analytics.js
