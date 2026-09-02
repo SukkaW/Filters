@@ -683,6 +683,8 @@ youtube.com##yt-lockup-view-model:has-text(YouTube featured)
 ||blog.maplesugar.top/usr/uploads/2024/09/725322379.jpg
 ||tinypass.com
 
+||system1.com^$3p
+
 ||mymediaing.my/sdk$3p
 ||endorsely.com$3p
 
