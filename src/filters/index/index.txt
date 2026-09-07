@@ -464,6 +464,8 @@ intervals.icu##+js(trusted-prevent-xhr, //api/athletes/coaches/, {"coaches":[]})
 ||fandom.com/*/AgeDeclaration/$image
 fandom.com###article-discussions
 fandom.com###age-gate
+! actually make age gate disappear
+fandom.com##+js(set, fandomAgeGate, null)
 
 # Fuck change.org
 ! suggestions on petitions (who give it a fuck)
