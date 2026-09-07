@@ -81,6 +81,8 @@ ui.com#@#+js(nowebrtc)
 challenges.cloudflare.com#@#+js(nowebrtc)
 ! Cloudflare Speedtest Packet Loss Measurements Needs WebRTC
 speed.cloudflare.com#@#+js(nowebrtc)
+! Required for Google Meet to work
+meet.google.com#@#+js(nowebrtc)
 
 # >>>> Click2Load Embed
 
@@ -1586,3 +1588,12 @@ sinonjs.org##.VPCarbonAds
 
 ! Aug 2, 2026 https://www.landian.news
 landian.news##.single-activity-ticker
+
+
+! Sep 8, 2026 https://d-vps.com
+||d-vps.com/api/stock/rail/*/image$image
+
+! Sep 8, 2026 https://cn.nytimes.com
+nytimes.com##.ribbon-container
+nytimes.com##.related-articles
+nytimes.com##.related-cont
