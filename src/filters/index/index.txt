@@ -73,6 +73,32 @@ fandom.com##+js(sukka-defuse-cache-storage)
 
 # >>>> Avoid WebRTC Abuse
 *##+js(nowebrtc)
+! Allow local/LAN applications to use WebRTC
+! Adapted from https://ublockorigin.github.io/uAssets/filters/lan-block.txt
+! Match hostnames (not request URLs) for scriptlet exceptions
+! IPv4 private networks
+/^10\.(?:(?:[1-9]?\d|1\d\d|2(?:[0-4]\d|5[0-5]))\.){2}(?:[1-9]?\d|1\d\d|2(?:[0-4]\d|5[0-5]))$/#@#+js(nowebrtc)
+/^172\.(?:1[6-9]|2\d|3[01])(?:\.(?:[1-9]?\d|1\d\d|2(?:[0-4]\d|5[0-5]))){2}$/#@#+js(nowebrtc)
+/^192\.168(?:\.(?:[1-9]?\d|1\d\d|2(?:[0-4]\d|5[0-5]))){2}$/#@#+js(nowebrtc)
+! IPv4 link-local addresses
+/^169\.254\.(?:[1-9]\d?|1\d{2}|2(?:[0-4]\d|5[0-4]))\.(?:[1-9]?\d|1\d{2}|2(?:[0-4]\d|5[0-5]))$/#@#+js(nowebrtc)
+! IPv6 local addresses (including link-local)
+/^\[f(?:[cd][0-9a-f]|e[89a-f])[0-9a-f]:[0-9a-f:]+\]$/#@#+js(nowebrtc)
+! IPv4-mapped IPv6 local addresses
+/^\[::ffff:(?:7f[0-9a-f]{2}|a[0-9a-f]{2}|ac1[0-9a-f]|c0a8|a9fe):[0-9a-f]{1,4}\]$/#@#+js(nowebrtc)
+! Loopback and unspecified addresses
+/^127\.(?:(?:[1-9]?\d|1\d\d|2(?:[0-4]\d|5[0-5]))\.){2}(?:[1-9]?\d|1\d\d|2(?:[0-4]\d|5[0-5]))$/#@#+js(nowebrtc)
+localhost,0.0.0.0,[::1],[::]#@#+js(nowebrtc)
+! Local domain suffixes
+internal,local,home.arpa#@#+js(nowebrtc)
+! Known local service and router configuration domains
+console.gl-inet.com#@#+js(nowebrtc)
+pi.hole#@#+js(nowebrtc)
+plex.direct#@#+js(nowebrtc)
+router.synology.com#@#+js(nowebrtc)
+unifi#@#+js(nowebrtc)
+unifi.localdomain#@#+js(nowebrtc)
+web.setup.home#@#+js(nowebrtc)
 ! Make Bilibili Greater Than Ever Before already defuses WebRTC, no repeated injection
 bilibili.com#@#+js(nowebrtc)
 ! Required by UniFi remote direct connections
