@@ -812,6 +812,51 @@ export default [
         ['https://nu-scptheme.github.io/Black-Highlighter/img/logo.svg', 'https://docs.lucaairport.qzz.io/https/nu-scptheme.github.io/Black-Highlighter/img/logo.svg']
       ]
     },
+    {
+      base: '||s3.amazonaws.com',
+      from: 'https://s3.amazonaws.com/',
+      to: 'https://docs.lucaairport.qzz.io/https/s3.amazonaws.com/',
+      includeDomains: [
+        'connect.garmin.com'
+      ],
+      tests: [
+        [
+          'https://s3.amazonaws.com/garmin-connect-prod/profile_images/example.png',
+          'https://docs.lucaairport.qzz.io/https/s3.amazonaws.com/garmin-connect-prod/profile_images/example.png'
+        ]
+      ]
+    },
+    {
+      base: '||connect.garmin.com/images/',
+      from: 'https://connect.garmin.com/images/badges/',
+      to: 'https://docs.lucaairport.qzz.io/https/connect.garmin.com/images/badges/',
+      includeDomains: [
+        'connect.garmin.com'
+      ],
+      tests: [
+        [
+          'https://connect.garmin.com/images/badges/xxhdpi/badge_example_lrg.png',
+          'https://docs.lucaairport.qzz.io/https/connect.garmin.com/images/badges/xxhdpi/badge_example_lrg.png'
+        ]
+      ]
+    },
+    {
+      base: [
+        '||connect.garmin.com/web-react/static/',
+        '||connect.garmin.com/web-react/styles/'
+      ],
+      from: 'https://connect.garmin.com/web-react/',
+      to: 'https://docs.lucaairport.qzz.io/https/connect.garmin.com/web-react/',
+      includeDomains: [
+        'connect.garmin.com'
+      ],
+      tests: [
+        [
+          'https://connect.garmin.com/web-react/static/js/114514.js',
+          'https://docs.lucaairport.qzz.io/https/connect.garmin.com/web-react/static/js/114514.js'
+        ]
+      ]
+    },
     // redirect
     ...([
       'node.windy.com',
