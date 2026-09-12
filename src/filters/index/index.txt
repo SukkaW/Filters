@@ -288,6 +288,7 @@ www.speedtest.net##+js(set, dataLayer, [])
 /litlyx.js
 /stats/stats-runtime.js
 /stats/visit-runtime.js
+/metrics-proxy/
 ||api.ccsccorp.com/api/dlog/
 ||vercel.com/_stream/external/
 ||app.planhat.com/analytics/
