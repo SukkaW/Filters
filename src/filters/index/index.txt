@@ -189,6 +189,8 @@ meet.google.com#@#+js(nowebrtc)
 google.*#@#style + div[data-mcpr][style^="margin-bottom:"]:has(div[data-async-type="folsrch"])
 google.*#@#style + div[data-mcpr][style^="margin-bottom:"] div[data-async-type="folsrch"]
 google.*#@#div[data-lhcontainer="1"][eid][data-ved] > div > div > div[jsname] > div[style="display:contents"]
+google.*#@#div:not([role]) > div[data-hveid] div[style^="margin-bottom:"][data-hveid]:has(div[id^="folsrch"])
+google.*#@#div[style^="margin-bottom:"] > div[style^="font-family:Google Sans,"][style*="position:relative"]:has(div[data-async-type="folsrch"])
 ://www.google.*/async/folsrch?*&async=_basejs:*,_basecomb:*&q=$xhr,badfilter
 google.*#@#div[data-q][data-al]
 # Unblock geolocation-db.com from Dan Pollocks Hosts file
