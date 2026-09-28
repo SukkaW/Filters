@@ -206,6 +206,9 @@ lingchenzi.com#@#.category-share
 # bad rules, priratebay.org actually require JS again
 *$script,from=thepiratebay.org,badfilter
 
+# bad rules, github buttons is not annoyances
+||buttons.github.io/buttons.js$3p,badfilter
+
 # bad rules, easyprivacy accidentally blocks StackBlitz npm registry
 .com/bn.js$3p,badfilter
 .com/bn.js$3p,domain=~nr.staticblitz.com
