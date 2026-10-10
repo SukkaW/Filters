@@ -1629,3 +1629,26 @@ landian.news##.single-activity-ticker
 nytimes.com##.ribbon-container
 nytimes.com##.related-articles
 nytimes.com##.related-cont
+
+! Sep 13, 2026 https://www.washingtonpost.com
+washingtonpost.com##.paywall-overlay
+washingtonpost.com##.checkout-paywall-overlay
+washingtonpost.com##body:style(position: initial !important; width: initial !important; height: initial !important; min-width: initial !important; max-width: initial !important)
+
+! Sep 14, 2026 https://cleanip.io
+||static.cleanip.io/ads/$image
+
+! Sep 14, 2026 https://www.chahu.com
+||chahu.com/ads/$image
+||chahu.com/*/ads/$image
+||chahu.com/logos/$image
+
+! Sep 15, 2026 https://zhuanlan.zhihu.com
+zhuanlan.zhihu.com##.HotSearchCard
+
+! Sep 20, 2026 https://tao.zz.ac
+tao.zz.ac###noad
+
+! Sep 20, 2026 https://www.chinapress.com.my
+www.chinapress.com.my##.prompt-login-wrapper-2
+
