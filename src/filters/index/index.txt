@@ -109,6 +109,12 @@ challenges.cloudflare.com#@#+js(nowebrtc)
 speed.cloudflare.com#@#+js(nowebrtc)
 ! Required for Google Meet to work
 meet.google.com#@#+js(nowebrtc)
+! Manus
+butterfly-effect.dev#@#+js(nowebrtc)
+ampcode.com#@#+js(nowebrtc)
+manus.im#@#+js(nowebrtc)
+! Microsoft Teams Meeting
+teams.live.com#@#+js(nowebrtc)
 
 # >>>> Click2Load Embed
 
@@ -181,6 +187,7 @@ meet.google.com#@#+js(nowebrtc)
 # unblock remove param for bilibili video cdn
 ! aglint-disable-next-line invalid-modifiers -- whitelist
 @@||bilivideo.com^$removeparam
+@@||bilivideos.com^$removeparam=nettype
 ! aglint-disable-next-line invalid-modifiers -- whitelist
 @@||bilivideo.cn^$removeparam
 # Cloudflare cdn-cgi/trace was used to track IP, but we can whitelist this for ip.skk.moe
@@ -287,6 +294,8 @@ gettr.com##esr-signup
 # >>>> Privacy
 # defuse tracking
 www.speedtest.net##+js(set, dataLayer, [])
+fulicat.com##+js(set, LA, {})
+fulicat.com##+js(set, LA.init, noopFunc)
 ||bitmovin.com/analytics
 ||umami.*/*.js
 ||plausible.*/*.js
@@ -314,6 +323,9 @@ www.speedtest.net##+js(set, dataLayer, [])
 ||railway.com/graphql/internal?q=eventBatchTrack
 ||developer.apple.com/assets/metrics/scripts/analytics.js
 
+! nodeseek fingerprinting
+||22112211.xyz^
+
 ||render.com/pan/api/event
 ||r2cdn.perplexity.ai/js/count/
 
@@ -329,6 +341,7 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 ||vemetric.com$3p
 ||affonso.io$3p
 ||himetrica.com/api$3p
+||dreamdata.io^$3p
 
 ||sp1.baidu.com/*.gif$redirect=1x1.gif
 
@@ -360,6 +373,9 @@ www.dnsfilter.com##+js(aopw, window.analytics)
 
 # Remove all AFF ID
 *$removeparam=aff
+
+# Vanta Video Training
+||dzas9mj7ubt6.cloudfront.net/*.mp4$redirect=noop-1s.mp4
 
 # Defuse WNACG Anti AdBlock Detection
 wnacg.com##+js(set, lockdownInterface, noopFunc, runAt, 2)
@@ -1621,7 +1637,6 @@ sinonjs.org##.VPCarbonAds
 ! Aug 2, 2026 https://www.landian.news
 landian.news##.single-activity-ticker
 
-
 ! Sep 8, 2026 https://d-vps.com
 ||d-vps.com/api/stock/rail/*/image$image
 
@@ -1652,3 +1667,6 @@ tao.zz.ac###noad
 ! Sep 20, 2026 https://www.chinapress.com.my
 www.chinapress.com.my##.prompt-login-wrapper-2
 
+! Oct 24, 2026 https://www.singtaousa.com
+www.singtaousa.com##.kadence-conversion
+www.singtaousa.com##.kadence-conversion-overlay
